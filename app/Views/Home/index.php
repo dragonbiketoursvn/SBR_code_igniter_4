@@ -7,9 +7,7 @@
 </head>
 <body>
 
-  <p>Home Page</p>
-
-  <p>Back Page</p>
+  <p>Blank Slate</p>
 
 </body>
 </html>
