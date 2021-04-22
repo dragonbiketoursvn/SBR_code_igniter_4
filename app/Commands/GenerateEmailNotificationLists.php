@@ -16,6 +16,9 @@ class GenerateEmailNotificationLists extends BaseCommand
 
     public function run(array $params)
     {
+        require ROOTPATH . '/vendor/PHPMailer-master/src/Exception.php';
+        require ROOTPATH . '/vendor/PHPMailer-master/src/PHPMailer.php';
+        require ROOTPATH . '/vendor/PHPMailer-master/src/SMTP.php';
         //THIS IS WHERE WE WILL HAVE DATABASE QUERY TO GENEREATE NOTIFICATION LISTS BASED ON WHAT NEEDS TO BE DONE (RENT/SERVICE)
 
         $db = db_connect();
@@ -31,14 +34,19 @@ class GenerateEmailNotificationLists extends BaseCommand
 
         $twoMonthsAgo = date('Y-m-d', time() - 60 * 24 *3600);
         $threeMonthsAgo = date('Y-m-d', time() - 90 * 24 *3600);
+        $sixMonthsAgo = date('Y-m-d', time() - 180 * 24 *3600);
 
         $model = new AppointmentsModel;
 
         foreach ($result->getResultArray() as $row) {
 
           $appointment = new Appointment($row);
+          $appointment->startActivation();
 
-          $message = "Hi there " . $appointment->customer_name . ", \n";
+          $greeting = "Hi there, \n";
+          $message =  '';
+          $request = "Please click on the following link to select a time that's convenient for you: <a href='http://sbr_code_igniter_4.localhost/Appointments/select/{$appointment->token}'>Book Appointment</a>";
+          $closing = "Cheers, <br> Patrick";
 
           if($row['paid_up_to'] < $twoMonthsAgo) {
 
@@ -46,7 +54,7 @@ class GenerateEmailNotificationLists extends BaseCommand
 
           }
 
-          if(($row['last_oil_change'] < $threeMonthsAgo) && ($row['last_repair_total']) < 800) {
+          if ((($row['last_oil_change'] < $threeMonthsAgo) && ($row['last_repair_total'] < 800)) || ($row['last_oil_change'] < $sixMonthsAgo)) {
 
             $appointment->full_service = 1;
             //$message5 = 'It will just be a quick service so we can return it to you in 30 minutes to an hour.';
@@ -81,7 +89,7 @@ class GenerateEmailNotificationLists extends BaseCommand
             $message .= "It needs a full service so we'll give you another to use until that one's ready. \n";
 
           }
-          if($appointment->full_service == 0) {
+          if(($appointment->full_service == 0) && ($appointment->small_service == 1)) {
 
             $message .= "It will just be a quick service so we can return it to you in 30 minutes to an hour. \n";
 
@@ -121,18 +129,6 @@ class GenerateEmailNotificationLists extends BaseCommand
 
           $model->insert($appointment);
           echo $message;
-        }
-
-        //THIS IS JUST AN EXAMPLE EMAIL ARRAY
-        $addressArray = ['dragonbiketoursvn@gmail.com', 'nga.natalie@gmail.com'];
-
-        require ROOTPATH . '/vendor/PHPMailer-master/src/Exception.php';
-        require ROOTPATH . '/vendor/PHPMailer-master/src/PHPMailer.php';
-        require ROOTPATH . '/vendor/PHPMailer-master/src/SMTP.php';
-
-
-        //JUST ITERATING THROUGH MY EXAMPLE ARRAY HERE. WHEN DEPLOYED LIVE WE WILL ITERATE THROUGH 5 DIFFERENT LISTS
-        foreach($addressArray as $address) {
 
           $mail = new PHPMailer(true);
           $mail->isSMTP();
@@ -143,10 +139,10 @@ class GenerateEmailNotificationLists extends BaseCommand
           $mail->SMTPSecure = 'tls';
           $mail->Port = 26;
           $mail->setFrom('patrick@saigonbikerentals.com');
-          $mail->addAddress($address);
+          $mail->addAddress($appointment->email_address);
           $mail->isHTML(true);
           $mail->Subject = 'New email address';
-          $mail->Body = '<h1 style="text-align:center;">SAIGON BIKE RENTALS</h1><div><p>We love you!</p></div>';
+          $mail->Body = '<p>' . $greeting . '</p><p>' . $message . '</p><p>' . $request . '</p><p>' . $closing . '</p>';
 
           if (!$mail->send()) {
 
@@ -162,5 +158,47 @@ class GenerateEmailNotificationLists extends BaseCommand
 
           }
         }
+
+        //THIS IS JUST AN EXAMPLE EMAIL ARRAY
+        //$addressArray = ['dragonbiketoursvn@gmail.com', 'nga.natalie@gmail.com'];
+
+        //require ROOTPATH . '/vendor/PHPMailer-master/src/Exception.php';
+        //require ROOTPATH . '/vendor/PHPMailer-master/src/PHPMailer.php';
+        //require ROOTPATH . '/vendor/PHPMailer-master/src/SMTP.php';
+
+
+        //JUST ITERATING THROUGH MY EXAMPLE ARRAY HERE. WHEN DEPLOYED LIVE WE WILL ITERATE THROUGH 5 DIFFERENT LISTS
+        /*
+        foreach($addressArray as $address) {
+
+          $mail = new PHPMailer(true);
+          $mail->isSMTP();
+          $mail->Host = 'mail.saigonbikerentals.com';
+          $mail->SMTPAuth = true;
+          $mail->Username = 'patrick@saigonbikerentals.com';
+          $mail->Password = 'n1FaZ!Sz#)vB';
+          $mail->SMTPSecure = 'tls';
+          $mail->Port = 26;
+          $mail->setFrom('patrick@saigonbikerentals.com');
+          $mail->addAddress($address);
+          $mail->isHTML(true);
+          $mail->Subject = 'New email address';
+          $mail->Body = '<p>' . $greeting . '</p><p>' . $message . '</p><p>' . $request . '</p><p>' . $closing . '</p>';
+
+          if (!$mail->send()) {
+
+              echo 'Mailer Error: ' . $mail->ErrorInfo;
+
+          } else {
+
+              $path = '{sng103.hawkhost.com:993/ssl}INBOX.Sent';
+              $imapStream = imap_open($path, 'patrick@saigonbikerentals.com', 'n1FaZ!Sz#)vB');
+              imap_append($imapStream, $path, $mail->getSentMIMEMessage());
+              imap_close($imapStream);
+              echo 'Message sent!';
+
+          }
+        }
+        */
     }
 }
