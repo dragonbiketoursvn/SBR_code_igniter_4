@@ -6,47 +6,15 @@ class AppointmentsModel extends \CodeIgniter\Model
 {
     protected $table = 'appointments';
 
-    protected $allowedFields = ['description', 'user_id'];
+    protected $allowedFields = ['contract_number', 'customer_name', 'current_bike', 'pay_rent', 'full_service', 'small_service', 'appointment_time',
+                                'building_name', 'number', 'street_name', 'ward', 'district', 'appointment_completed', 'activation_hash'];
 
-    protected $returnType = 'App\Entities\Task';
+    protected $returnType = 'App\Entities\Appointment';
 
     protected $useTimestamps = true;
 
-    protected $validationRules = [
-        'description' => 'required'
-    ];
+    protected $validationRules = [];
 
-    protected $validationMessages = [
-        'description' => [
-            'required' => 'Task.description.required',
-        ]
-    ];
+    protected $validationMessages = [];
 
-    public function paginateTasksByUserId($id)
-    {
-        return $this->where('user_id', $id)
-                    ->orderBy('created_at')
-                    ->paginate(5);
-    }
-
-    public function getTaskByUserId($id, $user_id)
-    {
-        return $this->where('id', $id)
-                    ->where('user_id', $user_id)
-                    ->first();
-    }
-
-    public function search($term, $user_id)
-    {
-        if ($term === null) {
-
-            return [];
-        }
-
-        return $this->select('id, description')
-                    ->where('user_id', $user_id)
-                    ->like('description', $term)
-                    ->get()
-                    ->getResultArray();
-    }
 }
