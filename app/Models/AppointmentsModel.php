@@ -17,4 +17,10 @@ class AppointmentsModel extends \CodeIgniter\Model
 
     protected $validationMessages = [];
 
+    public function getScheduledAppointments() {
+
+      return $this->where('appointment_time >', date('Y-m-d H:i:s'))->findAll();
+
+    }
+
 }

@@ -4,7 +4,6 @@
 
 <?= $this->section("content") ?>
 
-
 <?php
   //Should these variables be in the controller?
   $time = new \DateTime('09:00');
@@ -69,11 +68,7 @@ if(!empty($scheduledAppointments)) {
     echo "<tr> \r\n <td>" . $time->format('G:i') . ' - ' . $time2->format('G:i') . "</td> \r\n";
 
     for($j=1; $j < 8; $j++) {
-      echo '<td>' .
-              form_open(site_url('/appointments/chooseTime/' . $token))
-              .  '<input type="hidden" name="appointment_start" value="' .
-                date('Y-m-d', time() + $j * 24 *3600) . " " . $time->format('H:i:s')
-                . '"><button';
+      echo '<td><button';
 
             $dateString = date('Y-m-d', time() + $j * 24 *3600) . " " . $time->format('H:i:s');
 
@@ -90,15 +85,13 @@ if(!empty($scheduledAppointments)) {
             if($currentUsersAppointment !== null) {
               if($dateString === $currentUsersAppointment->appointment_time) {
                 echo '>BOOKED</button>
-                </form>
                 </td>';
               } else {
                 echo '>Select</button>
-                </form>
                 </td>';
               }
             } else {
-              echo '>Select</button></form></td>';
+              echo '>Select</button></td>';
             }
 
 

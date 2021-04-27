@@ -11,16 +11,31 @@
       table {border: 0px;}
     </style>
 
-    <title><?= $this->renderSection("title") ?></title>
+    <title>WTF?</title>
 
 </head>
+
 <body>
 
-<section>
+  <?= form_open(site_url('/appointments/chooseLocation/' . $token)) ?>
 
-    <?= $this->renderSection("content") ?>
+    <label for="building_name">Building Name</label>
+    <input type="text" id="building_name" name="building_name">
 
-</section>
+    <label for="number">Number</label>
+    <input type="text" id="number" name="number">
+
+    <label for="street_name">Street</label>
+    <input type="text" id="street_name" name="street_name">
+
+    <label for="ward">Ward</label>
+    <input type="text" id="ward" name="ward">
+
+    <label for="district">District</label>
+    <input type="text" id="district" name="district">
+
+    <button>Submit</button>
+  </form>
 
 
 </body>
