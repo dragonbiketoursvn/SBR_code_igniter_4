@@ -45,7 +45,7 @@ if(!empty($scheduledAppointments)) {
 
 ?>
 
-<table>
+<table class="table">
   <tr>
     <th>
 
@@ -84,7 +84,7 @@ if(!empty($scheduledAppointments)) {
 
             if($currentUsersAppointment !== null) {
               if($dateString === $currentUsersAppointment->appointment_time) {
-                echo '>BOOKED</button>
+                echo '>Booked</button>
                 </td>';
               } else {
                 echo '>Select</button>
@@ -102,5 +102,77 @@ if(!empty($scheduledAppointments)) {
   ?>
 
 </table>
+
+<div class="columns">
+  <div class="column is-full">
+    <table class="table is-fullwidth">
+      <tr>
+        <th>
+
+        </th>
+        <?php for($i = 1; $i < 8; $i++) {
+          echo '<th>' . date('D, m-d', time() + $i * 24 *3600) . '</th>';
+        }?>
+
+      </tr>
+
+      <?php
+        $time = new \DateTime('08:30');
+        $time2 = new \DateTime('09:00');
+        $addInterval = new DateInterval('PT30M');
+
+        for($i=0; $i < 16; $i++) {
+        $time->add($addInterval);
+        $time2->add($addInterval);
+
+        echo "<tr> \r\n <td>" . $time->format('G:i') . ' - ' . $time2->format('G:i') . "</td> \r\n";
+
+        for($j=1; $j < 8; $j++) {
+          echo '<td><button';
+
+                $dateString = date('Y-m-d', time() + $j * 24 *3600) . " " . $time->format('H:i:s');
+
+                if($currentUsersAppointment !== null) {
+                  if($dateString == $currentUsersAppointment->appointment_time) {
+                    echo ' class="alreadyBooked" disabled';
+                  }
+                }
+
+                if((((date('l', time() + $j * 24 *3600) == 'Sunday'))) || (in_array($dateString, $alreadyBookedArray)) || ($currentUsersAppointment !== null)) {
+                  echo ' class="sunday" disabled';
+                }
+
+                if($currentUsersAppointment !== null) {
+                  if($dateString === $currentUsersAppointment->appointment_time) {
+                    echo '>Booked</button>
+                    </td>';
+                  } else {
+                    echo '>Select</button>
+                    </td>';
+                  }
+                } else {
+                  echo '>Select</button></td>';
+                }
+
+
+        }
+
+        echo "</tr>\r\n";
+        }
+      ?>
+
+    </table>
+    <button class="button is-danger is-fullwidth">penis</button>
+  </div>
+</div>
+
+<?php
+
+
+  if($currentUsersAppointment !== null) {
+    echo form_open(site_url('/appointments/delete/' . $token)) .
+    '<input type="hidden" name="appointment_start" value=""><button class="button">Cancel and Reschedule Current Appointment</button></form>';
+  }
+?>
 
 <?= $this->endSection() ?>

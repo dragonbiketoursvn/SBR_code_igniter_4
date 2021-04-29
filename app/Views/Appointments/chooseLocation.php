@@ -17,22 +17,22 @@
 
 <body>
 
-  <?= form_open(site_url('/appointments/chooseLocation/' . $token)) ?>
+  <?= form_open(site_url('/appointments/saveLocation/' . $token)); ?>
 
     <label for="building_name">Building Name</label>
-    <input type="text" id="building_name" name="building_name">
+    <input type="text" id="building_name" name="building_name" value="<?= esc($appointment->building_name) ?>">
 
     <label for="number">Number</label>
-    <input type="text" id="number" name="number">
+    <input type="text" id="number" name="number" value="<?= esc($appointment->number) ?>">
 
     <label for="street_name">Street</label>
-    <input type="text" id="street_name" name="street_name">
+    <input type="text" id="street_name" name="street_name" value="<?= esc($appointment->street_name) ?>">
 
     <label for="ward">Ward</label>
-    <input type="text" id="ward" name="ward">
+    <input type="text" id="ward" name="ward" value="<?= esc($appointment->ward) ?>">
 
     <label for="district">District</label>
-    <input type="text" id="district" name="district">
+    <input type="text" id="district" name="district" value="<?= esc($appointment->district) ?>">
 
     <button>Submit</button>
   </form>

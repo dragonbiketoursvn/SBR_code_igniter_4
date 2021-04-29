@@ -20,6 +20,8 @@ class Appointments extends BaseController
     $newToken = new Token($token);
     $hash = $newToken->getHash();
     $appointment = $this->model->where('activation_hash', $hash)->first();
+    $alreadyBookedArray = [];
+    $currentUsersAppointment = null;
 
     if(!$appointment) {
 
@@ -33,23 +35,15 @@ class Appointments extends BaseController
     $scheduledAppointments = $this->model->getScheduledAppointments();
 
       return view('Appointments/select', [
-        'token' => $token,
-        'scheduledAppointments' => $scheduledAppointments
+        'token'                   => $token,
+        'scheduledAppointments'   => $scheduledAppointments,
+        'alreadyBookedArray'      => $alreadyBookedArray,
+        'currentUsersAppointment' => $currentUsersAppointment
       ]);
 	}
 
   public function chooseTime($token = null)
 	{
-
-    //if($token === null) {
-
-    //  $response = service('response');
-    //  $response->setStatusCode(403);
-    //  $response->setBody('You do not have permission to access that resource');
-
-    //  return $response;
-    //  }
-
       $newToken = new Token($token);
       $hash = $newToken->getHash();
 
@@ -71,11 +65,23 @@ class Appointments extends BaseController
         //'token' => $token,
         //'scheduledAppointments' => $scheduledAppointments
       //]);
-      return view('Appointments/chooseLocation', ['appointment' => $appointment, 'token' => $token]);
-      //return redirect()->to('/appointments/chooseLocation/');
+      //return view('Appointments/chooseLocation', ['appointment' => $appointment, 'token' => $token]);
+      if($this->request->getPost('appointment_start') == "") {
+        return redirect()->to(site_url('appointments/select/' . $token));
+      }
+      return redirect()->to(site_url('appointments/chooseLocation/' . $token));
 	}
 
   public function chooseLocation($token = null)
+  {
+    $newToken = new Token($token);
+    $hash = $newToken->getHash();
+    $appointment = $this->model->where('activation_hash', $hash)->first();
+
+    return view('Appointments/chooseLocation', ['appointment' => $appointment, 'token' => $token]);
+  }
+
+  public function saveLocation($token = null)
 	{
     $newToken = new Token($token);
     $hash = $newToken->getHash();
@@ -83,12 +89,53 @@ class Appointments extends BaseController
 
     $post = $this->request->getPost();
     $appointment->fill($post);
-    $this->model->save($appointment);
+
+    if($appointment->hasChanged()) {
+
+      $this->model->save($appointment);
+
+    }
 
     $scheduledAppointments = $this->model->getScheduledAppointments();
 
-      return redirect()->to(site_url('appointments/show/') . $token);
+      return redirect()->to(site_url('appointments/select/' . $token));
+      //return redirect()->to(site_url('appointments/show/') . $token);
 
+	}
+
+  public function delete($token = null)
+	{
+      $newToken = new Token($token);
+      $hash = $newToken->getHash();
+
+      $appointment = $this->model->where('activation_hash', $hash)->first();
+
+      if(!$appointment) {
+
+        $response = service('response');
+        $response->setStatusCode(403);
+        $response->setBody('You do not have permission to access that resource');
+
+        return $response;
+      };
+
+      $this->model->update($appointment->id, [ 'appointment_time'=> $this->request->getPost('appointment_start')]);
+
+      $scheduledAppointments = $this->model->getScheduledAppointments();
+
+      //  return view('Appointments/select', [
+      //    'token' => $token,
+      //    'scheduledAppointments' => $scheduledAppointments
+      //  ]);
+
+      return redirect()->to(site_url('appointments/select/') . $token);
+
+      //return view('Appointments/select', [
+        //'token' => $token,
+        //'scheduledAppointments' => $scheduledAppointments
+      //]);
+      //return view('Appointments/chooseLocation', ['appointment' => $appointment, 'token' => $token]);
+      //return redirect()->to('/appointments/chooseLocation/');
 	}
 
   public function show($token = null)
