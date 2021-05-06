@@ -23,7 +23,9 @@ class Authentication
       $response->setStatusCode(403);
       $response->setBody('You do not have permission to access that resource');
 
-      return $response;
+      $response->send();
+
+      exit();
     }
 
     return $appointment;
