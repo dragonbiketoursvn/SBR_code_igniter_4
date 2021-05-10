@@ -16,6 +16,20 @@ class AppointmentsModel extends \CodeIgniter\Model
     protected $validationRules = [];
 
     protected $validationMessages = [];
+    
+    protected $beforeUpdate = ['trimWhiteSpace'];
+    protected $beforeInsert = ['trimWhiteSpace'];
+
+    protected function trimWhiteSpace($data)
+    {
+      array_walk($data['data'], function (&$item) {
+
+      $item = trim($item);
+
+    });
+    
+    return $data;
+    }
 
     public function getScheduledAppointments() {
 
