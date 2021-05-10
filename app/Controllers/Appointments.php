@@ -57,10 +57,6 @@ class Appointments extends BaseController
 
     $post = $this->request->getPost();
 
-    array_walk($post, function (&$item) {
-        $item = trim($item);
-    });
-
     $appointment->fill($post);
 
     if($appointment->hasChanged()) {
