@@ -31,26 +31,12 @@ if(!empty($scheduledAppointments)) {
 
 ?>
 
-<?php if($currentUsersAppointment === null): ?>
-
-  <section class="hero is-link">
-    <div class="hero-body has-text-centered">
-      <p class="title">
-        Let Us Know When You'd Like to Meet
-      </p>
-    </div>
-  </section>
-
-<?php endif; ?>
-
-
-
 <div class="container">
-  <table class="table is-fullwidth sticky">
-
+  <table class="table is-fullwidth">
+    <caption><b><?= date('M, Y'); ?></b></caption>
     <tr>
-      <th style="font-size: 1.5vw;">
-        <?= date('M, Y'); ?>
+      <th>
+
       </th>
       <?php for($i = 1; $i < 8; $i++) {
         echo '<th>' . date('D', time() + $i * 24 *3600) . '<br>' . date('d', time() + $i * 24 *3600) . '</th>';
@@ -62,7 +48,7 @@ if(!empty($scheduledAppointments)) {
       $time = new \DateTime('08:30');
       //$time2 = new \DateTime('09:00');
       $addInterval = new DateInterval('PT30M');
-      $buttonAvailable = '<button style="border-radius: 10px;" class="button is-available is-fullwidth">Available</button>';
+      $buttonAvailable = '<button style="border-radius: 10px;" class="button is-link is-fullwidth">Available</button>';
       $buttonUnavailable = '<button style="border-radius: 10px;" class="button is-link is-fullwidth" disabled>Available</button>';
       $buttonUserBooked = '<button style="border-radius: 10px;" class="button is-success is-fullwidth" disabled>Selected</button>';
 
@@ -109,15 +95,13 @@ if(!empty($scheduledAppointments)) {
   </table>
 
   <?php
+
+
     if($currentUsersAppointment !== null) {
       echo form_open(site_url('/appointments/chooseTime/' . $token)) .
 
 
-      '<input type="hidden" name="appointment_start" value="">
-        <button class="button is-danger is-fullwidth" style="font-size: 2vw;">
-          Click to Cancel and Reschedule Current Appointment
-        </button>
-      </form>';
+      '<input type="hidden" name="appointment_start" value=""><button>Cancel and Reschedule Current Appointment</button></form>';
     }
   ?>
 </div>
