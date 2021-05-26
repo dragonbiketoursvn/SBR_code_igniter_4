@@ -65,7 +65,15 @@ class GenerateEmailNotificationLists extends BaseCommand
 
           }
 
+          /*
           if(($row['last_oil_change'] < $threeMonthsAgo) && ($row['last_repair_total']) > 800) {
+
+            $appointment->small_service = 1;
+
+          }
+          */
+
+          if((($row['last_oil_change'] < $threeMonthsAgo) && ($row['last_oil_change'] > $sixMonthsAgo)) && ($row['last_repair_total'] > 800)) {
 
             $appointment->small_service = 1;
 
@@ -130,7 +138,7 @@ class GenerateEmailNotificationLists extends BaseCommand
               echo 'Message sent!';
 
           }
-          
+
         }
     }
 }

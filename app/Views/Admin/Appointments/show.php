@@ -14,29 +14,6 @@ $buttonClass = ' button">';
 $buttonClassDisabled = ' button-disabled" disabled>';
 $buttonClose = ' </button>';
 
-//Check whether there are any scheduled appointments and add to $alreadyBooked array so we can disable time slots that are already taken
-if(!empty($scheduledAppointments)) {
-
-  foreach($scheduledAppointments as $scheduledAppointment) {
-
-      if($scheduledAppointment->activation_hash === hash_hmac('sha256', $token, $_ENV['HASH_SECRET_KEY'])) {
-        $currentUsersAppointment = $scheduledAppointment;
-      }
-
-      $alreadyBooked = new \DateTime($scheduledAppointment->appointment_time);
-      $addInterval = new DateInterval('PT30M');
-
-
-      $alreadyBooked->sub($addInterval);
-      $alreadyBookedArray[] = $alreadyBooked->format('Y-m-d H:i:s');
-      $alreadyBooked->add($addInterval);
-      $alreadyBookedArray[] = $alreadyBooked->format('Y-m-d H:i:s');
-      $alreadyBooked->add($addInterval);
-      $alreadyBookedArray[] = $alreadyBooked->format('Y-m-d H:i:s');
-  }
-
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -50,22 +27,16 @@ if(!empty($scheduledAppointments)) {
 <link rel="stylesheet" href="<?= site_url('css/select.css') ?>">
 
     <title>
-      Appointment Selector
+      Appointment View
     </title>
 
 </head>
 
 <body>
 
-<!-- Check if current user has already booked an appointment before displaying banner -->
-
-
-
       <div class="banner">
-        <p>When Can We Meet?</p>
+        <p>This Week's Appointments</p>
       </div>
-
-
 
 <!-- This is where the grid of select buttons goes -->
 
@@ -74,7 +45,7 @@ if(!empty($scheduledAppointments)) {
       <?php
 
       //First, get the month to display in top-left corner
-  		echo $divOpen . 1 . $column . 1 . $idMonth . date('M') . $divClose;
+  		echo $divOpen . 1 . $column . 1 . $idMonth . date('M', time() + 24 * 3600) . $divClose;
 
       //Then, generate rest of top row
       for($j=2; $j<9; $j++) {
@@ -100,18 +71,13 @@ if(!empty($scheduledAppointments)) {
 
           $dateString = date('Y-m-d', time() + ($j - 1) * 24 *3600) . " " . $time->format('H:i:s');
 
-          //Open the form and add hidden input with appropriate value
-          echo form_open(site_url('/appointments/chooseTime/' . $token)) . $inputOpen . $dateString . '">';
+          //Check if this time block has an appointment booked
+          if( in_array($dateString, $appointmentTimes) ) {
+            //If yes, open the form to send to the Appointment/details controller
+            echo form_open("Admin/Appointments/details/{$dateString}");
 
-
-          //Check to see if this time block is on a Sunday or has already been booked by another user
-          if( (date('l', time() + ($j - 1) * 24 *3600) == 'Sunday')  || (in_array($dateString, $alreadyBookedArray)) ) {
-            
-            //Open the div to get correct layout positon and open disabled button
-            echo $divOpen . $i . $column . $j . $buttonOpen . $i . $column . $j . $buttonClassDisabled . 'Select'
-
-            //Now close out the button, the div, and the form
-            . $buttonClose . $divClose . '</form>';
+            //Add the appropriate button and close the form
+            echo "<div class='demo-item row{$i} column{$j}'><button class='row{$i} column{$j} button-booked'>Booked</button></div></form>";
           }
 
           //Otherwise it's available
@@ -119,10 +85,8 @@ if(!empty($scheduledAppointments)) {
             //echo 'Select';
 
             //Open the div to get correct layout positon and open button
-            echo $divOpen . $i . $column . $j . $buttonOpen . $i . $column . $j . $buttonClass . 'Select'
-
-            //Now close out the button, the div, and the form
-            . $buttonClose . $divClose . '</form>';
+            echo form_open("Admin/Appointments/new/{$dateString}") .
+            "<div class='demo-item row{$i} column{$j}'><button class='row{$i} column{$j} button-open'>Open</button></div></form>";
           }
 
   			}

@@ -7,24 +7,33 @@
 
 
 <div class="block">
-  <section class="hero is-link">
+  <section class="hero is-success">
     <div class="hero-body has-text-centered" style="margin-bottom: 0px;">
       <p class="title">
-       And Where Should We Meet?
+       Appointment Details
       </p>
     </div>
   </section>
 </div>
 
-<?= form_open(site_url('/appointments/saveLocation/' . $token)); ?>
+<div class="field is-horizontal">
+  <div class="field-label is-normal">
+    <label class="label" for="customer_name">Customer Name</label>
+  </div>
+  <div class="field-body">
+    <div class="field">
+      <input class="input is-success" type="text" id="customer_name" name="customer_name" value="<?= esc($appointment->customer_name) ?>" disabled>
+    </div>
+  </div>
+</div>
+
 <div class="field is-horizontal">
   <div class="field-label is-normal">
     <label class="label" for="building_name">Building Name</label>
   </div>
   <div class="field-body">
     <div class="field">
-      <p class="control is-expanded">
-        <input class="input is-success" type="text" id="building_name" name="building_name" value="<?= esc($appointment->building_name) ?>" autofocus>
+        <input class="input is-success" type="text" id="building_name" name="building_name" value="<?= esc($appointment->building_name) ?>" disabled>
     </div>
   </div>
 </div>
@@ -36,7 +45,7 @@
   <div class="field-body">
     <div class="field">
       <p class="control is-expanded">
-        <input class="input is-success" type="text" id="number" name="number" value="<?= esc($appointment->number) ?>">
+        <input class="input is-success" type="text" id="number" name="number" value="<?= esc($appointment->number) ?>" disabled>
       </p>
     </div>
   </div>
@@ -49,7 +58,7 @@
   <div class="field-body">
     <div class="field">
       <p class="control is-expanded">
-        <input class="input is-success" type="text" id="street_name" name="street_name" value="<?= esc($appointment->street_name) ?>">
+        <input class="input is-success" type="text" id="street_name" name="street_name" value="<?= esc($appointment->street_name) ?>" disabled>
       </p>
     </div>
   </div>
@@ -62,7 +71,7 @@
   <div class="field-body">
     <div class="field">
       <p class="control is-expanded">
-        <input class="input is-success" type="text" id="ward" name="ward" value="<?= esc($appointment->ward) ?>">
+        <input class="input is-success" type="text" id="ward" name="ward" value="<?= esc($appointment->ward) ?>" disabled>
       </p>
     </div>
   </div>
@@ -75,7 +84,38 @@
   <div class="field-body">
     <div class="field">
       <p class="control is-expanded">
-        <input class="input is-success" type="text" id="district" name="district" value="<?= esc($appointment->district) ?>">
+        <input class="input is-success" type="text" id="district" name="district" value="<?= esc($appointment->district) ?>" disabled>
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="field is-horizontal">
+  <div class="field-label is-normal">
+    <label class="label" for="district">Appointment Purpose</label>
+  </div>
+  <div class="field-body">
+    <div class="field">
+      <p class="control is-expanded">
+        <input class="input is-success" type="text" id="district" name="district" value="<?php
+
+        $string = '';
+
+        if($appointment->pay_rent == 1) {
+          $string .= 'pay rent, ';
+        }
+
+        if($appointment->full_service == 1) {
+          $string .= 'full service ';
+        }
+
+        if($appointment->small_service == 1) {
+          $string .= 'small service ';
+        }
+
+        echo $string;
+
+        ?>" disabled>
       </p>
     </div>
   </div>
@@ -89,13 +129,12 @@
     <div class="field">
       <div class="control">
         <button class="button is-available is-large is-fullwidth">
-          Click to Submit
+          Bấm lúc gặp khách
         </button>
       </div>
     </div>
   </div>
 </div>
 
-</form>
 
 <?= $this->endSection() ?>
