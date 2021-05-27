@@ -13,7 +13,7 @@ class Appointments extends \App\Controllers\BaseController
         $this->model = new \App\Models\AppointmentsModel;
     }
 
-    public function show()
+    public function showAll()
     {
       $scheduledAppointments = $this->model->getScheduledAppointments();
       $appointmentTimes = [];
@@ -22,14 +22,59 @@ class Appointments extends \App\Controllers\BaseController
         $appointmentTimes[] = $scheduledAppointment->appointment_time;
       }
 
-      return view('Admin/Appointments/show', ['appointmentTimes' => $appointmentTimes]);
+      return view('Admin/Appointments/showAll', ['appointmentTimes' => $appointmentTimes]);
     }
 
-    public function details($dateString)
+    public function getDetails($dateString)
     {
       $appointment = $this->model->where('appointment_time', $dateString)->first();
-      
-      return view('Admin/Appointments/details', ['appointment' => $appointment]);
+
+      //return view('Admin/Appointments/details', ['appointment' => $appointment]);
+      return redirect()->to(site_url("Admin/Appointments/showDetails/{$dateString}"));
+    }
+
+    public function showDetails($dateString)
+    {
+      $appointment = $this->model->where('appointment_time', $dateString)->first();
+
+      return view('Admin/Appointments/showDetails', ['appointment' => $appointment]);
+
+    }
+
+    public function startInteraction($id)
+    {
+      return redirect()->to(site_url("Admin/Appointments/paymentCheck/{$id}"));
+    }
+
+    public function paymentCheck($id)
+    {
+      $appointment = $this->model->find($id);
+
+       return view('Admin/Appointments/paymentCheck', ['appointment' => $appointment]);
+    }
+
+    public function startBikeStatusCheck($id)
+    {
+      return redirect()->to(site_url("Admin/Appointments/bikeStatusCheck/{$id}"));
+    }
+
+    public function bikeStatusCheck($id)
+    {
+      $appointment = $this->model->find($id);
+
+       return view('Admin/Appointments/bikeStatusCheck', ['appointment' => $appointment]);
+    }
+
+    public function startFinalCheck($id)
+    {
+      return redirect()->to(site_url("Admin/Appointments/finalCheck/{$id}"));
+    }
+
+    public function finalCheck($id)
+    {
+      $appointment = $this->model->find($id);
+
+       return view('Admin/Appointments/finalCheck', ['appointment' => $appointment]);
     }
 
     /*

@@ -4,7 +4,7 @@
 
 <?= $this->section("content") ?>
 
-
+<?php if($appointment): ?>
 
 <div class="block">
   <section class="hero is-success">
@@ -128,13 +128,20 @@
   <div class="field-body">
     <div class="field">
       <div class="control">
-        <button class="button is-available is-large is-fullwidth">
-          Bấm lúc gặp khách
-        </button>
+        <?= form_open("Admin/Appointments/startInteraction/{$appointment->id}") ?>
+          <button class="button is-available is-large is-fullwidth">
+            Bấm lúc gặp khách
+          </button>
+        </form>
       </div>
     </div>
   </div>
 </div>
 
+<?php else: ?>
+
+  Ko có cuộc hẹn lúc này.
+
+<?php endif; ?>
 
 <?= $this->endSection() ?>

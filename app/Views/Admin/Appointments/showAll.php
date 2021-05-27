@@ -74,7 +74,7 @@ $buttonClose = ' </button>';
           //Check if this time block has an appointment booked
           if( in_array($dateString, $appointmentTimes) ) {
             //If yes, open the form to send to the Appointment/details controller
-            echo form_open("Admin/Appointments/details/{$dateString}");
+            echo form_open("Admin/Appointments/getDetails/{$dateString}");
 
             //Add the appropriate button and close the form
             echo "<div class='demo-item row{$i} column{$j}'><button class='row{$i} column{$j} button-booked'>Booked</button></div></form>";
