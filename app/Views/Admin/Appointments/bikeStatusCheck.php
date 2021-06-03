@@ -1,6 +1,6 @@
 <?= $this->extend("layouts/default") ?>
 
-<?= $this->section('title') ?>Location Selector<?= $this->endSection() ?>
+<?= $this->section('title') ?>Bike Status Change<?= $this->endSection() ?>
 
 <?= $this->section("content") ?>
 
@@ -21,9 +21,11 @@
     <div class="field-body">
       <div class="field">
         <div class="control">
+          <a href="<?= site_url("Admin/Appointments/getStatusChange") ?>">
             <button class="button is-success is-large is-fullwidth">
               Có
             </button>
+          </a>
         </div>
       </div>
     </div>
@@ -36,7 +38,7 @@
     <div class="field-body">
       <div class="field">
         <div class="control">
-          <?= form_open("Admin/Appointments/startFinalCheck/{$appointment->id}") ?>
+          <?= form_open("Admin/Appointments/startFinalCheck") ?>
             <button class="button is-danger is-large is-fullwidth">
               Không
             </button>

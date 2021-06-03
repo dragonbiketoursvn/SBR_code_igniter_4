@@ -21,9 +21,11 @@
     <div class="field-body">
       <div class="field">
         <div class="control">
+          <?= form_open("Admin/Payments/makeNew") ?>
             <button class="button is-success is-large is-fullwidth">
               Có
             </button>
+          </form>
         </div>
       </div>
     </div>
@@ -36,7 +38,7 @@
     <div class="field-body">
       <div class="field">
         <div class="control">
-          <?= form_open("Admin/Appointments/startBikeStatusCheck/{$appointment->id}") ?>
+          <?= form_open("Admin/Appointments/startBikeStatusCheck") ?>
             <button class="button is-danger is-large is-fullwidth">
               Không
             </button>

@@ -2,8 +2,7 @@
 
 namespace App\Entities;
 
-
-class Appointment extends \CodeIgniter\Entity
+class Payment extends \CodeIgniter\Entity
 {
 
 }

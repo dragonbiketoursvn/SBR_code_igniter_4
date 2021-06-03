@@ -1,0 +1,157 @@
+CRITICAL - 2021-06-02 11:05:50 --> Call to undefined method App\Controllers\Admin\Appointments::update()
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Appointments->paymentCheck()
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Appointments))
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2021-06-02 11:17:00 --> Class "App\Models\AppointmentModel" not found
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Payments->savePayment()
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Payments))
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2021-06-02 11:19:35 --> There is no data to update.
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\BaseModel.php(880): CodeIgniter\Database\Exceptions\DataException::forEmptyDataset('update')
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Model.php(737): CodeIgniter\BaseModel->update(Array, Array)
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Payments.php(32): CodeIgniter\Model->update('3', Array)
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Payments->savePayment()
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Payments))
+#5 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#7 {main}
+CRITICAL - 2021-06-02 12:14:02 --> syntax error, unexpected token "class", expecting "," or ";"
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\View\View.php(222): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Common.php(1217): CodeIgniter\View\View->render('Admin/Appointme...', Array, true)
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Appointments.php(139): view('Admin/Appointme...')
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Appointments->finalCheck()
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Appointments))
+#5 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#7 {main}
+CRITICAL - 2021-06-02 12:16:32 --> There is no data to update.
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\BaseModel.php(880): CodeIgniter\Database\Exceptions\DataException::forEmptyDataset('update')
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Model.php(737): CodeIgniter\BaseModel->update(Array, Array)
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Appointments.php(147): CodeIgniter\Model->update('3', Array)
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Appointments->saveNotes()
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Appointments))
+#5 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#7 {main}
+CRITICAL - 2021-06-02 12:17:21 --> Invalid file: http://sbr_code_igniter_4.localhost/Admin/Home/index.php
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\View\View.php(203): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('http://sbr_code...')
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Common.php(1217): CodeIgniter\View\View->render('http://sbr_code...', Array, true)
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Appointments.php(149): view('http://sbr_code...')
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Appointments->saveNotes()
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Appointments))
+#5 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#7 {main}
+CRITICAL - 2021-06-02 15:21:24 --> Attempt to read property "id" on null
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Appointments.php(103): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read...', 'C:\\Users\\Admin\\...', 103)
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Appointments->saveStatusChange()
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Appointments))
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-06-02 16:02:50 --> Call to undefined method CodeIgniter\Session\Session::unset()
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Appointments->saveNotes()
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Appointments))
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2021-06-02 16:06:17 --> Attempt to read property "id" on null
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Appointments.php(147): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read...', 'C:\\Users\\Admin\\...', 147)
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Appointments->saveNotes()
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Appointments))
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-06-02 16:18:28 --> Attempt to read property "id" on null
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Appointments.php(147): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read...', 'C:\\Users\\Admin\\...', 147)
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Appointments->saveNotes()
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Appointments))
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-06-02 16:21:48 --> Attempt to read property "id" on null
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Appointments.php(103): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read...', 'C:\\Users\\Admin\\...', 103)
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Appointments->saveStatusChange()
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Appointments))
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-06-02 17:11:43 --> Undefined variable $appointment
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Views\Admin\Payments\alreadySaved.php(20): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\Users\\Admin\\...', 20)
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\View\View.php(220): include('C:\\Users\\Admin\\...')
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\View\View.php(222): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Common.php(1217): CodeIgniter\View\View->render('Admin/Payments/...', Array, true)
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Payments.php(26): view('Admin/Payments/...')
+#5 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Payments->makeNew()
+#6 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Payments))
+#7 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2021-06-02 17:13:16 --> Undefined variable $appointment
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Views\Admin\Payments\alreadySaved.php(20): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\Users\\Admin\\...', 20)
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\View\View.php(220): include('C:\\Users\\Admin\\...')
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\View\View.php(222): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Common.php(1217): CodeIgniter\View\View->render('Admin/Payments/...', Array, true)
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Payments.php(26): view('Admin/Payments/...')
+#5 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Payments->makeNew()
+#6 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Payments))
+#7 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2021-06-02 17:20:58 --> Undefined variable $appointment
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Views\Admin\Payments\alreadySaved.php(20): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\Users\\Admin\\...', 20)
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\View\View.php(220): include('C:\\Users\\Admin\\...')
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\View\View.php(222): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Common.php(1217): CodeIgniter\View\View->render('Admin/Payments/...', Array, true)
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Payments.php(26): view('Admin/Payments/...')
+#5 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Payments->makeNew()
+#6 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Payments))
+#7 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2021-06-02 18:21:50 --> Call to undefined method App\Models\PaymentsModel::insertID
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Payments.php(66): CodeIgniter\Model->__call('insertID', Array)
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Payments->undoPayment()
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Payments))
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-06-02 18:22:42 --> Call to undefined method App\Models\PaymentsModel::insertID
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Payments.php(65): CodeIgniter\Model->__call('insertID', Array)
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Payments->undoPayment()
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Payments))
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-06-02 18:22:59 --> syntax error, unexpected token ";", expecting ")"
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Router\Router.php(170): CodeIgniter\Router\Router->autoRoute('Admin/Payments/...')
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(816): CodeIgniter\Router\Router->handle('Admin/Payments/...')
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(385): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-06-02 18:24:00 --> Undefined property: App\Controllers\Admin\Payments::$db
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Payments.php(65): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\Users\\Admin\\...', 65)
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Payments->undoPayment()
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Payments))
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-06-02 18:24:45 --> Undefined variable $db
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Payments.php(65): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\Users\\Admin\\...', 65)
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Payments->undoPayment()
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Payments))
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-06-02 18:28:47 --> Undefined property: App\Controllers\Admin\Payments::$db
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Payments.php(52): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\Users\\Admin\\...', 52)
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Payments->savePayment()
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Payments))
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#5 {main}

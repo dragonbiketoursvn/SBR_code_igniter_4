@@ -1,0 +1,169 @@
+CRITICAL - 2021-05-31 14:46:23 --> CodeIgniter\HTTP\RedirectResponse::to(): Argument #1 ($uri) must be of type string, CodeIgniter\HTTP\RedirectResponse given, called in C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Payments.php on line 30
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Payments.php(30): CodeIgniter\HTTP\RedirectResponse->to(Object(CodeIgniter\HTTP\RedirectResponse))
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Payments->savePayment()
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Payments))
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-05-31 15:09:18 --> Attempt to read property "contract_number" on array
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Payments.php(33): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read...', 'C:\\Users\\Admin\\...', 33)
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Payments->savePayment()
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Payments))
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-05-31 15:11:54 --> Class "App\Models\UserModel" not found
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Payments->sendConfirmationEmail('5414')
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Payments))
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2021-05-31 16:13:40 --> Class "App\Models\UserModel" not found
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Payments->sendConfirmationEmail('5414')
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Payments))
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2021-05-31 16:13:45 --> Class "App\Models\UserModel" not found
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Payments->sendConfirmationEmail('5414')
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Payments))
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#4 {main}
+ERROR - 2021-05-31 16:14:25 --> mysqli_sql_exception: Unknown column 'customers.id' in 'where clause' in C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:314
+Stack trace:
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php(314): mysqli->query('SELECT *\nFROM `...')
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Database\BaseConnection.php(713): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Database\BaseConnection.php(641): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Database\BaseBuilder.php(1866): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Model.php(169): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\BaseModel.php(518): CodeIgniter\Model->doFind(true, '5414')
+#6 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Payments.php(42): CodeIgniter\BaseModel->find('5414')
+#7 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Payments->sendConfirmationEmail('5414')
+#8 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Payments))
+#9 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2021-05-31 16:14:25 --> Unknown column 'customers.id' in 'where clause'
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php(314): mysqli->query('SELECT *\nFROM `...')
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Database\BaseConnection.php(713): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Database\BaseConnection.php(641): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Database\BaseBuilder.php(1866): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Model.php(169): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\BaseModel.php(518): CodeIgniter\Model->doFind(true, '5414')
+#6 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Payments.php(42): CodeIgniter\BaseModel->find('5414')
+#7 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Payments->sendConfirmationEmail('5414')
+#8 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Payments))
+#9 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2021-05-31 16:57:49 --> require(/vendor/PHPMailer-master/src/Exception.php): Failed to open stream: No such file or directory
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Payments.php(44): CodeIgniter\Debug\Exceptions->errorHandler(2, 'require(/vendor...', 'C:\\Users\\Admin\\...', 44)
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Payments.php(44): require()
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Payments->sendConfirmationEmail('5414')
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Payments))
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2021-05-31 17:23:52 --> Attempt to read property "amount" on array
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Payments.php(46): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read...', 'C:\\Users\\Admin\\...', 46)
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Payments->sendConfirmationEmail('5414')
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Payments))
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-05-31 20:12:16 --> Trying to access array offset on value of type null
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Payments.php(46): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to acces...', 'C:\\Users\\Admin\\...', 46)
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Payments->sendConfirmationEmail('5414')
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Payments))
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-05-31 20:12:29 --> Trying to access array offset on value of type null
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Payments.php(46): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to acces...', 'C:\\Users\\Admin\\...', 46)
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Payments->sendConfirmationEmail('5414')
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Payments))
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-05-31 20:12:52 --> Attempt to read property "contract_number" on null
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Views\Admin\Payments\makeNew.php(20): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read...', 'C:\\Users\\Admin\\...', 20)
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\View\View.php(220): include('C:\\Users\\Admin\\...')
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\View\View.php(222): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Common.php(1217): CodeIgniter\View\View->render('Admin/Payments/...', Array, true)
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Payments.php(23): view('Admin/Payments/...', Array)
+#5 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Payments->makeNew()
+#6 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Payments))
+#7 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2021-05-31 23:07:33 --> Trying to access array offset on value of type null
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Payments.php(46): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to acces...', 'C:\\Users\\Admin\\...', 46)
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Payments->sendConfirmationEmail('5414')
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Payments))
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-05-31 23:29:44 --> Attempt to read property "customer_name" on array
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Payments.php(64): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read...', 'C:\\Users\\Admin\\...', 64)
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Payments->sendConfirmationEmail('5414')
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Payments))
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-05-31 23:31:12 --> Undefined array key "contract_number"
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Payments.php(29): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array...', 'C:\\Users\\Admin\\...', 29)
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Payments->savePayment()
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Payments))
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-05-31 23:32:23 --> Undefined variable $id
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Payments.php(78): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\Users\\Admin\\...', 78)
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Payments->sendConfirmationEmail('5414')
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Payments))
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-05-31 23:33:08 --> Attempt to read property "email_address" on null
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Payments.php(61): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read...', 'C:\\Users\\Admin\\...', 61)
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Payments->sendConfirmationEmail('Appointments', 'bikeStatusCheck', '2')
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Payments))
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-05-31 23:33:20 --> Attempt to read property "email_address" on null
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Payments.php(61): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read...', 'C:\\Users\\Admin\\...', 61)
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Payments->sendConfirmationEmail('Appointments', 'bikeStatusCheck', '2')
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Payments))
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-05-31 23:34:22 --> Attempt to read property "email_address" on null
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Payments.php(61): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read...', 'C:\\Users\\Admin\\...', 61)
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Payments->sendConfirmationEmail('Appointments', 'bikeStatusCheck', '2')
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Payments))
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-05-31 23:49:27 --> Attempt to read property "email_address" on null
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Payments.php(60): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read...', 'C:\\Users\\Admin\\...', 60)
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Payments->sendConfirmationEmail('Appointments', 'bikeStatusCheck', '2')
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Payments))
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-05-31 23:54:24 --> Attempt to read property "email_address" on null
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Payments.php(60): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read...', 'C:\\Users\\Admin\\...', 60)
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Payments->sendConfirmationEmail('Appointments', 'bikeStatusCheck', '2')
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Payments))
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-05-31 23:55:20 --> Attempt to read property "customer_name" on array
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Payments.php(64): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read...', 'C:\\Users\\Admin\\...', 64)
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Payments->sendConfirmationEmail('5414')
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Payments))
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#5 {main}

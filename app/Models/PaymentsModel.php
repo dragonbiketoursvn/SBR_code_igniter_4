@@ -10,7 +10,7 @@ class PaymentsModel extends \CodeIgniter\Model
 
     protected $returnType = 'App\Entities\Payment';
 
-    protected $useTimestamps = true;
+    protected $useTimestamps = false;
 
     protected $validationRules = [];
 

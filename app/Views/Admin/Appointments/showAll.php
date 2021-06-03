@@ -47,9 +47,9 @@ $buttonClose = ' </button>';
       //First, get the month to display in top-left corner
   		echo $divOpen . 1 . $column . 1 . $idMonth . date('M', time() + 24 * 3600) . $divClose;
 
-      //Then, generate rest of top row
+      //Then, generate rest of top row with TODAY as the left-most column
       for($j=2; $j<9; $j++) {
-  			echo $divOpen . 1 . $column . $j . $idDay . date('D', time() + ($j -1) * 24 *3600) . '<br>' . date('d', time() + ($j -1) * 24 *3600)
+  			echo $divOpen . 1 . $column . $j . $idDay . date('D', time() + ($j - 2) * 24 *3600) . '<br>' . date('d', time() + ($j - 2) * 24 *3600)
          . $divClose;
   		}
 
@@ -69,7 +69,7 @@ $buttonClose = ' </button>';
         //Display the select buttons for this time block on the date given at the top of the column
         for($j=2;$j<9;$j++){
 
-          $dateString = date('Y-m-d', time() + ($j - 1) * 24 *3600) . " " . $time->format('H:i:s');
+          $dateString = date('Y-m-d', time() + ($j - 2) * 24 *3600) . " " . $time->format('H:i:s');
 
           //Check if this time block has an appointment booked
           if( in_array($dateString, $appointmentTimes) ) {

@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Models\AppointmentsModel;
+use App\Models\BikesModel;
 use App\Libraries\Token;
 
 class Test extends BaseController
@@ -10,13 +10,18 @@ class Test extends BaseController
 
   public function testOne()
 	{
-    return view('Tests/test1');
+    $model = new BikesModel;
+    $currentBikes = $model->getCurrentBikes();
+    
+    return view('Tests/test1', ['currentBikes', $currentBikes]);
   }
 
   public function testTwo()
 	{
-    $post = $this->request->getPost('value_one');
-    //dd($post);
+
+    $penis = session()->get();
+    dd($penis);
+
     //return view('Tests/test2', [ 'thomas' => $post]);
     return view('Tests/test2', [ 'thomas' => $post]);
   }

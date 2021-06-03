@@ -1,0 +1,225 @@
+CRITICAL - 2021-06-01 00:10:16 --> syntax error, unexpected single-quoted string "id", expecting "]"
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Router\Router.php(170): CodeIgniter\Router\Router->autoRoute('Admin/Payments/...')
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(816): CodeIgniter\Router\Router->handle('Admin/Payments/...')
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(385): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-06-01 00:10:50 --> syntax error, unexpected token "}", expecting ";"
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Router\Router.php(170): CodeIgniter\Router\Router->autoRoute('Admin/Payments/...')
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(816): CodeIgniter\Router\Router->handle('Admin/Payments/...')
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(385): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-06-01 00:11:46 --> Undefined array key "contract_number"
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Payments.php(30): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array...', 'C:\\Users\\Admin\\...', 30)
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Payments->savePayment('sendConfirmatio...', '5415', '3')
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Payments))
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-06-01 09:41:05 --> Undefined array key "contract_number"
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Payments.php(30): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array...', 'C:\\Users\\Admin\\...', 30)
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Payments->savePayment('sendConfirmatio...', '5415', '3')
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Payments))
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-06-01 09:48:24 --> Undefined array key "contract_number"
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Payments.php(30): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array...', 'C:\\Users\\Admin\\...', 30)
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Payments->savePayment('sendConfirmatio...', '5415', '3')
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Payments))
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-06-01 09:53:18 --> Undefined array key "contract_number"
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Payments.php(31): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array...', 'C:\\Users\\Admin\\...', 31)
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Payments->savePayment('sendConfirmatio...', '5415', '3')
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Payments))
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-06-01 09:56:29 --> Undefined array key "contract_number"
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Payments.php(31): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array...', 'C:\\Users\\Admin\\...', 31)
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Payments->savePayment('sendConfirmatio...', '5415', '3')
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Payments))
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-06-01 09:57:49 --> Undefined array key "contract_number"
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Payments.php(31): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array...', 'C:\\Users\\Admin\\...', 31)
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Payments->savePayment('sendConfirmatio...', '5415', '3')
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Payments))
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-06-01 10:12:28 --> Undefined array key "contract_number"
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Payments.php(31): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array...', 'C:\\Users\\Admin\\...', 31)
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Payments->savePayment('sendConfirmatio...', '5415')
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Payments))
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-06-01 10:15:52 --> Undefined array key "contract_number"
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Payments.php(31): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array...', 'C:\\Users\\Admin\\...', 31)
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Payments->savePayment('sendConfirmatio...', '5415')
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Payments))
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-06-01 13:18:36 --> Undefined variable $_SESSION
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Appointments.php(42): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\Users\\Admin\\...', 42)
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Appointments->showDetails()
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Appointments))
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-06-01 14:32:06 --> Too few arguments to function App\Controllers\Admin\Payments::makeNew(), 0 passed in C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php on line 936 and exactly 1 expected
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Payments->makeNew()
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Payments))
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2021-06-01 17:25:50 --> Cannot redeclare App\Models\BikesModel::getCurrent()
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2021-06-01 17:29:45 --> Call to undefined method App\Models\BikesModel::getResultArray
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Models\BikesModel.php(38): CodeIgniter\Model->__call('getResultArray', Array)
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Test.php(14): App\Models\BikesModel->getCurrentBikes()
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Test->testOne()
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Test))
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2021-06-01 17:48:45 --> Undefined variable $_SESSION
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Views\Tests\test1.php(16): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\Users\\Admin\\...', 16)
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\View\View.php(220): include('C:\\Users\\Admin\\...')
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\View\View.php(222): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Common.php(1217): CodeIgniter\View\View->render('Tests/test1', Array, true)
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Test.php(16): view('Tests/test1')
+#5 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Test->testOne()
+#6 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Test))
+#7 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2021-06-01 17:50:20 --> Undefined variable $currentBike
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Test.php(16): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\Users\\Admin\\...', 16)
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Test->testOne()
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Test))
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-06-01 17:52:06 --> syntax error, unexpected identifier "IS", expecting ")"
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Autoloader\Autoloader.php(265): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\Users\\Admin\\...')
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Autoloader\Autoloader.php(228): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Models\\Bike...')
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Test.php(13): CodeIgniter\Autoloader\Autoloader->loadClass('App\\Models\\Bike...')
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Test->testOne()
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Test))
+#5 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#7 {main}
+CRITICAL - 2021-06-01 17:56:16 --> syntax error, unexpected identifier "IS", expecting ")"
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Autoloader\Autoloader.php(265): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\Users\\Admin\\...')
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Autoloader\Autoloader.php(228): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Models\\Bike...')
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Test.php(13): CodeIgniter\Autoloader\Autoloader->loadClass('App\\Models\\Bike...')
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Test->testOne()
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Test))
+#5 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#7 {main}
+CRITICAL - 2021-06-01 18:19:00 --> syntax error, unexpected single-quoted string "currentBikes", expecting "]"
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Router\Router.php(170): CodeIgniter\Router\Router->autoRoute('Admin/appointme...')
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(816): CodeIgniter\Router\Router->handle('Admin/appointme...')
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(385): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-06-01 18:47:14 --> foreach() argument must be of type array|object, null given
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Views\Admin\Appointments\getStatusChange.php(29): CodeIgniter\Debug\Exceptions->errorHandler(2, 'foreach() argum...', 'C:\\Users\\Admin\\...', 29)
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\View\View.php(220): include('C:\\Users\\Admin\\...')
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\View\View.php(222): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Common.php(1217): CodeIgniter\View\View->render('Admin/Appointme...', Array, true)
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Appointments.php(82): view('Admin/Appointme...', Array)
+#5 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Appointments->getStatusChange()
+#6 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Appointments))
+#7 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2021-06-01 18:49:55 --> Cannot use object of type App\Entities\Bike as array
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\View\View.php(220): include()
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\View\View.php(222): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Common.php(1217): CodeIgniter\View\View->render('Admin/Appointme...', Array, true)
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Appointments.php(82): view('Admin/Appointme...', Array)
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Appointments->getStatusChange()
+#5 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Appointments))
+#6 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2021-06-01 19:05:14 --> Attempt to read property "bike_in" on array
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Appointments.php(90): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read...', 'C:\\Users\\Admin\\...', 90)
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Appointments->saveStatusChange()
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Appointments))
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-06-01 19:09:27 --> Class "App\Models\BikeStatusChangeModel" not found
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Appointments->saveStatusChange()
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Appointments))
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2021-06-01 19:09:55 --> Cannot declare class App\Entities\Bike, because the name is already in use
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2021-06-01 19:16:16 --> syntax error, unexpected token "}", expecting ";"
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Router\Router.php(170): CodeIgniter\Router\Router->autoRoute('Admin/Appointme...')
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(816): CodeIgniter\Router\Router->handle('Admin/Appointme...')
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(385): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-06-01 19:16:29 --> Call to undefined function App\Controllers\Admin\back()
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Appointments->saveStatusChange()
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Appointments))
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2021-06-01 19:40:36 --> syntax error, unexpected token ";", expecting ")"
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Router\Router.php(170): CodeIgniter\Router\Router->autoRoute('Admin/Appointme...')
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(816): CodeIgniter\Router\Router->handle('Admin/Appointme...')
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(385): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#5 {main}
+ERROR - 2021-06-01 19:40:57 --> mysqli_sql_exception: Unknown column 'created_at' in 'field list' in C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:314
+Stack trace:
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php(314): mysqli->query('INSERT INTO `bi...')
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Database\BaseConnection.php(713): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `bi...')
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Database\BaseConnection.php(641): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `bi...')
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Database\BaseBuilder.php(2263): CodeIgniter\Database\BaseConnection->query('INSERT INTO `bi...', Array, false)
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Model.php(278): CodeIgniter\Database\BaseBuilder->insert()
+#5 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\BaseModel.php(758): CodeIgniter\Model->doInsert(Array)
+#6 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Model.php(705): CodeIgniter\BaseModel->insert(Array, false)
+#7 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\BaseModel.php(667): CodeIgniter\Model->insert(Object(App\Entities\BikeStatusChange), false)
+#8 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Appointments.php(102): CodeIgniter\BaseModel->save(Object(App\Entities\BikeStatusChange))
+#9 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Appointments->saveStatusChange()
+#10 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Appointments))
+#11 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#13 {main}
+CRITICAL - 2021-06-01 19:40:57 --> Unknown column 'created_at' in 'field list'
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php(314): mysqli->query('INSERT INTO `bi...')
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Database\BaseConnection.php(713): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `bi...')
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Database\BaseConnection.php(641): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `bi...')
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Database\BaseBuilder.php(2263): CodeIgniter\Database\BaseConnection->query('INSERT INTO `bi...', Array, false)
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Model.php(278): CodeIgniter\Database\BaseBuilder->insert()
+#5 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\BaseModel.php(758): CodeIgniter\Model->doInsert(Array)
+#6 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Model.php(705): CodeIgniter\BaseModel->insert(Array, false)
+#7 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\BaseModel.php(667): CodeIgniter\Model->insert(Object(App\Entities\BikeStatusChange), false)
+#8 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Appointments.php(102): CodeIgniter\BaseModel->save(Object(App\Entities\BikeStatusChange))
+#9 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Appointments->saveStatusChange()
+#10 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Appointments))
+#11 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#13 {main}

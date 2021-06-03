@@ -122,17 +122,31 @@
 </div>
 
 <div class="field is-horizontal">
+  <div class="field-label is-normal">
+    <label class="label" for="time">Appointment Date and Time</label>
+  </div>
+  <div class="field-body">
+    <div class="field">
+      <p class="control is-expanded">
+        <input class="input is-success" type="text" id="time" name="time" value="<?= esc($appointment->appointment_time) ?>" disabled>
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="field is-horizontal">
   <div class="field-label">
     <!-- Left empty for spacing -->
   </div>
   <div class="field-body">
     <div class="field">
       <div class="control">
-        <?= form_open("Admin/Appointments/startInteraction/{$appointment->id}") ?>
+        <a href="<?= //form_open("Admin/Appointments/startInteraction/{$appointment->id}")
+                      site_url('Admin/Appointments/paymentCheck') ?>">
           <button class="button is-available is-large is-fullwidth">
             Bấm lúc gặp khách
           </button>
-        </form>
+        </a>
       </div>
     </div>
   </div>

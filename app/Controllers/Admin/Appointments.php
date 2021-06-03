@@ -29,180 +29,181 @@ class Appointments extends \App\Controllers\BaseController
     {
       $appointment = $this->model->where('appointment_time', $dateString)->first();
 
+      session()->set('appointment', $appointment);
+
       //return view('Admin/Appointments/details', ['appointment' => $appointment]);
-      return redirect()->to(site_url("Admin/Appointments/showDetails/{$dateString}"));
+      //return redirect()->to(site_url("Admin/Appointments/showDetails/{$dateString}"));
+      return redirect()->to(site_url("Admin/Appointments/showDetails"));
     }
 
-    public function showDetails($dateString)
+    public function showDetails()
     {
-      $appointment = $this->model->where('appointment_time', $dateString)->first();
+      $appointment = session()->get('appointment');
+
+      if($appointment->paid_rent == 1) {
+
+        return redirect()->to('bikeStatusCheck');
+
+      }
 
       return view('Admin/Appointments/showDetails', ['appointment' => $appointment]);
 
     }
 
+    /*
     public function startInteraction($id)
     {
       return redirect()->to(site_url("Admin/Appointments/paymentCheck/{$id}"));
     }
+    */
 
-    public function paymentCheck($id)
+    public function paymentCheck()
     {
-      $appointment = $this->model->find($id);
+      $appointment = session()->get('appointment');
 
-       return view('Admin/Appointments/paymentCheck', ['appointment' => $appointment]);
+      //Mark the appointment as 'completed' now that it has started
+      $this->model->update($appointment->id, ['appointment_completed' => 1]);
+
+      if($appointment->paid_rent == 1) {
+
+        return redirect()->to('bikeStatusCheck');
+
+      }
+
+      return view('Admin/Appointments/paymentCheck', ['appointment' => $appointment]);
     }
 
-    public function startBikeStatusCheck($id)
+    public function startBikeStatusCheck()
     {
-      return redirect()->to(site_url("Admin/Appointments/bikeStatusCheck/{$id}"));
+      return redirect()->to(site_url("Admin/Appointments/bikeStatusCheck"));
     }
 
-    public function bikeStatusCheck($id)
+    public function bikeStatusCheck()
     {
-      $appointment = $this->model->find($id);
+      $appointment = session()->get('appointment');
 
-       return view('Admin/Appointments/bikeStatusCheck', ['appointment' => $appointment]);
+      if(($appointment->received_bike == 1) || ($appointment->returned_bike == 1)) {
+
+        return redirect()->to('finalCheck');
+
+      }
+
+      return view('Admin/Appointments/bikeStatusCheck', ['appointment' => $appointment]);
+
     }
 
-    public function startFinalCheck($id)
+    public function getStatusChange()
     {
-      return redirect()->to(site_url("Admin/Appointments/finalCheck/{$id}"));
+      $appointment = session()->get('appointment');
+      $model = new \App\Models\BikesModel;
+      $currentBikes = $model->getCurrentBikes();
+
+      if(($appointment->received_bike == 0) && ($appointment->returned_bike == 0)) {
+
+      return view('Admin/Appointments/getStatusChange', ['appointment' => $appointment,
+                                                         'currentBikes' => $currentBikes]);
+      } else {
+
+          return redirect()->to('finalCheck');
+
+      }
     }
 
-    public function finalCheck($id)
+    public function saveStatusChange()
     {
-      $appointment = $this->model->find($id);
+      $post = $this->request->getPost();
+      $appointment = session()->get('appointment');
+      $model = new \App\Models\BikeStatusChangeModel;
+      $bikeStatusChange = new \App\Entities\BikeStatusChange;
 
-       return view('Admin/Appointments/finalCheck', ['appointment' => $appointment]);
-    }
+      if((! $post['bike_in']) && (! $post['bike_out'])) {
 
-    /*
-    public function index()
-	  {
-        $users = $this->model->orderBy('id')
-                             ->paginate(5);
+        return redirect()->back()->with('info', 'Chưa Ghi Biển Số!');
 
-		return view('Admin/Users/index', [
-            'users' => $users,
-            'pager' => $this->model->pager
-        ]);
-    }
+      } elseif($post['bike_out']) {
 
-    public function show($id)
-    {
-        $user = $this->getUserOr404($id);
+          //Record in the appointment record that customer received a bike
+          $this->model->update($appointment->id, ['received_bike' => 1]);
+          $bikeStatusChange->plate_number = $post['bike_out'];
+          $bikeStatusChange->date_time = date('Y-m-d H:i:s');
+          $bikeStatusChange->new_status = $appointment->customer_name;
+          $bikeStatusChange->contract_number = $appointment->contract_number;
+          $model->save($bikeStatusChange);
 
-		return view('Admin/Users/show', [
-            'user' => $user
-        ]);
-	}
-
-    public function new()
-	{
-        $user = new User;
-
-		return view('Admin/Users/new', [
-		    'user' => $user
-        ]);
-	}
-
-	public function create()
-	{
-        $user = new User($this->request->getPost());
-
-		if ($this->model->protect(false)
-                        ->insert($user)) {
-
-			return redirect()->to("/admin/users/show/{$this->model->insertID}")
-                             ->with('info', lang('AdminUsers.create_successful'));
-
-        } else {
-
-			return redirect()->back()
-							 ->with('errors', $this->model->errors())
-                             ->with('warning', lang('App.messages.invalid'))
-							 ->withInput();
-		}
-	}
-
-    public function edit($id)
-	{
-		$user = $this->getUserOr404($id);
-
-		return view('Admin/Users/edit', [
-            'user' => $user
-        ]);
-	}
-
-    public function update($id)
-	{
-        $user = $this->getUserOr404($id);
-
-		$post = $this->request->getPost();
-
-        if (empty($post['password'])) {
-
-            $this->model->disablePasswordValidation();
-
-            unset($post['password']);
-            unset($post['password_confirmation']);
+          //And set the appointment session variable
+          $appointment->received_bike = 1;
         }
 
-		$user->fill($post);
+       if($post['bike_in']) {
 
-		if ( ! $user->hasChanged()) {
+          //Record in the appointment record that customer returned a bike
+          $this->model->update($appointment->id, ['returned_bike' => 1]);
 
-            return redirect()->back()
-                             ->with('warning', lang('App.messages.no_change'))
-                             ->withInput();
-		}
+          $bikeStatusChange->plate_number = $post['bike_in'];
+          $bikeStatusChange->date_time = date('Y-m-d H:i:s');
+          $bikeStatusChange->new_status = 'Saigon Bike Rentals';
+          $model->save($bikeStatusChange);
 
-        if ($this->model->protect(false)
-                        ->save($user)) {
+          //And set the appointment session variable
+          $appointment->returned_bike = 1;
 
-	        return redirect()->to("/admin/users/show/$id")
-                             ->with('info', lang('AdminUsers.update_successful'));
+        }
 
-		} else {
+      return redirect()->to(site_url("Admin/Appointments/finalCheck"));
 
-            return redirect()->back()
-                             ->with('errors', $this->model->errors())
-                             ->with('warning', lang('App.messages.invalid'))
-							 ->withInput();
+    }
 
-		}
-	}
+    public function undoPayment() {
 
-    public function delete($id)
-	{
-        $user = $this->getUserOr404($id);
+      //set 'received_bike' and 'returned_bike' back to 0
+      $statusModel = new \App\Models\BikeStatusChangeModel;
 
-        if ($this->request->getMethod() === 'post') {
+      $appointment = session()->get('appointment');
+      $this->model->update($appointment->id, ['received_bike' => 0,
+                                              'returned_bike' => 0]);
+      $appointment->received_bike = 0;
+      $appointment->received_bike = 0;
+      //delete last payment from db
+      $this->model->delete(session()->get('payment_insert_id'));
 
-            $this->model->delete($id);
+      //$post = $this->request->getPost();
 
-			return redirect()->to('/admin/users')
-                             ->with('info', lang('AdminUsers.deleted'));
-		}
+      //$contract_number = $post['contract_number'];
 
-		return view('Admin/Users/delete', [
-            'user' => $user
-        ]);
-	}
+      //save payment info as a session variable so we can access values in sendConfirmationEmail
+      //session()->set('payment', $post);
 
-    private function getUserOr404($id)
-	{
-        $user = $this->model->where('id', $id)
-                            ->first();
+      //$payment = new Payment($post);
 
-		if ($user === null) {
+      //$this->model->save($payment);
 
-            throw new \CodeIgniter\Exceptions\PageNotFoundException(lang('AdminUsers.user_not_found') . ': ' . $id);
+      return redirect()->to(site_url('Admin/Appointments/paymentCheck'));
 
-		}
+    }
 
-		return $user;
-	}
-    */
+    public function finalCheck()
+    {
+       $appointment = session()->get('appointment');
+       return view('Admin/Appointments/finalCheck');
+    }
+
+    public function saveNotes() {
+
+      $notes = $this->request->getPost('notes');
+      $appointment = session()->get('appointment');
+
+      if($appointment) {
+
+        $this->model->update($appointment->id, ['notes' => $notes]);
+
+      }
+
+      //unset the session variables since we no longer need them
+      session()->remove('appointment');
+      session()->remove('payment');
+
+      return redirect()->to(site_url('Admin/Home/index'));
+
+    }
+
 }

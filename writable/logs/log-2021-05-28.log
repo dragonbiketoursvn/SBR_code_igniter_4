@@ -1,0 +1,121 @@
+CRITICAL - 2021-05-28 12:29:07 --> Undefined variable $_SESSION
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Views\Tests\test2.php(15): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\Users\\Admin\\...', 15)
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\View\View.php(220): include('C:\\Users\\Admin\\...')
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\View\View.php(222): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Common.php(1217): CodeIgniter\View\View->render('Tests/test2', Array, true)
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Test.php(23): view('Tests/test2', Array)
+#5 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Test->testTwo()
+#6 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Test))
+#7 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2021-05-28 12:30:37 --> Undefined variable $_SESSION
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Views\Tests\test2.php(15): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\Users\\Admin\\...', 15)
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\View\View.php(220): include('C:\\Users\\Admin\\...')
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\View\View.php(222): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Common.php(1217): CodeIgniter\View\View->render('Tests/test2', Array, true)
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Test.php(23): view('Tests/test2', Array)
+#5 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Test->testTwo()
+#6 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Test))
+#7 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2021-05-28 12:32:51 --> Undefined variable $_SESSION
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Views\Tests\test2.php(7): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\Users\\Admin\\...', 7)
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\View\View.php(220): include('C:\\Users\\Admin\\...')
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\View\View.php(222): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Common.php(1217): CodeIgniter\View\View->render('Tests/test2', Array, true)
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Test.php(23): view('Tests/test2', Array)
+#5 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Test->testTwo()
+#6 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Test))
+#7 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2021-05-28 12:41:05 --> Undefined variable $_SESSION
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Views\Tests\test2.php(7): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\Users\\Admin\\...', 7)
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\View\View.php(220): include('C:\\Users\\Admin\\...')
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\View\View.php(222): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Common.php(1217): CodeIgniter\View\View->render('Tests/test2', Array, true)
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Test.php(28): view('Tests/test2', Array)
+#5 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Test->testTwo()
+#6 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Test))
+#7 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2021-05-28 19:48:51 --> Undefined variable $_SESSION
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Test.php(20): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\Users\\Admin\\...', 20)
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Test->testTwo()
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Test))
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-05-28 19:50:43 --> Call to undefined method CodeIgniter\Session\Session::getAll()
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Test->testTwo()
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Test))
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2021-05-28 20:50:40 --> Undefined variable $appointment
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Views\Admin\Payments\makeNew.php(7): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\Users\\Admin\\...', 7)
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\View\View.php(220): include('C:\\Users\\Admin\\...')
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\View\View.php(222): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Common.php(1217): CodeIgniter\View\View->render('Admin/Payments/...', Array, true)
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Payments.php(19): view('Admin/Payments/...', Array)
+#5 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Payments->makeNew()
+#6 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Payments))
+#7 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2021-05-28 20:58:48 --> Undefined constant "Y"
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\View\View.php(220): include()
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\View\View.php(222): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Common.php(1217): CodeIgniter\View\View->render('Admin/Payments/...', Array, true)
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Payments.php(19): view('Admin/Payments/...', Array)
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Payments->makeNew()
+#5 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Payments))
+#6 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2021-05-28 22:26:03 --> syntax error, unexpected end of file, expecting "elseif" or "else" or "endif"
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\View\View.php(222): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Common.php(1217): CodeIgniter\View\View->render('Admin/Payments/...', Array, true)
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Payments.php(20): view('Admin/Payments/...', Array)
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Payments->makeNew()
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Payments))
+#5 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#7 {main}
+CRITICAL - 2021-05-28 22:39:16 --> Cannot declare class App\Entities\Appointment, because the name is already in use
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+ERROR - 2021-05-28 22:41:51 --> mysqli_sql_exception: Unknown column 'created_at' in 'field list' in C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:314
+Stack trace:
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php(314): mysqli->query('INSERT INTO `pa...')
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Database\BaseConnection.php(713): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `pa...')
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Database\BaseConnection.php(641): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `pa...')
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Database\BaseBuilder.php(2263): CodeIgniter\Database\BaseConnection->query('INSERT INTO `pa...', Array, false)
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Model.php(278): CodeIgniter\Database\BaseBuilder->insert()
+#5 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\BaseModel.php(758): CodeIgniter\Model->doInsert(Array)
+#6 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Model.php(705): CodeIgniter\BaseModel->insert(Array, false)
+#7 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\BaseModel.php(667): CodeIgniter\Model->insert(Object(App\Entities\Payment), false)
+#8 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Payments.php(28): CodeIgniter\BaseModel->save(Object(App\Entities\Payment))
+#9 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Payments->savePayment()
+#10 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Payments))
+#11 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#13 {main}
+CRITICAL - 2021-05-28 22:41:51 --> Unknown column 'created_at' in 'field list'
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php(314): mysqli->query('INSERT INTO `pa...')
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Database\BaseConnection.php(713): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `pa...')
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Database\BaseConnection.php(641): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `pa...')
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Database\BaseBuilder.php(2263): CodeIgniter\Database\BaseConnection->query('INSERT INTO `pa...', Array, false)
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Model.php(278): CodeIgniter\Database\BaseBuilder->insert()
+#5 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\BaseModel.php(758): CodeIgniter\Model->doInsert(Array)
+#6 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Model.php(705): CodeIgniter\BaseModel->insert(Array, false)
+#7 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\BaseModel.php(667): CodeIgniter\Model->insert(Object(App\Entities\Payment), false)
+#8 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Payments.php(28): CodeIgniter\BaseModel->save(Object(App\Entities\Payment))
+#9 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Payments->savePayment()
+#10 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Payments))
+#11 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#13 {main}

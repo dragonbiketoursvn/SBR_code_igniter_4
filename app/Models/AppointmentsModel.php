@@ -7,7 +7,8 @@ class AppointmentsModel extends \CodeIgniter\Model
     protected $table = 'appointments';
 
     protected $allowedFields = ['contract_number', 'customer_name', 'current_bike', 'pay_rent', 'full_service', 'small_service', 'appointment_time',
-                                'building_name', 'number', 'street_name', 'ward', 'district', 'appointment_completed', 'activation_hash'];
+                                'building_name', 'number', 'street_name', 'ward', 'district', 'appointment_completed', 'activation_hash',
+                                'paid_rent', 'received_bike', 'returned_bike', 'notes'];
 
     protected $returnType = 'App\Entities\Appointment';
 
@@ -16,7 +17,7 @@ class AppointmentsModel extends \CodeIgniter\Model
     protected $validationRules = [];
 
     protected $validationMessages = [];
-    
+
     protected $beforeUpdate = ['trimWhiteSpace'];
     protected $beforeInsert = ['trimWhiteSpace'];
 
@@ -27,7 +28,7 @@ class AppointmentsModel extends \CodeIgniter\Model
       $item = trim($item);
 
     });
-    
+
     return $data;
     }
 
