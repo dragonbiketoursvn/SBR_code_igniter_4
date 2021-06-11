@@ -141,8 +141,7 @@
   <div class="field-body">
     <div class="field">
       <div class="control">
-        <a href="<?= //form_open("Admin/Appointments/startInteraction/{$appointment->id}")
-                      site_url('Admin/Appointments/paymentCheck') ?>">
+        <a href="<?= site_url('Admin/Appointments/paymentCheck') ?>">
           <button class="button is-available is-large is-fullwidth">
             Bấm lúc gặp khách
           </button>

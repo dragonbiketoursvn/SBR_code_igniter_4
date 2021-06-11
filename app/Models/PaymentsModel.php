@@ -12,7 +12,10 @@ class PaymentsModel extends \CodeIgniter\Model
 
     protected $useTimestamps = false;
 
-    protected $validationRules = [];
+    protected $validationRules = [
+                                  'amount' => 'required|numeric|greater_than[499]|less_than[10000]',
+                                  'months_paid' => 'required|numeric|greater_than[-1]|less_than[10]',
+                                 ];
 
     protected $validationMessages = [];
 

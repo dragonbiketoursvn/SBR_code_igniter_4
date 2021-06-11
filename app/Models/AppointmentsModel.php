@@ -38,4 +38,12 @@ class AppointmentsModel extends \CodeIgniter\Model
 
     }
 
+    public function getCompletedAppointments() {
+
+      return $this->where('appointment_time >', date('Y-m-d H:i:s', time() -1 * 24 * 3600))
+                  ->where('appointment_completed', 1)
+                  ->findAll();
+
+    }
+
 }

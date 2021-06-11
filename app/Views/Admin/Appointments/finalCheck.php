@@ -1,4 +1,4 @@
-<?= $this->extend("layouts/default") ?>
+<?= $this->extend("layouts/defaultNoBack") ?>
 
 <?= $this->section('title') ?>Location Selector<?= $this->endSection() ?>
 

@@ -72,12 +72,20 @@ $buttonClose = ' </button>';
           $dateString = date('Y-m-d', time() + ($j - 2) * 24 *3600) . " " . $time->format('H:i:s');
 
           //Check if this time block has an appointment booked
-          if( in_array($dateString, $appointmentTimes) ) {
+          if( (in_array($dateString, $appointmentTimes))  && ( ! in_array($dateString, $completedAppointmentTimes))  ) {
             //If yes, open the form to send to the Appointment/details controller
-            echo form_open("Admin/Appointments/getDetails/{$dateString}");
-
+            //echo form_open("Admin/Appointments/getDetails/{$dateString}");
+            echo "<a href='showDetails/{$dateString}'>";
             //Add the appropriate button and close the form
-            echo "<div class='demo-item row{$i} column{$j}'><button class='row{$i} column{$j} button-booked'>Booked</button></div></form>";
+            //echo "<div class='demo-item row{$i} column{$j}'><button class='row{$i} column{$j} button-booked'>Booked</button></div></form>";
+            echo "<div class='demo-item row{$i} column{$j}'><button class='row{$i} column{$j} button-booked'>Booked</button></div></a>";
+          } elseif(in_array($dateString, $completedAppointmentTimes)) {
+            //If yes, open the form to send to the Appointment/details controller
+            //echo form_open("Admin/Appointments/getDetails/{$dateString}");
+            echo "<a href='showDetails/{$dateString}'>";
+            //Add the appropriate button and close the form
+            //echo "<div class='demo-item row{$i} column{$j}'><button class='row{$i} column{$j} button-booked'>Booked</button></div></form>";
+            echo "<div class='demo-item row{$i} column{$j}'><button class='row{$i} column{$j} button-booked' disabled>Done</button></div></a>";
           }
 
           //Otherwise it's available

@@ -1,7 +1,7 @@
 <?= $this->extend("layouts/default") ?>
 
 
-<?= $this->section('title') ?>Location Selector<?= $this->endSection() ?>
+<?= $this->section('title') ?>Payment Form<?= $this->endSection() ?>
 
 <?= $this->section("content") ?>
 
@@ -15,8 +15,17 @@
   </section>
 </div>
 
+<?php if(session()->has('errors')): ?>
+  <div class="block">
+    <ul>
+      <?php foreach(session('errors') as $error): ?>
+        <li style="color: tomato;"><b><?= $error ?></b></li>
+      <?php endforeach; ?>
+    </ul>
+  </div>
+<?php endif; ?>
 
-<?= form_open('Admin/Payments/savePayment') ?>
+<?= form_open('Admin/Payments/savePayment', 'id="payment_form" class="random_class"') ?>
 
 <input type="hidden" name="contract_number" value="<?= esc($appointment->contract_number) ?>">
 
@@ -37,7 +46,7 @@
   </div>
   <div class="field-body">
     <div class="field">
-        <input class="input is-success" type="text" id="amount" name="amount">
+        <input class="input is-success" type="text" id="amount" name="amount" value="<?= old('amount') ?>">
     </div>
   </div>
 </div>
@@ -49,7 +58,7 @@
   <div class="field-body">
     <div class="field">
       <p class="control is-expanded">
-        <input class="input is-success" type="text" id="months_paid" name="months_paid">
+        <input class="input is-success" type="text" id="months_paid" name="months_paid" value="<?= old('months_paid') ?>">
       </p>
     </div>
   </div>
@@ -75,7 +84,7 @@
   <div class="field-body">
     <div class="field">
       <p class="control is-expanded">
-        <input class="input is-success" type="text" id="notes" name="notes">
+        <input class="input is-success" type="text" id="notes" name="notes" value="<?= old('notes') ?>">
       </p>
     </div>
   </div>
@@ -83,21 +92,6 @@
 
 
 <input type="hidden" name="payment_method" value="cash">
-
-<div class="field is-horizontal">
-  <div class="field-label">
-    <!-- Left empty for spacing -->
-  </div>
-  <div class="field-body">
-    <div class="field">
-      <div class="control">
-        <button class="button is-available is-large is-fullwidth" style="display: none;">
-          Nhập Thông Tin
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
 
 </form>
 
@@ -108,24 +102,92 @@
   <div class="field-body">
     <div class="field">
       <div class="control">
-        <button class="button is-warning is-large is-fullwidth" id="before_confirmation">
-          Xác Định
+        <button class="button is-available is-large is-fullwidth toggle">
+          Nhập Thông Tin
         </button>
       </div>
     </div>
   </div>
 </div>
 
+
+
+
+<div class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+
+    <section class="modal-card-body" style="font-size: 15px !important; text-align: center !important; padding: 2px !important;">
+
+    </section>
+    <footer class="modal-card-foot">
+      <button type="submit" form="payment_form" class="button is-success" style="width: 50% !important;">Dúng rồi. Nhập đi!</button>
+      <button class="button is-danger close-toggle" style="width: 50% !important;">Tôi cần chỉnh lại</button>
+    </footer>
+  </div>
+</div>
+
 <script>
-  document.querySelector("#before_confirmation").addEventListener('click', function(){
 
-    if(confirm('Các con số này có phải là đúng ko?')){
+//Form validation
+const form = document.querySelector('.random_class');
 
-      document.querySelector('#before_confirmation').style.display = 'none';
-      document.querySelector('button[style]').style.display = 'block';
+const validator = function(e) {
 
-    }
-  })
+  let amount = document.querySelector('input[name="amount"]');
+  let months_paid = document.querySelector('input[name="months_paid"]');
+  errorMessages = [];
+
+  if(amount.value > 10001 || amount.value < 500) {
+
+    errorMessages.push('Khoản tiền này ko phù hợp');
+
+  }
+
+  if(months_paid.value > 8 || months_paid.value < 0) {
+
+    errorMessages.push('Số tháng này ko phù hợp');
+
+  }
+
+  if(errorMessages.length > 0) {
+
+    alert(errorMessages.join(', '));
+    e.preventDefault();
+  }
+};
+
+form.addEventListener('submit', validator);
+
+
+  //Modal stuff
+  const modal = document.querySelector('.modal');
+  const buttonOpenModal = document.querySelector('.toggle');
+  const buttonCloseModal = document.querySelector('.close-toggle');
+
+  const stringSegment1 = "Khách trả <b>";
+  const stringSegment2 = "</b> đồng <br>cho <b>";
+  const stringSegment3 = "</b> tháng. <br> Các con số này có đúng ko?";
+
+  const toggle = function() {
+
+    let amount = document.querySelector('input[name="amount"]');
+    let months_paid = document.querySelector('input[name="months_paid"]');
+    modal.classList.add('is-active');
+
+    document.querySelector('.modal-card-body').innerHTML = `${stringSegment1}${amount.value}${stringSegment2}${months_paid.value}${stringSegment3}`;
+
+   };
+
+   const closeToggle = function() {
+
+    modal.classList.remove('is-active');
+
+   };
+
+  buttonOpenModal.addEventListener('click', toggle);
+  buttonCloseModal.addEventListener('click', closeToggle);
+
 </script>
 
 <?= $this->endSection() ?>

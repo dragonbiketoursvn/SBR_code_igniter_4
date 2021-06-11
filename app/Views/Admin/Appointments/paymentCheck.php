@@ -38,7 +38,7 @@
     <div class="field-body">
       <div class="field">
         <div class="control">
-          <?= form_open("Admin/Appointments/startBikeStatusCheck") ?>
+          <?= form_open("Admin/Appointments/bikeStatusCheck") ?>
             <button class="button is-danger is-large is-fullwidth">
               Không
             </button>

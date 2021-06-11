@@ -1,4 +1,4 @@
-<?= $this->extend("layouts/default") ?>
+<?= $this->extend("layouts/defaultNoBack") ?>
 
 <?= $this->section('title') ?>Bike Status Change<?= $this->endSection() ?>
 
@@ -38,7 +38,7 @@
     <div class="field-body">
       <div class="field">
         <div class="control">
-          <?= form_open("Admin/Appointments/startFinalCheck") ?>
+          <?= form_open("Admin/Appointments/finalCheck") ?>
             <button class="button is-danger is-large is-fullwidth">
               Không
             </button>

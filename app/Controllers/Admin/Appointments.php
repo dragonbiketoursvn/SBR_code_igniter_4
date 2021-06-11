@@ -16,31 +16,31 @@ class Appointments extends \App\Controllers\BaseController
     public function showAll()
     {
       $scheduledAppointments = $this->model->getScheduledAppointments();
+      $completedAppointments = $this->model->getCompletedAppointments();
       $appointmentTimes = [];
+      $completedAppointmentTimes = [];
 
       foreach ($scheduledAppointments as $scheduledAppointment) {
         $appointmentTimes[] = $scheduledAppointment->appointment_time;
       }
 
-      return view('Admin/Appointments/showAll', ['appointmentTimes' => $appointmentTimes]);
+      foreach ($completedAppointments as $completedAppointment) {
+        $completedAppointmentTimes[] = $completedAppointment->appointment_time;
+      }
+
+      return view('Admin/Appointments/showAll', [
+                                                  'appointmentTimes'          => $appointmentTimes,
+                                                  'completedAppointmentTimes' => $completedAppointmentTimes
+                                                ]);
     }
 
-    public function getDetails($dateString)
+    public function showDetails($dateString)
     {
       $appointment = $this->model->where('appointment_time', $dateString)->first();
 
       session()->set('appointment', $appointment);
 
-      //return view('Admin/Appointments/details', ['appointment' => $appointment]);
-      //return redirect()->to(site_url("Admin/Appointments/showDetails/{$dateString}"));
-      return redirect()->to(site_url("Admin/Appointments/showDetails"));
-    }
-
-    public function showDetails()
-    {
-      $appointment = session()->get('appointment');
-
-      if($appointment->paid_rent == 1) {
+      if(isset($appointment->paid_rent) && $appointment->paid_rent == 1) {
 
         return redirect()->to('bikeStatusCheck');
 
@@ -50,19 +50,9 @@ class Appointments extends \App\Controllers\BaseController
 
     }
 
-    /*
-    public function startInteraction($id)
-    {
-      return redirect()->to(site_url("Admin/Appointments/paymentCheck/{$id}"));
-    }
-    */
-
     public function paymentCheck()
     {
       $appointment = session()->get('appointment');
-
-      //Mark the appointment as 'completed' now that it has started
-      $this->model->update($appointment->id, ['appointment_completed' => 1]);
 
       if($appointment->paid_rent == 1) {
 
@@ -71,11 +61,6 @@ class Appointments extends \App\Controllers\BaseController
       }
 
       return view('Admin/Appointments/paymentCheck', ['appointment' => $appointment]);
-    }
-
-    public function startBikeStatusCheck()
-    {
-      return redirect()->to(site_url("Admin/Appointments/bikeStatusCheck"));
     }
 
     public function bikeStatusCheck()
@@ -120,7 +105,7 @@ class Appointments extends \App\Controllers\BaseController
 
         return redirect()->back()->with('info', 'Chưa Ghi Biển Số!');
 
-      } elseif($post['bike_out']) {
+      } elseif ($post['bike_out']) {
 
           //Record in the appointment record that customer received a bike
           $this->model->update($appointment->id, ['received_bike' => 1]);
@@ -153,34 +138,6 @@ class Appointments extends \App\Controllers\BaseController
 
     }
 
-    public function undoPayment() {
-
-      //set 'received_bike' and 'returned_bike' back to 0
-      $statusModel = new \App\Models\BikeStatusChangeModel;
-
-      $appointment = session()->get('appointment');
-      $this->model->update($appointment->id, ['received_bike' => 0,
-                                              'returned_bike' => 0]);
-      $appointment->received_bike = 0;
-      $appointment->received_bike = 0;
-      //delete last payment from db
-      $this->model->delete(session()->get('payment_insert_id'));
-
-      //$post = $this->request->getPost();
-
-      //$contract_number = $post['contract_number'];
-
-      //save payment info as a session variable so we can access values in sendConfirmationEmail
-      //session()->set('payment', $post);
-
-      //$payment = new Payment($post);
-
-      //$this->model->save($payment);
-
-      return redirect()->to(site_url('Admin/Appointments/paymentCheck'));
-
-    }
-
     public function finalCheck()
     {
        $appointment = session()->get('appointment');
@@ -191,6 +148,9 @@ class Appointments extends \App\Controllers\BaseController
 
       $notes = $this->request->getPost('notes');
       $appointment = session()->get('appointment');
+
+      //Mark the appointment as 'completed' now that it has finished
+      $this->model->update($appointment->id, ['appointment_completed' => 1]);
 
       if($appointment) {
 

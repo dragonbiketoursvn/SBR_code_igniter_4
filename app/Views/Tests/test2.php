@@ -4,9 +4,6 @@
 
 <?= $this->section("content") ?>
 
-<?php dd($_SESSION);
-      ?>
-
 <h1>Test 2</h1>
 
 <p>The value submitted by the form in Test 1 is <?= $thomas ?> </p>

@@ -12,18 +12,26 @@ class Test extends BaseController
 	{
     $model = new BikesModel;
     $currentBikes = $model->getCurrentBikes();
-    
+
     return view('Tests/test1', ['currentBikes', $currentBikes]);
   }
 
-  public function testTwo()
+  public function intermediateOne() {
+
+      $post = $this->request->getPost('value_one');
+
+      return redirect()->to("intermediateTwo/{$post}");
+  }
+
+  public function intermediateTwo($post) {
+
+      //dd(site_url("testTwo/{$post}"));
+      return redirect()->to(site_url("Test/testTwo/{$post}"));
+  }
+
+  public function testTwo($post)
 	{
-
-    $penis = session()->get();
-    dd($penis);
-
-    //return view('Tests/test2', [ 'thomas' => $post]);
-    return view('Tests/test2', [ 'thomas' => $post]);
+   return view('Tests/test2', [ 'thomas' => $post]);
   }
 
   public function testThree()
