@@ -33,4 +33,13 @@ class CustomersModel extends \CodeIgniter\Model
   return $data;
   }
 
+  public function getCurrentCustomers() {
+    return $this->where('currently_renting', 1)
+                ->findAll();
+  }
+
+  public function getAllCustomers() {
+    return $this->findAll();
+  }
+
 }

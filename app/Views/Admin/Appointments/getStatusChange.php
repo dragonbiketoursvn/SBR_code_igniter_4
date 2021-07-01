@@ -118,12 +118,6 @@ const toggle = function() {
   message += stringSegment4;
 
 
-
-  /*
-  let messageOne = `${stringSegment1}${bike_in.value}`;
-  let messageTwo = `${stringSegment2}${months_paid.value}`;
-  */
-
   document.querySelector('.modal-card-body').innerHTML = message;
 
   modal.classList.add('is-active');

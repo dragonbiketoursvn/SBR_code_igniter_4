@@ -166,4 +166,46 @@ class Appointments extends \App\Controllers\BaseController
 
     }
 
+    public function addNew()
+    {
+      if(session()->has('appointment'))
+      {
+        return redirect()->to('paymentCheck');
+      } else {
+
+        $model = new \App\Models\CustomersModel;
+        $currentCustomers = $model->getCurrentCustomers();
+
+        return view('Admin/Appointments/addNew', ['currentCustomers' => $currentCustomers]);
+        
+      }
+
+
+    }
+
+    public function saveNew()
+    {
+      $customer_name = $this->request->getPost('customer_name');
+      $contract_number;
+      $appointment_time = date('Y-m-d H:i:s');
+      $model = new \App\Models\CustomersModel;
+      $appointment = new Appointment;
+
+      $currentCustomers = $model->getCurrentCustomers();
+
+      foreach($currentCustomers as $currentCustomer) {
+        if($currentCustomer->customer_name = $customer_name) {
+          $contract_number = $currentCustomer->contract_number;
+        }
+      }
+      $appointment->customer_name = $customer_name;
+      $appointment->contract_number = $contract_number;
+      $appointment->appointment_time = $appointment_time;
+      $this->model->save($appointment);
+      session()->set('appointment', $appointment);
+
+      return redirect()->to('paymentCheck');
+
+    }
+
 }

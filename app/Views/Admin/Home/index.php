@@ -28,9 +28,11 @@
   <div class="field-body">
     <div class="field">
       <div class="control">
-        <button class="button is-warning is-large is-fullwidth">
-            Bắt Đầu Lúc Gặp Khách &nbsp; <span style="text-decoration: underline;">KHÔNG CÓ HẸN</span>
-        </button>
+        <a href="<?= site_url("Admin/Appointments/addNew") ?>">
+          <button class="button is-warning is-large is-fullwidth">
+              Bắt Đầu Lúc Gặp Khách &nbsp; <span style="text-decoration: underline;">KHÔNG CÓ HẸN</span>
+          </button>
+        </a>
       </div>
     </div>
   </div>
@@ -43,9 +45,11 @@
   <div class="field-body">
     <div class="field">
       <div class="control">
-        <button class="button is-danger is-large is-fullwidth">
-            Xe Chuyển Qua Nơi Mới
-        </button>
+        <a href="<?= site_url("Admin/MoveBike/getInfo") ?>">
+          <button class="button is-danger is-large is-fullwidth">
+              Xe Chuyển Qua Nơi Mới
+          </button>
+        </a>
       </div>
     </div>
   </div>
@@ -73,9 +77,11 @@
   <div class="field-body">
     <div class="field">
       <div class="control">
-        <button class="button is-success is-large is-fullwidth">
-            Phiếu Sửa Xe
-        </button>
+        <a href="<?= site_url("Admin/Repairs/getInfo") ?>">
+          <button class="button is-success is-large is-fullwidth">
+              Phiếu Sửa Xe
+          </button>
+        </a>
       </div>
     </div>
   </div>
