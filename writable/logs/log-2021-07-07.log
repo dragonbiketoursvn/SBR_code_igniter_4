@@ -1,0 +1,97 @@
+CRITICAL - 2021-07-07 00:04:03 --> There is no data to update.
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\BaseModel.php(1682): CodeIgniter\Database\Exceptions\DataException::forEmptyDataset('update')
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\BaseModel.php(864): CodeIgniter\BaseModel->transformDataToArray(NULL, 'update')
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Model.php(737): CodeIgniter\BaseModel->update(Object(App\Entities\Customer), NULL)
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Models\CustomersModel.php(75): CodeIgniter\Model->update(Object(App\Entities\Customer))
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Customers.php(60): App\Models\CustomersModel->activateByToken(Object(App\Libraries\Token))
+#5 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Customers->activate('ef8279865ea5594...')
+#6 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Customers))
+#7 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2021-07-07 00:04:08 --> There is no data to update.
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\BaseModel.php(1682): CodeIgniter\Database\Exceptions\DataException::forEmptyDataset('update')
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\BaseModel.php(864): CodeIgniter\BaseModel->transformDataToArray(NULL, 'update')
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Model.php(737): CodeIgniter\BaseModel->update(Object(App\Entities\Customer), NULL)
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Models\CustomersModel.php(75): CodeIgniter\Model->update(Object(App\Entities\Customer))
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Customers.php(60): App\Models\CustomersModel->activateByToken(Object(App\Libraries\Token))
+#5 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Customers->activate('ef8279865ea5594...')
+#6 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Customers))
+#7 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2021-07-07 00:31:51 --> There is no data to insert.
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\BaseModel.php(1704): CodeIgniter\Database\Exceptions\DataException::forEmptyDataset('insert')
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\BaseModel.php(719): CodeIgniter\BaseModel->transformDataToArray(Array, 'insert')
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Model.php(705): CodeIgniter\BaseModel->insert(Object(App\Entities\Customer), false)
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\BaseModel.php(667): CodeIgniter\Model->insert(Object(App\Entities\Customer), false)
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Models\CustomersModel.php(76): CodeIgniter\BaseModel->save(Object(App\Entities\Customer))
+#5 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Customers.php(60): App\Models\CustomersModel->activateByToken(Object(App\Libraries\Token))
+#6 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Customers->activate('ef8279865ea5594...')
+#7 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Customers))
+#8 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2021-07-07 00:34:11 --> There is no data to insert.
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\BaseModel.php(1704): CodeIgniter\Database\Exceptions\DataException::forEmptyDataset('insert')
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\BaseModel.php(719): CodeIgniter\BaseModel->transformDataToArray(Array, 'insert')
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Model.php(705): CodeIgniter\BaseModel->insert(Object(App\Entities\Customer), false)
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\BaseModel.php(667): CodeIgniter\Model->insert(Object(App\Entities\Customer), false)
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Models\CustomersModel.php(76): CodeIgniter\BaseModel->save(Object(App\Entities\Customer))
+#5 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Customers.php(60): App\Models\CustomersModel->activateByToken(Object(App\Libraries\Token))
+#6 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Customers->activate('ca29c77d6b37f57...')
+#7 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Customers))
+#8 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2021-07-07 00:36:53 --> There is no data to insert.
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\BaseModel.php(1704): CodeIgniter\Database\Exceptions\DataException::forEmptyDataset('insert')
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\BaseModel.php(719): CodeIgniter\BaseModel->transformDataToArray(Array, 'insert')
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Model.php(705): CodeIgniter\BaseModel->insert(Object(App\Entities\Customer), true)
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Models\CustomersModel.php(76): CodeIgniter\Model->insert(Object(App\Entities\Customer))
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Customers.php(60): App\Models\CustomersModel->activateByToken(Object(App\Libraries\Token))
+#5 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Customers->activate('ca29c77d6b37f57...')
+#6 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Customers))
+#7 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2021-07-07 00:51:58 --> Class "App\Controllers\RepairsModel" not found
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Test->testOne()
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Test))
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2021-07-07 00:54:05 --> Undefined variable $currentBikes
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Test.php(18): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\Users\\Admin\\...', 18)
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Test->testOne()
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Test))
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-07-07 13:12:29 --> Invalid file: Customers/activationMessage.php
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\View\View.php(203): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('Customers/activ...')
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Common.php(1217): CodeIgniter\View\View->render('Customers/activ...', Array, true)
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Customers.php(75): view('Customers/activ...')
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Customers.php(39): App\Controllers\Admin\Customers->sendActivationEmail(Object(App\Entities\Customer))
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Customers->save()
+#5 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Customers))
+#6 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2021-07-07 13:24:35 --> Invalid file: http://sbr_code_igniter_4.localhost/Admin/Customers/activationMessage.php
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\View\View.php(203): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('http://sbr_code...')
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Common.php(1217): CodeIgniter\View\View->render('http://sbr_code...', Array, true)
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Customers.php(75): view('http://sbr_code...')
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Customers.php(39): App\Controllers\Admin\Customers->sendActivationEmail(Object(App\Entities\Customer))
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(936): App\Controllers\Admin\Customers->save()
+#5 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Customers))
+#6 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2021-07-07 14:02:05 --> syntax error, unexpected token ";"
+#0 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Router\Router.php(170): CodeIgniter\Router\Router->autoRoute('Admin/Customers...')
+#1 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(816): CodeIgniter\Router\Router->handle('Admin/Customers...')
+#2 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(385): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+#3 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\Users\Admin\Documents\code_igniter\SBR_code_igniter_4\public\index.php(44): CodeIgniter\CodeIgniter->run()
+#5 {main}

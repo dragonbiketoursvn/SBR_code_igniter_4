@@ -168,16 +168,17 @@ class Appointments extends \App\Controllers\BaseController
 
     public function addNew()
     {
-      if(session()->has('appointment'))
-      {
+      if(session()->has('appointment')) {
+
         return redirect()->to('paymentCheck');
+
       } else {
 
         $model = new \App\Models\CustomersModel;
         $currentCustomers = $model->getCurrentCustomers();
-
-        return view('Admin/Appointments/addNew', ['currentCustomers' => $currentCustomers]);
         
+        return view('Admin/Appointments/addNew', ['currentCustomers' => $currentCustomers]);
+
       }
 
 

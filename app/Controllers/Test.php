@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Models\BikesModel;
+use App\Models\RepairsModel;
 use App\Libraries\Token;
 
 class Test extends BaseController
@@ -10,8 +10,10 @@ class Test extends BaseController
 
   public function testOne()
 	{
-    $model = new BikesModel;
-    $currentBikes = $model->getCurrentBikes();
+    $model = new RepairsModel;
+    $repair = $model->find(20);
+    $repair->item_7 = "Giant Penis";
+    $model->save($repair);
 
     return view('Tests/test1', ['currentBikes', $currentBikes]);
   }

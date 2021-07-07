@@ -62,9 +62,11 @@
   <div class="field-body">
     <div class="field">
       <div class="control">
-        <button class="button is-link is-large is-fullwidth">
-            Làm Hợp Đồng Mới
-        </button>
+        <a href="<?= site_url("Admin/Customers/newContract") ?>">
+          <button class="button is-link is-large is-fullwidth">
+              Làm Hợp Đồng Mới
+          </button>
+        </a>
       </div>
     </div>
   </div>
@@ -94,9 +96,11 @@
   <div class="field-body">
     <div class="field">
       <div class="control">
-        <button class="button is-warning is-large is-fullwidth">
-            Chi Phí Khác
-        </button>
+        <a href="<?= site_url("Admin/Expenses/chooseDivision") ?>">
+          <button class="button is-warning is-large is-fullwidth">
+              Chi Phí Khác
+          </button>
+        </a>
       </div>
     </div>
   </div>
