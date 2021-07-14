@@ -3,6 +3,9 @@
 namespace App\Controllers\Admin;
 
 use App\Entities\Customer;
+use App\Entities\RenterIncident;
+
+use CodeIgniter\I18n\Time;
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -37,6 +40,29 @@ class Customers extends \App\Controllers\BaseController
       if($this->model->insert($customer)) {
 
         $this->sendActivationEmail($customer);
+        return redirect()->to(site_url('Admin/Home'));
+
+      } else {
+
+        return redirect()->back()->with('errors', $this->model->errors())->withInput();
+
+      }
+    }
+
+    public function update()
+    {
+      $customer = new Customer;
+      $customer->fill($this->request->getPost());
+
+      if((bool) ($this->request->getPost('finish_date')) === true){
+
+        $customer->currently_renting = 0;
+
+      }
+
+      if($this->model->skipValidation(true)->save($customer)) {
+
+        return redirect()->to(site_url('Admin/Home'));
 
       } else {
 
@@ -49,7 +75,22 @@ class Customers extends \App\Controllers\BaseController
     {
         $model = new \App\Models\CustomersModel;
 
-        $model->activateByToken($token);
+        $customer = $model->activateByToken($token);
+
+        if($customer) {
+
+          $statusChangeModel = new \App\Models\BikeStatusChangeModel;
+          $bikeStatusChange = new \App\Entities\BikeStatusChange;
+
+          $bikeStatusChange->user = 'ADMIN';
+          $bikeStatusChange->plate_number = $customer->current_bike;
+          $bikeStatusChange->date_time = $customer->start_date;
+          $bikeStatusChange->new_status = $customer->customer_name;
+          $bikeStatusChange->contract_number = $customer->id;
+
+          $statusChangeModel->save($bikeStatusChange);
+
+        }
 
         return view('Admin/Customers/activated');
     }
@@ -71,7 +112,7 @@ class Customers extends \App\Controllers\BaseController
       $mail->setFrom('patrick@saigonbikerentals.com');
       $mail->addAddress($customer->email_address);
       $mail->isHTML(true);
-      $mail->Subject = 'Receipt for Rental Payment';
+      $mail->Subject = 'Rental Agreement';
       $mail->Body = '<h1>SAIGON BIKE RENTALS</h1>
       <h2>MOTORBIKE RENTAL CONTRACT</h2>
 
@@ -117,7 +158,7 @@ class Customers extends \App\Controllers\BaseController
         CONSIDERS YOU IMPAIRED WITH ANY ALCOHOL IN YOUR SYSTEM!</b></li>
         <li><b>Do not allow anyone else to drive the motorbike.</b></li>
         <li><b>If the bike is damaged in any way, customer must pay the full cost of repairs.</b></li>
-        <li><b>If the bike is lost or damaged beyond repair, customer must pay a replacement charge of <u>' . $PLACE_HOLDER . '</u> dong.</b></li>
+        <li><b>If the bike is lost or damaged beyond repair, customer must pay a replacement charge of <u>' . '$PLACE_HOLDER' . '</u> dong.</b></li>
         <li><b>If customer does not have a valid motorbike license and the bike is impounded by the police, customer must pay
           <u>all</u> fines imposed, <u>including</u> any fine imposed on the owner of the bike (Saigon Bike Rentals) for allowing
           an unlicensed rider to operate it</b></li>
@@ -143,7 +184,7 @@ class Customers extends \App\Controllers\BaseController
       </p>
 
       <p>
-        <button>Click Here to Confirm Your Agreement</button>
+        <a href="' . site_url("Admin/Customers/activate/{$customer->token}") . '"><button>Click Here to Confirm Your Agreement</button></a>
       </p>';
 
       if (!$mail->send()) {
@@ -156,9 +197,53 @@ class Customers extends \App\Controllers\BaseController
           $imapStream = imap_open($path, 'patrick@saigonbikerentals.com', 'n1FaZ!Sz#)vB');
           imap_append($imapStream, $path, $mail->getSentMIMEMessage());
           imap_close($imapStream);
-          echo 'Message sent!';
+          return redirect()->to(site_url('Admin/Home'))->with('message', 'Message sent!');
 
       }
 
+    }
+
+    public function  getInfo()
+    {
+        $customers = $this->model->getCurrentCustomers();
+        return view('Admin/Customers/getInfo', ['customers' => $customers]);
+    }
+
+    public function viewInfo()
+    {
+        if(! $this->request->getPost('customer_name')) {
+
+          return redirect()->back();
+
+        }
+
+        $customers = $this->model->getCurrentCustomers();
+        $customer = new Customer;
+        $model = new \App\Models\BikeStatusChangeModel;
+        $bikesModel = new \App\Models\BikesModel;
+        $paymentsModel = new \App\Models\PaymentsModel;
+
+        foreach($customers as $record) {
+          if($record->customer_name === $this->request->getPost('customer_name')){
+            $customer = $record;
+          }
+        }
+
+        $currentStatus = $model->getCurrentStatus($customer->id);
+        $currentBikes = $bikesModel->getCurrentBikes();
+        $payments = $paymentsModel->getByContractNumber($customer->id);
+        $monthsPaid = $paymentsModel->getTotalMonthsPaid($customer->id)->months_paid ?? 0;
+        $startDate = new Time();
+        $startDate = $startDate->createFromFormat('Y-m-d', $customer->start_date);
+        $paidUpTo = $startDate->addMonths($monthsPaid)->toDateString();
+
+        return view('Admin/Customers/viewInfo', [
+                                                   'customer' => $customer,
+                                                  'customers' => $customers,
+                                              'currentStatus' => $currentStatus,
+                                               'currentBikes' => $currentBikes,
+                                                   'payments' => $payments,
+                                                   'paidUpTo' => $paidUpTo,
+                                                ]);
     }
 }

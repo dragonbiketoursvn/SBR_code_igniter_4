@@ -51,14 +51,22 @@ class CustomersModel extends \CodeIgniter\Model
 
   public function getCurrentCustomers() {
     return $this->where('currently_renting', 1)
-                 >findAll();
+                 ->findAll();
   }
 
   public function getAllCustomers() {
     return $this->findAll();
   }
 
-  public function activateByToken($token) {
+  public function getCurrentCustomerByName($name) {
+
+    return $this->where('currently_renting', 1)
+                ->where('customer_name', $name)
+                ->first();
+  }
+
+  public function activateByToken($token)
+  {
 
     $token = new Token($token);
 
@@ -71,7 +79,9 @@ class CustomersModel extends \CodeIgniter\Model
 
         $customer->activate();
         $this->save($customer);
+        return $customer;
 
     }
   }
+
 }

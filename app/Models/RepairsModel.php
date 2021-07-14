@@ -29,9 +29,8 @@ class RepairsModel extends \CodeIgniter\Model
     public function findByPlateNumber($plateNumber)
     {
         return $this->where('plate_number', $plateNumber)
-                    ->findAll()
-                    ->orderBy('repair_date');
+                    ->orderBy('repair_date', 'DESC')
+                    ->findAll();
     }
-
-
+    
 }

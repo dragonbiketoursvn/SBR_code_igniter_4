@@ -61,8 +61,9 @@ class Filters extends BaseConfig
 	 */
 	public $filters = [
 											'login' => [
-																	'before' => ['Admin/Appointments/*', 'Admin/Customers/newContract*', 'Admin/Expenses/*',
-																								'Admin/Home/*', 'Admin/MoveBike/*', 'Admin/Payments/*', 'Admin/Repairs/*']
+																	'before' => //['Admin/Appointments/*', 'Admin/Customers/newContract*', 'Admin/Expenses/*',
+																								//'Admin/Home/*', 'Admin/MoveBike/*', 'Admin/Payments/*', 'Admin/Repairs/*']
+																								['Admin/(?!Customers/activate)*']
 																 ]
 										];
 }

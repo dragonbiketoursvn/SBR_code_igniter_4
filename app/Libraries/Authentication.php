@@ -142,27 +142,27 @@ class Authentication
         return $this->getCurrentUser() !== null;
     }
 
-  public function validateToken($token)
-  {
+    public function validateToken($token)
+    {
 
-    $newToken = new Token($token);
-    $hash = $newToken->getHash();
+      $newToken = new Token($token);
+      $hash = $newToken->getHash();
 
-    $model = new \App\Models\AppointmentsModel;
+      $model = new \App\Models\AppointmentsModel;
 
-    $appointment = $model->where('activation_hash', $hash)->first();
+      $appointment = $model->where('activation_hash', $hash)->first();
 
-    if($appointment === null) {
+      if($appointment === null) {
 
-      $response = service('response');
-      $response->setStatusCode(403);
-      $response->setBody('You do not have permission to access that resource');
+        $response = service('response');
+        $response->setStatusCode(403);
+        $response->setBody('You do not have permission to access that resource');
 
-      $response->send();
+        $response->send();
 
-      exit();
+        exit();
+      }
+
+      return $appointment;
     }
-
-    return $appointment;
-  }
 }

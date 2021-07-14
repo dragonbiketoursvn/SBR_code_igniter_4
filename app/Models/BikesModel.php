@@ -38,6 +38,11 @@ class BikesModel extends \CodeIgniter\Model
                  ->findAll();
   }
 
+  public function getByPlateNumber($plateNumber) {
+    return $this->where('plate_number', $plateNumber)
+                ->first();
+  }
+
   public function getAllBikes() {
     return $this->findAll();
   }

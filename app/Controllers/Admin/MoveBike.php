@@ -25,6 +25,7 @@ class MoveBike extends \App\Controllers\BaseController
       $model = new \App\Models\BikeStatusChangeModel;
       $bikeStatusChange->fill($this->request->getPost());
       $bikeStatusChange->date_time = date('Y-m-d H:i:s');
+      unset($bikeStatusChange->contract_number);
 
       $model->save($bikeStatusChange);
 

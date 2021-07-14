@@ -43,4 +43,21 @@ class Repairs extends \App\Controllers\BaseController
       }
     }
 
+    public function getHistory()
+    {
+      $model = new \App\Models\BikesModel;
+      $currentBikes = $model->getCurrentBikes();
+
+      return view('Admin/Repairs/getHistory', ['currentBikes' => $currentBikes,]);
+
+    }
+
+    public function showHistory()
+    {
+      $plateNumber = $this->request->getPost('plate_number');
+      $repairs = $this->model->findByPlateNumber($plateNumber);
+
+      return view('Admin/Repairs/showHistory', ['repairs' => $repairs,]);
+    }
+
 }

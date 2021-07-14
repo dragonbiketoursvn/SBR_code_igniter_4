@@ -15,8 +15,6 @@
 <?php endif; ?>
 
 
-
-
 <?= form_open('Admin/Customers/save', 'id="rental_contract"') ?>
 
 <div class="field is-horizontal" style="bottom: 200px !important;">
@@ -55,8 +53,8 @@
   <div class="field-body">
     <div class="field">
       <p class="control is-expanded">
-        <input list="parts_list" class="input is-success" id="nationality" name="nationality">
-        <datalist id="parts_list">
+        <input list="nationalities_list" class="input is-success" id="nationality" name="nationality">
+        <datalist id="nationalities_list">
           <?php foreach($nationalities as $nationality): ?>
             <option value="<?= $nationality->nationality ?>">
           <?php endforeach; ?>
@@ -125,7 +123,7 @@
 
 <div class="field is-horizontal" style="bottom: 200px !important;">
   <div class="field-label is-normal">
-    <label class="label" for="rent">Rental Amount</label>
+    <label class="label" for="rent">Rental Amount (x1000 dong)</label>
   </div>
   <div class="field-body">
     <div class="field">
@@ -239,7 +237,7 @@
   <div class="modal-card">
 
     <section class="modal-card-body" style="font-size: 15px !important; text-align: center !important; padding: 2px !important;">
-
+      <p>Tất cả các thông tin này có đúng ko?</p>
     </section>
     <footer class="modal-card-foot">
       <button type="submit" form="rental_contract" class="button is-success" style="width: 50% !important;">Dúng rồi. Nhập đi!</button>

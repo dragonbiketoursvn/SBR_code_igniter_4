@@ -113,12 +113,52 @@
   <div class="field-body">
     <div class="field">
       <div class="control">
-        <button class="button is-danger is-large is-fullwidth">
-            Xem Lịch Sự Sửa Xe
-        </button>
+        <a href="<?= site_url("Admin/Repairs/getHistory") ?>">
+          <button class="button is-danger is-large is-fullwidth">
+              Xem Lịch Sự Sửa Xe
+          </button>
+        </a>
       </div>
     </div>
   </div>
 </div>
+
+<?php if(session()->get('user_id') == 1): ?>
+
+<div class="field is-horizontal">
+  <div class="field-label">
+    <!-- Left empty for spacing -->
+  </div>
+  <div class="field-body">
+    <div class="field">
+      <div class="control">
+        <a href="<?= site_url("Admin/Customers/getInfo") ?>">
+          <button class="button is-link is-large is-fullwidth">
+              Customer View
+          </button>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="field is-horizontal">
+  <div class="field-label">
+    <!-- Left empty for spacing -->
+  </div>
+  <div class="field-body">
+    <div class="field">
+      <div class="control">
+        <a href="<?= site_url("Admin/RenterIncidents/incidents") ?>">
+          <button class="button is-success is-large is-fullwidth">
+              Customer Incidents
+          </button>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<?php endif; ?>
 
 <?= $this->endSection() ?>

@@ -16,7 +16,8 @@ class Payments extends \App\Controllers\BaseController
         $this->model = new \App\Models\PaymentsModel;
     }
 
-    public function makeNew() {
+    public function makeNew()
+    {
 
       $appointment = session()->get('appointment');
 
@@ -29,7 +30,8 @@ class Payments extends \App\Controllers\BaseController
       return view('Admin/Payments/makeNew', ['appointment' => $appointment]);
     }
 
-    public function savePayment() {
+    public function savePayment()
+    {
 
       //Record that payment was made in appointment record
       $model = new \App\Models\AppointmentsModel;
@@ -65,6 +67,27 @@ class Payments extends \App\Controllers\BaseController
       }
     }
 
+    public function update($id)
+    {
+      $payment = $this->model->find($id);
+
+      return view('Admin/Payments/update', ['payment' => $payment]);
+    }
+
+    public function saveUpdate()
+    {
+      $payment = $this->request->getPost();
+
+      if($this->model->save($payment)) {
+
+        return redirect()->to(site_url('Admin/Home/index'));
+
+      } else {
+
+        return redirect()->back()->with('errors', $this->model->errors());
+        
+      }
+    }
 
     public function sendConfirmationEmail() {
 

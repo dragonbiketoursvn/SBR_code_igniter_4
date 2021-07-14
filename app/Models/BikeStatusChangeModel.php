@@ -30,4 +30,11 @@ class BikeStatusChangeModel extends \CodeIgniter\Model
   return $data;
   }
 
+  public function getCurrentStatus($contract_number){
+    
+    return $this->where('contract_number', $contract_number)
+                ->first();
+
+  }
+
 }
