@@ -14,7 +14,12 @@ $buttonClass = ' button">';
 $buttonClassDisabled = ' button-disabled" disabled>';
 $buttonClose = ' </button>';
 
-//Check whether there are any scheduled appointments and add to $alreadyBooked array so we can disable time slots that are already taken
+//We need these objects to generate values for the left column
+$time = new \DateTime('08:30');
+$addInterval = new DateInterval('PT30M');
+
+
+//Check whether there are any scheduled appointments and add to $alreadyed array so we can disable time slots that are already taken
 if(!empty($scheduledAppointments)) {
 
   foreach($scheduledAppointments as $scheduledAppointment) {
@@ -39,15 +44,20 @@ if(!empty($scheduledAppointments)) {
 
 ?>
 
+
+
+
+
+
 <!DOCTYPE html>
 <html>
+
 <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta charset="UTF-8">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
-
-<link rel="stylesheet" href="<?= site_url('css/select.css') ?>">
+  <link rel="stylesheet" href="<?= site_url('css/select.css') ?>">
 
     <title>
       Appointment Selector
@@ -56,84 +66,82 @@ if(!empty($scheduledAppointments)) {
 </head>
 
 <body>
-
-<!-- Check if current user has already booked an appointment before displaying banner -->
-
-
-
-      <div class="banner">
-        <p>When Can We Meet?</p>
+  
+  <div class="container">
+    <div class="month">
+    <span><?= strtoupper(date('F', time() + 24 * 3600)) ?> <span class="year"><?= date('Y', time() + 24 * 3600) ?></span></span>
+    </div>
+    <div class="week">
+      <div class="date">
+        <?= date('D', time() + 1 * 24 * 3600) ?>
+        <br>
+        <b><?= date('j', time() + 1 * 24 * 3600) ?></b>
       </div>
-
-
-
-<!-- This is where the grid of select buttons goes -->
-
-    <div id="main">
-
-      <?php
-
-      //First, get the month to display in top-left corner
-  		echo $divOpen . 1 . $column . 1 . $idMonth . date('M') . $divClose;
-
-      //Then, generate rest of top row
-      for($j=2; $j<9; $j++) {
-  			echo $divOpen . 1 . $column . $j . $idDay . date('D', time() + ($j -1) * 24 *3600) . '<br>' . date('d', time() + ($j -1) * 24 *3600)
-         . $divClose;
-  		}
-
-      //We need these objects to generate values for the left column
-      $time = new \DateTime('08:30');
-      $addInterval = new DateInterval('PT30M');
-
-      //Now, generate the left-column and rows of selector buttons
-      for($i=2; $i<18; $i++) {
-
-        //Increment time by 30 minutes
-        $time->add($addInterval);
-
-        //Display current time in left-most row element
-        echo $divOpen . $i . $column . 1 . $idTime . $time->format('G:i') . $divClose;
-
-        //Display the select buttons for this time block on the date given at the top of the column
-        for($j=2;$j<9;$j++){
-
-          $dateString = date('Y-m-d', time() + ($j - 1) * 24 *3600) . " " . $time->format('H:i:s');
-
-          //Open the form and add hidden input with appropriate value
-          echo form_open(site_url('/appointments/chooseTime/' . $token)) . $inputOpen . $dateString . '">';
-
-
-          //Check to see if this time block is on a Sunday or has already been booked by another user
-          if( (date('l', time() + ($j - 1) * 24 *3600) == 'Sunday')  || (in_array($dateString, $alreadyBookedArray)) ) {
-            
-            //Open the div to get correct layout positon and open disabled button
-            echo $divOpen . $i . $column . $j . $buttonOpen . $i . $column . $j . $buttonClassDisabled . 'Select'
-
-            //Now close out the button, the div, and the form
-            . $buttonClose . $divClose . '</form>';
-          }
-
-          //Otherwise it's available
-          else {
-            //echo 'Select';
-
-            //Open the div to get correct layout positon and open button
-            echo $divOpen . $i . $column . $j . $buttonOpen . $i . $column . $j . $buttonClass . 'Select'
-
-            //Now close out the button, the div, and the form
-            . $buttonClose . $divClose . '</form>';
-          }
-
-  			}
-
-      }
-
-  		?>
-
+      <div class="date">
+        <?= date('D', time() + 2 * 24 * 3600) ?>
+        <br>
+        <b><?= date('j', time() + 2 * 24 * 3600) ?></b>
+      </div>
+      <div class="date">
+        <?= date('D', time() + 3 * 24 * 3600) ?>
+        <br>
+        <b><?= date('j', time() + 3 * 24 * 3600) ?></b>
+      </div>
+      <div class="date">
+        <?= date('D', time() + 4 * 24 * 3600) ?>
+        <br>
+        <b><?= date('j', time() + 4 * 24 * 3600) ?></b>
+      </div>
+      <div class="date">
+        <?= date('D', time() + 5 * 24 * 3600) ?>
+        <br>
+        <b><?= date('j', time() + 5 * 24 * 3600) ?></b>
+      </div>
+      <div class="date">
+        <?= date('D', time() + 6 * 24 * 3600) ?>
+        <br>
+        <b><?= date('j', time() + 6 * 24 * 3600) ?></b>
+      </div>
+      <div class="date">
+        <?= date('D', time() + 7 * 24 * 3600) ?>
+        <br>
+        <b><?= date('j', time() + 7 * 24 * 3600) ?></b>
+      </div>
     </div>
 
-<script src="<?= base_url('js/select.js') ?>"></script>
+    <div class="right">
+      <?php
+        for($i = 0; $i < 16; $i++) {
 
+          //Increment time by 30 minutes
+          $time->add($addInterval);
+
+          for($j = 0; $j < 7; $j++) {
+
+            //Get full datetime string
+            $dateString = date('Y-m-d', time() + ($j + 1) * 24 *3600) . " " . $time->format('H:i:s');
+
+            //Open the form and add hidden input with appropriate value
+            echo form_open(site_url('/appointments/chooseTime/' . $token)) . $inputOpen . $dateString . '">';
+
+            //Check to see if this time block is on a Sunday or has already been booked by another user
+            if( (date('l', time() + ($j + 1) * 24 *3600) == 'Sunday')  || (in_array($dateString, $alreadyBookedArray)) ) {
+            
+            //Open the div to get correct layout positon and open inactive button
+            echo '<div class="cellDashed"><button disabled class="inactive"></button></div></form>';
+
+            } else {
+            
+            //Otherwise it's available
+            echo '<div class="cellDashed"><button class="styled">' . $time->format('G:i') .  '</button></div></form>';
+          
+            }
+
+          }
+          
+        }
+      ?>
+    </div>
+</div>  
 </body>
 </html>

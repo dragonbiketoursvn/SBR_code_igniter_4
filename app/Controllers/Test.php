@@ -10,10 +10,21 @@ class Test extends BaseController
 
   public function testOne()
 	{
+<<<<<<< Updated upstream
     $model = new BikesModel;
     $currentBikes = $model->getCurrentBikes();
+=======
+    if ($this->request->getMethod() === 'get') {
+      // If request type is 'get' then return view without passing in variables
+      return view('Tests/test1get');
+>>>>>>> Stashed changes
 
-    return view('Tests/test1', ['currentBikes', $currentBikes]);
+    } elseif ($this->request->getMethod() === 'post') {
+      // Otherwise return view passing in value received via 'post'
+      $test_value = $this->request->getPost('test_value');
+
+      return view('Tests/test1get', ['test_value' => $test_value]);
+    }
   }
 
   public function intermediateOne() {

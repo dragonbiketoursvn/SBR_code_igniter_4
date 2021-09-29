@@ -22,12 +22,12 @@ class GenerateEmailNotificationLists extends BaseCommand
         //THIS IS WHERE WE WILL HAVE DATABASE QUERY TO GENEREATE NOTIFICATION LISTS BASED ON WHAT NEEDS TO BE DONE (RENT/SERVICE)
 
         $db = db_connect();
-        $sql = 'SELECT contract_number, customer_name, email_address, DATE_ADD(start_date, INTERVAL months_paid MONTH) AS paid_up_to, current_bike,
+        $sql = 'SELECT id, customer_name, email_address, DATE_ADD(start_date, INTERVAL months_paid MONTH) AS paid_up_to, current_bike,
         (SELECT repair_date FROM repairs WHERE nhot = 1 AND plate_number = a.current_bike ORDER BY repair_date DESC LIMIT 1) AS last_oil_change,
         (SELECT total_cost FROM repairs WHERE nhot = 1 AND plate_number = a.current_bike ORDER BY repair_date DESC LIMIT 1) AS last_repair_total
-        FROM (SELECT contract_number, customer_name, email_address, start_date, (SELECT SUM(months_paid) FROM payments
-        WHERE contract_number = c.contract_number) AS months_paid, (SELECT plate_number FROM bike_status_change
-        WHERE contract_number = c.contract_number ORDER BY date_time DESC LIMIT 1) AS current_bike
+        FROM (SELECT id, customer_name, email_address, start_date, (SELECT SUM(months_paid) FROM payments
+        WHERE id = c.id) AS months_paid, (SELECT plate_number FROM bike_status_change
+        WHERE id = c.id ORDER BY date_time DESC LIMIT 1) AS current_bike
         FROM customers c WHERE currently_renting = 1)a ORDER BY paid_up_to DESC';
 
         $result = $db->query($sql);
