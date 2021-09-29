@@ -122,7 +122,7 @@ class GenerateEmailNotificationLists extends BaseCommand
           $mail->setFrom('patrick@saigonbikerentals.com');
           $mail->addAddress($appointment->email_address);
           $mail->isHTML(true);
-          $mail->Subject = 'New email address';
+          $mail->Subject = "Let's Meet!";
           $mail->Body = '<p>' . $greeting . '</p><p>' . $message . '</p><p>' . $request . '</p><p>' . $closing . '</p>';
 
           if (!$mail->send()) {
