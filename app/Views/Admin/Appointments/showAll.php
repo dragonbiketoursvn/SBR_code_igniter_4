@@ -14,6 +14,10 @@ $buttonClass = ' button">';
 $buttonClassDisabled = ' button-disabled" disabled>';
 $buttonClose = ' </button>';
 
+//We need these objects to generate values for the left column
+$time = new \DateTime('08:30');
+$addInterval = new DateInterval('PT30M');
+
 ?>
 
 <!DOCTYPE html>
@@ -34,67 +38,84 @@ $buttonClose = ' </button>';
 
 <body>
 
-      <div class="banner">
-        <p>This Week's Appointments</p>
+
+<div class="container">
+    <div class="month">
+      <span><?= strtoupper(date('F', time() + 24 * 3600)) ?> <span class="year"><?= date('Y', time() + 24 * 3600) ?></span></span>
+    </div>
+    <div class="week">
+    <div class="date">
+        <?= date('D', time()) ?>
+        <br>
+        <b><?= date('j', time()) ?></b>
       </div>
-
-<!-- This is where the grid of select buttons goes -->
-
-    <div id="main">
-
+      <div class="date">
+        <?= date('D', time() + 1 * 24 * 3600) ?>
+        <br>
+        <b><?= date('j', time() + 1 * 24 * 3600) ?></b>
+      </div>
+      <div class="date">
+        <?= date('D', time() + 2 * 24 * 3600) ?>
+        <br>
+        <b><?= date('j', time() + 2 * 24 * 3600) ?></b>
+      </div>
+      <div class="date">
+        <?= date('D', time() + 3 * 24 * 3600) ?>
+        <br>
+        <b><?= date('j', time() + 3 * 24 * 3600) ?></b>
+      </div>
+      <div class="date">
+        <?= date('D', time() + 4 * 24 * 3600) ?>
+        <br>
+        <b><?= date('j', time() + 4 * 24 * 3600) ?></b>
+      </div>
+      <div class="date">
+        <?= date('D', time() + 5 * 24 * 3600) ?>
+        <br>
+        <b><?= date('j', time() + 5 * 24 * 3600) ?></b>
+      </div>
+      <div class="date">
+        <?= date('D', time() + 6 * 24 * 3600) ?>
+        <br>
+        <b><?= date('j', time() + 6 * 24 * 3600) ?></b>
+      </div>
+    </div>
+    
+    <div class="right">
       <?php
+     
+        //Now, generate the buttons
+        for($i=0; $i<16; $i++) {
 
-      //First, get the month to display in top-left corner
-  		echo $divOpen . 1 . $column . 1 . $idMonth . date('M', time() + 24 * 3600) . $divClose;
+          //Increment time by 30 minutes
+          $time->add($addInterval);
 
-      //Then, generate rest of top row with TODAY as the left-most column
-      for($j=2; $j<9; $j++) {
-  			echo $divOpen . 1 . $column . $j . $idDay . date('D', time() + ($j - 2) * 24 *3600) . '<br>' . date('d', time() + ($j - 2) * 24 *3600)
-         . $divClose;
-  		}
+          //Display the select buttons for this time block on the date given at the top of the column
+          for($j=0;$j<7;$j++){
 
-      //We need these objects to generate values for the left column
-      $time = new \DateTime('08:30');
-      $addInterval = new DateInterval('PT30M');
+            $dateString = date('Y-m-d', time() + $j * 24 *3600) . " " . $time->format('H:i:s');
 
-      //Now, generate the left-column and rows of selector buttons
-      for($i=2; $i<18; $i++) {
+            //Check if this time block has an appointment booked
+            if( (in_array($dateString, $appointmentTimes))  && ( ! in_array($dateString, $completedAppointmentTimes))  ) {
+              //If yes, open the form to send to the Appointment/details controller
+              //echo form_open("Admin/Appointments/getDetails/{$dateString}");
+              echo "<a href='showDetails/{$dateString}'>";
+              //Add the appropriate button and close the form
+              //echo "<div class='demo-item row{$i} column{$j}'><button class='row{$i} column{$j} button-booked'>Booked</button></div></form>";
+              echo "<div class='cellDashed'><button class='booked'>Booked</button></div></a>";
+            } elseif(in_array($dateString, $completedAppointmentTimes)) {
+              //If yes, open the form to send to the Appointment/details controller
+              //echo form_open("Admin/Appointments/getDetails/{$dateString}");
+              echo "<a href='showDetails/{$dateString}'>";
+              //Add the appropriate button and close the form
+              //echo "<div class='cellDashed'><button class='row{$i} column{$j} button-booked'>Booked</button></div></form>";
+              echo "<div class='cellDashed'><button class='completed' disabled>Done</button></div></a>";
+            }
 
-        //Increment time by 30 minutes
-        $time->add($addInterval);
-
-        //Display current time in left-most row element
-        echo $divOpen . $i . $column . 1 . $idTime . $time->format('G:i') . $divClose;
-
-        //Display the select buttons for this time block on the date given at the top of the column
-        for($j=2;$j<9;$j++){
-
-          $dateString = date('Y-m-d', time() + ($j - 2) * 24 *3600) . " " . $time->format('H:i:s');
-
-          //Check if this time block has an appointment booked
-          if( (in_array($dateString, $appointmentTimes))  && ( ! in_array($dateString, $completedAppointmentTimes))  ) {
-            //If yes, open the form to send to the Appointment/details controller
-            //echo form_open("Admin/Appointments/getDetails/{$dateString}");
-            echo "<a href='showDetails/{$dateString}'>";
-            //Add the appropriate button and close the form
-            //echo "<div class='demo-item row{$i} column{$j}'><button class='row{$i} column{$j} button-booked'>Booked</button></div></form>";
-            echo "<div class='demo-item row{$i} column{$j}'><button class='row{$i} column{$j} button-booked'>Booked</button></div></a>";
-          } elseif(in_array($dateString, $completedAppointmentTimes)) {
-            //If yes, open the form to send to the Appointment/details controller
-            //echo form_open("Admin/Appointments/getDetails/{$dateString}");
-            echo "<a href='showDetails/{$dateString}'>";
-            //Add the appropriate button and close the form
-            //echo "<div class='demo-item row{$i} column{$j}'><button class='row{$i} column{$j} button-booked'>Booked</button></div></form>";
-            echo "<div class='demo-item row{$i} column{$j}'><button class='row{$i} column{$j} button-booked' disabled>Done</button></div></a>";
-          }
-
-          //Otherwise it's available
-          else {
-            //echo 'Select';
-
-            //Open the div to get correct layout positon and open button
-            echo form_open("Admin/Appointments/new/{$dateString}") .
-            "<div class='demo-item row{$i} column{$j}'><button class='row{$i} column{$j} button-open'>Open</button></div></form>";
+            //Otherwise it's available
+            else {
+              //Maybe add form to allow admin to add apointments by clicking on button but for now just show the button
+              echo "<div class='cellDashed'><button class='styled'>" . $time->format('G:i') . "</button></div>";
           }
 
   			}
@@ -104,7 +125,7 @@ $buttonClose = ' </button>';
   		?>
 
     </div>
-
+</div>
 <script src="<?= base_url('js/select.js') ?>"></script>
 
 </body>

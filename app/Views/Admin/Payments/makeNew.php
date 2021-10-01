@@ -27,7 +27,7 @@
 
 <?= form_open('Admin/Payments/savePayment', 'id="payment_form" class="random_class"') ?>
 
-<input type="hidden" name="contract_number" value="<?= esc($appointment->contract_number) ?>">
+<input type="hidden" name="id" value="<?= esc($appointment->id) ?>">
 
 <div class="field is-horizontal">
   <div class="field-label is-normal">

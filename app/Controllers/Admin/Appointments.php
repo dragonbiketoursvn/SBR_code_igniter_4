@@ -112,7 +112,7 @@ class Appointments extends \App\Controllers\BaseController
           $bikeStatusChange->plate_number = $post['bike_out'];
           $bikeStatusChange->date_time = date('Y-m-d H:i:s');
           $bikeStatusChange->new_status = $appointment->customer_name;
-          $bikeStatusChange->contract_number = $appointment->contract_number;
+          $bikeStatusChange->customer_id = $appointment->customer_id;
           $model->save($bikeStatusChange);
 
           //And set the appointment session variable
@@ -186,7 +186,7 @@ class Appointments extends \App\Controllers\BaseController
     public function saveNew()
     {
       $customer_name = $this->request->getPost('customer_name');
-      $contract_number;
+      $customer_id;
       $appointment_time = date('Y-m-d H:i:s');
       $model = new \App\Models\CustomersModel;
       $appointment = new Appointment;
@@ -195,11 +195,11 @@ class Appointments extends \App\Controllers\BaseController
 
       foreach($currentCustomers as $currentCustomer) {
         if($currentCustomer->customer_name = $customer_name) {
-          $contract_number = $currentCustomer->contract_number;
+          $customer_id = $currentCustomer->id;
         }
       }
       $appointment->customer_name = $customer_name;
-      $appointment->contract_number = $contract_number;
+      $appointment->customer_id = $customer_id;
       $appointment->appointment_time = $appointment_time;
       $this->model->save($appointment);
       session()->set('appointment', $appointment);
