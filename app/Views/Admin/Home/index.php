@@ -62,9 +62,11 @@
   <div class="field-body">
     <div class="field">
       <div class="control">
-        <button class="button is-link is-large is-fullwidth">
-            Làm Hợp Đồng Mới
-        </button>
+        <a href="<?= site_url("Admin/Customers/contract") ?>">
+          <button class="button is-link is-large is-fullwidth">
+              Làm Hợp Đồng Mới
+          </button>
+        </a>
       </div>
     </div>
   </div>

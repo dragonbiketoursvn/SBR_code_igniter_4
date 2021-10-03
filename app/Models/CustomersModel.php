@@ -42,4 +42,44 @@ class CustomersModel extends \CodeIgniter\Model
     return $this->findAll();
   }
 
+  public function getNationalities() {
+    return $this->select('nationality')
+                ->distinct('nationality')
+                ->orderBy('nationality')
+                ->get()
+                ->getResultArray();
+  }
+
+  public function getBuildingNames() {
+    return $this->select('building_name')
+                ->distinct('building_name')
+                ->orderBy('building_name')
+                ->get()
+                ->getResultArray();
+  }
+
+  public function getStreetNames() {
+    return $this->select('street_name')
+                ->distinct('street_name')
+                ->orderBy('street_name')
+                ->get()
+                ->getResultArray();
+  }
+
+  public function getWards() {
+    return $this->select('ward')
+                ->distinct('ward')
+                ->orderBy('ward')
+                ->get()
+                ->getResultArray();
+  }
+
+  public function getDistricts() {
+    return $this->select('district')
+                ->distinct('district')
+                ->orderBy('district')
+                ->get()
+                ->getResultArray();
+  }
+
 }
