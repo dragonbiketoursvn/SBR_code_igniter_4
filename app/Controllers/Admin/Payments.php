@@ -45,7 +45,8 @@ class Payments extends \App\Controllers\BaseController
 
         $post = $this->request->getPost();
         $payment = new Payment($post);
-        $contract_number = $post['contract_number'];
+        
+        //$contract_number = $post['contract_number'];
 
         //validation
         if ($this->model->save($payment) === false) {
@@ -102,7 +103,7 @@ class Payments extends \App\Controllers\BaseController
 
 
         $model = new \App\Models\CustomersModel;
-        $customer = $model->where('contract_number', $appointment->contract_number)->first();
+        $customer = $model->where('id', $appointment->contract_number)->first();
         $payment = session()->get('payment');
         $amount = $payment['amount'] * 1000;
 
