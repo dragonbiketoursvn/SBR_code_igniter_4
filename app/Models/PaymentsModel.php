@@ -33,4 +33,23 @@ class PaymentsModel extends \CodeIgniter\Model
     return $data;
     }
 
+    public function getByContractNumber($contractNumber)
+    {
+      return $this->where('contract_number', $contractNumber)
+                  ->orderBy('payment_date', 'DESC')
+                  ->findAll();
+    }
+
+    public function getTotalMonthsPaid($contractNumber)
+    {
+
+      return $this->where('contract_number', $contractNumber)
+                          ->selectSum('months_paid')
+                          ->get()
+                          ->getRow();
+
+      //return ((int) $resultArray[0]['months_paid']);
+
+    }
+
 }
