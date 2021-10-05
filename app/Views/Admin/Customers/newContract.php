@@ -24,7 +24,7 @@
   <div class="field-body">
     <div class="field">
       <p class="control is-expanded">
-        <input autocomplete="off" class="input is-success first_name" id="first_name" name="first_name">
+        <input required autocomplete="off" class="input is-success first_name" id="first_name" name="first_name" value="<?= old('first_name') ?>">
       </p>
     </div>
   </div>
@@ -37,7 +37,7 @@
   <div class="field-body">
     <div class="field">
       <p class="control is-expanded">
-        <input required autocomplete="off" class="input is-success surname" id="surname" name="surname">
+        <input required autocomplete="off" class="input is-success surname" id="surname" name="surname" value="<?= old('surname') ?>">
       </p>
     </div>
   </div>
@@ -53,7 +53,7 @@
   <div class="field-body">
     <div class="field">
       <p class="control is-expanded">
-        <input required autocomplete="off" list="nationalities_list" class="input is-success" id="nationality" name="nationality">
+        <input required autocomplete="off" list="nationalities_list" class="input is-success" id="nationality" name="nationality" value="<?= old('nationality') ?>">
         <datalist id="nationalities_list">
           <?php foreach($nationalities as $nationality): ?>
             <option value="<?= $nationality->nationality ?>">
@@ -71,7 +71,7 @@
   <div class="field-body">
     <div class="field">
       <p class="control is-expanded">
-        <input required autocomplete="off" class="input is-success" id="email_address" name="email_address">
+        <input required autocomplete="off" class="input is-success" id="email_address" name="email_address" value="<?= old('email_address') ?>">
       </p>
     </div>
   </div>
@@ -84,7 +84,7 @@
   <div class="field-body">
     <div class="field">
       <p class="control is-expanded">
-        <input required autocomplete="off" class="input is-success" id="phone_number" name="phone_number">
+        <input required autocomplete="off" class="input is-success" id="phone_number" name="phone_number" value="<?= old('phone_number') ?>">
       </p>
     </div>
   </div>
@@ -97,7 +97,7 @@
   <div class="field-body">
     <div class="field">
       <p class="control is-expanded">
-        <input required autocomplete="off" list="plate_number_list" class="input is-success" id="current_bike" name="current_bike">
+        <input required autocomplete="off" list="plate_number_list" class="input is-success" id="current_bike" name="current_bike" value="<?= old('current_bike') ?>">
         <datalist id="plate_number_list">
           <?php foreach($currentBikes as $currentBike): ?>
             <option value="<?= $currentBike->plate_number ?>">
@@ -115,7 +115,7 @@
   <div class="field-body">
     <div class="field">
       <p class="control is-expanded">
-        <input autocomplete="off" class="input is-success" id="deposit_type" name="deposit_type">
+        <input autocomplete="off" class="input is-success" id="deposit_type" name="deposit_type" value="<?= old('deposit_type') ?>">
       </p>
     </div>
   </div>
@@ -128,7 +128,7 @@
   <div class="field-body">
     <div class="field">
       <p class="control is-expanded">
-        <input required autocomplete="off" class="input is-success" id="rent" name="rent">
+        <input required autocomplete="off" class="input is-success" id="rent" name="rent" value="<?= old('rent') ?>">
       </p>
     </div>
   </div>
@@ -141,7 +141,7 @@
   <div class="field-body">
     <div class="field">
       <p class="control is-expanded">
-        <input autocomplete="off" class="input is-success" id="notes" name="notes">
+        <input autocomplete="off" class="input is-success" id="notes" name="notes" value="<?= old('notes') ?>">
       </p>
     </div>
   </div>
@@ -154,7 +154,7 @@
   <div class="field-body">
     <div class="field">
       <p class="control is-expanded">
-        <input autocomplete="off" class="input is-success" id="building_name" name="building_name">
+        <input autocomplete="off" class="input is-success" id="building_name" name="building_name" value="<?= old('building_name') ?>">
       </p>
     </div>
   </div>
@@ -167,7 +167,7 @@
   <div class="field-body">
     <div class="field">
       <p class="control is-expanded">
-        <input autocomplete="off" class="input is-success" id="building_number" name="building_number">
+        <input autocomplete="off" class="input is-success" id="building_number" name="building_number" value="<?= old('building_number') ?>">
       </p>
     </div>
   </div>
@@ -175,12 +175,12 @@
 
 <div class="field is-horizontal" style="bottom: 200px !important;">
   <div class="field-label is-normal">
-    <label required class="label" for="street_name">Street Name</label>
+    <label class="label" for="street_name">Street Name</label>
   </div>
   <div class="field-body">
     <div class="field">
       <p class="control is-expanded">
-        <input autocomplete="off" class="input is-success" id="street_name" name="street_name">
+        <input autocomplete="off" class="input is-success" id="street_name" name="street_name" value="<?= old('street_name') ?>">
       </p>
     </div>
   </div>
@@ -193,7 +193,7 @@
   <div class="field-body">
     <div class="field">
       <p class="control is-expanded">
-        <input autocomplete="off" class="input is-success" id="ward" name="ward">
+        <input autocomplete="off" class="input is-success" id="ward" name="ward" value="<?= old('ward') ?>">
       </p>
     </div>
   </div>
@@ -206,7 +206,7 @@
   <div class="field-body">
     <div class="field">
       <p class="control is-expanded">
-        <input autocomplete="off" class="input is-success" id="district" name="district">
+        <input autocomplete="off" class="input is-success" id="district" name="district" value="<?= old('district') ?>">
       </p>
     </div>
   </div>

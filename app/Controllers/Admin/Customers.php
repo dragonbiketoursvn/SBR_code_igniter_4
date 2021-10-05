@@ -37,6 +37,23 @@ class Customers extends \App\Controllers\BaseController
       $customer->fill($this->request->getPost());
       $customer->startActivation();
 
+      //Get list of all Dragon Bikes from BikesModel, put plate numbers in an array, and check whether customer's bike is in this array
+      $model = new \App\Models\BikesModel;
+      $dragonBikes = $model->getDragonBikes();
+      $dragonBikesPlateNumbers = [];
+
+      foreach($dragonBikes as $dragonBike) {
+
+        $dragonBikesPlateNumbers[] = $dragonBike->plate_number;
+
+      }
+
+      if(in_array($customer->current_bike, $dragonBikesPlateNumbers)) {
+
+        $customer->dragon_bikes = 1;
+
+      }      
+
       if($this->model->insert($customer)) {
 
         $this->sendActivationEmail($customer);
@@ -86,7 +103,7 @@ class Customers extends \App\Controllers\BaseController
           $bikeStatusChange->plate_number = $customer->current_bike;
           $bikeStatusChange->date_time = $customer->start_date;
           $bikeStatusChange->new_status = $customer->customer_name;
-          $bikeStatusChange->contract_number = $customer->id;
+          $bikeStatusChange->customer_id = $customer->id;
 
           $statusChangeModel->save($bikeStatusChange);
 
@@ -228,7 +245,7 @@ class Customers extends \App\Controllers\BaseController
             $customer = $record;
           }
         }
-
+        
         $currentStatus = $model->getCurrentStatus($customer->id);
         $currentBikes = $bikesModel->getCurrentBikes();
         $payments = $paymentsModel->getByContractNumber($customer->id);
@@ -236,7 +253,7 @@ class Customers extends \App\Controllers\BaseController
         $startDate = new Time();
         $startDate = $startDate->createFromFormat('Y-m-d', $customer->start_date);
         $paidUpTo = $startDate->addMonths($monthsPaid)->toDateString();
-
+        
         return view('Admin/Customers/viewInfo', [
                                                    'customer' => $customer,
                                                   'customers' => $customers,

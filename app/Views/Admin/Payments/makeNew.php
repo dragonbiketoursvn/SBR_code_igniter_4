@@ -27,7 +27,7 @@
 
 <?= form_open('Admin/Payments/savePayment', 'id="payment_form" class="random_class"') ?>
 
-<input type="hidden" name="id" value="<?= esc($appointment->id) ?>">
+<input type="hidden" name="customer_id" value="<?= esc($appointment->customer_id) ?>">
 
 <div class="field is-horizontal">
   <div class="field-label is-normal">
@@ -46,7 +46,7 @@
   </div>
   <div class="field-body">
     <div class="field">
-        <input class="input is-success" type="text" id="amount" name="amount" value="<?= old('amount') ?>">
+        <input autocomplete="off" class="input is-success" type="text" id="amount" name="amount" value="<?= old('amount') ?>">
     </div>
   </div>
 </div>
@@ -58,7 +58,7 @@
   <div class="field-body">
     <div class="field">
       <p class="control is-expanded">
-        <input class="input is-success" type="text" id="months_paid" name="months_paid" value="<?= old('months_paid') ?>">
+        <input autocomplete="off" class="input is-success" type="text" id="months_paid" name="months_paid" value="<?= old('months_paid') ?>">
       </p>
     </div>
   </div>
@@ -71,7 +71,7 @@
   <div class="field-body">
     <div class="field">
       <p class="control is-expanded">
-        <input readonly class="input is-success" type="text" id="payment_date" name="payment_date" value="<?= date('Y-m-d') ?>">
+        <input autocomplete="off" readonly class="input is-success" type="text" id="payment_date" name="payment_date" value="<?= date('Y-m-d') ?>">
       </p>
     </div>
   </div>
@@ -84,7 +84,7 @@
   <div class="field-body">
     <div class="field">
       <p class="control is-expanded">
-        <input class="input is-success" type="text" id="notes" name="notes" value="<?= old('notes') ?>">
+        <input autocomplete="off" class="input is-success" type="text" id="notes" name="notes" value="<?= old('notes') ?>">
       </p>
     </div>
   </div>

@@ -31,7 +31,7 @@
   <div class="field-body">
     <div class="field">
       <p class="control is-expanded">
-        <input list="locations" class="input is-success" id="new_status" name="new_status">
+        <input autocomplete="off" list="locations" class="input is-success" id="new_status" name="new_status">
         <datalist id="locations">
           <option value="Nguyễn Thái Học">
           <option value="Quận 4">

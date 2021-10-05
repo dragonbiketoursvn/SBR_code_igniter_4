@@ -13,7 +13,7 @@
   <div class="field-body">
     <div class="field">
       <p class="control is-expanded">
-        <input list="current_bikes" class="input is-success" id="bike_out" name="bike_out">
+        <input autocomplete="off" list="current_bikes" class="input is-success" id="bike_out" name="bike_out">
         <datalist id="current_bikes">
           <?php foreach($currentBikes as $currentBike): ?>
             <option value="<?= $currentBike->plate_number ?>">
@@ -31,7 +31,7 @@
   <div class="field-body">
     <div class="field">
       <p class="control is-expanded">
-        <input list="current_bikes" class="input is-success" id="bike_in" name="bike_in">
+        <input autocomplete="off" list="current_bikes" class="input is-success" id="bike_in" name="bike_in">
         <datalist id="current_bikes">
           <?php foreach($currentBikes as $currentBike): ?>
             <option value="<?= $currentBike->plate_number ?>">

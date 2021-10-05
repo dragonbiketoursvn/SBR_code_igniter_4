@@ -36,7 +36,7 @@
   <div class="field-body">
     <div class="field">
       <p class="control is-expanded">
-        <input class="input is-success" name="amount" id="amount">
+        <input autocomplete="off" class="input is-success" name="amount" id="amount">
       </p>
     </div>
   </div>
@@ -49,7 +49,7 @@
   <div class="field-body">
     <div class="field">
       <p class="control is-expanded">
-        <input list="parts_list" class="input is-success" id="category" name="category">
+        <input autocomplete="off"  list="parts_list" class="input is-success" id="category" name="category">
         <datalist id="parts_list">
           <?php foreach($expenseCategories as $expenseCategory): ?>
             <option value="<?= $expenseCategory['category'] ?>">
@@ -74,7 +74,7 @@
   <div class="field-body">
     <div class="field">
       <p class="control is-expanded">
-        <input type="textarea" class="input is-success" id="notes" name="notes">
+        <input autocomplete="off" type="textarea" class="input is-success" id="notes" name="notes">
       </p>
     </div>
   </div>

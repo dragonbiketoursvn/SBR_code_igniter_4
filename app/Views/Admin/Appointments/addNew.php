@@ -13,7 +13,7 @@
       <div class="field-body">
         <div class="field">
           <p class="control is-expanded">
-            <input list="current_customers" class="input is-success" name="customer_name">
+            <input autocomplete="off" list="current_customers" class="input is-success" name="customer_name">
             <datalist id="current_customers">
               <?php foreach($currentCustomers as $currentCustomer): ?>
                 <option value="<?= $currentCustomer->customer_name ?>">

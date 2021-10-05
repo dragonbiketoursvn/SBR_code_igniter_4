@@ -20,7 +20,7 @@ class Payments extends \App\Controllers\BaseController
     {
 
       $appointment = session()->get('appointment');
-
+      
       //This is prevent multiple payments being recorded accidentally
       if($appointment->paid_rent == 1) {
 
@@ -45,7 +45,7 @@ class Payments extends \App\Controllers\BaseController
 
         $post = $this->request->getPost();
         $payment = new Payment($post);
-        $contract_number = $post['contract_number'];
+        //$contract_number = $post['contract_number'];
 
         //validation
         if ($this->model->save($payment) === false) {

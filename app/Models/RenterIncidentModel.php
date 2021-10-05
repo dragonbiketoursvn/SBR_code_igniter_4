@@ -6,7 +6,7 @@ class RenterIncidentModel extends \CodeIgniter\Model
 {
     protected $table = 'renter_incidents';
 
-    protected $allowedFields = ['contract_number', 'date', 'customer_name', 'type', 'cost_incurred', 'resolution'];
+    protected $allowedFields = ['customer_id', 'date', 'customer_name', 'type', 'cost_incurred', 'resolution'];
 
     protected $returnType = 'App\Entities\RenterIncident';
 

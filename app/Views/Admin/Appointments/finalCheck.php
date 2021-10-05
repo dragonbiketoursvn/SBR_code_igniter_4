@@ -19,7 +19,7 @@
   <div class="field is-horizontal">
     <div class="field-body">
       <div class="field">
-          <input class="input is-success" type="textarea" id="notes" name="notes">
+          <input autocomplete="off" class="input is-success" type="textarea" id="notes" name="notes">
       </div>
     </div>
   </div>

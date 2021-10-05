@@ -13,7 +13,7 @@
   <div class="field-body">
     <div class="field">
       <p class="control is-expanded">
-        <input list="current_bikes" class="input is-success" id="plate_number" name="plate_number">
+        <input autocomplete="off" list="current_bikes" class="input is-success" id="plate_number" name="plate_number">
         <datalist id="current_bikes">
           <?php foreach($currentBikes as $currentBike): ?>
             <option value="<?= $currentBike->plate_number ?>">
@@ -31,7 +31,7 @@
   <div class="field-body">
     <div class="field">
       <p class="control is-expanded">
-        <input class="input is-success" type="date" name="repair_date" id="repair_date">
+        <input autocomplete="off" class="input is-success" type="date" name="repair_date" id="repair_date">
       </p>
     </div>
   </div>
@@ -44,7 +44,7 @@
   <div class="field-body">
     <div class="field">
       <p class="control is-expanded">
-        <input class="input is-success" name="ododmeter" id="ododmeter">
+        <input autocomplete="off" class="input is-success" name="ododmeter" id="ododmeter">
       </p>
     </div>
   </div>
@@ -57,7 +57,7 @@
   <div class="field-body">
     <div class="field">
       <p class="control is-expanded">
-        <input class="input is-success" name="total_cost" id="total_cost">
+        <input autocomplete="off" class="input is-success" name="total_cost" id="total_cost">
       </p>
     </div>
   </div>
@@ -70,7 +70,7 @@
   <div class="field-body">
     <div class="field">
       <p class="control is-expanded">
-        <input class="input is-success" name="labor_cost" id="labor_cost">
+        <input autocomplete="off" class="input is-success" name="labor_cost" id="labor_cost">
       </p>
     </div>
   </div>
@@ -116,6 +116,150 @@
     <div class="field">
       <p class="control is-expanded">
         <input list="parts_list" class="input is-success" id="item_2" name="item_2">
+        <datalist id="parts_list">
+          <?php foreach($partsList as $part): ?>
+            <option value="<?= $part->part_name ?>">
+          <?php endforeach; ?>
+        </datalist>
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="field is-horizontal" style="bottom: 200px !important;">
+  <div class="field-label is-normal">
+    <label class="label" for="item_3">Phụ Tùng 3</label>
+  </div>
+  <div class="field-body">
+    <div class="field">
+      <p class="control is-expanded">
+        <input list="parts_list" class="input is-success" id="item_3" name="item_3">
+        <datalist id="parts_list">
+          <?php foreach($partsList as $part): ?>
+            <option value="<?= $part->part_name ?>">
+          <?php endforeach; ?>
+        </datalist>
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="field is-horizontal" style="bottom: 200px !important;">
+  <div class="field-label is-normal">
+    <label class="label" for="item_4">Phụ Tùng 4</label>
+  </div>
+  <div class="field-body">
+    <div class="field">
+      <p class="control is-expanded">
+        <input list="parts_list" class="input is-success" id="item_4" name="item_4">
+        <datalist id="parts_list">
+          <?php foreach($partsList as $part): ?>
+            <option value="<?= $part->part_name ?>">
+          <?php endforeach; ?>
+        </datalist>
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="field is-horizontal" style="bottom: 200px !important;">
+  <div class="field-label is-normal">
+    <label class="label" for="item_5">Phụ Tùng 5</label>
+  </div>
+  <div class="field-body">
+    <div class="field">
+      <p class="control is-expanded">
+        <input list="parts_list" class="input is-success" id="item_5" name="item_5">
+        <datalist id="parts_list">
+          <?php foreach($partsList as $part): ?>
+            <option value="<?= $part->part_name ?>">
+          <?php endforeach; ?>
+        </datalist>
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="field is-horizontal" style="bottom: 200px !important;">
+  <div class="field-label is-normal">
+    <label class="label" for="item_6">Phụ Tùng 6</label>
+  </div>
+  <div class="field-body">
+    <div class="field">
+      <p class="control is-expanded">
+        <input list="parts_list" class="input is-success" id="item_6" name="item_6">
+        <datalist id="parts_list">
+          <?php foreach($partsList as $part): ?>
+            <option value="<?= $part->part_name ?>">
+          <?php endforeach; ?>
+        </datalist>
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="field is-horizontal" style="bottom: 200px !important;">
+  <div class="field-label is-normal">
+    <label class="label" for="item_7">Phụ Tùng 7</label>
+  </div>
+  <div class="field-body">
+    <div class="field">
+      <p class="control is-expanded">
+        <input list="parts_list" class="input is-success" id="item_7" name="item_7">
+        <datalist id="parts_list">
+          <?php foreach($partsList as $part): ?>
+            <option value="<?= $part->part_name ?>">
+          <?php endforeach; ?>
+        </datalist>
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="field is-horizontal" style="bottom: 200px !important;">
+  <div class="field-label is-normal">
+    <label class="label" for="item_8">Phụ Tùng 8</label>
+  </div>
+  <div class="field-body">
+    <div class="field">
+      <p class="control is-expanded">
+        <input list="parts_list" class="input is-success" id="item_8" name="item_8">
+        <datalist id="parts_list">
+          <?php foreach($partsList as $part): ?>
+            <option value="<?= $part->part_name ?>">
+          <?php endforeach; ?>
+        </datalist>
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="field is-horizontal" style="bottom: 200px !important;">
+  <div class="field-label is-normal">
+    <label class="label" for="item_9">Phụ Tùng 9</label>
+  </div>
+  <div class="field-body">
+    <div class="field">
+      <p class="control is-expanded">
+        <input list="parts_list" class="input is-success" id="item_9" name="item_9">
+        <datalist id="parts_list">
+          <?php foreach($partsList as $part): ?>
+            <option value="<?= $part->part_name ?>">
+          <?php endforeach; ?>
+        </datalist>
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="field is-horizontal" style="bottom: 200px !important;">
+  <div class="field-label is-normal">
+    <label class="label" for="item_10">Phụ Tùng 10</label>
+  </div>
+  <div class="field-body">
+    <div class="field">
+      <p class="control is-expanded">
+        <input list="parts_list" class="input is-success" id="item_10" name="item_10">
         <datalist id="parts_list">
           <?php foreach($partsList as $part): ?>
             <option value="<?= $part->part_name ?>">

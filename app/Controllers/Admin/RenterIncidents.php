@@ -46,7 +46,7 @@ class RenterIncidents extends \App\Controllers\BaseController
           }
         }
 
-        $incident->contract_number = $contractNumber ?? null;
+        $incident->customer_id = $contractNumber ?? null;
 
         if($this->model->save($incident)) {
 

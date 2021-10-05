@@ -6,7 +6,7 @@ class PaymentsModel extends \CodeIgniter\Model
 {
     protected $table = 'payments';
 
-    protected $allowedFields = ['user', 'contract_number', 'customer_name', 'amount', 'months_paid', 'payment_date', 'notes', 'payment_method'];
+    protected $allowedFields = ['user', 'customer_id', 'customer_name', 'amount', 'months_paid', 'payment_date', 'notes', 'payment_method'];
 
     protected $returnType = 'App\Entities\Payment';
 
@@ -35,7 +35,7 @@ class PaymentsModel extends \CodeIgniter\Model
 
     public function getByContractNumber($contractNumber)
     {
-      return $this->where('contract_number', $contractNumber)
+      return $this->where('customer_id', $contractNumber)
                   ->orderBy('payment_date', 'DESC')
                   ->findAll();
     }
@@ -43,7 +43,7 @@ class PaymentsModel extends \CodeIgniter\Model
     public function getTotalMonthsPaid($contractNumber)
     {
 
-      return $this->where('contract_number', $contractNumber)
+      return $this->where('customer_id', $contractNumber)
                           ->selectSum('months_paid')
                           ->get()
                           ->getRow();

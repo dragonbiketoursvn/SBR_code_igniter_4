@@ -72,7 +72,7 @@
   <div class="field-body">
     <div class="field">
       <p class="control is-expanded">
-        <input class="input is-success" type="text" id="cost_incurred" name="cost_incurred">
+        <input autocomplete="off" class="input is-success" type="text" id="cost_incurred" name="cost_incurred">
       </p>
     </div>
   </div>
@@ -85,7 +85,7 @@
   <div class="field-body">
     <div class="field">
       <p class="control is-expanded">
-        <input class="input is-success" type="textarea" id="resolution" name="resolution">
+        <input autocomplete="off" class="input is-success" type="textarea" id="resolution" name="resolution">
       </p>
     </div>
   </div>

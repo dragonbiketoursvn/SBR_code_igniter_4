@@ -35,12 +35,13 @@
   </div>
   <div class="field-body">
     <div class="field">
-      <input list="type_list" class="input is-success" type="text" id="type" name="type">
+      <input autofocus autocomplete="off" list="type_list" class="input is-success" type="text" id="type" name="type">
       <datalist id="type_list">
           <option value="BREAKDOWN">
           <option value="ACCIDENT">
           <option value="THEFT BY 3RD PARTY">
           <option value="THEFT BY RENTER">
+          <option value="POLICE INCIDENT">
       </datalist>
     </div>
   </div>
@@ -54,7 +55,7 @@
   <div class="field-body">
     <div class="field">
       <p class="control is-expanded">
-        <input list="customer_name_list" class="input is-success" id="customer_name" name="customer_name">
+        <input autocomplete="off" list="customer_name_list" class="input is-success" id="customer_name" name="customer_name">
         <datalist id="customer_name_list">
           <?php foreach($customers as $customer): ?>
             <option value="<?= $customer->customer_name ?>">
@@ -72,7 +73,7 @@
   <div class="field-body">
     <div class="field">
       <p class="control is-expanded">
-        <input class="input is-success" type="text" id="cost_incurred" name="cost_incurred">
+        <input autocomplete="off" class="input is-success" type="text" id="cost_incurred" name="cost_incurred">
       </p>
     </div>
   </div>
@@ -85,7 +86,7 @@
   <div class="field-body">
     <div class="field">
       <p class="control is-expanded">
-        <input class="input is-success" type="textarea" id="resolution" name="resolution">
+        <input autocomplete="off" class="input is-success" type="textarea" id="resolution" name="resolution">
       </p>
     </div>
   </div>
