@@ -178,7 +178,7 @@ class Appointments extends \App\Controllers\BaseController
 
         $model = new \App\Models\CustomersModel;
         $currentCustomers = $model->getCurrentCustomers();
-
+        
         return view('Admin/Appointments/addNew', ['currentCustomers' => $currentCustomers]);
 
       }
@@ -196,7 +196,7 @@ class Appointments extends \App\Controllers\BaseController
 
       $customer = $model->getCurrentCustomerByName($customer_name);
       $contract_number = $customer->id;
-      //dd($customer);
+      
       /*
       $currentCustomers = $model->getCurrentCustomers();
 
@@ -208,9 +208,9 @@ class Appointments extends \App\Controllers\BaseController
       */
 
       $appointment->customer_name = $customer_name;
-      $appointment->contract_number = $contract_number;
+      $appointment->customer_id = $contract_number;
       $appointment->appointment_time = $appointment_time;
-
+      
       $currentStatus = $statusChangeModel->getCurrentStatus($contract_number);
 
       $this->model->save($appointment);

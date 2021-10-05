@@ -102,7 +102,7 @@ class Payments extends \App\Controllers\BaseController
 
 
         $model = new \App\Models\CustomersModel;
-        $customer = $model->where('contract_number', $appointment->contract_number)->first();
+        $customer = $model->where('id', $appointment->customer_id)->first();
         $payment = session()->get('payment');
         $amount = $payment['amount'] * 1000;
 

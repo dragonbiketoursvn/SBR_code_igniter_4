@@ -6,7 +6,7 @@ class BikeStatusChangeModel extends \CodeIgniter\Model
 {
   protected $table = 'bike_status_change';
 
-  protected $allowedFields = ['plate_number', 'user', 'date_time', 'new_status', 'contract_number'];
+  protected $allowedFields = ['plate_number', 'user', 'date_time', 'new_status', 'customer_id'];
 
   protected $returnType = 'App\Entities\BikeStatusChange';
 
@@ -32,7 +32,7 @@ class BikeStatusChangeModel extends \CodeIgniter\Model
 
   public function getCurrentStatus($contract_number){
     
-    return $this->where('contract_number', $contract_number)
+    return $this->where('customer_id', $contract_number)
                 ->first();
 
   }

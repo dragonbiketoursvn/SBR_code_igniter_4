@@ -151,7 +151,7 @@
       <div class="control">
         <a href="<?= site_url("Admin/RenterIncidents/incidents") ?>">
           <button class="button is-success is-large is-fullwidth">
-              Customer Incidents
+              Customer Dildo Incidents
           </button>
         </a>
       </div>
