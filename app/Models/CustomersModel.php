@@ -13,7 +13,7 @@ class CustomersModel extends \CodeIgniter\Model
 
   protected $returnType = 'App\Entities\Customer';
 
-  protected $useTimestamps = true;
+  protected $useTimestamps = false;
 
   protected $validationRules = [];
 

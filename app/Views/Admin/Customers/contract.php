@@ -8,12 +8,12 @@
 
 <div class="field is-horizontal" style="bottom: 200px !important;">
   <div class="field-label is-normal">
-    <label class="label" for="name">Full Name</label>
+    <label class="label" for="customer_name">Full Name</label>
   </div>
   <div class="field-body">
     <div class="field">
       <p class="control is-expanded">
-        <input autocomplete="off" required class="input is-success" id="name" name="name" placeholder="Full Name">
+        <input autocomplete="off" required class="input is-success" id="customer_name" name="customer_name" placeholder="Full Name">
       </p>
     </div>
   </div>
@@ -21,12 +21,12 @@
 
 <div class="field is-horizontal" style="bottom: 200px !important;">
   <div class="field-label is-normal">
-    <label class="label" for="nationalities">Nationality</label>
+    <label class="label" for="nationality">Nationality</label>
   </div>
   <div class="field-body">
     <div class="field">
       <p class="control is-expanded">
-        <input autocomplete="off" required list="nationalities" class="input is-success" id="nationalities" name="nationalities" placeholder="Nationality">
+        <input autocomplete="off" required list="nationalities" class="input is-success" id="nationality" name="nationality" placeholder="Nationality">
         <datalist id="nationalities">
           <?php foreach($nationalities as $nationality): ?>
             <option value="<?= $nationality['nationality'] ?>">
@@ -114,6 +114,24 @@
 
 <div class="field is-horizontal" style="bottom: 200px !important;">
   <div class="field-label is-normal">
+    <label class="label" for="ward">Ward</label>
+  </div>
+  <div class="field-body">
+    <div class="field">
+      <p class="control is-expanded">
+        <input autocomplete="off" required list="wards" class="input is-success" id="ward" name="ward" placeholder="Ward">
+        <datalist id="wards">
+          <?php foreach($wards as $ward): ?>
+            <option value="<?= $ward['ward'] ?>">
+          <?php endforeach; ?>
+        </datalist>
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="field is-horizontal" style="bottom: 200px !important;">
+  <div class="field-label is-normal">
     <label class="label" for="district">District</label>
   </div>
   <div class="field-body">
@@ -135,12 +153,12 @@
 
 <div class="field is-horizontal" style="bottom: 200px !important;">
   <div class="field-label is-normal">
-    <label class="label" for="plate_number">Plate Number</label>
+    <label class="label" for="current_bike">Plate Number</label>
   </div>                
   <div class="field-body">
     <div class="field">
       <p class="control is-expanded">
-        <input autocomplete="off" required list="plate_numbers" class="input is-success" id="plate_number" name="plate_number" placeholder="Plate Number">
+        <input autocomplete="off" required list="plate_numbers" class="input is-success" id="current_bike" name="current_bike" placeholder="Plate Number">
         <datalist id="plate_numbers">
           <?php foreach($currentBikes as $currentBike): ?>
             <option value="<?= $currentBike->plate_number ?>">

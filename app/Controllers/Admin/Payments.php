@@ -79,7 +79,7 @@ class Payments extends \App\Controllers\BaseController
 
 
         $model = new \App\Models\CustomersModel;
-        $customer = $model->where('id', $appointment->id)->first();
+        $customer = $model->where('id', $appointment->customer_id)->first();
         $payment = session()->get('payment');
         $amount = $payment['amount'] * 1000;
 
@@ -100,7 +100,7 @@ class Payments extends \App\Controllers\BaseController
         $mail->isHTML(true);
         $mail->Subject = 'Receipt for Rental Payment';
         $mail->Body = '<p>Hi ' . $payment['customer_name'] . ',</p>'
-                      . '<p>This message is to confirm receipt of ' . $amount . 'dong.</p>
+                      . '<p>This message is to confirm receipt of ' . $amount . ' dong.</p>
                       <p>Thanks for choosing Saigon Bike Rentals!</p>';
 
         if (!$mail->send()) {

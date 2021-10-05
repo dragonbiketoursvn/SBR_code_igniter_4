@@ -42,4 +42,9 @@ class BikesModel extends \CodeIgniter\Model
     return $this->findAll();
   }
 
+  public function getDragonBikes() {
+    return $this->where('dragon_bikes', 1)
+                ->findAll();
+  }
+
 }
