@@ -135,7 +135,7 @@ class Customers extends \App\Controllers\BaseController
       </p>
 
       <p>
-        The agreed monthly rental fee is <u>' . $customer->rent . '000</u> VND/month and the monthly rental payment is due on the <u>'
+        The agreed monthly rental fee is <u>' . $customer->rent . '000</u> VND/month and the monthly rental payment is due on day <u>'
         . substr($customer->start_date, -2) . '</u> of each month.
       </p>
 
@@ -153,7 +153,7 @@ class Customers extends \App\Controllers\BaseController
         <li style="color: tomato;"><b>DON’T <u>EVER</u> LEAVE THE BIKE UNATTENDED UNLESS IT IS IN A SECURE PARKING
         AREA OR LOCKED INSIDE A PRIVATE HOME. IF YOU LEAVE IT OUTSIDE ‘JUST FOR
         A FEW MINUTES’ IT <u>WILL</u> GET STOLEN AND YOU <u>WILL</u> PAY US FOR A
-        REPLACMENT BIKE.</b></li>
+        REPLACEMENT BIKE.</b></li>
         <li><b>DO NOT RIDE THE BIKE AFTER CONSUMING ALCOHOL. VIETNAMESE LAW
         CONSIDERS YOU IMPAIRED WITH ANY ALCOHOL IN YOUR SYSTEM!</b></li>
         <li><b>Do not allow anyone else to drive the motorbike.</b></li>

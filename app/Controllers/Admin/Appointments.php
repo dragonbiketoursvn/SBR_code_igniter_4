@@ -99,7 +99,8 @@ class Appointments extends \App\Controllers\BaseController
       $post = $this->request->getPost();
       $appointment = session()->get('appointment');
       $model = new \App\Models\BikeStatusChangeModel;
-      $bikeStatusChange = new \App\Entities\BikeStatusChange;
+      $bikeOutStatusChange = new \App\Entities\BikeStatusChange;
+      $bikeInStatusChange = new \App\Entities\BikeStatusChange;
 
       if((! $post['bike_in']) && (! $post['bike_out'])) {
 
@@ -109,11 +110,11 @@ class Appointments extends \App\Controllers\BaseController
 
           //Record in the appointment record that customer received a bike
           $this->model->update($appointment->id, ['received_bike' => 1]);
-          $bikeStatusChange->plate_number = $post['bike_out'];
-          $bikeStatusChange->date_time = date('Y-m-d H:i:s');
-          $bikeStatusChange->new_status = $appointment->customer_name;
-          $bikeStatusChange->customer_id = $appointment->customer_id;
-          $model->save($bikeStatusChange);
+          $bikeOutStatusChange->plate_number = $post['bike_out'];
+          $bikeOutStatusChange->date_time = date('Y-m-d H:i:s');
+          $bikeOutStatusChange->new_status = $appointment->customer_name;
+          $bikeOutStatusChange->contract_number = $appointment->contract_number;
+          $model->save($bikeOutStatusChange);
 
           //And set the appointment session variable
           $appointment->received_bike = 1;
@@ -124,10 +125,11 @@ class Appointments extends \App\Controllers\BaseController
           //Record in the appointment record that customer returned a bike
           $this->model->update($appointment->id, ['returned_bike' => 1]);
 
-          $bikeStatusChange->plate_number = $post['bike_in'];
-          $bikeStatusChange->date_time = date('Y-m-d H:i:s');
-          $bikeStatusChange->new_status = 'Saigon Bike Rentals';
-          $model->save($bikeStatusChange);
+          $bikeInStatusChange->plate_number = $post['bike_in'];
+          $bikeInStatusChange->date_time = date('Y-m-d H:i:s');
+          $bikeInStatusChange->new_status = 'Saigon Bike Rentals';
+
+          $model->save($bikeInStatusChange);
 
           //And set the appointment session variable
           $appointment->returned_bike = 1;
@@ -168,16 +170,17 @@ class Appointments extends \App\Controllers\BaseController
 
     public function addNew()
     {
-      if(session()->has('appointment'))
-      {
+      if(session()->has('appointment')) {
+
         return redirect()->to('paymentCheck');
+
       } else {
 
         $model = new \App\Models\CustomersModel;
         $currentCustomers = $model->getCurrentCustomers();
-
-        return view('Admin/Appointments/addNew', ['currentCustomers' => $currentCustomers]);
         
+        return view('Admin/Appointments/addNew', ['currentCustomers' => $currentCustomers]);
+
       }
 
 
@@ -186,21 +189,30 @@ class Appointments extends \App\Controllers\BaseController
     public function saveNew()
     {
       $customer_name = $this->request->getPost('customer_name');
-      $customer_id;
       $appointment_time = date('Y-m-d H:i:s');
       $model = new \App\Models\CustomersModel;
+      $statusChangeModel = new \App\Models\BikeStatusChangeModel;
       $appointment = new Appointment;
 
+      $customer = $model->getCurrentCustomerByName($customer_name);
+      $contract_number = $customer->id;
+      
+      /*
       $currentCustomers = $model->getCurrentCustomers();
 
       foreach($currentCustomers as $currentCustomer) {
         if($currentCustomer->customer_name = $customer_name) {
-          $customer_id = $currentCustomer->id;
+          $contract_number = $currentCustomer->id;
         }
       }
+      */
+
       $appointment->customer_name = $customer_name;
-      $appointment->customer_id = $customer_id;
+      $appointment->customer_id = $contract_number;
       $appointment->appointment_time = $appointment_time;
+      
+      $currentStatus = $statusChangeModel->getCurrentStatus($contract_number);
+
       $this->model->save($appointment);
       session()->set('appointment', $appointment);
 
