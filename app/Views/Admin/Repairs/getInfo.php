@@ -13,7 +13,7 @@
   <div class="field-body">
     <div class="field">
       <p class="control is-expanded">
-        <input autocomplete="off" list="current_bikes" class="input is-success" id="plate_number" name="plate_number">
+        <input autofocus required autocomplete="off" list="current_bikes" class="input is-success" id="plate_number" name="plate_number">
         <datalist id="current_bikes">
           <?php foreach($currentBikes as $currentBike): ?>
             <option value="<?= $currentBike->plate_number ?>">
@@ -31,7 +31,7 @@
   <div class="field-body">
     <div class="field">
       <p class="control is-expanded">
-        <input autocomplete="off" class="input is-success" type="date" name="repair_date" id="repair_date">
+        <input required autocomplete="off" class="input is-success" type="date" name="repair_date" id="repair_date">
       </p>
     </div>
   </div>
@@ -57,7 +57,7 @@
   <div class="field-body">
     <div class="field">
       <p class="control is-expanded">
-        <input autocomplete="off" class="input is-success" name="total_cost" id="total_cost">
+        <input required autocomplete="off" class="input is-success" name="total_cost" id="total_cost">
       </p>
     </div>
   </div>

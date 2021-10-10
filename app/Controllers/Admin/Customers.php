@@ -239,11 +239,22 @@ class Customers extends \App\Controllers\BaseController
         $model = new \App\Models\BikeStatusChangeModel;
         $bikesModel = new \App\Models\BikesModel;
         $paymentsModel = new \App\Models\PaymentsModel;
+        $found = 'false';
 
         foreach($customers as $record) {
+
           if($record->customer_name === $this->request->getPost('customer_name')){
+
             $customer = $record;
+            $found = 'true';
+
           }
+
+        }
+
+        if ($found === 'false') {
+
+          return redirect()->back();
         }
         
         $currentStatus = $model->getCurrentStatus($customer->id);

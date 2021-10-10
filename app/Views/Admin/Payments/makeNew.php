@@ -35,18 +35,18 @@
   </div>
   <div class="field-body">
     <div class="field">
-      <input readonly class="input is-success" type="text" id="customer_name" name="customer_name" value="<?= esc($appointment->customer_name) ?>">
+      <input required readonly class="input is-success" type="text" id="customer_name" name="customer_name" value="<?= esc($appointment->customer_name) ?>">
     </div>
   </div>
 </div>
 
 <div class="field is-horizontal">
   <div class="field-label is-normal">
-    <label class="label" for="amount">Khoản Tiền</label>
+    <label class="label" for="amount">Khoản Tiền (x1000 đồng)</label>
   </div>
   <div class="field-body">
     <div class="field">
-        <input autocomplete="off" class="input is-success" type="text" id="amount" name="amount" value="<?= old('amount') ?>">
+        <input autofocus required autocomplete="off" class="input is-success" type="text" id="amount" name="amount" value="<?= old('amount') ?>">
     </div>
   </div>
 </div>
@@ -58,7 +58,7 @@
   <div class="field-body">
     <div class="field">
       <p class="control is-expanded">
-        <input autocomplete="off" class="input is-success" type="text" id="months_paid" name="months_paid" value="<?= old('months_paid') ?>">
+        <input required autocomplete="off" class="input is-success" type="text" id="months_paid" name="months_paid" value="<?= old('months_paid') ?>">
       </p>
     </div>
   </div>
@@ -71,7 +71,7 @@
   <div class="field-body">
     <div class="field">
       <p class="control is-expanded">
-        <input autocomplete="off" readonly class="input is-success" type="text" id="payment_date" name="payment_date" value="<?= date('Y-m-d') ?>">
+        <input required autocomplete="off" readonly class="input is-success" type="text" id="payment_date" name="payment_date" value="<?= date('Y-m-d') ?>">
       </p>
     </div>
   </div>

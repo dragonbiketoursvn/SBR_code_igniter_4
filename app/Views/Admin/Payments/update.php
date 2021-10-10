@@ -46,7 +46,7 @@
   </div>
   <div class="field-body">
     <div class="field">
-        <input class="input is-success" type="text" id="amount" name="amount" value="<?= esc($payment->amount) ?>">
+        <input required class="input is-success" type="text" id="amount" name="amount" value="<?= esc($payment->amount) ?>">
     </div>
   </div>
 </div>
@@ -58,7 +58,7 @@
   <div class="field-body">
     <div class="field">
       <p class="control is-expanded">
-        <input class="input is-success" type="text" id="months_paid" name="months_paid" value="<?= esc($payment->months_paid) ?>">
+        <input required class="input is-success" type="text" id="months_paid" name="months_paid" value="<?= esc($payment->months_paid) ?>">
       </p>
     </div>
   </div>
@@ -71,7 +71,7 @@
   <div class="field-body">
     <div class="field">
       <p class="control is-expanded">
-        <input class="input is-success" type="text" id="payment_date" name="payment_date" value="<?= esc($payment->payment_date) ?>">
+        <input required class="input is-success" type="text" id="payment_date" name="payment_date" value="<?= esc($payment->payment_date) ?>">
       </p>
     </div>
   </div>

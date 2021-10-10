@@ -24,7 +24,7 @@
   <div class="field-body">
     <div class="field">
       <p class="control is-expanded">
-        <input required autocomplete="off" class="input is-success first_name" id="first_name" name="first_name" value="<?= old('first_name') ?>">
+        <input autofocus required autocomplete="off" class="input is-success first_name" id="first_name" name="first_name" value="<?= old('first_name') ?>">
       </p>
     </div>
   </div>

@@ -19,7 +19,7 @@
   <div class="field-body">
     <div class="field">
       <p class="control is-expanded">
-        <input autocomplete="off" list="customers" class="input is-success" id="customer_name" name="customer_name">
+        <input autofocus autocomplete="off" list="customers" class="input is-success" id="customer_name" name="customer_name">
         <datalist id="customers">
           <?php foreach($customers as $customer): ?>
             <option value="<?= $customer->customer_name ?>">

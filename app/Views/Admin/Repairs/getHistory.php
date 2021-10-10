@@ -13,7 +13,7 @@
   <div class="field-body">
     <div class="field">
       <p class="control is-expanded">
-        <input autocomplete="off" list="current_bikes" class="input is-success" id="plate_number" name="plate_number">
+        <input autofocus autocomplete="off" list="current_bikes" class="input is-success" id="plate_number" name="plate_number">
         <datalist id="current_bikes">
           <?php foreach($currentBikes as $currentBike): ?>
             <option value="<?= $currentBike->plate_number ?>">
