@@ -6,8 +6,9 @@
     <link rel="stylesheet" type="text/css" href="<?= site_url('/css/auto-complete.css') ?>">
 </head>
 <body>
-
-  <p>Blank Slate</p>
+  <div>
+    <img src="<?= $path ?>" alt="pretty picture">
+  </div>
 
 </body>
 </html>

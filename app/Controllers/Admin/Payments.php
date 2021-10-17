@@ -61,7 +61,7 @@ class Payments extends \App\Controllers\BaseController
           $model->update($appointment->id, ['paid_rent' => 1]);
           $appointment->paid_rent = 1;
 
-          return redirect()->to('sendConfirmationEmail');
+          return redirect()->to(site_url('Admin/Payments/sendConfirmationEmail'));
         }
 
       }
@@ -123,7 +123,7 @@ class Payments extends \App\Controllers\BaseController
         $mail->isHTML(true);
         $mail->Subject = 'Receipt for Rental Payment';
         $mail->Body = '<p>Hi ' . $payment['customer_name'] . ',</p>'
-                      . '<p>This message is to confirm receipt of ' . $amount . 'dong.</p>
+                      . '<p>This message is to confirm receipt of ' . number_format($amount, 0, ".", ",") . ' dong.</p>
                       <p>Thanks for choosing Saigon Bike Rentals!</p>';
 
         if (!$mail->send()) {

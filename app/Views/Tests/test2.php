@@ -4,16 +4,13 @@
 
 <?= $this->section("content") ?>
 
-<h1>Test 2</h1>
+<?php foreach($pathArray as $path): ?>
 
-<p>The value submitted by the form in Test 1 is <?= $thomas ?> </p>
+    <p>
+        <h1><?= $path ?></h1>
+        <a href="<?= $path ?>" download><img src="<?= $path ?>" alt="frog pussy"></a>
+    </p>
 
-<?= form_open("/Test/testThree") ?>
-
-<input type="text" name="value_two">Value two
-
-<button>Submit</button>
-
-</form>
+<?php endforeach; ?>
 
 <?= $this->endSection() ?>
