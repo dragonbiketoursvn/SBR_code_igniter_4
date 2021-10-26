@@ -4,8 +4,6 @@
 
 <?= $this->section("content") ?>
 
-
-
 <div class="block">
   <section class="hero is-link">
     <div class="hero-body has-text-centered" style="margin-bottom: 0px;">
