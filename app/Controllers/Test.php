@@ -18,4 +18,9 @@ class Test extends BaseController
 	{
 		return view('Test/three');
 	}
+
+	public function four()
+	{
+		return view('Test/four');
+	}
 }
