@@ -8,4 +8,9 @@ class Test extends BaseController
 	{
 		return view('Test/one');
 	}
+
+	public function two()
+	{
+		return view('Test/two');
+	}
 }
