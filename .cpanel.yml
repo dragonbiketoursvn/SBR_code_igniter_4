@@ -7,4 +7,4 @@ deployment:
     - rsync -a -v --delete-after /home/customar/repositories/SBR_app_code/app/ $DEPLOYPATH
     - rsync -a -v --delete-after /home/customar/repositories/SBR_app_code/public/css/ $DEPLOYPATH2   
     - rsync -a -v --delete-after /home/customar/repositories/SBR_app_code/public/js/ $DEPLOYPATH3
-                J
+            
