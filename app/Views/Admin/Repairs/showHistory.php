@@ -7,7 +7,7 @@
 <table class="table">
   <thead>
     <tr>
-      <th>DatePenis</th>
+      <th>Date</th>
       <th>Odometer</th>
       <th>Total Cost</th>
       <th>Labor</th>
