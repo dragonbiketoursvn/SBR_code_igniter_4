@@ -1,5 +1,10 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/customar/SBR_app_code/
-    - /bin/cp -r app $DEPLOYPATH
+    - export DEPLOYPATH=/home/customar/SBR_app_code/app
+    - export DEPLOYPATH2=/home/customar/hagiangadventures.com/css
+    - export DEPLOYPATH3=/home/customar/hagiangadventures.com/js
+    - rsync -a -v --delete-after /home/customar/repositories/SBR_app_code/app/ $DEPLOYPATH
+    - rsync -a -v --delete-after /home/customar/repositories/SBR_app_code/public/css/ $DEPLOYPATH2   
+    - rsync -a -v --delete-after /home/customar/repositories/SBR_app_code/public/js/ $DEPLOYPATH3
+                J
