@@ -43,6 +43,7 @@ class Authentication
         $session = session();
         $session->regenerate();
         $session->set('user_id', $user->id);
+        $session->set('user_level', $user->level);
     }
 
     private function rememberLogin($user_id)

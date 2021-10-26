@@ -123,7 +123,7 @@
   </div>
 </div>
 
-<?php if(session()->get('user_id') == 1): ?>
+<?php if(session()->get('user_level') == 'super'): ?>
 
 <div class="field is-horizontal">
   <div class="field-label">
