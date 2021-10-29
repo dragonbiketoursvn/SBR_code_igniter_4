@@ -55,8 +55,19 @@ class Customers extends \App\Controllers\BaseController
       }      
 
       if($this->model->insert($customer)) {
+        // Get record of rental bike
+        $bikesModel = new \App\Models\BikesModel;
+        $bike = $bikesModel->getBikeByPlateNumber($customer->current_bike);
 
-        $this->sendActivationEmail($customer);
+        // Get bike's current market value
+        $bikeValuationsModel = new \App\Models\BikeValuationsModel;
+        $valuationRecord = $bikeValuationsModel->getValueByModelAndYear($bike->model, $bike->year);
+        
+        // Format the value
+        $value = number_format($valuationRecord->value * 1000, 0, '.', ',');
+
+        // Pass all info from contract to use in activation email
+        $this->sendActivationEmail($customer, $bike, $value);
         return redirect()->to(site_url('Admin/Home'));
 
       } else {
@@ -112,7 +123,7 @@ class Customers extends \App\Controllers\BaseController
         return view('Admin/Customers/activated');
     }
 
-    private function sendActivationEmail($customer)
+    private function sendActivationEmail($customer, $bike, $value)
     {
       require ROOTPATH . '/vendor/PHPMailer-master/src/Exception.php';
       require ROOTPATH . '/vendor/PHPMailer-master/src/PHPMailer.php';
@@ -145,14 +156,14 @@ class Customers extends \App\Controllers\BaseController
       </ul>
 
       <p>
-        <u>' . $customer->customer_name . '</u> agrees to rent one motorbike with license plate number: <u>'
-        . $customer->current_bike . '</u> , from
+        <u>' . $customer->customer_name . '</u> agrees to rent one ' . $bike->year . ' ' . $bike->brand . ' ' . $bike->model . 
+        ' with license plate number: <u>' . $customer->current_bike . '</u> , from
         Tran Thi Thu Nga/Saigon Bike Rentals, located at 182/5A Đề Thám in
         District 1 , Ho Chi Minh City starting from <u>' . $customer->start_date . '</u>.
       </p>
 
       <p>
-        The agreed monthly rental fee is <u>' . $customer->rent . '000</u> VND/month and the monthly rental payment is due on day <u>'
+        The agreed monthly rental fee is <u>' . number_format($customer->rent * 1000, 0, '.', ',') . '</u> VND/month and the monthly rental payment is due on day <u>'
         . substr($customer->start_date, -2) . '</u> of each month.
       </p>
 
@@ -175,7 +186,7 @@ class Customers extends \App\Controllers\BaseController
         CONSIDERS YOU IMPAIRED WITH ANY ALCOHOL IN YOUR SYSTEM!</b></li>
         <li><b>Do not allow anyone else to drive the motorbike.</b></li>
         <li><b>If the bike is damaged in any way, customer must pay the full cost of repairs.</b></li>
-        <li><b>If the bike is lost or damaged beyond repair, customer must pay a replacement charge of <u>' . '$PLACE_HOLDER' . '</u> dong.</b></li>
+        <li><b>If the bike is lost or damaged beyond repair, customer must pay a replacement charge of <u>' . $value . '</u> dong.</b></li>
         <li><b>If customer does not have a valid motorbike license and the bike is impounded by the police, customer must pay
           <u>all</u> fines imposed, <u>including</u> any fine imposed on the owner of the bike (Saigon Bike Rentals) for allowing
           an unlicensed rider to operate it</b></li>
@@ -274,4 +285,5 @@ class Customers extends \App\Controllers\BaseController
                                                    'paidUpTo' => $paidUpTo,
                                                 ]);
     }
+
 }
