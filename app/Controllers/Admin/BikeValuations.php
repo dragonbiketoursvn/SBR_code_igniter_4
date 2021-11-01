@@ -29,7 +29,7 @@ class BikeValuations extends \App\Controllers\BaseController
         
         $this->model->save($bikeValuation);
         
-        return redirect()->to('getRecord');
+        return redirect()->to('Admin/BikeValuations/getRecord');
     }
     
 }
