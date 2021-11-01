@@ -143,7 +143,8 @@
                 if (input.value > 0) {
                     sum += Number(input.value);
                     elementCount += 1;
-                    average_value.value = sum / elementCount;
+                    average = Math.floor(sum / elementCount);
+                    average_value.value = 100 * (Math.round(average / 100));
                 } 
             });
         }
