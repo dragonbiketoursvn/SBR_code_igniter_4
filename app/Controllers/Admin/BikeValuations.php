@@ -15,7 +15,10 @@ class BikeValuations extends \App\Controllers\BaseController
 
     public function getRecord()  
     {
-        return view('Admin/BikeValuations/getRecord');
+        $model = new \App\Models\BikesModel;
+        $bikeModels = $model->getCurrentModels();
+                
+        return view('Admin/BikeValuations/getRecord', ['bikeModels' => $bikeModels]);
     }
 
     public function addRecord()  

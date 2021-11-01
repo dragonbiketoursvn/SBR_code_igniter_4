@@ -123,6 +123,23 @@
   </div>
 </div>
 
+<div class="field is-horizontal">
+  <div class="field-label">
+    <!-- Left empty for spacing -->
+  </div>
+  <div class="field-body">
+    <div class="field">
+      <div class="control">
+        <a href="<?= site_url("Admin/BikeValuations/getRecord") ?>">
+          <button class="button is-link is-large is-fullwidth">
+              Nộp Giá Xe
+          </button>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
 <?php if(session()->get('user_level') == 'super'): ?>
 
 <div class="field is-horizontal">
@@ -133,7 +150,7 @@
     <div class="field">
       <div class="control">
         <a href="<?= site_url("Admin/Customers/getInfo") ?>">
-          <button class="button is-link is-large is-fullwidth">
+          <button class="button is-success is-large is-fullwidth">
               Customer View
           </button>
         </a>
@@ -150,7 +167,7 @@
     <div class="field">
       <div class="control">
         <a href="<?= site_url("Admin/RenterIncidents/incidents") ?>">
-          <button class="button is-success is-large is-fullwidth">
+          <button class="button is-danger is-large is-fullwidth">
               Customer Incidents
           </button>
         </a>

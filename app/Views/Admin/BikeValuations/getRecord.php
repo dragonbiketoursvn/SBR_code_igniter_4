@@ -20,16 +20,20 @@
     </div>
     </div>
 
-    <div class="field">
-    <label class="label">Dòng Xe</label>
-    <div class="control">
-        <div class="select">
-        <select id="model">
-            <option value="Airblade">Airblade</option>
-            <option value="Vision">Vision</option>
-            <option value="Lead">Lead</option>
-            <option value="Wave">Wave</option>
-        </select>
+    <div class="field is-horizontal" style="bottom: 200px !important;">
+    <div class="field-label is-normal">
+        <label class="label" for="model">Dòng Xe</label>
+    </div>
+    <div class="field-body">
+        <div class="field">
+        <p class="control is-expanded">
+            <input required autocomplete="off" list="models_list" class="input is-success" id="model" name="model">
+            <datalist id="models_list">
+            <?php foreach($bikeModels as $bikeModel): ?>
+                <option value="<?= $bikeModel->model ?>">
+            <?php endforeach; ?>
+            </datalist>
+        </p>
         </div>
     </div>
     </div>
@@ -47,23 +51,23 @@
 
 <div class="field is-horizontal is-justify-content-space-around"">
 <div class="field">
-    <label class="label is-horizontal">Giá 1</label>
+    <label class="label is-horizontal">Giá 1 (x1000 đồng)</label>
     <input required class="value" type="number" min="1000" max="50000" step="100">
 </div>
 <div class="field">
-    <label class="label is-horizontal">Giá 2</label>
+    <label class="label is-horizontal">Giá 2 (x1000 đồng)</label>
     <input required class="value" type="number" min="1000" max="50000" step="100">
 </div>
 <div class="field">
-    <label class="label is-horizontal">Giá 3</label>
+    <label class="label is-horizontal">Giá 3 (x1000 đồng)</label>
     <input required class="value" type="number" min="1000" max="50000" step="100">
 </div>
 <div class="field">
-    <label class="label is-horizontal">Giá 4</label>
+    <label class="label is-horizontal">Giá 4 (x1000 đồng)</label>
     <input required class="value" type="number" min="1000" max="50000" step="100">
 </div>
 <div class="field">
-    <label class="label is-horizontal">Giá 5</label>
+    <label class="label is-horizontal">Giá 5 (x1000 đồng)</label>
     <input required class="value" type="number" min="1000" max="50000" step="100">
 </div>
     
@@ -79,6 +83,23 @@
         <button class="button is-available is-large is-fullwidth toggle" form="formData">
           Nọp
         </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="field is-horizontal">
+  <div class="field-label">
+  <!-- Left empty for spacing -->
+  </div>
+  <div class="field-body">
+    <div class="field">
+      <div class="control">
+        <a href="<?= site_url("Admin/Home/index") ?>">
+          <button class="button is-danger is-large is-fullwidth">
+            Thoát
+          </button>
+        </a>
       </div>
     </div>
   </div>

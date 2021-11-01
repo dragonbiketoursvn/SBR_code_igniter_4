@@ -38,6 +38,15 @@ class BikesModel extends \CodeIgniter\Model
                  ->findAll();
   }
 
+  public function getCurrentModels() {
+    return $this->select('model')
+                 ->distinct()
+                 ->where('sale_date', '0000-00-00')
+                 ->orWhere('sale_date', null)
+                 ->get()
+                 ->getResult();
+  }
+
   public function getAllBikes() {
     return $this->findAll();
   }
