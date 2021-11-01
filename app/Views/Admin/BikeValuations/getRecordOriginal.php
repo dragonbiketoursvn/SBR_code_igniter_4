@@ -6,18 +6,12 @@
 
 <!-- The values of these inputs will not be sent to the server -->
 
-
-
-<!-- This form holds the values to be sent to the server and will not be seen -->
-
-<?= form_open('Admin/BikeValuations/addRecord', 'id="formData"') ?>
-
 <div class="field is-horizontal is-justify-content-space-around">
     <div class="field">
     <label class="label">Hãng Xe</label>
     <div class="control">
         <div class="select">
-        <select name="brand" id="brand">
+        <select id="brand">
             <option value="Honda">Honda</option>
             <option value="Yamaha">Yamaha</option>
             <option value="SYM">SYM</option>
@@ -34,11 +28,11 @@
         <div class="field">
         <p class="control is-expanded">
             <input required autocomplete="off" list="models_list" class="input is-success" id="model" name="model">
-                <datalist id="models_list">
-                <?php foreach($bikeModels as $bikeModel): ?>
-                    <option value="<?= $bikeModel->model ?>">
-                <?php endforeach; ?>
-                </datalist>
+            <datalist id="models_list">
+            <?php foreach($bikeModels as $bikeModel): ?>
+                <option value="<?= $bikeModel->model ?>">
+            <?php endforeach; ?>
+            </datalist>
         </p>
         </div>
     </div>
@@ -48,7 +42,7 @@
     <label class="label">Năm Đăng Ký</label>
     <div class="control">
         <div class="select">
-            <select name="year" id="year">
+            <select id="year">
             </select>
         </div>
     </div>
@@ -58,30 +52,26 @@
 <div class="field is-horizontal is-justify-content-space-around"">
 <div class="field">
     <label class="label is-horizontal">Giá 1 (x1000 đồng)</label>
-    <input class="value" type="number" min="1000" max="50000" step="100">
+    <input required class="value" type="number" min="1000" max="50000" step="100">
 </div>
 <div class="field">
     <label class="label is-horizontal">Giá 2 (x1000 đồng)</label>
-    <input class="value" type="number" min="1000" max="50000" step="100">
+    <input required class="value" type="number" min="1000" max="50000" step="100">
 </div>
 <div class="field">
     <label class="label is-horizontal">Giá 3 (x1000 đồng)</label>
-    <input class="value" type="number" min="1000" max="50000" step="100">
+    <input required class="value" type="number" min="1000" max="50000" step="100">
 </div>
 <div class="field">
     <label class="label is-horizontal">Giá 4 (x1000 đồng)</label>
-    <input class="value" type="number" min="1000" max="50000" step="100">
+    <input required class="value" type="number" min="1000" max="50000" step="100">
 </div>
 <div class="field">
     <label class="label is-horizontal">Giá 5 (x1000 đồng)</label>
-    <input class="value" type="number" min="1000" max="50000" step="100">
+    <input required class="value" type="number" min="1000" max="50000" step="100">
 </div>
     
 </div>
-<div class="field">
-    <label class="label is-horizontal">Giá Bình Quân</label>
-    <input type="number" min="1000" max="100000" step="100" name="value" id="average_value">
-</div>   
 
 <div class="field is-horizontal">
   <div class="field-label">
@@ -97,8 +87,6 @@
     </div>
   </div>
 </div>
-
-</form>
 
 <div class="field is-horizontal">
   <div class="field-label">
@@ -117,8 +105,23 @@
   </div>
 </div>
 
+<!-- This form holds the values to be sent to the server and will not be seen -->
+
+<?= form_open('Admin/BikeValuations/addRecord', 'id="formData"') ?>
+<input type="text" name="brand" id="formBrand"> 
+    <input type="text" name="model" id="formModel">
+    <input type="text" name="year" id="formYear">
+    <input type="number" name="value" id="average_value">
+    <input type="text" name="date_checked" id="formBrand">
+</form>
+
 <script>
-   
+        
+        // Set constants for inputs outside of form
+        const brand = document.querySelector('#brand');
+        const model = document.querySelector('#model');
+        const year = document.querySelector('#year');
+
         // We'll deal with the .value inputs as a single entity
         const values = document.querySelectorAll('.value');
 
@@ -130,6 +133,24 @@
             yearOption.value = yearOption.innerHTML = currentYear - i;
             year.appendChild(yearOption);
         }
+
+        // Set constants for form inputs
+        const formBrand = document.querySelector('#formBrand');
+        const formModel = document.querySelector('#formModel');
+        const formYear = document.querySelector('#formYear');
+
+
+        brand.addEventListener('change', function() {
+            formBrand.value = brand.value;
+        })
+
+        model.addEventListener('change', function() {
+            formModel.value = model.value;
+        })
+
+        year.addEventListener('change', function() {
+            formYear.value = year.value;
+        })
 
         // Assign average_value input to a constant
         const average_value = document.querySelector('#average_value');
