@@ -91,7 +91,7 @@
     <div class="field">
       <div class="control">
         <button class="button is-available is-large is-fullwidth toggle" form="formData">
-          Nọp
+          Nộp
         </button>
       </div>
     </div>

@@ -15,7 +15,7 @@
 <?php endif; ?>
 
 
-<?= form_open('Admin/Customers/save', 'id="rental_contract"') ?>
+<?= form_open_multipart('Admin/Customers/save', 'id="rental_contract"') ?>
 
 <div class="field is-horizontal" style="bottom: 200px !important;">
   <div class="field-label is-normal">
@@ -207,6 +207,58 @@
     <div class="field">
       <p class="control is-expanded">
         <input autocomplete="off" class="input is-success" id="district" name="district" value="<?= old('district') ?>">
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="field is-horizontal" style="bottom: 200px !important;">
+  <div class="field-label is-normal">
+    <label required class="label" for="passport">Passport Photo</label>
+  </div>
+  <div class="field-body">
+    <div class="field">
+      <p class="control is-expanded">
+        <input autocomplete="off" type="file" class="input is-success" id="passport" name="passport">
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="field is-horizontal" style="bottom: 200px !important;">
+  <div class="field-label is-normal">
+    <label required class="label" for="TRC_or_visa">TRC or Visa</label>
+  </div>
+  <div class="field-body">
+    <div class="field">
+      <p class="control is-expanded">
+        <input autocomplete="off" type="file" class="input is-success" id="TRC_or_visa" name="TRC_or_visa">
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="field is-horizontal" style="bottom: 200px !important;">
+  <div class="field-label is-normal">
+    <label required class="label" for="license_front">License (Front)</label>
+  </div>
+  <div class="field-body">
+    <div class="field">
+      <p class="control is-expanded">
+        <input autocomplete="off" type="file" class="input is-success" id="license_front" name="license_front">
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="field is-horizontal" style="bottom: 200px !important;">
+  <div class="field-label is-normal">
+    <label required class="label" for="license_back">License (Back)</label>
+  </div>
+  <div class="field-body">
+    <div class="field">
+      <p class="control is-expanded">
+        <input autocomplete="off" type="file" class="input is-success" id="license_back" name="license_back">
       </p>
     </div>
   </div>

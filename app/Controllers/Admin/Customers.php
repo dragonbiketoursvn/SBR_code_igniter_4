@@ -35,8 +35,53 @@ class Customers extends \App\Controllers\BaseController
     {
       $customer = new Customer;
       $customer->fill($this->request->getPost());
-      $customer->startActivation();
 
+      // Get all the uploaded files
+      $files = $this->request->getFiles();
+      
+      //LOOP THROUGH THE FILES ARRAY, GETTING THE KEY FOR EACH INDEX SO WE CAN USE IT TO CREATE THE CORRECT FOLDER FOR EACH UPLOADED FILE
+      foreach ($files as $key => $file) {
+
+        // ALL INPUTS ARE NOT REQUIRED SO WE CHECK THAT FILE SIZE IS GREATER THAN ZERO TO DETERMINE WHETHER THERE'S ACTUALLY A FILE AT EACH INDEX
+        if ($file->getSizeByUnit('mb' > 0)) {
+
+            // CHECK VALIDITY
+            if ( ! $file->isValid()) {
+
+                $error_code = $file->getError();
+                throw new \RuntimeException($file->getErrorString() . " " . $error_code);
+
+            }
+
+            // CHECK FILE SIZE TO MAKE SURE IT DOESN'T EXCEED OUR MAX ALLOWED SIZE
+            $size = $file->getSizeByUnit('mb');
+
+            if ($size > 5) {
+
+                return redirect()->back()
+                                ->with('warning', 'File too large (max 5MB)');
+
+            }
+
+            $type = $file->getMimeType();
+
+            if ( ! in_array($type, ['image/png', 'image/jpeg'])) {
+
+                return redirect()->back()
+                                ->with('warning', 'Invalid file format (PNG or JPEG only)');
+            }
+
+            // Store it in the 'writable/uploads/images' folder
+            $file->store('images/');
+
+            // Add path to correct customer entity property
+            $customer->$key = $file->getName(); 
+        }       
+      }
+
+      // Now start activation process
+      $customer->startActivation();
+      
       //Get list of all Dragon Bikes from BikesModel, put plate numbers in an array, and check whether customer's bike is in this array
       $model = new \App\Models\BikesModel;
       $dragonBikes = $model->getDragonBikes();
