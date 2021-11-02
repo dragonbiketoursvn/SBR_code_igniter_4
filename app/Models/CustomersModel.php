@@ -23,7 +23,6 @@ class CustomersModel extends \CodeIgniter\Model
                                  'email_address' => 'required|valid_email',
                                  'current_bike'  => 'required',
                                           'rent' => 'required|greater_than[100]|less_than[20000]',
-                                   'street_name' => 'required',
                                       'district' => 'required',
                                ];
 
