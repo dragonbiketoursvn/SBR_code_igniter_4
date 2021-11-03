@@ -59,7 +59,7 @@ class Test extends BaseController
       $mail->isHTML(true);
       $mail->Subject = 'Rental Agreement';
       $mail->Body = 'hello';
-      $mail->addAttachment('/home/customar/hagiangadventures.com/uploads/profile_images/1634374493_117fe43494cde748ee54.jpg');    
+      $mail->addAttachment('/home/customar/SBR_app_code/writable/uploads/images/1635835163_27218a1fdb467e958310.png');    
 
       if (!$mail->send()) {
 
