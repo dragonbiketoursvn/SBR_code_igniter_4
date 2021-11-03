@@ -6,17 +6,8 @@
 
 <?= form_open_multipart("/Test/testTwo") ?>
 
-<label for="passport">Dick pics go here</label>
-<input type="file" name="passport" id="passport">
-
-<label for="nextPhoto">Other pics go here</label>
-<input type="file" name="nextPhoto" id="photo">
-
-<label for="text">Random Text</label>
-<input type="text" name="text">
-
-<label for="text">More Random Text</label>
-<input type="moreText" name="moreText">
+<label for="photo">Dick pics go here</label>
+<input type="file" name="photo" id="photo">
 
 <button>Submit</button>
 
