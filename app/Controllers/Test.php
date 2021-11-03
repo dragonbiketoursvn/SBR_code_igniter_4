@@ -25,7 +25,7 @@ class Test extends BaseController
     return view('Tests/testTwo', ['path' => str_replace('/', '\/', $path)]);
   }
 
-  public function showImage($path)
+  public function showImage($path);
   {      
     $path = str_replace('\\/', '/', $path);
 
@@ -59,8 +59,8 @@ class Test extends BaseController
       $mail->isHTML(true);
       $mail->Subject = 'Rental Agreement';
       $mail->Body = 'hello';
-      $mail->addAttachment('/home/customar/SBR_app_code/writable/uploads/images/1635835163_27218a1fdb467e958310.png');    
-
+      $mail->addAttachment(WRITEPATH . 'images/1635835163_27218a1fdb467e958310.png');    
+      
       if (!$mail->send()) {
 
           echo 'Mailer Error: ' . $mail->ErrorInfo;
