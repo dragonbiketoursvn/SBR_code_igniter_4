@@ -25,7 +25,7 @@ class Test extends BaseController
     return view('Tests/testTwo', ['path' => str_replace('/', '\/', $path)]);
   }
 
-  public function showImage($path);
+  public function showImage($path)
   {      
     $path = str_replace('\\/', '/', $path);
 
