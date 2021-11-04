@@ -34,7 +34,7 @@
   <div class="field-body">
     <div class="field">
       <p class="control is-expanded">
-        <input readonly class="input is-success" type="text" id="date" name="date" value="<?= $incident->date ?>">
+        <input readonly class="input is-success" type="text" id="date" name="date" value="<?= esc($incident->date) ?>">
       </p>
     </div>
   </div>
@@ -46,7 +46,7 @@
   </div>
   <div class="field-body">
     <div class="field">
-      <input readonly class="input is-success" type="text" id="type" name="type" value="<?= $incident->type ?>">
+      <input readonly class="input is-success" type="text" id="type" name="type" value="<?= esc($incident->type) ?>">
     </div>
   </div>
 </div>
@@ -59,7 +59,7 @@
   <div class="field-body">
     <div class="field">
       <p class="control is-expanded">
-        <input readonly class="input is-success" id="customer_name" name="customer_name" value="<?= $incident->customer_name ?>">
+        <input readonly class="input is-success" id="customer_name" name="customer_name" value="<?= esc($incident->customer_name) ?>">
       </p>
     </div>
   </div>
@@ -72,7 +72,7 @@
   <div class="field-body">
     <div class="field">
       <p class="control is-expanded">
-        <input autocomplete="off" class="input is-success" type="text" id="cost_incurred" name="cost_incurred">
+        <input autocomplete="off" class="input is-success" type="text" id="cost_incurred" name="cost_incurred" value="<?= esc($incident->cost_incurred) ?>">
       </p>
     </div>
   </div>
@@ -85,7 +85,7 @@
   <div class="field-body">
     <div class="field">
       <p class="control is-expanded">
-        <input autocomplete="off" class="input is-success" type="textarea" id="resolution" name="resolution">
+        <input autocomplete="off" class="input is-success" type="textarea" id="resolution" name="resolution" value="<?= esc($incident->resolution) ?>">
       </p>
     </div>
   </div>

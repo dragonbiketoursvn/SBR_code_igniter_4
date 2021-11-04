@@ -5,17 +5,18 @@ namespace App\Models;
 class BikesModel extends \CodeIgniter\Model
 {
   protected $table = 'bikes';
+  protected $primaryKey = 'plate_number';
 
   protected $allowedFields = ['plate_number', 'purchase_date', 'brand', 'model', 'year', 'purchase_price', 'extra_key',
                               'giay_ban_xe', 'giay_uy_quyen', 'Nga_dung_ten', 'ownership_details', 'sale_date', 'sale_price',
-                              'notes', 'photo_path', 'Kim_Anh_dung_ten', 'dragon_bikes', 'insurance_expires'];
+                              'notes', 'photo_path', 'Kim_Anh_dung_ten', 'dragon_bikes', 'insurance_expires', 'reg_front', 'reg_back',
+                              'pic_front', 'pic_side', 'pic_front', 'pic_trunk'];
 
   protected $returnType = 'App\Entities\Bike';
 
-  protected $useTimestamps = true;
+  protected $useTimestamps = false;
 
   protected $validationRules = [];
-
   protected $validationMessages = [];
 
   protected $beforeUpdate = ['trimWhiteSpace'];
