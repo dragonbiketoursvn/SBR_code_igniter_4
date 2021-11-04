@@ -72,7 +72,7 @@ class Customers extends \App\Controllers\BaseController
             }
 
             // Store it in the 'writable/uploads/images' folder
-            $file->store('images/');
+            $file->store('renter_docs/');
 
             // Add path to correct customer entity property
             $customer->$key = $file->getName(); 
@@ -186,6 +186,8 @@ class Customers extends \App\Controllers\BaseController
       $mail->addAddress($customer->email_address);
       $mail->isHTML(true);
       $mail->Subject = 'Rental Agreement';
+      $mail->addAttachment(WRITEPATH . 'uploads/registration_cards/' . $bike->reg_front);  
+      $mail->addAttachment(WRITEPATH . 'uploads/registration_cards/' . $bike->reg_back);  
       $mail->Body = '<h1>SAIGON BIKE RENTALS</h1>
       <h2>MOTORBIKE RENTAL CONTRACT</h2>
 
