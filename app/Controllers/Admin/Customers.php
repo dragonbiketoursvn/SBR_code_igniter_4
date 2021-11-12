@@ -358,7 +358,7 @@ class Customers extends \App\Controllers\BaseController
   public function  viewAllCustomers()
   {
     $model = new \App\Models\CustomersModel;
-    $customers = $model->limit(200)->getAllCustomers();
+    $customers = $model->getAllCustomers();
 
     return view('Admin/Customers/viewAllCustomers', ['customers' => $customers]);
   }
