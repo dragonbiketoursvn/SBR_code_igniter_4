@@ -58,7 +58,7 @@ class CustomersModel extends \CodeIgniter\Model
 
   public function getAllCustomers()
   {
-    return $this->orderBy('start_date', 'DESC')->limit(1000)->get()->getResult();
+    return $this->orderBy('start_date', 'DESC')->limit(2000)->get()->getResult();
   }
 
   public function getCurrentCustomerByName($name)
