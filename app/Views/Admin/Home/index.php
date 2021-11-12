@@ -149,7 +149,7 @@
     <div class="field-body">
       <div class="field">
         <div class="control">
-          <a href="<?= site_url("Admin/Customers/selectCustomerView") ?>">
+          <a href="<?= site_url("Admin/Customers/viewCurrentCustomers") ?>">
             <button class="button is-success is-large is-fullwidth">
               Customer View
             </button>
