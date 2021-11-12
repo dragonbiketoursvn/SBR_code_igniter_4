@@ -12,183 +12,173 @@ use PHPMailer\PHPMailer\Exception;
 
 class Customers extends \App\Controllers\BaseController
 {
-    private $model;
+  private $model;
 
-    public function __construct()
-    {
-        $this->model = new \App\Models\CustomersModel;
-    }
+  public function __construct()
+  {
+    $this->model = new \App\Models\CustomersModel;
+  }
 
-    public function newContract()
-    {
-      $nationalities = $this->model->select('nationality')->distinct()->findAll();
-      $model = new \App\Models\BikesModel;
-      $currentBikes = $model->getCurrentBikes();
+  public function newContract()
+  {
+    $nationalities = $this->model->select('nationality')->distinct()->findAll();
+    $model = new \App\Models\BikesModel;
+    $currentBikes = $model->getCurrentBikes();
 
-      return view('Admin/Customers/newContract', [
-                                                    'nationalities' => $nationalities,
-                                                     'currentBikes' => $currentBikes,
-                                                 ]);
-    }
+    return view('Admin/Customers/newContract', [
+      'nationalities' => $nationalities,
+      'currentBikes' => $currentBikes,
+    ]);
+  }
 
-    public function save()
-    {
-      $customer = new Customer;
-      $customer->fill($this->request->getPost());
+  public function save()
+  {
+    $customer = new Customer;
+    $customer->fill($this->request->getPost());
 
-      // Get all the uploaded files
-      $files = $this->request->getFiles();
-      
-      //LOOP THROUGH THE FILES ARRAY, GETTING THE KEY FOR EACH INDEX SO WE CAN USE IT TO CREATE THE CORRECT FOLDER FOR EACH UPLOADED FILE
-      foreach ($files as $key => $file) {
+    // Get all the uploaded files
+    $files = $this->request->getFiles();
 
-        // ALL INPUTS ARE NOT REQUIRED SO WE CHECK THAT FILE SIZE IS GREATER THAN ZERO TO DETERMINE WHETHER THERE'S ACTUALLY A FILE AT EACH INDEX
-        if ($file->getSizeByUnit('mb' > 0)) {
+    //LOOP THROUGH THE FILES ARRAY, GETTING THE KEY FOR EACH INDEX SO WE CAN USE IT TO CREATE THE CORRECT FOLDER FOR EACH UPLOADED FILE
+    foreach ($files as $key => $file) {
 
-            // CHECK VALIDITY
-            if ( ! $file->isValid()) {
+      // ALL INPUTS ARE NOT REQUIRED SO WE CHECK THAT FILE SIZE IS GREATER THAN ZERO TO DETERMINE WHETHER THERE'S ACTUALLY A FILE AT EACH INDEX
+      if ($file->getSizeByUnit('mb' > 0)) {
 
-                $error_code = $file->getError();
-                throw new \RuntimeException($file->getErrorString() . " " . $error_code);
+        // CHECK VALIDITY
+        if (!$file->isValid()) {
 
-            }
-
-            // CHECK FILE SIZE TO MAKE SURE IT DOESN'T EXCEED OUR MAX ALLOWED SIZE
-            $size = $file->getSizeByUnit('mb');
-
-            if ($size > 5) {
-
-                return redirect()->back()
-                                ->with('warning', 'File too large (max 5MB)');
-
-            }
-
-            $type = $file->getMimeType();
-
-            if ( ! in_array($type, ['image/png', 'image/jpeg'])) {
-
-                return redirect()->back()
-                                ->with('warning', 'Invalid file format (PNG or JPEG only)');
-            }
-
-            // Store it in the 'writable/uploads/images' folder
-            $file->store('renter_docs/');
-
-            // Add path to correct customer entity property
-            $customer->$key = $file->getName(); 
-        }       
-      }
-
-      // Now start activation process
-      $customer->startActivation();
-      
-      //Get list of all Dragon Bikes from BikesModel, put plate numbers in an array, and check whether customer's bike is in this array
-      $model = new \App\Models\BikesModel;
-      $dragonBikes = $model->getDragonBikes();
-      $dragonBikesPlateNumbers = [];
-
-      foreach($dragonBikes as $dragonBike) {
-
-        $dragonBikesPlateNumbers[] = $dragonBike->plate_number;
-
-      }
-
-      if(in_array($customer->current_bike, $dragonBikesPlateNumbers)) {
-
-        $customer->dragon_bikes = 1;
-
-      }      
-
-      if($this->model->insert($customer)) {
-        // Get record of rental bike
-        $bikesModel = new \App\Models\BikesModel;
-        $bike = $bikesModel->getBikeByPlateNumber($customer->current_bike);
-
-        // Get bike's current market value
-        $bikeValuationsModel = new \App\Models\BikeValuationsModel;
-        $valuationRecord = $bikeValuationsModel->getValueByModelAndYear($bike->model, $bike->year);
-        
-        // Format the value
-        $value = number_format($valuationRecord->value * 1000, 0, '.', ',');
-
-        // Pass all info from contract to use in activation email
-        $this->sendActivationEmail($customer, $bike, $value);
-        return redirect()->to(site_url('Admin/Home'));
-
-      } else {
-
-        return redirect()->back()->with('errors', $this->model->errors())->withInput();
-
-      }
-    }
-
-    public function update()
-    {
-      $customer = new Customer;
-      $customer->fill($this->request->getPost());
-
-      if((bool) ($this->request->getPost('finish_date')) === true){
-
-        $customer->currently_renting = 0;
-
-      }
-
-      if($this->model->skipValidation(true)->save($customer)) {
-
-        return redirect()->to(site_url('Admin/Home'));
-
-      } else {
-
-        return redirect()->back()->with('errors', $this->model->errors())->withInput();
-
-      }
-    }
-
-    public function activate($token)
-    {
-        $model = new \App\Models\CustomersModel;
-
-        $customer = $model->activateByToken($token);
-
-        if($customer) {
-
-          $statusChangeModel = new \App\Models\BikeStatusChangeModel;
-          $bikeStatusChange = new \App\Entities\BikeStatusChange;
-
-          $bikeStatusChange->user = 'ADMIN';
-          $bikeStatusChange->plate_number = $customer->current_bike;
-          $bikeStatusChange->date_time = $customer->start_date;
-          $bikeStatusChange->new_status = $customer->customer_name;
-          $bikeStatusChange->customer_id = $customer->id;
-
-          $statusChangeModel->save($bikeStatusChange);
-
+          $error_code = $file->getError();
+          throw new \RuntimeException($file->getErrorString() . " " . $error_code);
         }
 
-        return view('Admin/Customers/activated');
+        // CHECK FILE SIZE TO MAKE SURE IT DOESN'T EXCEED OUR MAX ALLOWED SIZE
+        $size = $file->getSizeByUnit('mb');
+
+        if ($size > 5) {
+
+          return redirect()->back()
+            ->with('warning', 'File too large (max 5MB)');
+        }
+
+        $type = $file->getMimeType();
+
+        if (!in_array($type, ['image/png', 'image/jpeg'])) {
+
+          return redirect()->back()
+            ->with('warning', 'Invalid file format (PNG or JPEG only)');
+        }
+
+        // Store it in the 'writable/uploads/images' folder
+        $file->store('renter_docs/');
+
+        // Add path to correct customer entity property
+        $customer->$key = $file->getName();
+      }
     }
 
-    private function sendActivationEmail($customer, $bike, $value)
-    {
-      require ROOTPATH . '/vendor/PHPMailer-master/src/Exception.php';
-      require ROOTPATH . '/vendor/PHPMailer-master/src/PHPMailer.php';
-      require ROOTPATH . '/vendor/PHPMailer-master/src/SMTP.php';
+    // Now start activation process
+    $customer->startActivation();
 
-      $mail = new PHPMailer(true);
-      $mail->isSMTP();
-      $mail->Host = 'mail.saigonbikerentals.com';
-      $mail->SMTPAuth = true;
-      $mail->Username = 'patrick@saigonbikerentals.com';
-      $mail->Password = 'n1FaZ!Sz#)vB';
-      $mail->SMTPSecure = 'tls';
-      $mail->Port = 26;
-      $mail->setFrom('patrick@saigonbikerentals.com');
-      $mail->addAddress($customer->email_address);
-      $mail->isHTML(true);
-      $mail->Subject = 'Rental Agreement';
-      $mail->addAttachment(WRITEPATH . 'uploads/registration_cards/' . $bike->reg_front);  
-      $mail->addAttachment(WRITEPATH . 'uploads/registration_cards/' . $bike->reg_back);  
-      $mail->Body = '<h1>SAIGON BIKE RENTALS</h1>
+    //Get list of all Dragon Bikes from BikesModel, put plate numbers in an array, and check whether customer's bike is in this array
+    $model = new \App\Models\BikesModel;
+    $dragonBikes = $model->getDragonBikes();
+    $dragonBikesPlateNumbers = [];
+
+    foreach ($dragonBikes as $dragonBike) {
+
+      $dragonBikesPlateNumbers[] = $dragonBike->plate_number;
+    }
+
+    if (in_array($customer->current_bike, $dragonBikesPlateNumbers)) {
+
+      $customer->dragon_bikes = 1;
+    }
+
+    if ($this->model->insert($customer)) {
+      // Get record of rental bike
+      $bikesModel = new \App\Models\BikesModel;
+      $bike = $bikesModel->getBikeByPlateNumber($customer->current_bike);
+
+      // Get bike's current market value
+      $bikeValuationsModel = new \App\Models\BikeValuationsModel;
+      $valuationRecord = $bikeValuationsModel->getValueByModelAndYear($bike->model, $bike->year);
+
+      // Format the value
+      $value = number_format($valuationRecord->value * 1000, 0, '.', ',');
+
+      // Pass all info from contract to use in activation email
+      $this->sendActivationEmail($customer, $bike, $value);
+      return redirect()->to(site_url('Admin/Home'));
+    } else {
+
+      return redirect()->back()->with('errors', $this->model->errors())->withInput();
+    }
+  }
+
+  public function update()
+  {
+    $customer = new Customer;
+    $customer->fill($this->request->getPost());
+
+    // if ((bool) ($this->request->getPost('finish_date')) === true) {
+
+    //   $customer->currently_renting = 0;
+    // }
+
+    if ($this->model->skipValidation(true)->save($customer)) {
+
+      return redirect()->to(site_url('Admin/Customers/viewCurrentCustomers'));
+    } else {
+
+      return redirect()->back()->with('errors', $this->model->errors())->withInput();
+    }
+  }
+
+  public function activate($token)
+  {
+    $model = new \App\Models\CustomersModel;
+
+    $customer = $model->activateByToken($token);
+
+    if ($customer) {
+
+      $statusChangeModel = new \App\Models\BikeStatusChangeModel;
+      $bikeStatusChange = new \App\Entities\BikeStatusChange;
+
+      $bikeStatusChange->user = 'ADMIN';
+      $bikeStatusChange->plate_number = $customer->current_bike;
+      $bikeStatusChange->date_time = $customer->start_date;
+      $bikeStatusChange->new_status = $customer->customer_name;
+      $bikeStatusChange->customer_id = $customer->id;
+
+      $statusChangeModel->save($bikeStatusChange);
+    }
+
+    return view('Admin/Customers/activated');
+  }
+
+  private function sendActivationEmail($customer, $bike, $value)
+  {
+    require ROOTPATH . '/vendor/PHPMailer-master/src/Exception.php';
+    require ROOTPATH . '/vendor/PHPMailer-master/src/PHPMailer.php';
+    require ROOTPATH . '/vendor/PHPMailer-master/src/SMTP.php';
+
+    $mail = new PHPMailer(true);
+    $mail->isSMTP();
+    $mail->Host = 'mail.saigonbikerentals.com';
+    $mail->SMTPAuth = true;
+    $mail->Username = 'patrick@saigonbikerentals.com';
+    $mail->Password = 'n1FaZ!Sz#)vB';
+    $mail->SMTPSecure = 'tls';
+    $mail->Port = 26;
+    $mail->setFrom('patrick@saigonbikerentals.com');
+    $mail->addAddress($customer->email_address);
+    $mail->isHTML(true);
+    $mail->Subject = 'Rental Agreement';
+    $mail->addAttachment(WRITEPATH . 'uploads/registration_cards/' . $bike->reg_front);
+    $mail->addAttachment(WRITEPATH . 'uploads/registration_cards/' . $bike->reg_back);
+    $mail->Body = '<h1>SAIGON BIKE RENTALS</h1>
       <h2>MOTORBIKE RENTAL CONTRACT</h2>
 
 
@@ -203,15 +193,15 @@ class Customers extends \App\Controllers\BaseController
       </ul>
 
       <p>
-        <u>' . $customer->customer_name . '</u> agrees to rent one ' . $bike->year . ' ' . $bike->brand . ' ' . $bike->model . 
-        ' with license plate number: <u>' . $customer->current_bike . '</u> , from
+        <u>' . $customer->customer_name . '</u> agrees to rent one ' . $bike->year . ' ' . $bike->brand . ' ' . $bike->model .
+      ' with license plate number: <u>' . $customer->current_bike . '</u> , from
         Tran Thi Thu Nga/Saigon Bike Rentals, located at 182/5A Đề Thám in
         District 1 , Ho Chi Minh City starting from <u>' . $customer->start_date . '</u>.
       </p>
 
       <p>
         The agreed monthly rental fee is <u>' . number_format($customer->rent * 1000, 0, '.', ',') . '</u> VND/month and the monthly rental payment is due on day <u>'
-        . substr($customer->start_date, -2) . '</u> of each month.
+      . substr($customer->start_date, -2) . '</u> of each month.
       </p>
 
 
@@ -254,7 +244,7 @@ class Customers extends \App\Controllers\BaseController
       <h3>D> Customer pledge:</h3>
 
       <p>
-        After reading this contract, I <u>' . $customer->customer_name .'</u> agree to abide by all its terms and conditions and
+        After reading this contract, I <u>' . $customer->customer_name . '</u> agree to abide by all its terms and conditions and
         agree to be held fully responsible for any violations thereof.
       </p>
 
@@ -262,75 +252,119 @@ class Customers extends \App\Controllers\BaseController
         <a href="' . site_url("Admin/Customers/activate/{$customer->token}") . '"><button>Click Here to Confirm Your Agreement</button></a>
       </p>';
 
-      if (!$mail->send()) {
+    if (!$mail->send()) {
 
-          echo 'Mailer Error: ' . $mail->ErrorInfo;
+      echo 'Mailer Error: ' . $mail->ErrorInfo;
+    } else {
 
-      } else {
+      $path = '{sng103.hawkhost.com:993/ssl}INBOX.Sent';
+      $imapStream = imap_open($path, 'patrick@saigonbikerentals.com', 'n1FaZ!Sz#)vB');
+      imap_append($imapStream, $path, $mail->getSentMIMEMessage());
+      imap_close($imapStream);
+      return redirect()->to(site_url('Admin/Home'))->with('message', 'Message sent!');
+    }
+  }
 
-          $path = '{sng103.hawkhost.com:993/ssl}INBOX.Sent';
-          $imapStream = imap_open($path, 'patrick@saigonbikerentals.com', 'n1FaZ!Sz#)vB');
-          imap_append($imapStream, $path, $mail->getSentMIMEMessage());
-          imap_close($imapStream);
-          return redirect()->to(site_url('Admin/Home'))->with('message', 'Message sent!');
+  public function  getInfo()
+  {
+    $customers = $this->model->getCurrentCustomers();
+    return view('Admin/Customers/getInfo', ['customers' => $customers]);
+  }
 
+  public function viewInfo()
+  {
+
+    if (!$this->request->getPost('customer_name')) {
+      return redirect()->back();
+    }
+
+    $customers = $this->model->getAllCustomers();
+    $customer = new Customer;
+    $model = new \App\Models\BikeStatusChangeModel;
+    $bikesModel = new \App\Models\BikesModel;
+    $paymentsModel = new \App\Models\PaymentsModel;
+    $found = 'false';
+
+    foreach ($customers as $record) {
+
+      if ($record->customer_name === $this->request->getPost('customer_name')) {
+
+        $customer = $record;
+        $found = 'true';
       }
-
     }
 
-    public function  getInfo()
-    {
-        $customers = $this->model->getCurrentCustomers();
-        return view('Admin/Customers/getInfo', ['customers' => $customers]);
+    if ($found === 'false') {
+
+      return redirect()->back();
     }
 
-    public function viewInfo()
-    {
-        if(! $this->request->getPost('customer_name')) {
+    $currentStatus = $model->getCurrentStatus($customer->id);
+    $currentBikes = $bikesModel->getCurrentBikes();
+    $payments = $paymentsModel->getByContractNumber($customer->id);
+    $monthsPaid = $paymentsModel->getTotalMonthsPaid($customer->id)->months_paid ?? 0;
+    $startDate = new Time();
+    $startDate = $startDate->createFromFormat('Y-m-d', $customer->start_date);
+    $paidUpTo = $startDate->addMonths($monthsPaid)->toDateString();
 
-          return redirect()->back();
 
-        }
+    return view('Admin/Customers/viewInfo', [
+      'customer' => $customer,
+      'customers' => $customers,
+      'currentStatus' => $currentStatus,
+      'currentBikes' => $currentBikes,
+      'payments' => $payments,
+      'paidUpTo' => $paidUpTo,
+    ]);
+  }
 
-        $customers = $this->model->getCurrentCustomers();
-        $customer = new Customer;
-        $model = new \App\Models\BikeStatusChangeModel;
-        $bikesModel = new \App\Models\BikesModel;
-        $paymentsModel = new \App\Models\PaymentsModel;
-        $found = 'false';
+  public function  viewCurrentCustomers()
+  {
+    $model = new \App\Models\CustomersModel;
+    $paymentsModel = new \App\Models\PaymentsModel;
 
-        foreach($customers as $record) {
+    // $customersResultObject = $model->select('id, customer_name, nationality, rent, start_date, finish_date')
+    //   ->get();
 
-          if($record->customer_name === $this->request->getPost('customer_name')){
+    // $fields = $customersResultObject->getFieldData();
+    // $customers = $customersResultObject->getResult();
 
-            $customer = $record;
-            $found = 'true';
+    $customers = $model->getCurrentCustomers();
 
-          }
+    foreach ($customers as $customer) {
+      // $payments = $paymentsModel->getByContractNumber($customer->id);
+      $monthsPaid = $paymentsModel->getTotalMonthsPaid($customer->id)->months_paid ?? 0;
+      $startDate = new Time();
+      $startDate = $startDate->createFromFormat('Y-m-d', $customer->start_date);
+      $paidUpTo = $startDate->addMonths($monthsPaid)->toDateString();
+      $payments = $paymentsModel->getByContractNumber($customer->id);
 
-        }
-
-        if ($found === 'false') {
-
-          return redirect()->back();
-        }
-        
-        $currentStatus = $model->getCurrentStatus($customer->id);
-        $currentBikes = $bikesModel->getCurrentBikes();
-        $payments = $paymentsModel->getByContractNumber($customer->id);
-        $monthsPaid = $paymentsModel->getTotalMonthsPaid($customer->id)->months_paid ?? 0;
-        $startDate = new Time();
-        $startDate = $startDate->createFromFormat('Y-m-d', $customer->start_date);
-        $paidUpTo = $startDate->addMonths($monthsPaid)->toDateString();
-        
-        return view('Admin/Customers/viewInfo', [
-                                                   'customer' => $customer,
-                                                  'customers' => $customers,
-                                              'currentStatus' => $currentStatus,
-                                               'currentBikes' => $currentBikes,
-                                                   'payments' => $payments,
-                                                   'paidUpTo' => $paidUpTo,
-                                                ]);
+      $customer->paid_up_to = $paidUpTo;
+      if (count($payments) > 0) {
+        $customer->last_payment = $payments[0]->payment_date;
+      }
     }
 
+    usort($customers, function ($customerA, $customerB) {
+      if ($customerA->paid_up_to == $customerB->paid_up_to) {
+        return 0;
+      }
+      return ($customerA->paid_up_to < $customerB->paid_up_to) ? -1 : 1;
+    });
+
+    return view('Admin/Customers/viewCurrentCustomers', ['customers' => $customers]);
+  }
+
+  public function  viewAllCustomers()
+  {
+    $model = new \App\Models\CustomersModel;
+    $customers = $model->getAllCustomers();
+
+    return view('Admin/Customers/viewAllCustomers', ['customers' => $customers]);
+  }
+
+  public function selectCustomerView()
+  {
+    return view('Admin/Customers/selectCustomerView');
+  }
 }

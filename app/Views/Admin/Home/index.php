@@ -13,7 +13,7 @@
       <div class="control">
         <a href="<?= site_url("Admin/Appointments/showAll") ?>">
           <button class="button is-success is-large is-fullwidth">
-              Xem Lịch Cuộc Hẹn
+            Xem Lịch Cuộc Hẹn
           </button>
         </a>
       </div>
@@ -30,7 +30,7 @@
       <div class="control">
         <a href="<?= site_url("Admin/Appointments/addNew") ?>">
           <button class="button is-warning is-large is-fullwidth">
-              Bắt Đầu Lúc Gặp Khách &nbsp; <span style="text-decoration: underline;">KHÔNG CÓ HẸN</span>
+            Bắt Đầu Lúc Gặp Khách &nbsp; <span style="text-decoration: underline;">KHÔNG CÓ HẸN</span>
           </button>
         </a>
       </div>
@@ -47,7 +47,7 @@
       <div class="control">
         <a href="<?= site_url("Admin/MoveBike/getInfo") ?>">
           <button class="button is-danger is-large is-fullwidth">
-              Xe Chuyển Qua Nơi Mới
+            Xe Chuyển Qua Nơi Mới
           </button>
         </a>
       </div>
@@ -64,7 +64,7 @@
       <div class="control">
         <a href="<?= site_url("Admin/Customers/newContract") ?>">
           <button class="button is-link is-large is-fullwidth">
-              Làm Hợp Đồng Mới
+            Làm Hợp Đồng Mới
           </button>
         </a>
       </div>
@@ -81,7 +81,7 @@
       <div class="control">
         <a href="<?= site_url("Admin/Repairs/getInfo") ?>">
           <button class="button is-success is-large is-fullwidth">
-              Phiếu Sửa Xe
+            Phiếu Sửa Xe
           </button>
         </a>
       </div>
@@ -98,7 +98,7 @@
       <div class="control">
         <a href="<?= site_url("Admin/Expenses/chooseDivision") ?>">
           <button class="button is-warning is-large is-fullwidth">
-              Chi Phí Khác
+            Chi Phí Khác
           </button>
         </a>
       </div>
@@ -115,7 +115,7 @@
       <div class="control">
         <a href="<?= site_url("Admin/Repairs/getHistory") ?>">
           <button class="button is-danger is-large is-fullwidth">
-              Xem Lịch Sự Sửa Xe
+            Xem Lịch Sự Sửa Xe
           </button>
         </a>
       </div>
@@ -132,7 +132,7 @@
       <div class="control">
         <a href="<?= site_url("Admin/BikeValuations/getRecord") ?>">
           <button class="button is-link is-large is-fullwidth">
-              Nộp Giá Xe
+            Nộp Giá Xe
           </button>
         </a>
       </div>
@@ -140,41 +140,41 @@
   </div>
 </div>
 
-<?php if(session()->get('user_level') == 'super'): ?>
+<?php if (session()->get('user_level') == 'super') : ?>
 
-<div class="field is-horizontal">
-  <div class="field-label">
-    <!-- Left empty for spacing -->
-  </div>
-  <div class="field-body">
-    <div class="field">
-      <div class="control">
-        <a href="<?= site_url("Admin/Customers/getInfo") ?>">
-          <button class="button is-success is-large is-fullwidth">
+  <div class="field is-horizontal">
+    <div class="field-label">
+      <!-- Left empty for spacing -->
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <div class="control">
+          <a href="<?= site_url("Admin/Customers/selectCustomerView") ?>">
+            <button class="button is-success is-large is-fullwidth">
               Customer View
-          </button>
-        </a>
+            </button>
+          </a>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<div class="field is-horizontal">
-  <div class="field-label">
-    <!-- Left empty for spacing -->
-  </div>
-  <div class="field-body">
-    <div class="field">
-      <div class="control">
-        <a href="<?= site_url("Admin/RenterIncidents/incidents") ?>">
-          <button class="button is-danger is-large is-fullwidth">
+  <div class="field is-horizontal">
+    <div class="field-label">
+      <!-- Left empty for spacing -->
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <div class="control">
+          <a href="<?= site_url("Admin/RenterIncidents/incidents") ?>">
+            <button class="button is-danger is-large is-fullwidth">
               Customer Incidents
-          </button>
-        </a>
+            </button>
+          </a>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
 <?php endif; ?>
 

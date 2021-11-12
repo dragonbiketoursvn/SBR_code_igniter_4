@@ -4,27 +4,27 @@
 
 <?= $this->section("content") ?>
 
-<?php if(! $customer) {
-    return redirect()->back();
-  }
- ?>
+<?php if (!$customer) {
+  return redirect()->back();
+}
+?>
 
 <?= form_open('Admin/Customers/update') ?>
 
-  <input type="hidden"name="id" value="<?= $customer->id ?>">
+<input type="hidden" name="id" value="<?= $customer->id ?>">
 
-  <div class="field is-horizontal" style="bottom: 200px !important;">
-    <div class="field-label is-normal">
-      <label class="label" for="first_name">Name</label>
-    </div>
-    <div class="field-body">
-      <div class="field">
-        <p class="control is-expanded">
-          <input readonly class="input is-success first_name" id="first_name" name="customer_name" value="<?= old('customer_name', esc($customer->customer_name)) ?>">
-        </p>
-      </div>
+<div class="field is-horizontal" style="bottom: 200px !important;">
+  <div class="field-label is-normal">
+    <label class="label" for="first_name">Name</label>
+  </div>
+  <div class="field-body">
+    <div class="field">
+      <p class="control is-expanded">
+        <input autocomplete="off" readonly class="input is-success first_name" id="first_name" name="customer_name" value="<?= old('customer_name', esc($customer->customer_name)) ?>">
+      </p>
     </div>
   </div>
+</div>
 
 <div class="customer_info" style="display: none;">
 
@@ -35,7 +35,7 @@
     <div class="field-body">
       <div class="field">
         <p class="control is-expanded">
-          <input readonly class="input is-success" id="nationality" name="nationality" value="<?= $customer->nationality ?>"
+          <input autocomplete="off" readonly class="input is-success" id="nationality" name="nationality" value="<?= $customer->nationality ?>">
         </p>
       </div>
     </div>
@@ -48,7 +48,7 @@
     <div class="field-body">
       <div class="field">
         <p class="control is-expanded">
-          <input readonly class="input is-success" id="email_address" name="email_address" value="<?= $customer->email_address ?>">
+          <input autocomplete="off" readonly class="input is-success" id="email_address" name="email_address" value="<?= $customer->email_address ?>">
         </p>
       </div>
     </div>
@@ -61,7 +61,7 @@
     <div class="field-body">
       <div class="field">
         <p class="control is-expanded">
-          <input readonly class="input is-success" id="phone_number" name="phone_number" value="<?= $customer->phone_number ?>">
+          <input autocomplete="off" readonly class="input is-success" id="phone_number" name="phone_number" value="<?= $customer->phone_number ?>">
         </p>
       </div>
     </div>
@@ -74,11 +74,11 @@
     <div class="field-body">
       <div class="field">
         <p class="control is-expanded">
-          <input readonly list="plate_number_list" class="input is-success" id="current_bike" name="current_bike" value="<?= $currentStatus->plate_number ?? ' '; ?>">
+          <input autocomplete="off" readonly list="plate_number_list" class="input is-success" id="current_bike" name="current_bike" value="<?= $currentStatus->plate_number ?? ' '; ?>">
           <datalist id="plate_number_list">
-            <?php foreach($currentBikes as $currentBike): ?>
+            <?php foreach ($currentBikes as $currentBike) : ?>
               <option value="<?= $currentBike->plate_number ?>">
-            <?php endforeach; ?>
+              <?php endforeach; ?>
           </datalist>
         </p>
       </div>
@@ -92,7 +92,7 @@
     <div class="field-body">
       <div class="field">
         <p class="control is-expanded">
-          <input readonly class="input is-success" id="deposit_type" name="deposit_type" value="<?= $customer->deposit_type ?>">
+          <input autocomplete="off" readonly class="input is-success" id="deposit_type" name="deposit_type" value="<?= $customer->deposit_type ?>">
         </p>
       </div>
     </div>
@@ -105,7 +105,7 @@
     <div class="field-body">
       <div class="field">
         <p class="control is-expanded">
-          <input readonly class="input is-success" id="rent" name="rent" value="<?= $customer->rent ?>">
+          <input autocomplete="off" readonly class="input is-success" id="rent" name="rent" value="<?= $customer->rent ?>">
         </p>
       </div>
     </div>
@@ -118,7 +118,7 @@
     <div class="field-body">
       <div class="field">
         <p class="control is-expanded">
-          <input readonly class="input is-success" id="notes" name="notes" value="<?= $customer->notes ?>">
+          <input autocomplete="off" readonly class="input is-success" id="notes" name="notes" value="<?= $customer->notes ?>">
         </p>
       </div>
     </div>
@@ -131,7 +131,7 @@
     <div class="field-body">
       <div class="field">
         <p class="control is-expanded">
-          <input readonly class="input is-success" id="building_name" name="building_name" value="<?= $customer->building_name ?>">
+          <input autocomplete="off" readonly class="input is-success" id="building_name" name="building_name" value="<?= $customer->building_name ?>">
         </p>
       </div>
     </div>
@@ -144,7 +144,7 @@
     <div class="field-body">
       <div class="field">
         <p class="control is-expanded">
-          <input readonly class="input is-success" id="building_number" name="building_number" value="<?= $customer->building_number ?>">
+          <input autocomplete="off" readonly class="input is-success" id="building_number" name="building_number" value="<?= $customer->building_number ?>">
         </p>
       </div>
     </div>
@@ -157,7 +157,7 @@
     <div class="field-body">
       <div class="field">
         <p class="control is-expanded">
-          <input readonly class="input is-success" id="street_name" name="street_name" value="<?= $customer->street_name ?>">
+          <input autocomplete="off" readonly class="input is-success" id="street_name" name="street_name" value="<?= $customer->street_name ?>">
         </p>
       </div>
     </div>
@@ -170,7 +170,7 @@
     <div class="field-body">
       <div class="field">
         <p class="control is-expanded">
-          <input readonly class="input is-success" id="ward" name="ward" value="<?= $customer->ward ?>">
+          <input autocomplete="off" readonly class="input is-success" id="ward" name="ward" value="<?= $customer->ward ?>">
         </p>
       </div>
     </div>
@@ -183,7 +183,7 @@
     <div class="field-body">
       <div class="field">
         <p class="control is-expanded">
-          <input readonly class="input is-success" id="district" name="district" value="<?= $customer->district ?>">
+          <input autocomplete="off" readonly class="input is-success" id="district" name="district" value="<?= $customer->district ?>">
         </p>
       </div>
     </div>
@@ -196,7 +196,7 @@
     <div class="field-body">
       <div class="field">
         <p class="control is-expanded">
-          <input readonly type="date" class="input is-success" id="start_date" name="start_date" value="<?= $customer->start_date ?>">
+          <input autocomplete="off" readonly type="date" class="input is-success" id="start_date" name="start_date" value="<?= $customer->start_date ?>">
         </p>
       </div>
     </div>
@@ -209,7 +209,7 @@
     <div class="field-body">
       <div class="field">
         <p class="control is-expanded">
-          <input readonly type="date" class="input is-success" id="finish_date" name="finish_date" value="<?= $customer->finish_date ?? ''; ?>">
+          <input autocomplete="off" readonly type="date" class="input is-success" id="finish_date" name="finish_date" value="<?= $customer->finish_date ?? ''; ?>">
         </p>
       </div>
     </div>
@@ -281,6 +281,23 @@
   </div>
 </div>
 
+<div class="field is-horizontal">
+  <div class="field-label">
+    <!-- Left empty for spacing -->
+  </div>
+  <div class="field-body">
+    <div class="field">
+      <div class="control">
+        <a href="<?= site_url('Admin/Home') ?>">
+          <button class="button is-warning is-large is-fullwidth" id="show_payments">
+            Main Menu
+          </button>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="payment_history" style="display: none;">
 
   <table class="table block is-fullwidth">
@@ -296,14 +313,14 @@
     </thead>
 
     <tbody>
-        <tr>
-          <td><?= $customer->id ?></td>
-          <td><?= $customer->customer_name?></td>
-          <td><?= $currentStatus->plate_number ?? ' '; ?></td>
-          <td><?= $customer->rent ?></td>
-          <td><?= $customer->start_date ?></td>
-          <td><?= $paidUpTo ?></td>
-        </tr>
+      <tr>
+        <td><?= $customer->id ?></td>
+        <td><?= $customer->customer_name ?></td>
+        <td><?= $currentStatus->plate_number ?? ' '; ?></td>
+        <td><?= $customer->rent ?></td>
+        <td><?= $customer->start_date ?></td>
+        <td><?= $paidUpTo ?></td>
+      </tr>
     </tbody>
   </table>
 
@@ -319,7 +336,7 @@
     </thead>
 
     <tbody>
-      <?php foreach($payments as $payment): ?>
+      <?php foreach ($payments as $payment) : ?>
         <tr>
           <td><?= $payment->amount ?></td>
           <td><?= $payment->months_paid ?></td>
@@ -334,7 +351,6 @@
 </div>
 
 <script>
-
   const edit = document.querySelector('.edit_button');
   const submit = document.querySelector('#update');
   const inputs = document.querySelectorAll('input');
@@ -351,7 +367,7 @@
 
   edit.addEventListener('click', function(e) {
 
-      inputs.forEach(function (input) {
+    inputs.forEach(function(input) {
 
       input.removeAttribute('readonly');
 
@@ -364,19 +380,18 @@
 
   displayInfo.addEventListener('click', function(e) {
 
-      edit.style.display = 'block';
-      customerInfo.style.display = 'block';
-      e.target.style.display = 'none';
+    edit.style.display = 'block';
+    customerInfo.style.display = 'block';
+    e.target.style.display = 'none';
 
   });
 
   showPayments.addEventListener('click', function(e) {
 
-      paymentHistory.style.display = 'block';
-      e.target.style.display = 'none';
+    paymentHistory.style.display = 'block';
+    e.target.style.display = 'none';
 
   });
-
 </script>
 
 <?= $this->endSection() ?>
