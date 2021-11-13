@@ -285,7 +285,7 @@ class Customers extends \App\Controllers\BaseController
     $bikesModel = new \App\Models\BikesModel;
     $paymentsModel = new \App\Models\PaymentsModel;
     $found = 'false';
-    dd('bananas');
+
     foreach ($customers as $record) {
 
       if ($record->customer_name === $this->request->getPost('customer_name')) {
@@ -299,7 +299,7 @@ class Customers extends \App\Controllers\BaseController
 
       return redirect()->back();
     }
-
+    dd('bananas');
     $currentStatus = $model->getCurrentStatus($customer->id);
     $currentBikes = $bikesModel->getCurrentBikes();
     $payments = $paymentsModel->getByContractNumber($customer->id);
