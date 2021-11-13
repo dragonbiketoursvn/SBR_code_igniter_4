@@ -9,16 +9,16 @@
   <section class="hero is-danger">
     <div class="hero-body has-text-centered" style="margin-bottom: 0px;">
       <p class="title">
-       Update Incident Report
+        Update Incident Report
       </p>
     </div>
   </section>
 </div>
 
-<?php if(session()->has('errors')): ?>
+<?php if (session()->has('errors')) : ?>
   <div class="block">
     <ul>
-      <?php foreach(session('errors') as $error): ?>
+      <?php foreach (session('errors') as $error) : ?>
         <li style="color: tomato;"><b><?= $error ?></b></li>
       <?php endforeach; ?>
     </ul>
@@ -60,6 +60,24 @@
     <div class="field">
       <p class="control is-expanded">
         <input readonly class="input is-success" id="customer_name" name="customer_name" value="<?= esc($incident->customer_name) ?>">
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="field is-horizontal" style="bottom: 200px !important;">
+  <div class="field-label is-normal">
+    <label class="label" for="plate_number">Plate Number</label>
+  </div>
+  <div class="field-body">
+    <div class="field">
+      <p class="control is-expanded">
+        <input readonly autocomplete="off" list="plate_number_list" class="input is-success" id="plate_number" name="plate_number">
+        <datalist id="plate_number_list">
+          <?php foreach ($bikes as $bike) : ?>
+            <option value="<?= $bike->plate_number ?>">
+            <?php endforeach; ?>
+        </datalist>
       </p>
     </div>
   </div>
@@ -128,9 +146,8 @@
 </div>
 
 <script>
-
-//Form validation
-const form = document.querySelector('.random_class');
+  //Form validation
+  const form = document.querySelector('.random_class');
 
 
   //Modal stuff
@@ -150,17 +167,16 @@ const form = document.querySelector('.random_class');
 
     document.querySelector('.modal-card-body').innerHTML = `${stringSegment1}${amount.value}${stringSegment2}${months_paid.value}${stringSegment3}`;
 
-   };
+  };
 
-   const closeToggle = function() {
+  const closeToggle = function() {
 
     modal.classList.remove('is-active');
 
-   };
+  };
 
   buttonOpenModal.addEventListener('click', toggle);
   buttonCloseModal.addEventListener('click', closeToggle);
-
 </script>
 
 <?= $this->endSection() ?>

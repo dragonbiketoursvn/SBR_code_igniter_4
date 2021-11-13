@@ -320,19 +320,11 @@ class Customers extends \App\Controllers\BaseController
 
   public function  viewCurrentCustomers()
   {
-    $model = new \App\Models\CustomersModel;
     $paymentsModel = new \App\Models\PaymentsModel;
 
-    // $customersResultObject = $model->select('id, customer_name, nationality, rent, start_date, finish_date')
-    //   ->get();
-
-    // $fields = $customersResultObject->getFieldData();
-    // $customers = $customersResultObject->getResult();
-
-    $customers = $model->getCurrentCustomers();
+    $customers = $this->model->getCurrentCustomers();
 
     foreach ($customers as $customer) {
-      // $payments = $paymentsModel->getByContractNumber($customer->id);
       $monthsPaid = $paymentsModel->getTotalMonthsPaid($customer->id)->months_paid ?? 0;
       $startDate = new Time();
       $startDate = $startDate->createFromFormat('Y-m-d', $customer->start_date);
@@ -357,8 +349,7 @@ class Customers extends \App\Controllers\BaseController
 
   public function  viewAllCustomers()
   {
-    $model = new \App\Models\CustomersModel;
-    $customers = $model->getAllCustomers();
+    $customers = $this->model->getAllCustomers();
 
     return view('Admin/Customers/viewAllCustomers', ['customers' => $customers]);
   }
