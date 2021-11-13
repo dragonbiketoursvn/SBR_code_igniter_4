@@ -278,6 +278,7 @@ class Customers extends \App\Controllers\BaseController
       return redirect()->back();
     }
 
+    dd('bananas');
     $customers = $this->model->getAllCustomers();
     $customer = new Customer;
     $model = new \App\Models\BikeStatusChangeModel;
