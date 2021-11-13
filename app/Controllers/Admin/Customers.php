@@ -299,7 +299,7 @@ class Customers extends \App\Controllers\BaseController
 
       return redirect()->back();
     }
-    dd('bananas');
+
     $currentStatus = $model->getCurrentStatus($customer->id);
     $currentBikes = $bikesModel->getCurrentBikes();
     $payments = $paymentsModel->getByContractNumber($customer->id);
