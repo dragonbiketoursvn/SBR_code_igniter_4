@@ -280,13 +280,12 @@ class Customers extends \App\Controllers\BaseController
 
 
     $customers = $this->model->getAllCustomers();
-    dd('bananas');
     $customer = new Customer;
     $model = new \App\Models\BikeStatusChangeModel;
     $bikesModel = new \App\Models\BikesModel;
     $paymentsModel = new \App\Models\PaymentsModel;
     $found = 'false';
-
+    dd('bananas');
     foreach ($customers as $record) {
 
       if ($record->customer_name === $this->request->getPost('customer_name')) {
