@@ -61,7 +61,7 @@ class Payments extends \App\Controllers\BaseController
           $model->update($appointment->id, ['paid_rent' => 1]);
           $appointment->paid_rent = 1;
 
-          return redirect()->to('sendConfirmationEmail');
+          return redirect()->to(site_url('Admin/Payments/sendConfirmationEmail'));
         }
 
       }
