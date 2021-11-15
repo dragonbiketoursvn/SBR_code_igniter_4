@@ -18,10 +18,9 @@ class Login extends BaseController
         $auth = service('auth');
         
         if ($auth->login($email, $password, $remember_me)) {
-            dd('bananasplitcherrypenis');
 
             $redirect_url = session('redirect_url') ?? '/';
-            
+            dd($redirect_url);
 			      unset($_SESSION['redirect_url']);
 
             return redirect()->to($redirect_url)
