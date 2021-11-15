@@ -42,7 +42,7 @@ class Appointments extends \App\Controllers\BaseController
 
       if(isset($appointment->paid_rent) && $appointment->paid_rent == 1) {
 
-        return redirect()->to('bikeStatusCheck');
+        return redirect()->to(site_url('Admin/Appointments/bikeStatusCheck'));
 
       }
 
@@ -56,7 +56,7 @@ class Appointments extends \App\Controllers\BaseController
 
       if($appointment->paid_rent == 1) {
 
-        return redirect()->to('bikeStatusCheck');
+        return redirect()->to(site_url('Admin/Appointments/bikeStatusCheck'));
 
       }
 
@@ -69,7 +69,7 @@ class Appointments extends \App\Controllers\BaseController
 
       if(($appointment->received_bike == 1) || ($appointment->returned_bike == 1)) {
 
-        return redirect()->to('finalCheck');
+        return redirect()->to(site_url('Admin/Appointments/finalCheck'));
 
       }
 
@@ -89,7 +89,7 @@ class Appointments extends \App\Controllers\BaseController
                                                          'currentBikes' => $currentBikes]);
       } else {
 
-          return redirect()->to('finalCheck');
+          return redirect()->to(site_url('Admin/Appointments/finalCheck'));
 
       }
     }
@@ -172,7 +172,7 @@ class Appointments extends \App\Controllers\BaseController
     {
       if(session()->has('appointment')) {
 
-        return redirect()->to('paymentCheck');
+        return redirect()->to(site_url('Admin/Appointments/paymentCheck'));
 
       } else {
 
@@ -216,7 +216,7 @@ class Appointments extends \App\Controllers\BaseController
       $this->model->save($appointment);
       session()->set('appointment', $appointment);
 
-      return redirect()->to('paymentCheck');
+      return redirect()->to(site_url('Admin/Appointments/paymentCheck'));
 
     }
 
