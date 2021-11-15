@@ -285,7 +285,7 @@ class Customers extends \App\Controllers\BaseController
     $bikesModel = new \App\Models\BikesModel;
     $paymentsModel = new \App\Models\PaymentsModel;
     $found = 'false';
-
+    dd('banana');
     foreach ($customers as $record) {
 
       if ($record->customer_name === $this->request->getPost('customer_name')) {

@@ -6,7 +6,7 @@
 
 <?= form_open_multipart("/Test/testTwo") ?>
 
-<label for="photo">Dick pics go here</label>
+<label for="photo">asl;kfj;alskjdf;asdf</label>
 <input type="file" name="photo" id="photo">
 
 <button>Submit</button>
