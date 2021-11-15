@@ -11,12 +11,13 @@ class Login extends BaseController
 
     public function create()
     {
-		$email = $this->request->getPost('email');
+		dd('banana');
+        $email = $this->request->getPost('email');
 		$password = $this->request->getPost('password');
 		$remember_me = (bool) $this->request->getPost('remember_me');
 
         $auth = service('auth');
-        dd('banana');
+        
         if ($auth->login($email, $password, $remember_me)) {
 
             $redirect_url = session('redirect_url') ?? '/';
