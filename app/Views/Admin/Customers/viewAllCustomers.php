@@ -119,8 +119,9 @@
                 <td class="column5"><?= $customer->finish_date; ?></td>
                 <td>
                     <?= form_open(site_url('Admin/Customers/viewInfo')); ?>
-                    <input type="hidden" name="customer_name" value="<?= $customer->customer_name; ?>">
-                    <button>Profile</button>
+                        <input type="hidden" name="customer_name" value="<?= $customer->customer_name; ?>">
+                        <input type="hidden" name="id" value="<?= $customer->id; ?>">
+                        <button>Profile</button>
                     </form>
                 </td>
             </tr>
