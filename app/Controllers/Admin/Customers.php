@@ -273,11 +273,11 @@ class Customers extends \App\Controllers\BaseController
 
   public function viewInfo()
   {
+    dd('bananas');
 
     if (!$this->request->getPost('customer_name')) {
       return redirect()->back();
     }
-
 
     $customers = $this->model->getAllCustomers();
     $customer = new Customer;
