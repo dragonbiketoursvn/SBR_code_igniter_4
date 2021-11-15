@@ -28,13 +28,14 @@ class Authentication
         }
 
         $this->logInUser($user);
-        dd('bananasplit');
 
         if ($remember_me) {
 
             $this->rememberLogin($user->id);
 
         }
+
+        dd('bananasplitcherry');
 
         return true;
     }
