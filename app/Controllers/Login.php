@@ -16,7 +16,7 @@ class Login extends BaseController
 		$remember_me = (bool) $this->request->getPost('remember_me');
 
         $auth = service('auth');
-        dd('banana');
+        
         if ($auth->login($email, $password, $remember_me)) {
 
             $redirect_url = session('redirect_url') ?? '/';

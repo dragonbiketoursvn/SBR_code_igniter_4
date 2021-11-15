@@ -14,7 +14,7 @@ class Authentication
         $model = new \App\Models\UsersModel;
 
         $user = $model->findByEmail($email);
-        
+        dd('bananas');
         if ($user === null) {
 
             return false;
