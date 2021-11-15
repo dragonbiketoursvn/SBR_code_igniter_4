@@ -35,8 +35,6 @@ class Authentication
 
         }
 
-        dd('bananasplitcherry');
-
         return true;
     }
 
