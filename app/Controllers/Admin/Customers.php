@@ -121,7 +121,7 @@ class Customers extends \App\Controllers\BaseController
     $customer = new Customer;
     $customer->fill($this->request->getPost());
 
-    if ($this->request->getPost('finish_date' > '2000-01-01') {
+    if ($this->request->getPost('finish_date') > '2000-01-01') {
 
       $customer->currently_renting = 0;
     }
