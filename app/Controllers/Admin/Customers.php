@@ -121,10 +121,10 @@ class Customers extends \App\Controllers\BaseController
     $customer = new Customer;
     $customer->fill($this->request->getPost());
 
-    // if ((bool) ($this->request->getPost('finish_date')) === true) {
+    if ($this->request->getPost('finish_date' > '2000-01-01') {
 
-    //   $customer->currently_renting = 0;
-    // }
+      $customer->currently_renting = 0;
+    }
 
     if ($this->model->skipValidation(true)->save($customer)) {
 
