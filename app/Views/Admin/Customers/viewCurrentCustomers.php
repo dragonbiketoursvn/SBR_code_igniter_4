@@ -126,6 +126,7 @@
                 <td>
                     <?= form_open(site_url('Admin/Customers/viewInfo')); ?>
                     <input type="hidden" name="customer_name" value="<?= $customer->customer_name; ?>">
+                    <input type="hidden" name="id" value="<?= $customer->id; ?>">
                     <button>Profile</button>
                     </form>
                 </td>

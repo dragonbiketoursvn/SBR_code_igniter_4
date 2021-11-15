@@ -286,7 +286,7 @@ class Customers extends \App\Controllers\BaseController
 
     foreach ($customers as $record) {
 
-      if ($record->customer_name === $this->request->getPost('customer_name')) {
+      if (($record->customer_name === $this->request->getPost('customer_name')) && ($record->id === $this->request->getPost('id'))) {
 
         $customer = $record;
         $found = 'true';
