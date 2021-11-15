@@ -26,8 +26,9 @@ class Authentication
             return false;
 
         }
-        dd('bananasplit');
+
         $this->logInUser($user);
+        dd('bananasplit');
 
         if ($remember_me) {
 
