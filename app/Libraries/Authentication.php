@@ -20,13 +20,13 @@ class Authentication
             return false;
 
         }
-        dd('bananasplit');
+        
         if ( ! $user->verifyPassword($password)) {
 
             return false;
 
         }
-
+        dd('bananasplit');
         $this->logInUser($user);
 
         if ($remember_me) {
