@@ -123,7 +123,7 @@ class Payments extends \App\Controllers\BaseController
         $mail->isHTML(true);
         $mail->Subject = 'Receipt for Rental Payment';
         $mail->Body = '<p>Hi ' . $payment['customer_name'] . ',</p>'
-                      . '<p>This message is to confirm receipt of ' . $amount . 'dong.</p>
+                      . '<p>This message is to confirm receipt of ' . number_format($amount, 0, '.', ',') . ' đồng.</p>
                       <p>Thanks for choosing Saigon Bike Rentals!</p>';
 
         if (!$mail->send()) {
