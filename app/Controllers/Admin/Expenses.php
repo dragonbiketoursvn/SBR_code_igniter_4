@@ -44,6 +44,9 @@ class Expenses extends \App\Controllers\BaseController
     {
       $expense = new Expense;
       $expense->fill($this->request->getPost());
+      // $session = session();
+      dd(session()->get('user_level'));
+
       $result = $this->model->save($expense);
       if($result === false) {
 

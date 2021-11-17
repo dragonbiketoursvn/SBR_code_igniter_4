@@ -8,7 +8,7 @@ class UsersModel extends \CodeIgniter\Model
 {
     protected $table = 'users';
 
-    protected $allowedFields = ['email', 'password_hash', 'level'];
+    protected $allowedFields = ['name', 'email', 'password_hash', 'level'];
 
     protected $returnType = 'App\Entities\User';
 
