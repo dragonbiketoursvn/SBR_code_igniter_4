@@ -66,7 +66,7 @@ class Appointments extends \App\Controllers\BaseController
     public function bikeStatusCheck()
     {
       $appointment = session()->get('appointment');
-
+      
       if(($appointment->received_bike == 1) || ($appointment->returned_bike == 1)) {
 
         return redirect()->to(site_url('Admin/Appointments/finalCheck'));
@@ -113,7 +113,7 @@ class Appointments extends \App\Controllers\BaseController
           $bikeOutStatusChange->plate_number = $post['bike_out'];
           $bikeOutStatusChange->date_time = date('Y-m-d H:i:s');
           $bikeOutStatusChange->new_status = $appointment->customer_name;
-          $bikeOutStatusChange->contract_number = $appointment->contract_number;
+          $bikeOutStatusChange->customer_id = $appointment->customer_id;
           $model->save($bikeOutStatusChange);
 
           //And set the appointment session variable
