@@ -63,8 +63,8 @@
 
 <?php if($division === 'Dragon'): ?>
   <input type="hidden" name="dragon_bikes" value="1">
-<?php elseif($division === 'SBR'): ?>
-  <input type="hidden" name="dragon_bikes" value="0">
+<?php elseif($division === 'Personal'): ?>
+  <input type="hidden" name="personal" value="1">
 <?php endif; ?>
 
 <div class="field is-horizontal" style="bottom: 200px !important;">

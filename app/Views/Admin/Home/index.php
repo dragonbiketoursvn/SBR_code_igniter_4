@@ -176,6 +176,23 @@
     </div>
   </div>
 
+  <div class="field is-horizontal">
+    <div class="field-label">
+      <!-- Left empty for spacing -->
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <div class="control">
+          <a href="<?= site_url("Admin/MoneyToStaff/getInfo") ?>">
+            <button class="button is-link is-large is-fullwidth">
+              Money to Khanh
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
 <?php endif; ?>
 
 <?= $this->endSection() ?>

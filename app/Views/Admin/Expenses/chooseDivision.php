@@ -47,5 +47,22 @@
   </div>
 </div>
 
+<div class="field is-horizontal">
+  <div class="field-label">
+    <!-- Left empty for spacing -->
+  </div>
+  <div class="field-body">
+    <div class="field">
+      <div class="control">
+        <a href="<?= site_url("Admin/Expenses/getInfo/" . "Personal") ?>">
+          <button class="button is-warning is-large is-fullwidth">
+              Đồ Cho Cô/Chú
+          </button>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <?= $this->endSection() ?>

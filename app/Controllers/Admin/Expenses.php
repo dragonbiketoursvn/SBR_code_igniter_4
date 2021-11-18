@@ -31,6 +31,10 @@ class Expenses extends \App\Controllers\BaseController
 
         $expenseCategoriesModel = new \App\Models\DragonBikesExpenseCategoriesModel;
         $expenseCategories = $expenseCategoriesModel->getCategories();
+      } elseif($division === 'Personal') {
+
+        $expenseCategoriesModel = new \App\Models\DragonBikesExpenseCategoriesModel;
+        $expenseCategories = $expenseCategoriesModel->getCategories();
       }
 
 
