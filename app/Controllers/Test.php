@@ -110,7 +110,7 @@ class Test extends BaseController
         // So, we'll have to create and run our own query
         $sql = "UPDATE bikes SET reg_front = '{$bike->reg_front}', reg_back = '{$bike->reg_back}' WHERE plate_number = '{$bike->plate_number}'";
         $db->simpleQuery($sql);
-
+    }
   }
 
   public function testPenis()
