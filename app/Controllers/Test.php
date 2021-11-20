@@ -13,9 +13,16 @@ use CodeIgniter\I18n\Time;
 class Test extends BaseController
 {
 
-  public function testOne()
+  public function asyncRequest()
   {
-    return view('Tests/testOne.php');
+    return view('Tests/asyncRequest');
+  }
+
+  public function returnValue()
+  {
+    
+
+    return $this->response->setJSON($data);
   }
 
 
@@ -77,32 +84,32 @@ class Test extends BaseController
 
   public function addPhotoPaths()
   {
-    // $db = db_connect();
-    // $path = WRITEPATH . 'uploads/registration_cards';
-    // $fileNameArray = scandir($path);
-    // $model = new \App\Models\BikesModel;
-    // $bikeArray = $model->getAllBikes();
+    $db = db_connect();
+    $path = WRITEPATH . 'uploads/registration_cards';
+    $fileNameArray = scandir($path);
+    $model = new \App\Models\BikesModel;
+    $bikeArray = $model->getAllBikes();
 
-    // // Iterate over all the bike records in the array
-    // foreach ($bikeArray as $bike) {
+    // Iterate over all the bike records in the array
+    foreach ($bikeArray as $bike) {
 
-    //   // For each bike record get the names of the matching image files from the fileName array
-    //     foreach ($fileNameArray as $row) {
+      // For each bike record get the names of the matching image files from the fileName array
+        foreach ($fileNameArray as $row) {
 
-    //         // Get the paths for the front and back of each reg and update the bike entity properties
-    //         if(preg_match("/{$bike->plate_number}/i", $row)) {
-    //             if(preg_match("/back/i", $row)) {
-    //                 $bike->reg_back = $row;
-    //             } else {
-    //                 $bike->reg_front = $row;                                        
-    //             }
-    //         }
-    //     }
+            // Get the paths for the front and back of each reg and update the bike entity properties
+            if(preg_match("/{$bike->plate_number}/i", $row)) {
+                if(preg_match("/back/i", $row)) {
+                    $bike->reg_back = $row;
+                } else {
+                    $bike->reg_front = $row;                                        
+                }
+            }
+        }
 
-    //     // We can't use CodeIgniter's model functions since the primary key isn't explictly named 'id'
-    //     // So, we'll have to create and run our own query
-    //     $sql = "UPDATE bikes SET reg_front = '{$bike->reg_front}', reg_back = '{$bike->reg_back}' WHERE plate_number = '{$bike->plate_number}'";
-    //     $db->simpleQuery($sql);
+        // We can't use CodeIgniter's model functions since the primary key isn't explictly named 'id'
+        // So, we'll have to create and run our own query
+        $sql = "UPDATE bikes SET reg_front = '{$bike->reg_front}', reg_back = '{$bike->reg_back}' WHERE plate_number = '{$bike->plate_number}'";
+        $db->simpleQuery($sql);
 
   }
 
