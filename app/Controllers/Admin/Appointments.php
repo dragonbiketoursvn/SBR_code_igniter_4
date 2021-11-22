@@ -197,16 +197,6 @@ class Appointments extends \App\Controllers\BaseController
       $customer = $model->getCurrentCustomerByName($customer_name);
       $contract_number = $customer->id;
       
-      /*
-      $currentCustomers = $model->getCurrentCustomers();
-
-      foreach($currentCustomers as $currentCustomer) {
-        if($currentCustomer->customer_name = $customer_name) {
-          $contract_number = $currentCustomer->id;
-        }
-      }
-      */
-
       $appointment->customer_name = $customer_name;
       $appointment->customer_id = $contract_number;
       $appointment->appointment_time = $appointment_time;

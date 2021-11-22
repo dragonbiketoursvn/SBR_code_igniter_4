@@ -59,5 +59,5 @@ class Filters extends BaseConfig
 	 *
 	 * @var array
 	 */
-	public $filters = ['login' => ['before' => ['Admin/*']]];
+	public $filters = ['login' => ['before' => ['Admin/(?!Customers/activate)*']]];
 }

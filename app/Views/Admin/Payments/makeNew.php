@@ -77,6 +77,27 @@
   </div>
 </div>
 
+<?php if (session()->get('user_level') == 'super') : ?>
+
+  <div class="field">
+  <div class="control">
+    <label class="radio">
+      <input type="radio" name="payment_method" value="cash" checked>
+      Cash
+    </label>
+    <label class="radio">
+      <input type="radio" name="payment_method" value="bank_tranfer">
+      Bank Transfer
+    </label>
+    <label class="radio">
+      <input type="radio" name="payment_method" value="paypal">
+      PayPal
+    </label>
+  </div>
+</div>
+
+<?php endif; ?>
+
 <div class="field is-horizontal">
   <div class="field-label is-normal">
     <label class="label" for="notes">Thông Tin Thêm</label>

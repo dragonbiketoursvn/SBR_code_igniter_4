@@ -8,7 +8,7 @@
   <section class="hero is-success">
     <div class="hero-body has-text-centered" style="margin-bottom: 0px;">
       <p class="title">
-       CONGRADURATIONS ;)
+       SUCCESS :)
       </p>
     </div>
   </section>
