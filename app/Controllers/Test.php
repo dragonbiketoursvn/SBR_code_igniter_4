@@ -103,7 +103,7 @@ class Test extends BaseController
       $mail->addAddress('dragonbiketoursvn@gmail.com', 'NGUYENVANKHANH19992@gmail.com');
       $mail->isHTML(true);
       $mail->Subject = 'Check Daily Stats/Coi Lại Thông Tin';
-      $mail->Body = '<h1>Click to review/Bấm Để Xem</h1><p><a>http://hagiangadventures.com/Admin/Reports/getTodaysReport</a></p>';
+      $mail->Body = '<a href="http://hagiangadventures.com/Admin/Reports/getTodaysReport"><h1>Click to review/Bấm Để Xem</h1></a>';
 
       if (!$mail->send()) {
 
