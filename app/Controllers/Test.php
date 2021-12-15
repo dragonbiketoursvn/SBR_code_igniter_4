@@ -281,19 +281,4 @@ class Test extends BaseController
       return $this->response->setJSON('Success!');
     }
   }
-
-  public function testModelClass()
-  {
-    // $model = new \App\Models\testAutoIncrementModel;
-    // $record = new \App\Entities\testAutoIncrement;
-    // $record->name = 'Penis Cleaner';
-    // $result = $model->insert($record);
-    $model = new \App\Models\testNoAutoIncrementModel;
-    $record = new \App\Entities\testNoAutoIncrement;
-    $record->id = '62W9';
-    $record->name = 'toiereaner';
-    $model->insert($record);
-    $result = $model->find($record->id);
-    dd($result);
-  }
 }
