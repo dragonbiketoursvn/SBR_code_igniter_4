@@ -19,7 +19,7 @@ class Test extends BaseController
   }
 
   public function returnValue()
-  { 
+  {
     // $plate_number = $_POST;
     $model = new \App\Models\BikesModel;
     $bike = $model->getBikeByPlateNumber('51R5-3876');
@@ -84,6 +84,34 @@ class Test extends BaseController
     }
   }
 
+  public function dailyReportReminder()
+  {
+    if (is_cli()) {
+      require ROOTPATH . '/vendor/PHPMailer-master/src/Exception.php';
+      require ROOTPATH . '/vendor/PHPMailer-master/src/PHPMailer.php';
+      require ROOTPATH . '/vendor/PHPMailer-master/src/SMTP.php';
+
+      $mail = new PHPMailer(true);
+      $mail->isSMTP();
+      $mail->Host = 'mail.saigonbikerentals.com';
+      $mail->SMTPAuth = true;
+      $mail->Username = 'patrick@saigonbikerentals.com';
+      $mail->Password = 'n1FaZ!Sz#)vB';
+      $mail->SMTPSecure = 'tls';
+      $mail->Port = 26;
+      $mail->setFrom('patrick@saigonbikerentals.com');
+      $mail->addAddress('dragonbiketoursvn@gmail.com', 'NGUYENVANKHANH19992@gmail.com');
+      $mail->isHTML(true);
+      $mail->Subject = 'Check Daily Stats/Coi Lại Thông Tin';
+      $mail->Body = '<h1>Click to review/Bấm Để Xem</h1><p><a>http://hagiangadventures.com/Admin/Reports/getTodaysReport</a></p>';
+
+      if (!$mail->send()) {
+
+        echo 'Mailer Error: ' . $mail->ErrorInfo;
+      }
+    }
+  }
+
   public function addPhotoPaths()
   {
     $db = db_connect();
@@ -96,22 +124,22 @@ class Test extends BaseController
     foreach ($bikeArray as $bike) {
 
       // For each bike record get the names of the matching image files from the fileName array
-        foreach ($fileNameArray as $row) {
+      foreach ($fileNameArray as $row) {
 
-            // Get the paths for the front and back of each reg and update the bike entity properties
-            if(preg_match("/{$bike->plate_number}/i", $row)) {
-                if(preg_match("/back/i", $row)) {
-                    $bike->reg_back = $row;
-                } else {
-                    $bike->reg_front = $row;                                        
-                }
-            }
+        // Get the paths for the front and back of each reg and update the bike entity properties
+        if (preg_match("/{$bike->plate_number}/i", $row)) {
+          if (preg_match("/back/i", $row)) {
+            $bike->reg_back = $row;
+          } else {
+            $bike->reg_front = $row;
+          }
         }
+      }
 
-        // We can't use CodeIgniter's model functions since the primary key isn't explictly named 'id'
-        // So, we'll have to create and run our own query
-        $sql = "UPDATE bikes SET reg_front = '{$bike->reg_front}', reg_back = '{$bike->reg_back}' WHERE plate_number = '{$bike->plate_number}'";
-        $db->simpleQuery($sql);
+      // We can't use CodeIgniter's model functions since the primary key isn't explictly named 'id'
+      // So, we'll have to create and run our own query
+      $sql = "UPDATE bikes SET reg_front = '{$bike->reg_front}', reg_back = '{$bike->reg_back}' WHERE plate_number = '{$bike->plate_number}'";
+      $db->simpleQuery($sql);
     }
   }
 
@@ -193,17 +221,17 @@ class Test extends BaseController
     $model = new \App\Models\CustomersModel;
     $customers = $model->getCurrentCustomers();
     $customer = $customers[3];
-    
+
     return view('Tests/jsonTest', ['customers' => $customers, 'customer' => $customer]);
   }
-  
+
   public function jsonReturn()
   {
     $model = new \App\Models\CustomersModel;
     $customers = $model->getCurrentCustomers();
     $customerEmails = [];
 
-    foreach($customers as $customer) {
+    foreach ($customers as $customer) {
       $customerEmails[$customer->customer_name] = $customer->email_address;
     }
 
@@ -217,8 +245,8 @@ class Test extends BaseController
     $address = $post['address'];
     $message = $post['message'];
     $paths = []; // We'll have between one and five paths so we'll stick them in an array
-    
-    for ($i=1; $i < ($length - 1); $i++) { 
+
+    for ($i = 1; $i < ($length - 1); $i++) {
       $paths[] = $_POST['path' . $i];
     }
 
@@ -243,7 +271,6 @@ class Test extends BaseController
     foreach ($paths as $path) {
 
       $mail->addAttachment(WRITEPATH . 'uploads/renter_docs/' . $path);
-
     }
 
     if (!$mail->send()) {
@@ -269,6 +296,4 @@ class Test extends BaseController
     $result = $model->find($record->id);
     dd($result);
   }
-
 }
-
