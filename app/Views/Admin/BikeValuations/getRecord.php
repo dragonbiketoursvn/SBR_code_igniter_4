@@ -18,8 +18,8 @@
     <div class="control">
         <div class="select">
         <select name="brand" id="brand">
-            <option value="Honda">Honda</option>
-            <option value="Yamaha">Yamaha</option>
+            <option value="Honda">HONDA</option>
+            <option value="Yamaha">YAMAHA</option>
             <option value="SYM">SYM</option>
         </select>
         </div>
@@ -124,6 +124,7 @@
 
         // Dynamically generate options for year select menu (so current year is always at top)
         const currentYear = new Date().getFullYear();
+        const year = document.querySelector('#year');
            
         for(let i = 0; i < 15; i++) {
             let yearOption = document.createElement('option');

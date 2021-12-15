@@ -1,0 +1,139 @@
+button.is-available {
+  color: white;
+  background-color: #1105fa;
+}
+button.is-available:hover {
+  color: white;
+  background-color: #bdbaff;
+}
+
+button {
+  z-index: 1;
+}
+
+.table th {
+  background: #20e5e8;
+  color: #ffffff;
+  z-index: 2;
+}
+
+.table.sticky th {
+  position: sticky;
+  top: 0;
+}
+
+.photos {
+  width: 30%;
+  height: auto;
+}
+
+.photoCaption {
+  width: 100%;
+  background: yellow;
+  text-align: center;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.photoSection {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.deleteButton,
+.selectButton,
+.deselectButton {
+  cursor: default;
+  background: yellow;
+  text-align: center;
+  position: absolute;
+  bottom: 0%;
+  width: 100%;
+}
+
+.photoBox {
+  width: 350px;
+  height: 225px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid #333333;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
+}
+
+.photoCaption {
+  position: absolute;
+  top: 0%;
+}
+
+.photoImage {
+  flex-grow: 1;
+  object-fit: cover;
+}
+
+.selectPhoto {
+  border: 1px solid grey;
+  padding: 5px;
+  border-radius: 20px;
+  cursor: default;
+}
+
+input[type="file"] {
+  height: 0px;
+  padding: 0px;
+  opacity: 0px;
+  display: none;
+}
+
+#filterBar {
+  position: fixed;
+  top: 5px;
+  left: 5px;
+}
+
+.mailForm {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  padding: 5px;
+  background-color: #dddddd;
+}
+.mailForm .customerSelect {
+  width: 100%;
+  display: flex;
+  justify-content: left;
+  margin: 5px;
+}
+.mailForm .messageBox {
+  width: 98%;
+  margin-top: 5px;
+}
+.mailForm label {
+  margin-right: 20px;
+}
+.mailForm input {
+  width: 98%;
+}
+.mailForm .buttons {
+  display: flex;
+  justify-content: space-between;
+}
+.mailForm button {
+  flex-grow: 1;
+  margin: 5px;
+  padding: 2px;
+}
+.mailForm #sendButton {
+  background-color: green;
+  color: #dddddd;
+}
+.mailForm #mailCancelButton {
+  background-color: red;
+  color: #dddddd;
+}

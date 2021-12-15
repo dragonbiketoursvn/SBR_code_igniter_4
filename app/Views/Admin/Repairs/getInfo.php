@@ -84,7 +84,7 @@
     <div class="field">
       <label class="checkbox">
         <input type="hidden" name="nhot" value=0>
-        <input type="checkbox">
+        <input type="checkbox" name="nhot" value=1>
       </label>
     </div>
   </div>

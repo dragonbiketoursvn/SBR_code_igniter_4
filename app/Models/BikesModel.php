@@ -10,14 +10,14 @@ class BikesModel extends \CodeIgniter\Model
   protected $allowedFields = ['plate_number', 'purchase_date', 'brand', 'model', 'year', 'purchase_price', 'extra_key',
                               'giay_ban_xe', 'giay_uy_quyen', 'Nga_dung_ten', 'ownership_details', 'sale_date', 'sale_price',
                               'notes', 'photo_path', 'Kim_Anh_dung_ten', 'dragon_bikes', 'insurance_expires', 'reg_front', 'reg_back',
-                              'pic_front', 'pic_side', 'pic_front', 'pic_trunk'];
+                              'pic_front', 'pic_side', 'pic_rear', 'pic_trunk'];
 
   protected $returnType = 'App\Entities\Bike';
 
   protected $useTimestamps = false;
 
-  protected $validationRules = [];
-  protected $validationMessages = [];
+  protected $validationRules = ['year' => 'numeric',];
+  protected $validationMessages = ['year' => ['numeric' => 'Please enter a valid year']];
 
   protected $beforeUpdate = ['trimWhiteSpace'];
   protected $beforeInsert = ['trimWhiteSpace'];
@@ -44,6 +44,7 @@ class BikesModel extends \CodeIgniter\Model
                  ->distinct()
                  ->where('sale_date', '0000-00-00')
                  ->orWhere('sale_date', null)
+                 ->orderBy('model')
                  ->get()
                  ->getResult();
   }

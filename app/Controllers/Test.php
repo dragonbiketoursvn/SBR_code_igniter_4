@@ -19,10 +19,12 @@ class Test extends BaseController
   }
 
   public function returnValue()
-  {
-    
-
-    return $this->response->setJSON($data);
+  { 
+    // $plate_number = $_POST;
+    $model = new \App\Models\BikesModel;
+    $bike = $model->getBikeByPlateNumber('51R5-3876');
+    // $data = ['penis' => 'enormous'];
+    return $this->response->setJSON($bike);
   }
 
 
@@ -185,4 +187,88 @@ class Test extends BaseController
   {
     return view('Tests/selectCustomerView');
   }
+
+  public function jsonTest()
+  {
+    $model = new \App\Models\CustomersModel;
+    $customers = $model->getCurrentCustomers();
+    $customer = $customers[3];
+    
+    return view('Tests/jsonTest', ['customers' => $customers, 'customer' => $customer]);
+  }
+  
+  public function jsonReturn()
+  {
+    $model = new \App\Models\CustomersModel;
+    $customers = $model->getCurrentCustomers();
+    $customerEmails = [];
+
+    foreach($customers as $customer) {
+      $customerEmails[$customer->customer_name] = $customer->email_address;
+    }
+
+    return $this->response->setJSON($customerEmails);
+  }
+
+  public function mailPhotos()
+  {
+    $length = count($_POST);
+    $post = $this->request->getPost();
+    $address = $post['address'];
+    $message = $post['message'];
+    $paths = []; // We'll have between one and five paths so we'll stick them in an array
+    
+    for ($i=1; $i < ($length - 1); $i++) { 
+      $paths[] = $_POST['path' . $i];
+    }
+
+    require ROOTPATH . '/vendor/PHPMailer-master/src/Exception.php';
+    require ROOTPATH . '/vendor/PHPMailer-master/src/PHPMailer.php';
+    require ROOTPATH . '/vendor/PHPMailer-master/src/SMTP.php';
+
+    $mail = new PHPMailer(true);
+    $mail->isSMTP();
+    $mail->Host = 'mail.saigonbikerentals.com';
+    $mail->SMTPAuth = true;
+    $mail->Username = 'patrick@saigonbikerentals.com';
+    $mail->Password = 'n1FaZ!Sz#)vB';
+    $mail->SMTPSecure = 'tls';
+    $mail->Port = 26;
+    $mail->setFrom('patrick@saigonbikerentals.com');
+    $mail->addAddress($address);
+    $mail->isHTML(true);
+    $mail->Subject = 'Bike Photos';
+    $mail->Body = $message;
+
+    foreach ($paths as $path) {
+
+      $mail->addAttachment(WRITEPATH . 'uploads/renter_docs/' . $path);
+
+    }
+
+    if (!$mail->send()) {
+
+      return $this->response->setJSON($mail->ErrorInfo);
+    } else {
+
+      return $this->response->setJSON('Success!');
+    }
+  }
+
+  public function testModelClass()
+  {
+    // $model = new \App\Models\testAutoIncrementModel;
+    // $record = new \App\Entities\testAutoIncrement;
+    // $record->name = 'Penis Cleaner';
+    // $result = $model->insert($record);
+    $model = new \App\Models\testNoAutoIncrementModel;
+    $record = new \App\Entities\testNoAutoIncrement;
+    $record->id = '62W9';
+    $record->name = 'toiereaner';
+    $model->insert($record);
+    $result = $model->find($record->id);
+    dd($result);
+  }
+
 }
+

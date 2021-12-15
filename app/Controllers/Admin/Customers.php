@@ -118,14 +118,59 @@ class Customers extends \App\Controllers\BaseController
 
   public function update()
   {
+    // Get all suitable values from $_POST and assign to a new Customer entity
     $customer = new Customer;
     $customer->fill($this->request->getPost());
 
+    // If a value has been added for finish_date then this customer is no longer renting
     if ($this->request->getPost('finish_date') > '2000-01-01') {
 
       $customer->currently_renting = 0;
     }
 
+    // Now get all the uploaded files
+    $files = $this->request->getFiles();
+
+    //LOOP THROUGH THE FILES ARRAY, GETTING THE KEY FOR EACH INDEX SO WE CAN USE IT TO CREATE THE CORRECT FOLDER FOR EACH UPLOADED FILE
+    foreach ($files as $key => $file) {
+
+      // ALL INPUTS ARE NOT REQUIRED SO WE CHECK THAT FILE SIZE IS GREATER THAN ZERO TO DETERMINE WHETHER THERE'S ACTUALLY A FILE AT EACH INDEX
+      if ($file->getSizeByUnit('mb' > 0)) {
+
+        // CHECK VALIDITY
+        if (!$file->isValid()) {
+
+          $error_code = $file->getError();
+          throw new \RuntimeException($file->getErrorString() . " " . $error_code);
+        }
+
+        // CHECK FILE SIZE TO MAKE SURE IT DOESN'T EXCEED OUR MAX ALLOWED SIZE
+        $size = $file->getSizeByUnit('mb');
+
+        if ($size > 5) {
+
+          return redirect()->back()
+            ->with('warning', 'File too large (max 5MB)');
+        }
+
+        $type = $file->getMimeType();
+
+        if (!in_array($type, ['image/png', 'image/jpeg'])) {
+
+          return redirect()->back()
+            ->with('warning', 'Invalid file format (PNG or JPEG only)');
+        }
+
+        // Store it in the 'writable/uploads/images' folder
+        $file->store('renter_docs/');
+
+        // Add path to correct customer entity property
+        $customer->$key = $file->getName();
+      }
+    }
+
+    // At this point all values and files have been added to the record and we can save it, going to
+    // viewCurrentCustomers if successful or otherwise redirecting back so the user can fix any errors
     if ($this->model->skipValidation(true)->save($customer)) {
 
       return redirect()->to(site_url('Admin/Customers/viewCurrentCustomers'));
@@ -271,6 +316,18 @@ class Customers extends \App\Controllers\BaseController
     return view('Admin/Customers/getInfo', ['customers' => $customers]);
   }
 
+  public function emailsAsJSON()
+  {
+    $customers = $this->model->getCurrentCustomers();
+    $customerEmails = [];
+
+    foreach($customers as $customer) {
+      $customerEmails[$customer->customer_name] = $customer->email_address;
+    }
+
+    return $this->response->setJSON($customerEmails);
+  }
+
   public function viewInfo()
   {
     if (!$this->request->getPost('customer_name')) {
@@ -357,4 +414,38 @@ class Customers extends \App\Controllers\BaseController
   {
     return view('Admin/Customers/selectCustomerView');
   }
+
+  // Displays photo at $path if it exists
+  public function displayCustomerPhoto($path)
+  {
+    $path = WRITEPATH . 'uploads/renter_docs/' . $path;
+    
+    // Since we don't erase the $customer->path property when deleting images from the server we need to check if there's still
+    // a file located at $path
+    if(is_file($path)) {
+
+      $finfo = new \finfo(FILEINFO_MIME);
+    
+      $type = $finfo->file($path);
+      
+      header("Content-Type: $type");
+      header("Content-Length: " . filesize($path));
+      
+      readfile($path);
+      
+    }
+
+    exit;
+  }
+
+  // Deletes photo from writable directory if it exists
+  public function deleteCustomerPhoto($path)
+  {
+    $path = WRITEPATH . 'uploads/renter_docs/' . $path;   
+    
+    if(is_file($path)) {
+      unlink($path);
+    }        
+  }
+
 }

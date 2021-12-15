@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use DateTime;
+
 class BikeStatusChangeModel extends \CodeIgniter\Model
 {
   protected $table = 'bike_status_change';
@@ -23,18 +25,24 @@ class BikeStatusChangeModel extends \CodeIgniter\Model
   {
     array_walk($data['data'], function (&$item) {
 
-    $item = trim($item);
+      $item = trim($item);
+    });
 
-  });
-
-  return $data;
+    return $data;
   }
 
-  public function getCurrentStatus($contract_number){
-    
+  public function getCurrentStatus($contract_number)
+  {
+
     return $this->where('customer_id', $contract_number)
-                ->first();
-
+      ->first();
   }
 
+  public function getTodaysRecords()
+  {
+    $yesterday = date('Y-m-d', time() - 24 * 3600) . ' 23:59:59';
+
+    return $this->where('date_time >', $yesterday)
+      ->findAll();
+  }
 }

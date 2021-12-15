@@ -56,8 +56,14 @@ class Repairs extends \App\Controllers\BaseController
     {
       $plateNumber = $this->request->getPost('plate_number');
       $repairs = $this->model->findByPlateNumber($plateNumber);
+      $repairsArray = [];
 
-      return view('Admin/Repairs/showHistory', ['repairs' => $repairs,]);
+      foreach ($repairs as $repair) {
+
+        $repairsArray[] = $repair;
+      }
+
+      return($this->response->setJSON($repairsArray));      
     }
 
 }

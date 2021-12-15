@@ -86,4 +86,20 @@ class CustomersModel extends \CodeIgniter\Model
       return $customer;
     }
   }
+
+  public function getTodaysStartRecords()
+  {
+    $yesterday = date('Y-m-d', time() - 24 * 3600) . ' 23:59:59';;
+
+    return $this->where('start_date >', $yesterday)
+      ->findAll();
+  }
+
+  public function getTodaysEndRecords()
+  {
+    $yesterday = date('Y-m-d', time() - 24 * 3600) . ' 23:59:59';
+
+    return $this->where('finish_date >', $yesterday)
+      ->findAll();
+  }
 }
