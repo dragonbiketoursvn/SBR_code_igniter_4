@@ -100,7 +100,8 @@ class Test extends BaseController
       $mail->SMTPSecure = 'tls';
       $mail->Port = 26;
       $mail->setFrom('patrick@saigonbikerentals.com');
-      $mail->addAddress('dragonbiketoursvn@gmail.com', 'NGUYENVANKHANH19992@gmail.com');
+      $mail->addAddress('dragonbiketoursvn@gmail.com');
+      $mail->addAddress('NGUYENVANKHANH19992@gmail.com');
       $mail->isHTML(true);
       $mail->Subject = 'Check Daily Stats/Coi Lại Thông Tin';
       $mail->Body = '<a href="http://hagiangadventures.com/Admin/Reports/getTodaysReport"><h1>Click to review/Bấm Để Xem</h1></a>';
