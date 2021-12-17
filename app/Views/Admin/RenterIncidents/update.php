@@ -65,23 +65,7 @@
   </div>
 </div>
 
-<div class="field is-horizontal" style="bottom: 200px !important;">
-  <div class="field-label is-normal">
-    <label class="label" for="plate_number">Plate Number</label>
-  </div>
-  <div class="field-body">
-    <div class="field">
-      <p class="control is-expanded">
-        <input readonly autocomplete="off" list="plate_number_list" class="input is-success" id="plate_number" name="plate_number">
-        <datalist id="plate_number_list">
-          <?php foreach ($bikes as $bike) : ?>
-            <option value="<?= $bike->plate_number ?>">
-            <?php endforeach; ?>
-        </datalist>
-      </p>
-    </div>
-  </div>
-</div>
+
 
 <div class="field is-horizontal">
   <div class="field-label is-normal">
@@ -127,9 +111,6 @@
     </div>
   </div>
 </div>
-
-
-
 
 <div class="modal">
   <div class="modal-background"></div>

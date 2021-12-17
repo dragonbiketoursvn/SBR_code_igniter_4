@@ -61,8 +61,10 @@ class RenterIncidents extends \App\Controllers\BaseController
   public function update($id)
   {
     $incident = $this->model->getById($id);
+    $bikeModel = new \App\Models\BikesModel;
+    $bikes =  $bikeModel->getCurrentBikes();
 
-    return view('Admin/RenterIncidents/update', ['incident' => $incident]);
+    return view('Admin/RenterIncidents/update', ['incident' => $incident, 'bikes' => $bikes]);
   }
 
   public function saveUpdate()

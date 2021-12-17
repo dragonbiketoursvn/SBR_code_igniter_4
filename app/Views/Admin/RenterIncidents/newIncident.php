@@ -27,8 +27,6 @@
 
 <?= form_open('Admin/RenterIncidents/saveIncident', 'id="incident_form" class="random_class"') ?>
 
-
-
 <div class="field is-horizontal">
   <div class="field-label is-normal">
     <label class="label" for="type">Incident Type</label>
