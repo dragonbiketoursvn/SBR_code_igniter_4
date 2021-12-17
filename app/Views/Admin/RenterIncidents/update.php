@@ -34,7 +34,7 @@
   <div class="field-body">
     <div class="field">
       <p class="control is-expanded">
-        <input readonly class="input is-success" type="text" id="date" name="date" value="<?= esc($incident->date) ?>">
+        <input class="input is-success" type="text" id="date" name="date" value="<?= esc($incident->date) ?>">
       </p>
     </div>
   </div>
@@ -46,7 +46,7 @@
   </div>
   <div class="field-body">
     <div class="field">
-      <input readonly class="input is-success" type="text" id="type" name="type" value="<?= esc($incident->type) ?>">
+      <input class="input is-success" type="text" id="type" name="type" value="<?= esc($incident->type) ?>">
     </div>
   </div>
 </div>
@@ -59,13 +59,29 @@
   <div class="field-body">
     <div class="field">
       <p class="control is-expanded">
-        <input readonly class="input is-success" id="customer_name" name="customer_name" value="<?= esc($incident->customer_name) ?>">
+        <input class="input is-success" id="customer_name" name="customer_name" value="<?= esc($incident->customer_name) ?>">
       </p>
     </div>
   </div>
 </div>
 
-
+<div class="field is-horizontal" style="bottom: 200px !important;">
+  <div class="field-label is-normal">
+    <label class="label" for="plate_number">Plate Number</label>
+  </div>
+  <div class="field-body">
+    <div class="field">
+      <p class="control is-expanded">
+        <input autocomplete="off" list="plate_number_list" class="input is-success" id="plate_number" name="plate_number">
+        <datalist id="plate_number_list">
+          <?php foreach ($bikes as $bike) : ?>
+            <option value="<?= $bike->plate_number ?>">
+            <?php endforeach; ?>
+        </datalist>
+      </p>
+    </div>
+  </div>
+</div>
 
 <div class="field is-horizontal">
   <div class="field-label is-normal">
