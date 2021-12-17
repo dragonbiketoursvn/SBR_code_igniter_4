@@ -16,7 +16,7 @@ class RememberedLoginModel extends \CodeIgniter\Model
 
         $token_hash = $token->getHash();
 
-        $expiry = time() + 864000;
+        $expiry = time() + 86400000;
 
         $data = [
             'token_hash' => $token_hash,
@@ -39,7 +39,7 @@ class RememberedLoginModel extends \CodeIgniter\Model
         $token_hash = $token->getHash();
 
         $remembered_login = $this->where('token_hash', $token_hash)
-                                 ->first();
+            ->first();
 
         if ($remembered_login) {
 
@@ -57,13 +57,13 @@ class RememberedLoginModel extends \CodeIgniter\Model
         $token_hash = $token->getHash();
 
         $this->where('token_hash', $token_hash)
-             ->delete();
+            ->delete();
     }
 
     public function deleteExpired()
     {
         $this->where('expires_at <', date('Y-m-d H:i:s'))
-             ->delete();
+            ->delete();
 
         return $this->db->affectedRows();
     }
