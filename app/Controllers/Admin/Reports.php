@@ -16,9 +16,10 @@ class Reports extends \App\Controllers\BaseController
         $todaysDepartingCustomers = $customersModel->getTodaysEndRecords();
 
         foreach ($todaysDepartingCustomers as $customer) {
-            $currentBike = $statusChangeModel->getCurrentStatus($customer->id)->plate_number;
+            $currentBike = $statusChangeModel->getCurrentStatus($customer->id);
+            
             if (isset($currentBike)) {
-                $customer->current_bike = $currentBike;
+                $customer->current_bike = $currentBike->plate_number;
             } else {
                  $customer->current_bike = 'UNKNOWN';                
             }
