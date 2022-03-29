@@ -5,27 +5,30 @@
 <?= $this->section("content") ?>
 
 <div id="filterBar">
-    <select name="brand" id="brand">
+    <select name="brand" id="brand" class="filter">
         <option value="ALL">ALL</option>
-        <option value="HONDA">HONDA</option>
-        <option value="YAMAHA">YAMAHA</option>
-        <option value="SYM">SYM</option>
+        <?php foreach ($brands as $brand) : ?>
+            <option value="<?= $brand->brand ?>"><?= $brand->brand ?></option>
+        <?php endforeach; ?>
     </select>
-    <select name="model" id="model">
+    <select name="model" id="model" class="filter">
         <option value="ALL">ALL</option>
         <?php foreach ($models as $model) : ?>
             <option value="<?= $model->model ?>"><?= $model->model ?></option>
         <?php endforeach; ?>
     </select>
-    <select name="year" id="year">
+    <select name="year" id="year" class="filter">
         <option value="ALL">ALL</option>
     </select>
-    <select name="plateNumber" id="plateNumber">
+    <select name="plateNumber" id="plateNumber" class="filter">
         <option value="ALL">ALL</option>
         <?php foreach ($bikes as $bike) : ?>
             <option value="<?= $bike->plate_number ?>"><?= $bike->plate_number ?></option>
         <?php endforeach; ?>
     </select>
+    <button id="removeFilters">
+        REMOVE FILTERS
+    </button>
 </div>
 
 <div id="filterBarSpacer"></div>
@@ -34,28 +37,28 @@
     <div class="photoSection" data-brand="<?= $bike->brand ?>" data-model="<?= $bike->model ?>" data-year="<?= $bike->year ?>" data-plate_number="<?= $bike->plate_number ?>">
         <div class="photoBox" data-image="unloaded">
             <div class="photoCaption"><?= $bike->plate_number . ' (side)' ?></div>
-            <img class="photoImage" src="<?= site_url('Admin/Bikes/displayBikePhoto/') . $bike->pic_side ?>">
+            <img class="photoImage" src="<?= site_url('Admin/Bikes/displayPhoto/') . $bike->pic_side ?>">
             <div class="selectButton">Select</div>
             <div class="deselectButton">De-select</div>
         </div>
 
         <div class="photoBox" data-image="unloaded">
             <div class="photoCaption"><?= $bike->plate_number . ' (front)' ?></div>
-            <img class="photoImage" src="<?= site_url('Admin/Bikes/displayBikePhoto/') . $bike->pic_front ?>">
+            <img class="photoImage" src="<?= site_url('Admin/Bikes/displayPhoto/') . $bike->pic_front ?>">
             <div class="selectButton">Select</div>
             <div class="deselectButton">De-select</div>
         </div>
 
         <div class="photoBox" data-image="unloaded">
             <div class="photoCaption"><?= $bike->plate_number . ' (rear)' ?></div>
-            <img class="photoImage" src="<?= site_url('Admin/Bikes/displayBikePhoto/') . $bike->pic_rear ?>">
+            <img class="photoImage" src="<?= site_url('Admin/Bikes/displayPhoto/') . $bike->pic_rear ?>">
             <div class="selectButton">Select</div>
             <div class="deselectButton">De-select</div>
         </div>
 
         <div class="photoBox" data-image="unloaded">
             <div class="photoCaption"><?= $bike->plate_number . ' (trunk)' ?></div>
-            <img class="photoImage" src="<?= site_url('Admin/Bikes/displayBikePhoto/') . $bike->pic_trunk ?>">
+            <img class="photoImage" src="<?= site_url('Admin/Bikes/displayPhoto/') . $bike->pic_trunk ?>">
             <div class="selectButton">Select</div>
             <div class="deselectButton">De-select</div>
         </div>
@@ -91,13 +94,16 @@
     const year = document.querySelector('#year');
     const plateNumber = document.querySelector('#plateNumber');
     const photoSections = document.querySelectorAll('.photoSection');
-    const selectors = document.querySelectorAll('select');
+    const selectors = document.querySelectorAll('.filter');
     const currentFilters = {
         brand: 'ALL',
         model: 'ALL',
         year: 'ALL',
         plateNumber: 'ALL'
     };
+    const removeFilters = document.querySelector('#removeFilters');
+    // Hide removeFilters until some filters have been applied
+    window.addEventListener('load', () => removeFilters.classList.add('hidden'));
 
     // Dynamically generate options for year select menu (so current year is always at top)
     const currentYear = new Date().getFullYear();
@@ -113,6 +119,8 @@
     selectors.forEach(function(el) {
         el.addEventListener('change', function(evt) {
             currentFilters[el.id] = evt.target.value;
+            removeFilters.classList.remove('hidden');
+
             photoSections.forEach(function(element) {
                 if ((currentFilters.brand !== 'ALL') && (currentFilters.brand !== element.dataset.brand)) {
                     element.classList.add('hidden');
@@ -120,14 +128,185 @@
                     element.classList.add('hidden');
                 } else if ((currentFilters.year !== 'ALL') && (currentFilters.year !== element.dataset.year)) {
                     element.classList.add('hidden');
-                } else if ((currentFilters.plateNumber !== 'ALL') && (currentFilters.plateNumber !== element.dataset.plateNumber)) {
+                } else if ((currentFilters.plateNumber !== 'ALL') && (currentFilters.plateNumber !== element.dataset.plate_number)) {
                     element.classList.add('hidden');
                 } else {
                     element.classList.remove('hidden');
                 }
             })
+
+            /* Update the select elements so options only appear for bikes which haven't already been hidden */
+            // Start by removing all options from the select elements
+            selectors.forEach(el => el.innerHTML = '');
+
+            // Then for each filter category we create an array to hold all currently visible brands plus 'All', get rid of all 
+            // duplicates, and order alphabetically   
+            const brands = [];
+            photoSections.forEach(function(el) {
+                if (!el.classList.contains('hidden')) {
+                    brands.push(el.dataset.brand);
+                }
+            });
+            const uniqueBrands = [];
+            const setBrands = new Set(brands);
+            setBrands.forEach(el => uniqueBrands.push(el));
+            uniqueBrands.sort();
+            if (evt.target.name !== 'brand' && uniqueBrands.length > 1) {
+                uniqueBrands.unshift('ALL');
+            }
+            uniqueBrands.forEach(function(el) {
+                let option = document.createElement('option');
+                option.textContent = el;
+                option.value = el;
+                brand.appendChild(option);
+            });
+
+
+            const models = [];
+            photoSections.forEach(function(el) {
+                if (!el.classList.contains('hidden')) {
+                    models.push(el.dataset.model);
+                }
+            });
+            const uniqueModels = [];
+            const setModels = new Set(models);
+            setModels.forEach(el => uniqueModels.push(el));
+            uniqueModels.sort();
+            if (evt.target.name !== 'model' && uniqueModels.length > 1) {
+                uniqueModels.unshift('ALL');
+            }
+            uniqueModels.forEach(function(el) {
+                let option = document.createElement('option');
+                option.textContent = el;
+                option.value = el;
+                model.appendChild(option);
+            });
+
+
+            const years = [];
+            photoSections.forEach(function(el) {
+                if (!el.classList.contains('hidden')) {
+                    years.push(el.dataset.year);
+                }
+            });
+            const uniqueYears = [];
+            const setYears = new Set(years);
+            setYears.forEach(el => uniqueYears.push(el));
+            uniqueYears.sort();
+            if (evt.target.name !== 'year' && uniqueYears.length > 1) {
+                uniqueYears.unshift('ALL');
+            }
+            uniqueYears.forEach(function(el) {
+                let option = document.createElement('option');
+                option.textContent = el;
+                option.value = el;
+                year.appendChild(option);
+            });
+
+
+            const plateNumbers = [];
+            photoSections.forEach(function(el) {
+                if (!el.classList.contains('hidden')) {
+                    plateNumbers.push(el.dataset.plate_number);
+                }
+            });
+            const uniquePlateNumbers = [];
+            const setPlateNumbers = new Set(plateNumbers);
+            setPlateNumbers.forEach(el => uniquePlateNumbers.push(el));
+            uniquePlateNumbers.sort();
+            if (evt.target.name !== 'plate_number' && uniquePlateNumbers.length > 1) {
+                uniquePlateNumbers.unshift('ALL');
+            }
+            uniquePlateNumbers.forEach(function(el) {
+                let option = document.createElement('option');
+                option.textContent = el;
+                option.value = el;
+                plateNumber.appendChild(option);
+            });
         })
     })
+
+    removeFilters.addEventListener('click', function(evt) {
+
+        evt.target.classList.add('hidden');
+        photoSections.forEach(el => el.classList.remove('hidden'));
+
+        /* Update the select elements */
+        // Start by removing all options from the select elements
+        selectors.forEach(el => el.innerHTML = '');
+        for (prop in currentFilters) {
+            currentFilters[prop] = 'ALL';
+        }
+
+        // Then for each filter category we create an array to hold all currently visible brands plus 'All', get rid of all 
+        // duplicates, and order alphabetically   
+        const brands = [];
+        photoSections.forEach(function(el) {
+            brands.push(el.dataset.brand);
+        });
+        const uniqueBrands = [];
+        const setBrands = new Set(brands);
+        setBrands.forEach(el => uniqueBrands.push(el));
+        uniqueBrands.sort();
+        uniqueBrands.unshift('ALL');
+        uniqueBrands.forEach(function(el) {
+            let option = document.createElement('option');
+            option.textContent = el;
+            option.value = el;
+            brand.appendChild(option);
+        });
+
+        const models = [];
+        photoSections.forEach(function(el) {
+            models.push(el.dataset.model);
+        });
+        const uniqueModels = [];
+        const setModels = new Set(models);
+        setModels.forEach(el => uniqueModels.push(el));
+        uniqueModels.sort();
+        uniqueModels.unshift('ALL');
+        uniqueModels.forEach(function(el) {
+            let option = document.createElement('option');
+            option.textContent = el;
+            option.value = el;
+            model.appendChild(option);
+        });
+
+
+        const years = [];
+        photoSections.forEach(function(el) {
+            years.push(el.dataset.year);
+        });
+        const uniqueYears = [];
+        const setYears = new Set(years);
+        setYears.forEach(el => uniqueYears.push(el));
+        uniqueYears.sort();
+        uniqueYears.unshift('ALL');
+        uniqueYears.forEach(function(el) {
+            let option = document.createElement('option');
+            option.textContent = el;
+            option.value = el;
+            year.appendChild(option);
+        });
+
+
+        const plateNumbers = [];
+        photoSections.forEach(function(el) {
+            plateNumbers.push(el.dataset.plate_number);
+        });
+        const uniquePlateNumbers = [];
+        const setPlateNumbers = new Set(plateNumbers);
+        setPlateNumbers.forEach(el => uniquePlateNumbers.push(el));
+        uniquePlateNumbers.sort();
+        uniquePlateNumbers.unshift('ALL');
+        console.log(uniquePlateNumbers);
+        uniquePlateNumbers.forEach(function(el) {
+            let option = document.createElement('option');
+            option.textContent = el;
+            option.value = el;
+            plateNumber.appendChild(option);
+        });
+    });
 
     /* This section is for our photoBox functionality: display, delete, upload */
 
@@ -147,37 +326,6 @@
         });
     });
 
-    // // Once we've successfully selected a file the change event fires and our callback is invoked
-    // // photoInputs.forEach((e) => e.addEventListener('change', function(event) {
-
-    // // Set constants for the photoInput's parent photoBox and its sibling photoImage, deleteButon, and selectPhoto
-    // const photoBox = event.target.parentNode;
-    // const photoImage = photoBox.querySelector('.photoImage');
-
-    // // Assign file selected by input (via the input's files attribute) to const file
-    // const file = event.target.files[0];
-
-    // // Exit if no file was selected
-    // if (!file) return;
-
-    // // Create a FileReader object 
-    // const reader = new FileReader();
-
-    // // Read file into reader as DataURL
-    // reader.readAsDataURL(file);
-
-    // // Once read operation has successfully finished, set photoImage's src attribute to the value of the reader's 
-    // // result property (in this case a DataURL)
-    // // Then unhide photoImage and deletButton and hide selectPhoto
-    // reader.onload = function (event) {
-
-    //     photoImage.src = event.target.result;
-    //     photoImage.classList.remove('hidden');
-    //     deleteButton.classList.remove('hidden');
-    //     selectPhoto.classList.add('hidden');
-    // }
-
-    // }));
 
     // This section of code provides some functionality for our mailForm.
     // It fetches a JSON object with names and email addresses of current customers and adds an event listener to 
@@ -186,7 +334,7 @@
 
     let emailJSON;
     const mailForm = document.querySelector('.mailForm');
-    const url = "<?= site_url('Admin/Customers/emailsAsJSON'); ?>";
+    const url = "http://sbr_code_igniter_4.localhost/Admin/Customers/emailsAsJSON";
     const email = document.querySelector('.email');
     const nameInput = document.querySelector('#names');
     const messageBox = document.querySelector('.messageBox');
@@ -214,6 +362,7 @@
 
     window.addEventListener('load', function(evt) {
         selectors.forEach((el) => el.value = 'ALL');
+
         deselectButtons.forEach((e) => e.classList.add('hidden'));
         mailForm.classList.add('hidden');
         selectButtons.forEach(function(el) {
@@ -244,7 +393,7 @@
         const regEx = /(?<=o\/).*/i;
         const result = regEx.exec(path);
         selected.push(result[0]);
-        console.log(selected);
+
         if (selected.length > 4) {
             selectButtons.forEach((button) => button.classList.add('hidden'));
         }
@@ -298,7 +447,7 @@
         }
 
         if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email.value)) {
-            fetch("<?= site_url('Admin/Bikes/mailBikePhotos') ?>", {
+            fetch("http://sbr_code_igniter_4.localhost/Admin/Bikes/mailPhotos", {
                 method: 'POST',
                 body: formData
             }).then(response => response.text().then(text => alert(text)).catch(error => console.log(error)));

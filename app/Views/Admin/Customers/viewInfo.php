@@ -247,7 +247,7 @@ if (!$customer) {
   <div class="photoSection">
     <div class="photoBox" data-image="unloaded">
       <div class="photoCaption">Passport</div>
-      <img class="photoImage" src="<?= site_url("Admin/Customers/displayCustomerPhoto/" . $customer->passport) ?>">
+      <img class="photoImage" src="<?= site_url("Admin/Customers/displayPhoto/" . $customer->passport) ?>">
       <div class="deleteButton">Delete</div>
       <label class="selectPhoto" for="passport">Select Photo</label>
       <input autocomplete="off" type="file" class="photoInput" id="passport" name="passport">
@@ -255,7 +255,7 @@ if (!$customer) {
 
     <div class="photoBox" data-image="unloaded">
       <div class="photoCaption">TRC or Visa</div>
-      <img class="photoImage" src="<?= site_url("Admin/Customers/displayCustomerPhoto/" . $customer->TRC_or_visa) ?>">
+      <img class="photoImage" src="<?= site_url("Admin/Customers/displayPhoto/" . $customer->TRC_or_visa) ?>">
       <div class="deleteButton">Delete</div>
       <label class="selectPhoto" for="TRC_or_visa">Select Photo</label>
       <input autocomplete="off" type="file" class="photoInput" id="TRC_or_visa" name="TRC_or_visa">
@@ -263,7 +263,7 @@ if (!$customer) {
 
     <div class="photoBox" data-image="unloaded">
       <div class="photoCaption">License (Front)</div>
-      <img class="photoImage" src="<?= site_url("Admin/Customers/displayCustomerPhoto/" . $customer->license_front) ?>">
+      <img class="photoImage" src="<?= site_url("Admin/Customers/displayPhoto/" . $customer->license_front) ?>">
       <div class="deleteButton">Delete</div>
       <label class="selectPhoto" for="license_front">Select Photo</label>
       <input autocomplete="off" type="file" class="photoInput" id="license_front" name="license_front">
@@ -271,7 +271,7 @@ if (!$customer) {
 
     <div class="photoBox" data-image="unloaded">
       <div class="photoCaption">License (Back)</div>
-      <img class="photoImage" src="<?= site_url("Admin/Customers/displayCustomerPhoto/" . $customer->license_back) ?>">
+      <img class="photoImage" src="<?= site_url("Admin/Customers/displayPhoto/" . $customer->license_back) ?>">
       <div class="deleteButton">Delete</div>
       <label class="selectPhoto" for="license_back">Select Photo</label>
       <input autocomplete="off" type="file" class="photoInput" id="license_back" name="license_back">

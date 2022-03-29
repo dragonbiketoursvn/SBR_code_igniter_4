@@ -30,7 +30,7 @@
   <div class="field-body">
     <div class="field">
       <p class="control is-expanded">
-        <input autofocus autocomplete="off" list="current_bikes" class="input is-success" id="plate_number" name="plate_number">
+        <input autofocus autocomplete="off" list="current_bikes" class="input is-success" data-bike="<?= $plateNumber ?? '' ?>" id="plate_number" name="plate_number">
         <datalist id="current_bikes">
           <?php foreach ($currentBikes as $currentBike) : ?>
             <option value="<?= $currentBike->plate_number ?>">
@@ -477,7 +477,7 @@
 
     formData.append('plate_number', plateNumber.value);
 
-    fetch("<?= site_url('Admin/Bikes/showProfile') ?>", {
+    fetch("http://sbr_code_igniter_4.localhost/Admin/Bikes/showProfile", {
       method: 'POST',
       body: formData
     }).then(response => response.json()).then(function(json) {
@@ -500,12 +500,12 @@
         insuranceExpires.value = json.insurance_expires;
 
         // Display any photos
-        picSide.parentNode.querySelector('img').src = "<?= site_url('Admin/Bikes/displayBikePhoto/') ?>" + json.pic_side;
-        picFront.parentNode.querySelector('img').src = "<?= site_url('Admin/Bikes/displayBikePhoto/') ?>" + json.pic_front;
-        picRear.parentNode.querySelector('img').src = "<?= site_url('Admin/Bikes/displayBikePhoto/') ?>" + json.pic_rear;
-        picTrunk.parentNode.querySelector('img').src = "<?= site_url('Admin/Bikes/displayBikePhoto/') ?>" + json.pic_trunk;
-        regFront.parentNode.querySelector('img').src = "<?= site_url('Admin/Bikes/displayRegPhoto/') ?>" + json.reg_front;
-        regBack.parentNode.querySelector('img').src = "<?= site_url('Admin/Bikes/displayRegPhoto/') ?>" + json.reg_back;
+        picSide.parentNode.querySelector('img').src = "http://sbr_code_igniter_4.localhost/Admin/Photos/displayPhoto/" + json.pic_side;
+        picFront.parentNode.querySelector('img').src = "http://sbr_code_igniter_4.localhost/Admin/Photos/displayPhoto/" + json.pic_front;
+        picRear.parentNode.querySelector('img').src = "http://sbr_code_igniter_4.localhost/Admin/Photos/displayPhoto/" + json.pic_rear;
+        picTrunk.parentNode.querySelector('img').src = "http://sbr_code_igniter_4.localhost/Admin/Photos/displayPhoto/" + json.pic_trunk;
+        regFront.parentNode.querySelector('img').src = "http://sbr_code_igniter_4.localhost/Admin/Photos/displayPhoto/" + json.reg_front;
+        regBack.parentNode.querySelector('img').src = "http://sbr_code_igniter_4.localhost/Admin/Photos/displayPhoto/" + json.reg_back;
 
         // Set all inputs to readonly (until 'edit' button is pressed)
         inputs.forEach(e => e.setAttribute('readonly', 'true'));
@@ -551,16 +551,11 @@
   // Set all elements to correct initial state when page loads
   window.onload = function() {
 
-    plateNumber.value = "<?php
-                          if (isset($plateNumber)) {
-                            echo $plateNumber;
-                          } else {
-                            echo '';
-                          }
-                          ?>";
+    plateNumber.value = plateNumber.dataset.bike;
 
-    // plateNumber.value = plateNumber;
-    viewProfile.click();
+    if (plateNumber.value !== '') {
+      viewProfile.click();
+    }
 
     deleteButtons.forEach((e) => e.classList.add('hidden')); // hide the delete buttons
     photoInputs.forEach((e) => e.classList.add('hidden')); // hide each of the photo inputs
@@ -610,17 +605,17 @@
   // Have the delete button asynchronously call the deleteCustomerPhoto controller
   deleteButtons.forEach((e) => e.addEventListener('click', function(event) {
 
-    const urlBaseReg = "<?= site_url('Admin/Bikes/deleteRegPhoto/') ?>";
-    const urlBaseBike = "<?= site_url('Admin/Bikes/deleteBikePhoto/') ?>";
-    let urlBase;
+    const urlBase = "http://sbr_code_igniter_4.localhost/Admin/Photos/deletePhoto/";
+    // const urlBaseBike = "http://sbr_code_igniter_4.localhost/Admin/Bikes/deleteBikePhoto/";
+    // let urlBase;
 
     // So we can use this function with each photoBox we need to put together the correct url
     // by using a regex to tease out the path name from the img's src attribute
-    if (e.previousElementSibling.previousElementSibling.textContent.includes('Registration')) {
-      urlBase = urlBaseReg;
-    } else {
-      urlBase = urlBaseBike;
-    }
+    // if (e.previousElementSibling.previousElementSibling.textContent.includes('Registration')) {
+    //   urlBase = urlBaseReg;
+    // } else {
+    //   urlBase = urlBaseBike;
+    // }
 
     let regEx = /(?<=o\/).*/i;
     let urlString = e.previousElementSibling.src;
@@ -658,7 +653,7 @@
 
   let emailJSON;
   const mailForm = document.querySelector('.mailForm');
-  const url = "<?= site_url('Admin/Customers/emailsAsJSON'); ?>";
+  const url = "http://sbr_code_igniter_4.localhost/Admin/Customers/emailsAsJSON";
   const email = document.querySelector('.email');
   const nameInput = document.querySelector('#names');
   const messageBox = document.querySelector('.messageBox');
@@ -762,7 +757,7 @@
     }
 
     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email.value)) {
-      fetch("<?= site_url('Admin/Bikes/mailRegPhotos') ?>", {
+      fetch("http://sbr_code_igniter_4.localhost/Admin/Photos/mailPhotos", {
         method: 'POST',
         body: formData
       }).then(response => response.text().then(text => alert(text)).catch(error => console.log(error)));

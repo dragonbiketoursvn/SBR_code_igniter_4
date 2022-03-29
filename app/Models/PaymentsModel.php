@@ -55,4 +55,12 @@ class PaymentsModel extends \CodeIgniter\Model
     return $this->where('payment_date >', $yesterday)
       ->findAll();
   }
+
+  public function getTotalByCustomerID($id)
+  {
+    return $this->selectSum('months_paid')
+      ->where('customer_id', $id)
+      ->get()
+      ->getRow();
+  }
 }

@@ -1,0 +1,558 @@
+/* General and desktop styles */
+.hidden {
+  display: none;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  background-color: #444444;
+  margin: 0px;
+  padding: 0px;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+:not(i) {
+  font-family: "Montserrat Alternates", sans-serif;
+}
+
+#individual-profile-navbar {
+  position: relative;
+  display: flex;
+  width: 100%;
+  padding: 0px;
+  margin-bottom: 0px;
+}
+
+#individual-profile-navbar li {
+  list-style-type: none;
+  border: 1px white solid;
+  padding: 5px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom: none;
+  width: 50%;
+  position: relative;
+  color: white;
+  padding-left: 10px;
+  /* margin-right: 2px; */
+}
+
+#individual-profile-renter-details {
+  background: linear-gradient(160deg, #343434, #272727);
+  z-index: 3;
+  position: relative;
+}
+
+#individual-profile-payment-history {
+  background: linear-gradient(160deg, #2c2c2c, #252525);
+  margin-left: 2px;
+  z-index: 1;
+  position: relative;
+}
+
+#individual-profile {
+  position: relative;
+  width: 100%;
+  height: auto;
+  background: linear-gradient(160deg, #333, #000000);
+  border: 1px white solid;
+  margin-top: -1px;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+section {
+  color: white;
+  display: flex;
+  min-height: 90vh;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+}
+
+.banner {
+  height: 30vh;
+  width: 98%;
+  font-size: 8vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(160deg, #333, #000000);
+  border: 1px white solid;
+  color: white;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgb(0, 0, 0, 1);
+  padding: 0px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2vh;
+}
+
+.menu-inputs {
+  width: 98vw;
+  height: 65vh;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.single-row {
+  height: 30vh;
+}
+
+.button-box {
+  width: 98vw;
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+form {
+  width: 97vw;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: auto;
+  margin-bottom: 3px;
+  padding: 1vw;
+  color: white;
+  border: 1px white solid;
+  border-radius: 20px;
+}
+
+#mail-form {
+  display: flex;
+  flex-direction: column;
+}
+
+#mail-form input {
+  width: 100%;
+  height: 9vh;
+  text-align: center;
+  font-size: 5vw;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+fieldset {
+  width: 98%;
+  border-radius: 20px;
+  margin: auto;
+}
+
+.renter-docs {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.menu-inputs input[type="text"] {
+  width: 100%;
+  height: 15vh;
+  text-align: center;
+  font-size: 5vw;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+input.col-3 {
+  width: 33%;
+  height: 10vh;
+  text-align: center;
+  font-size: 2vw;
+  border-radius: 20px;
+  margin: 2px;
+  flex-grow: 1;
+}
+
+input.col-4 {
+  width: 24%;
+  height: 10vh;
+  text-align: center;
+  font-size: 1.5vw;
+  border-radius: 20px;
+  margin: 2px;
+  /* flex-grow: 1; */
+}
+
+input[disabled] {
+  background: #bbb;
+}
+
+.initial-view-buttons {
+  width: 32vw;
+  margin-bottom: 1vh;
+  font-size: 3vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+.start-meeting-button {
+  width: 48.5vw;
+  height: 20vh;
+  margin-bottom: 24vh;
+  font-size: 4em;
+}
+
+.lone-button {
+  width: 100%;
+  height: 20vh;
+  margin-bottom: 24vh;
+  font-size: 4em;
+}
+
+.bottom-button {
+  position: fixed;
+  bottom: 3px;
+  width: 100%;
+  height: 20vh;
+  margin-left: 2px;
+  margin-right: 2px;
+  font-size: 4em;
+  background: white;
+  border: 2px solid black;
+  border-radius: 5px;
+  box-shadow: inset -2vh -2vh 2vh rgba(0, 0, 0, 0.8);
+}
+
+.bottom-button:hover {
+  box-shadow: inset 1vh 1vh 2vh rgba(0, 0, 0, 0.8),
+    inset -0.5vh -0.5vh 2vh rgba(0, 0, 0, 0.6);
+}
+
+.bottom-button:active {
+  box-shadow: inset 2vh 2vh 2vh rgba(0, 0, 0, 0.8),
+    inset -0.5vh -0.5vh 2vh rgba(0, 0, 0, 0.6);
+}
+
+.forward {
+  background: linear-gradient(160deg, #333, #000000);
+  border: 1px white solid;
+  color: white;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgb(0, 0, 0, 1);
+}
+
+.forward span {
+  font-size: 0.15em;
+  margin-top: 2px;
+  margin-bottom: -20px;
+}
+
+.forward:active {
+  box-shadow: 0 0 20px white;
+  text-shadow: 0 0 5px white;
+}
+
+.forward:hover {
+  background: linear-gradient(160deg, #444, #111);
+}
+
+.backward {
+  background: linear-gradient(160deg, #fff, #eee);
+  border: 2px black solid;
+  color: black;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgb(0, 0, 0, 1);
+  font-weight: 400;
+}
+
+.backward span {
+  font-size: 4em;
+}
+
+.backward:active {
+  /* background: linear-gradient(160deg, #fff, #eee); */
+  box-shadow: 0 0 20px white;
+  text-shadow: 0 0 5px black;
+}
+
+.backward:hover {
+  background: linear-gradient(160deg, #fff, #eee);
+  box-shadow: inset 2px 2px 3px #ccc;
+}
+
+/* || table styles */
+table {
+  width: 100%;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+table,
+td,
+th {
+  border: 2px solid white;
+  border-collapse: collapse;
+  box-sizing: border-box;
+  box-shadow: 0px 0px 2px white;
+  color: white;
+  text-shadow: -1px 0px 1px #ddddf7;
+  padding: 2px;
+  font-family: "Montserrat Alternates", sans-serif;
+}
+
+table td {
+  padding-left: 10px;
+}
+
+/* equalize the padding that will surround the text inputs */
+#payment-history-table td {
+  padding: 2px;
+}
+
+#payment-history-table input {
+  height: 3vw;
+}
+
+table tr:nth-child(odd) {
+  /* background: linear-gradient(160deg, #555, #000000); */
+  background: #777;
+}
+
+/* don't want any padding around the filter buttons */
+table thead tr:nth-child(2) td {
+  padding: 0px;
+}
+
+table tr td:nth-child(11),
+#incident-view-record-table tbody td:nth-child(n + 5) {
+  padding: 0px;
+}
+
+#incident-view-record-table input {
+  width: 100%;
+  height: 2vw;
+  margin: 2px 2px;
+  font-size: 1em;
+}
+
+#profiles-view-renter-table,
+#incident-view-record-table {
+  margin-bottom: 22vh;
+}
+
+.profiles-view-filter-button,
+.incident-view-filter-button {
+  width: 100%;
+  border-radius: 5px;
+  font-size: 1em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  box-shadow: inset 2px 2px 3px rgba(255, 255, 255, 0.6),
+    inset -4px -4px 6px rgba(0, 0, 0, 0.6);
+}
+
+.profiles-view-filter-button:active,
+.incident-view-filter-button:active {
+  box-shadow: inset -2px -2px 3px rgba(255, 255, 255, 0.6),
+    inset 4px 4px 6px rgba(0, 0, 0, 0.6);
+}
+
+#profiles-view-remove-filters-button,
+#incident-view-remove-filters-button {
+  background: linear-gradient(160deg, #f00 90%, #410a0a);
+  color: white;
+  width: 100%;
+  border-radius: 5px;
+  font-size: 1em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  box-shadow: inset 2px 2px 3px rgba(255, 255, 255, 0.6),
+    inset -4px -4px 6px rgba(0, 0, 0, 0.6);
+}
+
+.edit-payment-button {
+  min-width: 7vw;
+  min-height: 3vw;
+}
+
+/* || filter-window styles */
+#profiles-view-current-filter-window,
+#incident-view-current-filter-window {
+  width: 25vw;
+  height: 20vh;
+  margin: auto;
+  padding: 1px;
+  background: linear-gradient(160deg, #333, #000000);
+  border: 1px white solid;
+  color: white;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgb(0, 0, 0, 1);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+#profiles-view-current-filter-inputs,
+#incident-view-current-filter-inputs {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 0px;
+  margin-left: 2px;
+  margin-right: 2px;
+  padding: 0px;
+}
+
+input[type="number"] {
+  max-width: 48%;
+}
+
+.filter-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin: 0px;
+  padding: 0px;
+}
+
+.filter-buttons button {
+  width: 49%;
+}
+
+#profiles-view-current-filter-window input,
+#profiles-view-current-filter-window button,
+#incident-view-current-filter-window input,
+#incident-view-current-filter-window button {
+  flex-grow: 1;
+  margin: 3px;
+  height: 5vh;
+}
+
+#profiles-view-current-filter-window input,
+#incident-view-current-filter-window input {
+  text-align: center;
+  font-size: 1em;
+  border-radius: 20px;
+}
+
+.sort {
+  background: linear-gradient(160deg, #aaa, #777);
+  border: 1px white solid;
+  color: black;
+  border-radius: 20px;
+  /* box-shadow: 0 0 20px rgb(0, 0, 0, 1); */
+  box-shadow: inset 2px 2px 3px rgba(255, 255, 255, 0.6),
+    inset -4px -4px 6px rgba(0, 0, 0, 0.6);
+}
+
+.sort span {
+  font-size: inherit;
+}
+
+.sort:active {
+  box-shadow: 0 0 20px white;
+  text-shadow: 0 0 5px white;
+}
+
+.sort:hover {
+  background: linear-gradient(160deg, #444, #111);
+}
+
+/* || Profile Styles */
+#renter-update-form {
+  border: none;
+}
+
+/* || Mobile Styles */
+@media screen and (max-width: 600px) {
+  .banner {
+    height: 20vh;
+  }
+
+  .menu-inputs {
+    width: 98vw;
+    height: 75vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .initial-view-buttons {
+    width: 100%;
+    flex-grow: 1;
+    font-size: 6vw;
+  }
+
+  .menu-inputs input[type="text"] {
+    width: 100%;
+    height: 15vh;
+    text-align: center;
+    font-size: 7vw;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    flex-grow: 1;
+  }
+
+  input.col-3,
+  input.col-4 {
+    width: 100%;
+    height: 5vh;
+    text-align: center;
+    font-size: 3vw;
+    border-radius: 20px;
+    margin-bottom: 2vh;
+    margin-top: 1vh;
+  }
+
+  .start-meeting-button {
+    width: 100%;
+    height: 20vh;
+    font-size: 4em;
+    margin-bottom: 1vh;
+    flex-grow: 1;
+  }
+
+  .lone-button {
+    font-size: 8vw;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .long-word {
+    font-size: 9vw;
+  }
+
+  .renter-docs {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 90vw;
+  }
+}

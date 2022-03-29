@@ -1,0 +1,81 @@
+.photo-box {
+  font-size: inherit;
+  font-family: inherit;
+  color: inherit;
+  background: linear-gradient(160deg, #333, #000000);
+  border-radius: 10px;
+  border: 1px solid white;
+  position: relative;
+  overflow: hidden;
+  width: 15vw;
+  height: 10vw;
+}
+
+.photo-box .photo-image {
+  margin: 0px;
+  width: 100%;
+  height: auto;
+}
+
+/* Layout rules common to all the photoBox button elements */
+.photo-box div[class$="-button"] {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40%;
+  height: 20%;
+  opacity: 0.8;
+  color: white;
+  background: rgb(197, 188, 188);
+  cursor: default;
+  border-radius: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.photo-box div[class$="-button"] span {
+  font-size: 1.5vw;
+}
+
+.photo-box .place-holder {
+  font-size: 20vw;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.photo-box .select-photo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.photo-box .select-photo i {
+  margin-top: 6%;
+  font-size: 6em;
+}
+
+.photo-box .select-photo span {
+  width: 100%;
+  font-size: 1.2em;
+  text-align: center;
+}
+
+/* || Mobile Styles */
+@media screen and (max-width: 600px) {
+  .photo-box {
+    border-radius: 10px;
+    border: 1px solid white;
+    position: relative;
+    overflow: hidden;
+    width: 84vw;
+    height: 57vw;
+    margin: auto;
+    margin-top: 3px;
+    margin-bottom: 3px;
+  }
+}

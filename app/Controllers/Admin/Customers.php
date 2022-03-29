@@ -3,6 +3,7 @@
 namespace App\Controllers\Admin;
 
 use App\Entities\Customer;
+use App\Entities\Payment;
 use App\Entities\RenterIncident;
 
 use CodeIgniter\I18n\Time;
@@ -39,43 +40,45 @@ class Customers extends \App\Controllers\BaseController
     // Get all the uploaded files
     $files = $this->request->getFiles();
 
-    //LOOP THROUGH THE FILES ARRAY, GETTING THE KEY FOR EACH INDEX SO WE CAN USE IT TO CREATE THE CORRECT FOLDER FOR EACH UPLOADED FILE
-    foreach ($files as $key => $file) {
+    $customer = service('photos')->savePhoto($customer, $files);
 
-      // ALL INPUTS ARE NOT REQUIRED SO WE CHECK THAT FILE SIZE IS GREATER THAN ZERO TO DETERMINE WHETHER THERE'S ACTUALLY A FILE AT EACH INDEX
-      if ($file->getSizeByUnit('mb' > 0)) {
+    // //LOOP THROUGH THE FILES ARRAY, GETTING THE KEY FOR EACH INDEX SO WE CAN USE IT TO CREATE THE CORRECT FOLDER FOR EACH UPLOADED FILE
+    // foreach ($files as $key => $file) {
 
-        // CHECK VALIDITY
-        if (!$file->isValid()) {
+    //   // ALL INPUTS ARE NOT REQUIRED SO WE CHECK THAT FILE SIZE IS GREATER THAN ZERO TO DETERMINE WHETHER THERE'S ACTUALLY A FILE AT EACH INDEX
+    //   if ($file->getSizeByUnit('mb' > 0)) {
 
-          $error_code = $file->getError();
-          throw new \RuntimeException($file->getErrorString() . " " . $error_code);
-        }
+    //     // CHECK VALIDITY
+    //     if (!$file->isValid()) {
 
-        // CHECK FILE SIZE TO MAKE SURE IT DOESN'T EXCEED OUR MAX ALLOWED SIZE
-        $size = $file->getSizeByUnit('mb');
+    //       $error_code = $file->getError();
+    //       throw new \RuntimeException($file->getErrorString() . " " . $error_code);
+    //     }
 
-        if ($size > 5) {
+    //     // CHECK FILE SIZE TO MAKE SURE IT DOESN'T EXCEED OUR MAX ALLOWED SIZE
+    //     $size = $file->getSizeByUnit('mb');
 
-          return redirect()->back()
-            ->with('warning', 'File too large (max 5MB)');
-        }
+    //     if ($size > 5) {
 
-        $type = $file->getMimeType();
+    //       return redirect()->back()
+    //         ->with('warning', 'File too large (max 5MB)');
+    //     }
 
-        if (!in_array($type, ['image/png', 'image/jpeg'])) {
+    //     $type = $file->getMimeType();
 
-          return redirect()->back()
-            ->with('warning', 'Invalid file format (PNG or JPEG only)');
-        }
+    //     if (!in_array($type, ['image/png', 'image/jpeg'])) {
 
-        // Store it in the 'writable/uploads/images' folder
-        $file->store('renter_docs/');
+    //       return redirect()->back()
+    //         ->with('warning', 'Invalid file format (PNG or JPEG only)');
+    //     }
 
-        // Add path to correct customer entity property
-        $customer->$key = $file->getName();
-      }
-    }
+    //     // Store it in the 'writable/uploads/images' folder
+    //     $file->store('renter_docs/');
+
+    //     // Add path to correct customer entity property
+    //     $customer->$key = $file->getName();
+    //   }
+    // }
 
     // Now start activation process
     $customer->startActivation();
@@ -104,8 +107,13 @@ class Customers extends \App\Controllers\BaseController
       $bikeValuationsModel = new \App\Models\BikeValuationsModel;
       $valuationRecord = $bikeValuationsModel->getValueByModelAndYear($bike->model, $bike->year);
 
-      // Format the value
-      $value = number_format($valuationRecord->value * 1000, 0, '.', ',');
+      // Format the value making sure that we're not tripped up if no record is returned
+      if (empty($valuationRecord)) {
+        $value = '(Bike Value Not Found)';
+      } else {
+        $value = number_format($valuationRecord->value * 1000, 0, '.', ',');
+      }
+
 
       // Pass all info from contract to use in activation email
       $this->sendActivationEmail($customer, $bike, $value);
@@ -130,44 +138,7 @@ class Customers extends \App\Controllers\BaseController
 
     // Now get all the uploaded files
     $files = $this->request->getFiles();
-
-    //LOOP THROUGH THE FILES ARRAY, GETTING THE KEY FOR EACH INDEX SO WE CAN USE IT TO CREATE THE CORRECT FOLDER FOR EACH UPLOADED FILE
-    foreach ($files as $key => $file) {
-
-      // ALL INPUTS ARE NOT REQUIRED SO WE CHECK THAT FILE SIZE IS GREATER THAN ZERO TO DETERMINE WHETHER THERE'S ACTUALLY A FILE AT EACH INDEX
-      if ($file->getSizeByUnit('mb' > 0)) {
-
-        // CHECK VALIDITY
-        if (!$file->isValid()) {
-
-          $error_code = $file->getError();
-          throw new \RuntimeException($file->getErrorString() . " " . $error_code);
-        }
-
-        // CHECK FILE SIZE TO MAKE SURE IT DOESN'T EXCEED OUR MAX ALLOWED SIZE
-        $size = $file->getSizeByUnit('mb');
-
-        if ($size > 5) {
-
-          return redirect()->back()
-            ->with('warning', 'File too large (max 5MB)');
-        }
-
-        $type = $file->getMimeType();
-
-        if (!in_array($type, ['image/png', 'image/jpeg'])) {
-
-          return redirect()->back()
-            ->with('warning', 'Invalid file format (PNG or JPEG only)');
-        }
-
-        // Store it in the 'writable/uploads/images' folder
-        $file->store('renter_docs/');
-
-        // Add path to correct customer entity property
-        $customer->$key = $file->getName();
-      }
-    }
+    $customer = service('photos')->savePhoto($customer, $files);
 
     // At this point all values and files have been added to the record and we can save it, going to
     // viewCurrentCustomers if successful or otherwise redirecting back so the user can fix any errors
@@ -182,16 +153,14 @@ class Customers extends \App\Controllers\BaseController
 
   public function activate($token)
   {
-    $model = new \App\Models\CustomersModel;
-
-    $customer = $model->activateByToken($token);
+    $customer = $this->model->activateByToken($token);
 
     if ($customer) {
 
       $statusChangeModel = new \App\Models\BikeStatusChangeModel;
       $bikeStatusChange = new \App\Entities\BikeStatusChange;
 
-      $bikeStatusChange->user = 'ADMIN';
+      $bikeStatusChange->user = session()->get('user_id');
       $bikeStatusChange->plate_number = $customer->current_bike;
       $bikeStatusChange->date_time = $customer->start_date;
       $bikeStatusChange->new_status = $customer->customer_name;
@@ -321,7 +290,7 @@ class Customers extends \App\Controllers\BaseController
     $customers = $this->model->getCurrentCustomers();
     $customerEmails = [];
 
-    foreach($customers as $customer) {
+    foreach ($customers as $customer) {
       $customerEmails[$customer->customer_name] = $customer->email_address;
     }
 
@@ -415,37 +384,451 @@ class Customers extends \App\Controllers\BaseController
     return view('Admin/Customers/selectCustomerView');
   }
 
-  // Displays photo at $path if it exists
-  public function displayCustomerPhoto($path)
+  // // Displays photo at $path if it exists
+  // public function displayCustomerPhoto($path)
+  // {
+  //   $path = WRITEPATH . 'uploads/renter_docs/' . $path;
+
+  //   // Since we don't erase the $customer->path property when deleting images from the server we need to check if there's still
+  //   // a file located at $path
+  //   if (is_file($path)) {
+
+  //     $finfo = new \finfo(FILEINFO_MIME);
+
+  //     $type = $finfo->file($path);
+
+  //     header("Content-Type: $type");
+  //     header("Content-Length: " . filesize($path));
+
+  //     readfile($path);
+  //   }
+
+  //   exit;
+  // }
+
+  // Displays reg photo at $path if it exists
+  public function displayPhoto($path)
   {
-    $path = WRITEPATH . 'uploads/renter_docs/' . $path;
-    
-    // Since we don't erase the $customer->path property when deleting images from the server we need to check if there's still
-    // a file located at $path
-    if(is_file($path)) {
-
-      $finfo = new \finfo(FILEINFO_MIME);
-    
-      $type = $finfo->file($path);
-      
-      header("Content-Type: $type");
-      header("Content-Length: " . filesize($path));
-      
-      readfile($path);
-      
-    }
-
-    exit;
+    return service('photos')->displayPhoto($path);
   }
 
   // Deletes photo from writable directory if it exists
-  public function deleteCustomerPhoto($path)
+  public function deletePhoto($path)
   {
-    $path = WRITEPATH . 'uploads/renter_docs/' . $path;   
-    
-    if(is_file($path)) {
-      unlink($path);
-    }        
+    service('photos')->deletePhoto($path);
   }
 
+  // // Deletes photo from writable directory if it exists
+  // public function deleteCustomerPhoto($path)
+  // {
+  //   $path = WRITEPATH . 'uploads/renter_docs/' . $path;
+
+  //   if (is_file($path)) {
+  //     unlink($path);
+  //   }
+  // }
+
+  // Returns the single page view
+  public function singlePageView()
+  {
+    return view('Admin/Customers/singlePageView');
+  }
+
+  public function getBikes()
+  {
+    $model = new \App\Models\BikesModel;
+    $currentBikes = $model->getCurrentBikes();
+
+    return $this->response->setJSON($currentBikes);
+  }
+
+  public function getRenters()
+  {
+    $currentRenters = $this->model->getCurrentCustomers();
+
+    return $this->response->setJSON($currentRenters);
+  }
+
+  public function getNationalities()
+  {
+    $nationalities = $this->model->getNationalities();
+
+    return $this->response->setJSON($nationalities);
+  }
+
+  public function saveAsync()
+  {
+    // create a variable to hold the response message
+    $responseContent = null;
+
+    // creat a customer entity with values from $_POST
+    $customer = new Customer;
+    $customer->fill($this->request->getPost());
+
+    // Get any the uploaded files and save using our photos service
+    $files = $this->request->getFiles();
+    $customer = service('photos')->savePhoto($customer, $files);
+
+    // Now start activation process
+    $customer->startActivation();
+
+    // put the value of $customer_token into $_SESSION so it's available to emailAsync() 
+    session()->set('new_customer_token', $customer->token);
+
+    //Get list of all Dragon Bikes from BikesModel, put plate numbers in an array, and check whether customer's bike is in this array
+    $model = new \App\Models\BikesModel;
+    $dragonBikes = $model->getDragonBikes();
+    $dragonBikesPlateNumbers = [];
+
+    foreach ($dragonBikes as $dragonBike) {
+
+      $dragonBikesPlateNumbers[] = $dragonBike->plate_number;
+    }
+
+    if (in_array($customer->current_bike, $dragonBikesPlateNumbers)) {
+
+      $customer->dragon_bikes = 1;
+    }
+
+    if ($this->model->insert($customer)) {
+
+      $responseContent = ['success' => 'new customer record created'];
+      $responseContent['customer'] = $customer;
+    } else {
+
+      $responseContent = ['error' => 'please check the data and re-enter'];
+    }
+
+    return $this->response->setJSON($responseContent);
+  }
+
+  // method to update customer record
+  public function updateAsync()
+  {
+    // create a variable to hold the response message
+    $responseContent = null;
+
+    // create a customer entity with values from $_POST
+    $customer = new Customer;
+    $customer->fill($this->request->getPost());
+
+    // get any the uploaded files and save using our photos service
+    $files = $this->request->getFiles();
+
+    // but before their names are changed let's see if any inputs are empty and if so, set the corresponding fields to null
+    foreach ($files as $key => $file) {
+      if ($file->getName() === "") {
+        $customer->$key = null;
+      }
+    }
+
+    $customer = service('photos')->savePhoto($customer, $files);
+
+    if ($this->model->save($customer)) {
+      // make another db call to get the updated record and send to client to keep page data synced with db
+      $customer = $this->model->find($customer->id);
+      $responseContent = ['success' => 'customer record updated'];
+      $responseContent['customer'] = $customer;
+    } else {
+
+      $responseContent = ['error' => 'please check the data and re-enter'];
+    }
+
+    return $this->response->setJSON($responseContent);
+  }
+
+  public function emailAsync()
+  {
+    // create a variable to hold the response message
+    $responseContent = null;
+
+    // creat a customer entity with values from $_POST
+    $customer = new Customer;
+    $customer->fill($this->request->getPost());
+    $customer->token = session()->get('new_customer_token');
+
+    // Get record of rental bike
+    $bikesModel = new \App\Models\BikesModel;
+    $bike = $bikesModel->getBikeByPlateNumber($customer->current_bike);
+
+    // Get bike's current market value
+    $bikeValuationsModel = new \App\Models\BikeValuationsModel;
+    $valuationRecord = $bikeValuationsModel->getValueByModelAndYear($bike->model, $bike->year);
+
+    // Format the value making sure that we're not tripped up if no record is returned
+    if (empty($valuationRecord)) {
+      $value = '(Bike Value Not Found)';
+    } else {
+      $value = number_format($valuationRecord->value * 1000, 0, '.', ',');
+    }
+
+    require ROOTPATH . '/vendor/PHPMailer-master/src/Exception.php';
+    require ROOTPATH . '/vendor/PHPMailer-master/src/PHPMailer.php';
+    require ROOTPATH . '/vendor/PHPMailer-master/src/SMTP.php';
+
+    $mail = new PHPMailer(true);
+    $mail->isSMTP();
+    $mail->Host = 'mail.saigonbikerentals.com';
+    $mail->SMTPAuth = true;
+    $mail->Username = 'patrick@saigonbikerentals.com';
+    $mail->Password = 'n1FaZ!Sz#)vB';
+    $mail->SMTPSecure = 'tls';
+    $mail->Port = 26;
+    $mail->setFrom('patrick@saigonbikerentals.com');
+    $mail->addAddress($customer->email_address);
+    $mail->isHTML(true);
+    $mail->Subject = 'Rental Agreement';
+    if (isset($bike->reg_front)) {
+
+      $mail->addAttachment(WRITEPATH . 'uploads/registration_cards/' . $bike->reg_front);
+    }
+    if (isset($bike->reg_back)) {
+
+      $mail->addAttachment(WRITEPATH . 'uploads/registration_cards/' . $bike->reg_back);
+    }
+    $mail->Body = '<h1>SAIGON BIKE RENTALS</h1>
+      <h2>MOTORBIKE RENTAL CONTRACT</h2>
+
+
+      <h3>A> Customer information:</h3>
+
+      <ul>
+        <li><b>Full name: </b>' . $customer->customer_name . '</li>
+        <li><b>Nationality: </b>' . $customer->nationality . '</li>
+        <li><b>Mobile: </b>' . $customer->phone_number . '</li>
+        <li><b>Email: </b>' . $customer->email_address . '</li>
+        <li><b>Deposit Type: </b>' . $customer->deposit_type . '</li>
+      </ul>
+
+      <p>
+        <u>' . $customer->customer_name . '</u> agrees to rent one ' . $bike->year . ' ' . $bike->brand . ' ' . $bike->model .
+      ' with license plate number: <u>' . $customer->current_bike . '</u> , from
+        Tran Thi Thu Nga/Saigon Bike Rentals, located at 182/5A Đề Thám in
+        District 1 , Ho Chi Minh City starting from <u>' . $customer->start_date . '</u>.
+      </p>
+
+      <p>
+        The agreed monthly rental fee is <u>' . number_format($customer->rent * 1000, 0, '.', ',') . '</u> VND/month and the monthly rental payment is due on day <u>'
+      . substr($customer->start_date, -2) . '</u> of each month.
+      </p>
+
+
+      <h3>B> Customer obligations:</h3>
+
+      <p>
+        Motorbike must be returned undamaged (customer may check the bike before signing the contract).
+        After taking possession of the motorbike, customer is responsible for taking care of the bike and must
+        abide by the following conditions:
+      </p>
+
+      <ul>
+        <li><b>DO NOT ALLOW ANY REPAIRS TO BE DONE WITHOUT FIRST CONTACTING SAIGON BIKE RENTALS!</b></li>
+        <li style="color: tomato;"><b>DON’T <u>EVER</u> LEAVE THE BIKE UNATTENDED UNLESS IT IS IN A SECURE PARKING
+        AREA OR LOCKED INSIDE A PRIVATE HOME. IF YOU LEAVE IT OUTSIDE ‘JUST FOR
+        A FEW MINUTES’ IT <u>WILL</u> GET STOLEN AND YOU <u>WILL</u> PAY US FOR A
+        REPLACEMENT BIKE.</b></li>
+        <li><b>DO NOT RIDE THE BIKE AFTER CONSUMING ALCOHOL. VIETNAMESE LAW
+        CONSIDERS YOU IMPAIRED WITH ANY ALCOHOL IN YOUR SYSTEM!</b></li>
+        <li><b>Do not allow anyone else to drive the motorbike.</b></li>
+        <li><b>If the bike is damaged in any way, customer must pay the full cost of repairs.</b></li>
+        <li><b>If the bike is lost or damaged beyond repair, customer must pay a replacement charge of <u>' . $value . '</u> dong.</b></li>
+        <li><b>If customer does not have a valid motorbike license and the bike is impounded by the police, customer must pay
+          <u>all</u> fines imposed, <u>including</u> any fine imposed on the owner of the bike (Saigon Bike Rentals) for allowing
+          an unlicensed rider to operate it</b></li>
+      </ul>
+
+
+      <h3>C> Customer rights:</h3>
+
+      <ul>
+        <li><b>Free repair (by Saigon Bike Rentals) of any mechanical problems that arise during the rental period.</b></li>
+        <li><b>Instruction and assistance on use of motorbike.</b></li>
+        <li><b>Assistance in obtaining a Vietnamese motorbike license if customer does not already have one</b></li>
+      </ul>
+
+
+
+
+      <h3>D> Customer pledge:</h3>
+
+      <p>
+        After reading this contract, I <u>' . $customer->customer_name . '</u> agree to abide by all its terms and conditions and
+        agree to be held fully responsible for any violations thereof.
+      </p>
+
+      <p>
+        <a href="' . site_url("Admin/Customers/activate/{$customer->token}") . '"><button>Click Here to Confirm Your Agreement</button></a>
+      </p>';
+
+    if (!$mail->send()) {
+
+      $responseContent = ['error' => "'Mailer Error: ' . $mail->ErrorInfo"];
+    } else {
+
+      $path = '{sng103.hawkhost.com:993/ssl}INBOX.Sent';
+      $imapStream = imap_open($path, 'patrick@saigonbikerentals.com', 'n1FaZ!Sz#)vB');
+      imap_append($imapStream, $path, $mail->getSentMIMEMessage());
+      imap_close($imapStream);
+      $responseContent = ['success' => 'confirmation email sent'];
+    }
+
+    return $this->response->setJSON($responseContent);
+  }
+
+  public function getAllRentersAsync()
+  {
+    $customers = $this->model->getAllCustomers();
+    return $this->response->setJSON($customers);
+  }
+
+  public function getPaymentHistoryAsync()
+  {
+    $post = $this->request->getPost();
+    $customerId = $post['id'];
+
+    $paymentsModel = new \App\Models\PaymentsModel;
+    $payments = $paymentsModel->getByContractNumber($customerId);
+
+    return $this->response->setJSON($payments);
+  }
+
+  public function updatePaymentAsync()
+  {
+    $post = $this->request->getPost();
+    $updatedPayment = new Payment($post);
+    $paymentId = $updatedPayment->id;
+    $responseContent = null;
+
+    // if the months_paid field has been updated we'll also need to update months_paid for the corresponding
+    // customer record, so we'll need to check whether that's changed.
+
+    // first we grab the existing payment record
+    $paymentsModel = new \App\Models\PaymentsModel;
+    $payment = $paymentsModel->find($paymentId);
+
+    // the updated payment is going to be saved regardless so get that done
+    // $payment->fill($post);
+    if ($paymentsModel->save($updatedPayment)) {
+      $responseContent = ['success' => 'payment record updated'];
+    }
+
+    // then we see if months_paid has changed in value and if so, update the customer record
+    $difference = $updatedPayment->months_paid - $payment->months_paid;
+
+    if ($difference !== 0) {
+      $customer = $this->model->find($updatedPayment->customer_id);
+      $customer->months_paid += $difference;
+
+      if ($this->model->save($customer)) {
+        $customer = $this->model->find($customer->id);
+        $responseContent['customer'] = $customer;
+      }
+    }
+
+    return $this->response->setJSON($responseContent);
+  }
+
+  public function getIncidentsAsync()
+  {
+    $incidentModel = new \App\Models\RenterIncidentModel;
+    $incidents = $incidentModel->getAll();
+
+    return $this->response->setJSON($incidents);
+  }
+
+  public function getDate()
+  {
+    $date = date('Y-m-d');
+    $response = ['date' => $date];
+    return $this->response->setJSON($response);
+  }
+
+  public function saveIncidentAsync()
+  {
+    // create a new incident record using values from $_POST and save to db
+    $incident = new RenterIncident($this->request->getPost());
+    $model = new \App\Models\RenterIncidentModel;
+    $responseContent = null;
+
+    // if save is successful return a success message together with the incdent record, otherwise return an error message
+    if ($model->save($incident)) {
+      $responseContent = ['success' => 'incident record created'];
+      $responseContent['incident'] = $incident;
+    } else {
+      $responseContent = ['error' => 'record not created'];
+    }
+    return $this->response->setJSON($responseContent);
+  }
+
+  public function updateIncidentAsync()
+  {
+    // create a new incident record using values from $_POST and save to db
+    $incident = new RenterIncident($this->request->getPost());
+    $model = new \App\Models\RenterIncidentModel;
+    $responseContent = null;
+
+    // if save is successful return a success message together with the incdent record, otherwise return an error message
+    if ($model->save($incident)) {
+      $responseContent = ['success' => 'incident record updated'];
+      $responseContent['incident'] = $incident;
+    } else {
+      $responseContent = ['error' => 'record not updated'];
+    }
+    return $this->response->setJSON($responseContent);
+  }
+
+  public function sendMessage()
+  {
+    // get values from post
+    $post = $this->request->getPost();
+    $responseContent = [];
+
+    // if value of names is 'ALL' then we'll add all current customer emails to $emails[]
+    $emails = [];
+    if ($post['names'] === 'ALL') {
+      $customers = $this->model->getCurrentCustomers();
+      foreach ($customers as $customer) {
+        $emails[] = $customer->email_address;
+      }
+    } else {
+      $customer = $this->model->getCurrentCustomerByName($post['names']);
+      $emails[] = $customer->email_address;
+    }
+
+    // get the subject and message
+    $subject = $post['subject'];
+    $message = $post['message'];
+
+    // and send the email to every address in $emails[]
+    require ROOTPATH . '/vendor/PHPMailer-master/src/Exception.php';
+    require ROOTPATH . '/vendor/PHPMailer-master/src/PHPMailer.php';
+    require ROOTPATH . '/vendor/PHPMailer-master/src/SMTP.php';
+
+    foreach ($emails as $email) {
+      $mail = new PHPMailer(true);
+      $mail->isSMTP();
+      $mail->Host = 'mail.saigonbikerentals.com';
+      $mail->SMTPAuth = true;
+      $mail->Username = 'patrick@saigonbikerentals.com';
+      $mail->Password = 'n1FaZ!Sz#)vB';
+      $mail->SMTPSecure = 'tls';
+      $mail->Port = 26;
+      $mail->setFrom('patrick@saigonbikerentals.com');
+      $mail->addAddress($email);
+      $mail->Subject = $subject;
+      $mail->Body = $message;
+
+      if (!$mail->send()) {
+        $responseContent['error'] = 'Mailer Error: ' . $mail->ErrorInfo;
+      } else {
+        $path = '{sng103.hawkhost.com:993/ssl}INBOX.Sent';
+        $imapStream = imap_open($path, 'patrick@saigonbikerentals.com', 'n1FaZ!Sz#)vB');
+        imap_append($imapStream, $path, $mail->getSentMIMEMessage());
+        imap_close($imapStream);
+        $responseContent['success'] = "Message sent!";
+      }
+    }
+
+    return $this->response->setJSON($responseContent);
+  }
 }

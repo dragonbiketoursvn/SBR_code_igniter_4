@@ -31,3 +31,19 @@ const closeToggle = function () {
 
 buttonOpenModal.addEventListener("click", toggle);
 buttonCloseModal.addEventListener("click", closeToggle);
+
+const UIController = (function () {
+  //the private section of the module
+  let component = "Replacement Text";
+  const changeComponent = function () {
+    //change all the h1 text to what is in the component variable above
+    const element = document.querySelector("h1");
+    element.textContent = component;
+  };
+  //the public section of the module
+  return {
+    callChangeComponent: function () {
+      changeComponent();
+    },
+  };
+})();

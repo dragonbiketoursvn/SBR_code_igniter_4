@@ -72,49 +72,51 @@ class Bikes extends \App\Controllers\BaseController
     // Get all the uploaded files
     $files = $this->request->getFiles();
 
-    //LOOP THROUGH THE FILES ARRAY, GETTING THE KEY FOR EACH INDEX SO WE CAN USE IT TO CREATE THE CORRECT FOLDER FOR EACH UPLOADED FILE
-    foreach ($files as $key => $file) {
+    $bike = service('photos')->savePhoto($bike, $files);
 
-      // ALL INPUTS ARE NOT REQUIRED SO WE CHECK THAT FILE SIZE IS GREATER THAN ZERO TO DETERMINE WHETHER THERE'S ACTUALLY A FILE AT EACH INDEX
-      if ($file->getSizeByUnit('mb' > 0)) {
+    //   //LOOP THROUGH THE FILES ARRAY, GETTING THE KEY FOR EACH INDEX SO WE CAN USE IT TO CREATE THE CORRECT FOLDER FOR EACH UPLOADED FILE
+    //   foreach ($files as $key => $file) {
 
-        // CHECK VALIDITY
-        if (!$file->isValid()) {
+    //     // ALL INPUTS ARE NOT REQUIRED SO WE CHECK THAT FILE SIZE IS GREATER THAN ZERO TO DETERMINE WHETHER THERE'S ACTUALLY A FILE AT EACH INDEX
+    //     if ($file->getSizeByUnit('mb' > 0)) {
 
-          $error_code = $file->getError();
-          throw new \RuntimeException($file->getErrorString() . " " . $error_code);
-        }
+    //       // CHECK VALIDITY
+    //       if (!$file->isValid()) {
 
-        // CHECK FILE SIZE TO MAKE SURE IT DOESN'T EXCEED OUR MAX ALLOWED SIZE
-        $size = $file->getSizeByUnit('mb');
+    //         $error_code = $file->getError();
+    //         throw new \RuntimeException($file->getErrorString() . " " . $error_code);
+    //       }
 
-        if ($size > 5) {
+    //       // CHECK FILE SIZE TO MAKE SURE IT DOESN'T EXCEED OUR MAX ALLOWED SIZE
+    //       $size = $file->getSizeByUnit('mb');
 
-          return redirect()->back()
-            ->with('warning', 'File too large (max 5MB)');
-        }
+    //       if ($size > 5) {
 
-        $type = $file->getMimeType();
+    //         return redirect()->back()
+    //           ->with('warning', 'File too large (max 5MB)');
+    //       }
 
-        if (!in_array($type, ['image/png', 'image/jpeg'])) {
+    //       $type = $file->getMimeType();
 
-          return redirect()->back()
-            ->with('warning', 'Invalid file format (PNG or JPEG only)');
-        }
+    //       if (!in_array($type, ['image/png', 'image/jpeg'])) {
 
-        // Store it in the correct folder
-        if (($key == 'reg_front') || ($key == 'reg_back')) {
+    //         return redirect()->back()
+    //           ->with('warning', 'Invalid file format (PNG or JPEG only)');
+    //       }
 
-          $file->store('registration_cards/');
-        } else {
+    //       // Store it in the correct folder
+    //       if (($key == 'reg_front') || ($key == 'reg_back')) {
 
-          $file->store('bike_photos/');
-        }
+    //         $file->store('registration_cards/');
+    //       } else {
 
-        // Add path to correct bike entity property
-        $bike->$key = $file->getName();
-      }
-    }
+    //         $file->store('bike_photos/');
+    //       }
+
+    //       // Add path to correct bike entity property
+    //       $bike->$key = $file->getName();
+    //     }
+    //   }
 
     // Redirect to addRecord controller if insertion is successful
     $this->model->insert($bike);
@@ -137,50 +139,51 @@ class Bikes extends \App\Controllers\BaseController
 
     // Get all the uploaded files
     $files = $this->request->getFiles();
+    $bike = service('photos')->savePhoto($bike, $files);
 
-    //LOOP THROUGH THE FILES ARRAY, GETTING THE KEY FOR EACH INDEX SO WE CAN USE IT TO CREATE THE CORRECT FOLDER FOR EACH UPLOADED FILE
-    foreach ($files as $key => $file) {
+    // //LOOP THROUGH THE FILES ARRAY, GETTING THE KEY FOR EACH INDEX SO WE CAN USE IT TO CREATE THE CORRECT FOLDER FOR EACH UPLOADED FILE
+    // foreach ($files as $key => $file) {
 
-      // ALL INPUTS ARE NOT REQUIRED SO WE CHECK THAT FILE SIZE IS GREATER THAN ZERO TO DETERMINE WHETHER THERE'S ACTUALLY A FILE AT EACH INDEX
-      if ($file->getSizeByUnit('mb' > 0)) {
+    //   // ALL INPUTS ARE NOT REQUIRED SO WE CHECK THAT FILE SIZE IS GREATER THAN ZERO TO DETERMINE WHETHER THERE'S ACTUALLY A FILE AT EACH INDEX
+    //   if ($file->getSizeByUnit('mb' > 0)) {
 
-        // CHECK VALIDITY
-        if (!$file->isValid()) {
+    //     // CHECK VALIDITY
+    //     if (!$file->isValid()) {
 
-          $error_code = $file->getError();
-          throw new \RuntimeException($file->getErrorString() . " " . $error_code);
-        }
+    //       $error_code = $file->getError();
+    //       throw new \RuntimeException($file->getErrorString() . " " . $error_code);
+    //     }
 
-        // CHECK FILE SIZE TO MAKE SURE IT DOESN'T EXCEED OUR MAX ALLOWED SIZE
-        $size = $file->getSizeByUnit('mb');
+    //     // CHECK FILE SIZE TO MAKE SURE IT DOESN'T EXCEED OUR MAX ALLOWED SIZE
+    //     $size = $file->getSizeByUnit('mb');
 
-        if ($size > 5) {
+    //     if ($size > 5) {
 
-          return redirect()->back()
-            ->with('warning', 'File too large (max 5MB)');
-        }
+    //       return redirect()->back()
+    //         ->with('warning', 'File too large (max 5MB)');
+    //     }
 
-        $type = $file->getMimeType();
+    //     $type = $file->getMimeType();
 
-        if (!in_array($type, ['image/png', 'image/jpeg'])) {
+    //     if (!in_array($type, ['image/png', 'image/jpeg'])) {
 
-          return redirect()->back()
-            ->with('warning', 'Invalid file format (PNG or JPEG only)');
-        }
+    //       return redirect()->back()
+    //         ->with('warning', 'Invalid file format (PNG or JPEG only)');
+    //     }
 
-        // Store it in the correct folder
-        if (($key == 'reg_front') || ($key == 'reg_back')) {
+    //     // Store it in the correct folder
+    //     if (($key == 'reg_front') || ($key == 'reg_back')) {
 
-          $file->store('registration_cards/');
-        } else {
+    //       $file->store('registration_cards/');
+    //     } else {
 
-          $file->store('bike_photos/');
-        }
+    //       $file->store('bike_photos/');
+    //     }
 
-        // Add path to correct bike entity property
-        $bike->$key = $file->getName();
-      }
-    }
+    //     // Add path to correct bike entity property
+    //     $bike->$key = $file->getName();
+    //   }
+    // }
 
     // Redirect to addRecord controller if insertion is successful
     $this->model->save($bike);
@@ -205,121 +208,172 @@ class Bikes extends \App\Controllers\BaseController
   }
 
   // Displays reg photo at $path if it exists
-  public function displayRegPhoto($path)
+  public function displayPhoto($path)
   {
-    $path = WRITEPATH . 'uploads/registration_cards/' . $path;
-
-    // Since we don't erase the $bike->path property when deleting images from the server we need to check if there's still
-    // a file located at $path
-    if (is_file($path)) {
-
-      $finfo = new \finfo(FILEINFO_MIME);
-
-      $type = $finfo->file($path);
-
-      header("Content-Type: $type");
-      header("Content-Length: " . filesize($path));
-
-      readfile($path);
-    }
-
-    exit;
+    return service('photos')->displayPhoto($path);
   }
 
-  // Displays bike photo at $path if it exists
-  public function displayBikePhoto($path)
-  {
-    $path = WRITEPATH . 'uploads/bike_photos/' . $path;
+  // // Displays reg photo at $path if it exists
+  // public function displayRegPhoto($path)
+  // {
+  //   $path = WRITEPATH . 'uploads/registration_cards/' . $path;
 
-    // Since we don't erase the $bike->path property when deleting images from the server we need to check if there's still
-    // a file located at $path
-    if (is_file($path)) {
+  //   // Since we don't erase the $bike->path property when deleting images from the server we need to check if there's still
+  //   // a file located at $path
+  //   if (is_file($path)) {
 
-      $finfo = new \finfo(FILEINFO_MIME);
+  //     $finfo = new \finfo(FILEINFO_MIME);
 
-      $type = $finfo->file($path);
+  //     $type = $finfo->file($path);
 
-      header("Content-Type: $type");
-      header("Content-Length: " . filesize($path));
+  //     header("Content-Type: $type");
+  //     header("Content-Length: " . filesize($path));
 
-      readfile($path);
-    }
+  //     readfile($path);
+  //   }
 
-    exit;
-  }
+  //   exit;
+  // }
+
+  // // Displays bike photo at $path if it exists
+  // public function displayBikePhoto($path = null)
+  // {
+  //   return service('photos')->displayPhoto($path);
+  // }
+
+  // // Deletes photo from writable directory if it exists
+  // public function deleteRegPhoto($path)
+  // {
+  //   $path = WRITEPATH . 'uploads/registration_cards/' . $path;
+
+  //   if (is_file($path)) {
+  //     unlink($path);
+  //   }
+  // }
 
   // Deletes photo from writable directory if it exists
-  public function deleteRegPhoto($path)
+  public function deletePhoto($path)
   {
-    $path = WRITEPATH . 'uploads/registration_cards/' . $path;
-
-    if (is_file($path)) {
-      unlink($path);
-    }
+    service('photos')->deletePhoto($path);
   }
 
-  // Deletes photo from writable directory if it exists
-  public function deleteBikePhoto($path)
-  {
-    $path = WRITEPATH . 'uploads/bike_photos/' . $path;
+  // // Deletes photo from writable directory if it exists
+  // public function deleteBikePhoto($path)
+  // {
+  //   $path = WRITEPATH . 'uploads/bike_photos/' . $path;
 
-    if (is_file($path)) {
-      unlink($path);
-    }
-  }
+  //   if (is_file($path)) {
+  //     unlink($path);
+  //   }
+  // }
 
-  public function mailRegPhotos()
-  {
-    $length = count($_POST);
-    $post = $this->request->getPost();
-    $address = $post['address'];
-    $message = $post['message'];
-    $paths = []; // We'll have between one and two paths so we'll stick them in an array
+  // public function mailRegPhotos()
+  // {
+  //   $length = count($_POST);
+  //   $post = $this->request->getPost();
+  //   $address = $post['address'];
+  //   $message = $post['message'];
+  //   $paths = []; // We'll have between one and two paths so we'll stick them in an array
 
-    for ($i = 1; $i < ($length - 1); $i++) {
-      $paths[] = $_POST['path' . $i];
-    }
+  //   for ($i = 1; $i < ($length - 1); $i++) {
+  //     $paths[] = $_POST['path' . $i];
+  //   }
 
-    require ROOTPATH . '/vendor/PHPMailer-master/src/Exception.php';
-    require ROOTPATH . '/vendor/PHPMailer-master/src/PHPMailer.php';
-    require ROOTPATH . '/vendor/PHPMailer-master/src/SMTP.php';
+  //   return service('photos')->mailPhotos($address, $message, $paths);
 
-    $mail = new PHPMailer(true);
-    $mail->isSMTP();
-    $mail->Host = 'mail.saigonbikerentals.com';
-    $mail->SMTPAuth = true;
-    $mail->Username = 'patrick@saigonbikerentals.com';
-    $mail->Password = 'n1FaZ!Sz#)vB';
-    $mail->SMTPSecure = 'tls';
-    $mail->Port = 26;
-    $mail->setFrom('patrick@saigonbikerentals.com');
-    $mail->addAddress($address);
-    $mail->isHTML(true);
-    $mail->Subject = 'Bike Registration';
-    $mail->Body = $message;
+  //   // require ROOTPATH . '/vendor/PHPMailer-master/src/Exception.php';
+  //   // require ROOTPATH . '/vendor/PHPMailer-master/src/PHPMailer.php';
+  //   // require ROOTPATH . '/vendor/PHPMailer-master/src/SMTP.php';
 
-    foreach ($paths as $path) {
+  //   // $mail = new PHPMailer(true);
+  //   // $mail->isSMTP();
+  //   // $mail->Host = 'mail.saigonbikerentals.com';
+  //   // $mail->SMTPAuth = true;
+  //   // $mail->Username = 'patrick@saigonbikerentals.com';
+  //   // $mail->Password = 'n1FaZ!Sz#)vB';
+  //   // $mail->SMTPSecure = 'tls';
+  //   // $mail->Port = 26;
+  //   // $mail->setFrom('patrick@saigonbikerentals.com');
+  //   // $mail->addAddress($address);
+  //   // $mail->isHTML(true);
+  //   // $mail->Subject = 'Bike Registration';
+  //   // $mail->Body = $message;
 
-      $filePath = WRITEPATH . 'uploads/registration_cards/' . $path;
+  //   // foreach ($paths as $path) {
 
-      if (is_file($filePath)) {
+  //   //   $filePath = WRITEPATH . 'uploads/images/' . $path;
 
-        $mail->addAttachment($filePath);
-      } else {
-        return $this->response->setJSON('Files not found');
-      }
-    }
+  //   //   if (is_file($filePath)) {
 
-    if (!$mail->send()) {
+  //   //     $mail->addAttachment($filePath);
+  //   //   } else {
+  //   //     return $this->response->setJSON('Files not found');
+  //   //   }
+  //   // }
 
-      return $this->response->setJSON($mail->ErrorInfo);
-    } else {
+  //   // if (!$mail->send()) {
 
-      return $this->response->setJSON('Success!');
-    }
-  }
+  //   //   return $this->response->setJSON($mail->ErrorInfo);
+  //   // } else {
 
-  public function mailBikePhotos()
+  //   //   return $this->response->setJSON('Success!');
+  //   // }
+  // }
+
+  // public function mailBikePhotos()
+  // {
+  //   $length = count($_POST);
+  //   $post = $this->request->getPost();
+  //   $address = $post['address'];
+  //   $message = $post['message'];
+  //   $paths = []; // We'll have between one and five paths so we'll stick them in an array
+
+  //   for ($i = 1; $i < ($length - 1); $i++) {
+  //     $paths[] = $_POST['path' . $i];
+  //   }
+
+  //   return service('photos')->mailPhotos($address, $message, $paths);
+
+  //   // require ROOTPATH . '/vendor/PHPMailer-master/src/Exception.php';
+  //   // require ROOTPATH . '/vendor/PHPMailer-master/src/PHPMailer.php';
+  //   // require ROOTPATH . '/vendor/PHPMailer-master/src/SMTP.php';
+
+  //   // $mail = new PHPMailer(true);
+  //   // $mail->isSMTP();
+  //   // $mail->Host = 'mail.saigonbikerentals.com';
+  //   // $mail->SMTPAuth = true;
+  //   // $mail->Username = 'patrick@saigonbikerentals.com';
+  //   // $mail->Password = 'n1FaZ!Sz#)vB';
+  //   // $mail->SMTPSecure = 'tls';
+  //   // $mail->Port = 26;
+  //   // $mail->setFrom('patrick@saigonbikerentals.com');
+  //   // $mail->addAddress($address);
+  //   // $mail->isHTML(true);
+  //   // $mail->Subject = 'Bike Registration';
+  //   // $mail->Body = $message;
+
+  //   // foreach ($paths as $path) {
+
+  //   //   $filePath = WRITEPATH . 'uploads/bike_photos/' . $path;
+
+  //   //   if (is_file($filePath)) {
+
+  //   //     $mail->addAttachment($filePath);
+  //   //   } else {
+  //   //     return $this->response->setJSON('Files not found');
+  //   //   }
+  //   // }
+
+  //   // if (!$mail->send()) {
+
+  //   //   return $this->response->setJSON($mail->ErrorInfo);
+  //   // } else {
+
+  //   //   return $this->response->setJSON('Success!');
+  //   // }
+  // }
+
+  public function mailPhotos()
   {
     $length = count($_POST);
     $post = $this->request->getPost();
@@ -331,55 +385,27 @@ class Bikes extends \App\Controllers\BaseController
       $paths[] = $_POST['path' . $i];
     }
 
-    require ROOTPATH . '/vendor/PHPMailer-master/src/Exception.php';
-    require ROOTPATH . '/vendor/PHPMailer-master/src/PHPMailer.php';
-    require ROOTPATH . '/vendor/PHPMailer-master/src/SMTP.php';
-
-    $mail = new PHPMailer(true);
-    $mail->isSMTP();
-    $mail->Host = 'mail.saigonbikerentals.com';
-    $mail->SMTPAuth = true;
-    $mail->Username = 'patrick@saigonbikerentals.com';
-    $mail->Password = 'n1FaZ!Sz#)vB';
-    $mail->SMTPSecure = 'tls';
-    $mail->Port = 26;
-    $mail->setFrom('patrick@saigonbikerentals.com');
-    $mail->addAddress($address);
-    $mail->isHTML(true);
-    $mail->Subject = 'Bike Registration';
-    $mail->Body = $message;
-
-    foreach ($paths as $path) {
-
-      $filePath = WRITEPATH . 'uploads/bike_photos/' . $path;
-
-      if (is_file($filePath)) {
-
-        $mail->addAttachment($filePath);
-      } else {
-        return $this->response->setJSON('Files not found');
-      }
-    }
-
-    if (!$mail->send()) {
-
-      return $this->response->setJSON($mail->ErrorInfo);
-    } else {
-
-      return $this->response->setJSON('Success!');
-    }
+    return service('photos')->mailPhotos($address, $message, $paths);
   }
 
   public function viewAll()
   {
     $bikes = $this->model->getCurrentBikes();
+    $brands = $this->model->getCurrentBrands();
     $models = $this->model->getCurrentModels();
     $customers = $this->customersModel->getCurrentCustomers();
 
     return view('Admin/Bikes/viewAll', [
       'bikes' => $bikes,
+      'brands' => $brands,
       'models' => $models,
       'customers' => $customers,
     ]);
+  }
+
+  public function getCurrentBikesAsync()
+  {
+    $currentBikes = $this->model->getCurrentBikes();
+    return $this->response->setJSON($currentBikes);
   }
 }

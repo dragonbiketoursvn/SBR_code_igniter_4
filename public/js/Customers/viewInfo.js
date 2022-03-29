@@ -82,8 +82,8 @@ deleteButtons.forEach((e) =>
   e.addEventListener("click", function (e) {
     // So we can use this function with each photoBox we need to put together the correct url
     // by using a regex to tease out the path name from the img's src attribute
-    const urlBase = "<?= site_url('Admin/Customers/deleteCustomerPhoto/')?>";
-
+    const urlBase =
+      "http://sbr_code_igniter_4.localhost/Admin/Customers/deletePhoto/";
     let regEx = /(?<=o\/).*/i;
     let urlString = e.target.previousElementSibling.src;
     console.log(urlString);
@@ -91,7 +91,9 @@ deleteButtons.forEach((e) =>
     const path = result[0];
     const url = urlBase + path;
 
-    // Call the controller method to delete the photo from server
+    // we only call the controller method to delete the photo from server if that's where the currently displayed image is stored;
+    // if the image is just a preview of an attached file, const path will be a dataurl and therefore far longer;
+    // so we only call deleteCustomerPhoto when path.length is short enough that we know it's a photo on the server
     if (path.length < 80) {
       fetch(url).catch((error) => console.log(error));
     }

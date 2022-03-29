@@ -9,6 +9,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 use CodeIgniter\I18n\Time;
+use SebastianBergmann\CodeCoverage\Driver\WriteOperationFailedException;
 
 class Test extends BaseController
 {
@@ -280,6 +281,54 @@ class Test extends BaseController
     } else {
 
       return $this->response->setJSON('Success!');
+    }
+  }
+
+  public function viewTestRecord()
+  {
+    $model = new \App\Models\TestModel;
+    $records = $model->getAll();
+
+    return view('Tests/viewTestRecord', ['records' => $records]);
+  }
+
+  // Gets record based on id passed in via post request and returns record as JSON
+  public function returnRecord()
+  {
+    $id = $this->request->getPost('id');
+    $model = new \App\Models\TestModel;
+    $record = $model->getById($id);
+
+    return $this->response->setJSON($record);
+  }
+
+  // Updates name field of record to values passed in by post request
+  public function updateRecord()
+  {
+    $test = new \App\Entities\Test;
+    $test->fill($this->request->getPost());
+    $model = new \App\Models\TestModel;
+    $result = $model->save($test);
+
+    if ($result) {
+
+      return $this->response->setJSON($test);
+    }
+  }
+
+  public function iteratorTest()
+  {
+    $directory = WRITEPATH . 'uploads/renter_docs';
+    $destination = WRITEPATH . 'uploads/images/';
+    $files = scandir($directory);
+
+    foreach ($files as $file) {
+      $from = $directory . '/' . $file;
+      $to = $destination . $file;
+
+      if (is_file($from)) {
+        copy($from, $to);
+      }
     }
   }
 }

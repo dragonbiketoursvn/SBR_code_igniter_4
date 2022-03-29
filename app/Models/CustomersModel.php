@@ -13,7 +13,7 @@ class CustomersModel extends \CodeIgniter\Model
     'found_via', 'currently_renting', 'start_date', 'deposit_type', 'current_bike', 'rent',
     'finish_date', 'notes', 'building_name', 'building_number', 'street_name', 'ward', 'district', 'city',
     'passport_photo', 'license_photo', 'dragon_bikes', 'activation_hash', 'is_active', 'passport', 'TRC_or_visa',
-    'license_front', 'license_back'
+    'license_front', 'license_back', 'model', 'months_paid', 'last_payment',
   ];
 
   protected $returnType = 'App\Entities\Customer';
@@ -61,6 +61,11 @@ class CustomersModel extends \CodeIgniter\Model
     return $this->orderBy('start_date', 'DESC')->findAll();
   }
 
+  public function getNationalities()
+  {
+    return $this->distinct('nationality')->get()->getResultArray();
+  }
+
   public function getCurrentCustomerByName($name)
   {
 
@@ -69,9 +74,13 @@ class CustomersModel extends \CodeIgniter\Model
       ->first();
   }
 
+  public function getCustomerById($id)
+  {
+    return $this->find($id);
+  }
+
   public function activateByToken($token)
   {
-
     $token = new Token($token);
 
     $token_hash = $token->getHash();
