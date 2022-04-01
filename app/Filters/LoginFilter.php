@@ -1,4 +1,6 @@
-<?php namespace App\Filters;
+<?php
+
+namespace App\Filters;
 
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
@@ -8,14 +10,13 @@ class LoginFilter implements FilterInterface
 {
     public function before(RequestInterface $request, $arguments = null)
     {
-        if (! service('auth')->isLoggedIn()) {
+        if (!service('auth')->isLoggedIn()) {
 
             session()->set('redirect_url', current_url());
 
-    		    return redirect()->to(site_url('Login'))
-                        		 ->with('info', 'Please login first');
-
-		  }
+            return redirect()->to(site_url('Login'))
+                ->with('info', 'Please login first');
+        }
     }
 
     //--------------------------------------------------------------------
