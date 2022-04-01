@@ -6,12 +6,12 @@ class Login extends \App\Controllers\BaseController
 {
   public function new()
   {
+    dd('ok');
     return view('Caribe/Login/new');
   }
 
   public function create()
   {
-    dd('okok');
     $email = $this->request->getPost('email');
     $password = $this->request->getPost('password');
     $remember_me = (bool) $this->request->getPost('remember_me');
