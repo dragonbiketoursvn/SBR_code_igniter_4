@@ -20,7 +20,6 @@ class Filters extends BaseConfig
 		'toolbar'  => DebugToolbar::class,
 		'honeypot' => Honeypot::class,
 		'login'    => \App\Filters\LoginFilter::class,
-		'caribeLogin'    => \App\Filters\CaribeLoginFilter::class,
 	];
 
 	/**
@@ -32,7 +31,7 @@ class Filters extends BaseConfig
 	public $globals = [
 		'before' => [
 			// 'honeypot',
-			//  'csrf',
+		    //  'csrf',
 			'csrf' => ['except' => ['Test/*', 'Admin/*']],
 		],
 		'after'  => [
@@ -61,8 +60,5 @@ class Filters extends BaseConfig
 	 *
 	 * @var array
 	 */
-	public $filters = [
-		'login' => ['before' => ['Admin/(?!Customers/activate)*']],
-		'caribeLogin' => ['before' => ['caribe']],
-	];
+	public $filters = ['login' => ['before' => ['Admin/(?!Customers/activate)*']]];
 }

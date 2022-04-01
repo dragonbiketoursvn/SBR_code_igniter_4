@@ -7,7 +7,8 @@ $routes = Services::routes();
 
 // Load the system's routing file first, so that the app and ENVIRONMENT
 // can override as needed.
-if (file_exists(SYSTEMPATH . 'Config/Routes.php')) {
+if (file_exists(SYSTEMPATH . 'Config/Routes.php'))
+{
 	require SYSTEMPATH . 'Config/Routes.php';
 }
 
@@ -33,7 +34,6 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 $routes->get('Login', 'Login::new');
-$routes->get('caribe/login', 'Caribe/Login::new');
 
 /*
  * --------------------------------------------------------------------
@@ -48,6 +48,7 @@ $routes->get('caribe/login', 'Caribe/Login::new');
  * You will have access to the $routes object within that file without
  * needing to reload it.
  */
-if (file_exists(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php')) {
+if (file_exists(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php'))
+{
 	require APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php';
 }
