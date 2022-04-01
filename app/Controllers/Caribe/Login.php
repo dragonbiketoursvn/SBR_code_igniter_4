@@ -14,7 +14,7 @@ class Login extends \App\Controllers\BaseController
     $email = $this->request->getPost('email');
     $password = $this->request->getPost('password');
     $remember_me = (bool) $this->request->getPost('remember_me');
-
+    dd('ok');
     $auth = service('caribeAuth');
 
     if ($auth->login($email, $password, $remember_me)) {
