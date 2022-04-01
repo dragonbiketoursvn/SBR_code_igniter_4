@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Controllers\Caribe;
+namespace App\Controllers;
 
 class Login extends BaseController
 {
     public function new()
     {
-        return view('Caribe/Login/new');
+        return view('Login/new');
     }
 
     public function create()
