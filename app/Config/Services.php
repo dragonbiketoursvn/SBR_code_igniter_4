@@ -19,34 +19,27 @@ use CodeIgniter\Config\Services as CoreServices;
  */
 //class Services extends BaseService
 //{
-// public static function example($getShared = true)
-// {
-//     if ($getShared)
-//     {
-//         return static::getSharedInstance('example');
-//     }
-//
-//     return new \CodeIgniter\Example();
-// }
+	// public static function example($getShared = true)
+	// {
+	//     if ($getShared)
+	//     {
+	//         return static::getSharedInstance('example');
+	//     }
+	//
+	//     return new \CodeIgniter\Example();
+	// }
 //}
 
 class Services extends CoreServices
 {
-	public static function auth($getShared = true)
+
+  public static function auth($getShared = true)
 	{
-		if ($getShared) {
-			return static::getSharedInstance('auth');
-		}
+	    if ($getShared)
+	    {
+	        return static::getSharedInstance('auth');
+	    }
 
-		return new \App\Libraries\Authentication;
-	}
-
-	public static function caribeAuth($getShared = true)
-	{
-		if ($getShared) {
-			return static::getSharedInstance('caribeAuth');
-		}
-
-		return new \App\Libraries\CaribeAuthentication;
+        return new \App\Libraries\Authentication;
 	}
 }
