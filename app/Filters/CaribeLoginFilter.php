@@ -12,7 +12,7 @@ class CaribeLoginFilter implements FilterInterface
   {
 
     if (!service('caribeAuth')->isLoggedIn()) {
-
+      dd('penis');
       session()->set('redirect_url', current_url());
 
       return redirect()->to(site_url('caribe/login'))
