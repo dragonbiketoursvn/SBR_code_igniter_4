@@ -8,4 +8,9 @@ class Home extends BaseController
 	{
 		return view('Home/index');
 	}
+
+	public function test1()
+	{
+		dd('test1');
+	}
 }
