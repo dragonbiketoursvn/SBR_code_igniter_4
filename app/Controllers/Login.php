@@ -6,21 +6,17 @@ class Login extends BaseController
 {
     public function new()
     {
-<<<<<<< HEAD
         return view('Login/new');
-=======
-  		return view('Login/new');
->>>>>>> parent of 83b3b7d (Added Caribe Login)
     }
 
     public function create()
     {
         $email = $this->request->getPost('email');
-		$password = $this->request->getPost('password');
-		$remember_me = (bool) $this->request->getPost('remember_me');
+        $password = $this->request->getPost('password');
+        $remember_me = (bool) $this->request->getPost('remember_me');
 
         $auth = service('auth');
-        
+
         if ($auth->login($email, $password, $remember_me)) {
 
             $redirect_url = session('redirect_url') ?? '/';
@@ -28,14 +24,13 @@ class Login extends BaseController
             unset($_SESSION['redirect_url']);
 
             return redirect()->to($redirect_url)
-                             ->with('info', 'Login successful')
-                             ->withCookies();
-
+                ->with('info', 'Login successful')
+                ->withCookies();
         } else {
 
             return redirect()->back()
-                             ->withInput()
-                             ->with('warning', 'Invalid login');
+                ->withInput()
+                ->with('warning', 'Invalid login');
         }
     }
 
@@ -49,6 +44,6 @@ class Login extends BaseController
     public function showLogoutMessage()
     {
         return redirect()->to('/')
-                         ->with('info', 'Logout successful');
+            ->with('info', 'Logout successful');
     }
 }

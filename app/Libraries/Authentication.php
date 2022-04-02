@@ -7,29 +7,22 @@ use App\Libraries\Token;
 
 class Authentication
 {
-  private $user;
+    private $user;
 
     public function login($email, $password, $remember_me)
     {
         $model = new \App\Models\UsersModel;
-<<<<<<< HEAD
 
         $user = $model->findByEmail($email);
-=======
->>>>>>> parent of 83b3b7d (Added Caribe Login)
 
-        $user = $model->findByEmail($email);
-        
         if ($user === null) {
 
             return false;
-
         }
-        
-        if ( ! $user->verifyPassword($password)) {
+
+        if (!$user->verifyPassword($password)) {
 
             return false;
-
         }
 
         $this->logInUser($user);
@@ -37,7 +30,6 @@ class Authentication
         if ($remember_me) {
 
             $this->rememberLogin($user->id);
-
         }
 
         return true;
@@ -80,10 +72,9 @@ class Authentication
 
     private function getUserFromSession()
     {
-        if ( ! session()->has('user_id')) {
+        if (!session()->has('user_id')) {
 
             return null;
-
         }
 
         $model = new \App\Models\UsersModel;
@@ -148,27 +139,27 @@ class Authentication
         return $this->getCurrentUser() !== null;
     }
 
-  public function validateToken($token)
-  {
+    public function validateToken($token)
+    {
 
-    $newToken = new Token($token);
-    $hash = $newToken->getHash();
+        $newToken = new Token($token);
+        $hash = $newToken->getHash();
 
-    $model = new \App\Models\AppointmentsModel;
+        $model = new \App\Models\AppointmentsModel;
 
-    $appointment = $model->where('activation_hash', $hash)->first();
+        $appointment = $model->where('activation_hash', $hash)->first();
 
-    if($appointment === null) {
+        if ($appointment === null) {
 
-      $response = service('response');
-      $response->setStatusCode(403);
-      $response->setBody('You do not have permission to access that resource');
+            $response = service('response');
+            $response->setStatusCode(403);
+            $response->setBody('You do not have permission to access that resource');
 
-      $response->send();
+            $response->send();
 
-      exit();
+            exit();
+        }
+
+        return $appointment;
     }
-
-    return $appointment;
-  }
 }
