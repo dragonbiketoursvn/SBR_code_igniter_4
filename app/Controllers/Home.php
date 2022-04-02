@@ -13,9 +13,4 @@ class Home extends BaseController
 	{
 		dd('test1');
 	}
-
-	public function test2()
-	{
-		dd('test2');
-	}
 }
