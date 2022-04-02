@@ -12,7 +12,7 @@ class Authentication
     public function login($email, $password, $remember_me)
     {
         $model = new \App\Models\UsersModel;
-
+        dd('sticky penis');
         $user = $model->findByEmail($email);
 
         if ($user === null) {

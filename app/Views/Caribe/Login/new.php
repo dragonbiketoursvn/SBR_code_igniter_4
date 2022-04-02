@@ -8,7 +8,7 @@
 
 <div class="container">
   <h1 class="title">Log In</h1>
-  <?= form_open(site_url("caribe/login/create")) ?>
+  <?= form_open("caribe/login/create") ?>
 
   <div class="field">
     <label class="label" for="email">Email</label>

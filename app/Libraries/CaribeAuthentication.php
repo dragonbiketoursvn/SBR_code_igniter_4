@@ -14,7 +14,7 @@ class CaribeAuthentication
     $model = new \App\Models\CaribeUsersModel;
 
     $user = $model->findByEmail($email);
-    dd(($user));
+
     if ($user === null) {
 
       return false;
