@@ -64,6 +64,10 @@ class Appointments extends \App\Controllers\BaseController
   {
     $appointment = session()->get('appointment');
 
+    if ($appointment == null) {
+      return view('Admin/Appointments/bikeStatusCheck', ['appointment' => $appointment]);
+    }
+
     if (isset($appointment->paid_rent) && ($appointment->received_bike == 1) || ($appointment->returned_bike == 1)) {
 
       return redirect()->to(site_url('Admin/Appointments/finalCheck'));
