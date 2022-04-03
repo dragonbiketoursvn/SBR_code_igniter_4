@@ -149,11 +149,9 @@ class Appointments extends \App\Controllers\BaseController
     $notes = $this->request->getPost('notes');
     $appointment = session()->get('appointment');
 
-    //Mark the appointment as 'completed' now that it has finished
-    $this->model->update($appointment->id, ['appointment_completed' => 1]);
-
     if ($appointment) {
-
+      //Mark the appointment as 'completed' now that it has finished
+      $this->model->update($appointment->id, ['appointment_completed' => 1]);
       $this->model->update($appointment->id, ['notes' => $notes]);
     }
 
