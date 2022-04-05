@@ -50,7 +50,7 @@ class Appointments extends \App\Controllers\BaseController
 
   public function paymentCheck()
   {
-    dd(session()->get('appointment'));
+    // dd(session()->get('appointment'));
     $appointment = session()->get('appointment');
 
     if ($appointment->paid_rent == 1) {
