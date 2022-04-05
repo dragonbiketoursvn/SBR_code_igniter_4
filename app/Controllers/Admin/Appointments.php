@@ -200,7 +200,8 @@ class Appointments extends \App\Controllers\BaseController
 
     $this->model->save($appointment);
     session()->set('appointment', $appointment);
-
+    $check = session()->get('appointment');
+    dd($check);
     return redirect()->to(site_url('Admin/Appointments/paymentCheck'));
   }
 }
