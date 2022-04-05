@@ -63,7 +63,11 @@ class Appointments extends \App\Controllers\BaseController
   public function bikeStatusCheck()
   {
     $appointment = session()->get('appointment');
-    $appointment->paid_rent = 0; // to show that user has completed the paying rent question
+
+    // to show that user has completed the paying rent question
+    if ($appointment !== null) {
+      $appointment->paid_rent = 0;
+    }
 
     if ($appointment == null) {
       return view('Admin/Appointments/bikeStatusCheck', ['appointment' => $appointment]);
