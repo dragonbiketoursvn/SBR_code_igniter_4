@@ -50,6 +50,7 @@ class Appointments extends \App\Controllers\BaseController
 
   public function paymentCheck()
   {
+    dd(session()->get('appointment'));
     $appointment = session()->get('appointment');
 
     if ($appointment->paid_rent == 1) {
@@ -193,7 +194,7 @@ class Appointments extends \App\Controllers\BaseController
 
     $this->model->save($appointment);
     session()->set('appointment', $appointment);
-    dd(session()->get('appointment'));
+
     return redirect()->to(site_url('Admin/Appointments/paymentCheck'));
   }
 }
