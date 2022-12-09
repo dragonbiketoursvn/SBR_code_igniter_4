@@ -500,7 +500,7 @@
         // Update all the inputs
         profile.classList.remove('hidden');
         purchaseDate.value = json.purchase_date;
-        purchasedFrom.value = json.purchasedFrom;
+        purchasedFrom.value = json.purchased_from;
         purchasePrice.value = json.purchase_price;
         saleDate.value = json.sale_date;
         salePrice.value = json.sale_price;
