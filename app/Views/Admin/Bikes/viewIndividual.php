@@ -430,6 +430,7 @@
   const updateButton = document.querySelector('#update_button');
   const cancelButton = document.querySelector('#cancel_button');
   const purchaseDate = document.querySelector('#purchase_date');
+  const purchasedFrom = document.querySelector('#purchased_from');
   const purchasePrice = document.querySelector('#purchase_price');
   const saleDate = document.querySelector('#sale_date');
   const salePrice = document.querySelector('#sale_price');
@@ -499,6 +500,7 @@
         // Update all the inputs
         profile.classList.remove('hidden');
         purchaseDate.value = json.purchase_date;
+        purchasedFrom.value = json.purchasedFrom;
         purchasePrice.value = json.purchase_price;
         saleDate.value = json.sale_date;
         salePrice.value = json.sale_price;
