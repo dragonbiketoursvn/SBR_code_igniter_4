@@ -120,6 +120,19 @@
         </div>
       </div>
 
+      <div class="field is-horizontal" style="bottom: 200px !important;">
+        <div class="field-label is-normal">
+          <label class="label" for="purchased_from">Purchased From</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <p class="control is-expanded">
+              <input required autocomplete="off" type="text" class="input is-success" id="purchased_from" name="purchased_from" value="<?= old('purchased_from') ?>">
+            </p>
+          </div>
+        </div>
+      </div>
+
       <div class="field is-horizontal">
         <div class="field-label is-normal">
           <label class="label" for="giay_uy_quyen">Giấy Ủy Quyền?</label>
