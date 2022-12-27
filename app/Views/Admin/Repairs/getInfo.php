@@ -15,9 +15,9 @@
       <p class="control is-expanded">
         <input autofocus required autocomplete="off" list="current_bikes" class="input is-success" id="plate_number" name="plate_number">
         <datalist id="current_bikes">
-          <?php foreach($currentBikes as $currentBike): ?>
+          <?php foreach ($currentBikes as $currentBike) : ?>
             <option value="<?= $currentBike->plate_number ?>">
-          <?php endforeach; ?>
+            <?php endforeach; ?>
         </datalist>
       </p>
     </div>
@@ -32,6 +32,25 @@
     <div class="field">
       <p class="control is-expanded">
         <input required autocomplete="off" class="input is-success" type="date" name="repair_date" id="repair_date">
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="field is-horizontal">
+  <div class="field-label is-normal">
+    <label class="label" for="repaired_by">Người Sửa</label>
+  </div>
+  <div class="field-body">
+    <div class="field">
+      <p class="control is-expanded">
+        <input required autocomplete="off" list="repaired_by_list" class="input is-success" name="repaired_by" id="repaired_by">
+        <datalist id="repaired_by_list">
+          <option value="Yamaha Bình Tân">
+          <option value="SYM Nguyễn Thái Học">
+          <option value="Tây">
+          <option value="Honda NTMK">
+        </datalist>
       </p>
     </div>
   </div>
@@ -99,9 +118,9 @@
       <p class="control is-expanded">
         <input list="parts_list" class="input is-success" id="item_1" name="item_1">
         <datalist id="parts_list">
-          <?php foreach($partsList as $part): ?>
+          <?php foreach ($partsList as $part) : ?>
             <option value="<?= $part->part_name ?>">
-          <?php endforeach; ?>
+            <?php endforeach; ?>
         </datalist>
       </p>
     </div>
@@ -117,9 +136,9 @@
       <p class="control is-expanded">
         <input list="parts_list" class="input is-success" id="item_2" name="item_2">
         <datalist id="parts_list">
-          <?php foreach($partsList as $part): ?>
+          <?php foreach ($partsList as $part) : ?>
             <option value="<?= $part->part_name ?>">
-          <?php endforeach; ?>
+            <?php endforeach; ?>
         </datalist>
       </p>
     </div>
@@ -135,9 +154,9 @@
       <p class="control is-expanded">
         <input list="parts_list" class="input is-success" id="item_3" name="item_3">
         <datalist id="parts_list">
-          <?php foreach($partsList as $part): ?>
+          <?php foreach ($partsList as $part) : ?>
             <option value="<?= $part->part_name ?>">
-          <?php endforeach; ?>
+            <?php endforeach; ?>
         </datalist>
       </p>
     </div>
@@ -153,9 +172,9 @@
       <p class="control is-expanded">
         <input list="parts_list" class="input is-success" id="item_4" name="item_4">
         <datalist id="parts_list">
-          <?php foreach($partsList as $part): ?>
+          <?php foreach ($partsList as $part) : ?>
             <option value="<?= $part->part_name ?>">
-          <?php endforeach; ?>
+            <?php endforeach; ?>
         </datalist>
       </p>
     </div>
@@ -171,9 +190,9 @@
       <p class="control is-expanded">
         <input list="parts_list" class="input is-success" id="item_5" name="item_5">
         <datalist id="parts_list">
-          <?php foreach($partsList as $part): ?>
+          <?php foreach ($partsList as $part) : ?>
             <option value="<?= $part->part_name ?>">
-          <?php endforeach; ?>
+            <?php endforeach; ?>
         </datalist>
       </p>
     </div>
@@ -189,9 +208,9 @@
       <p class="control is-expanded">
         <input list="parts_list" class="input is-success" id="item_6" name="item_6">
         <datalist id="parts_list">
-          <?php foreach($partsList as $part): ?>
+          <?php foreach ($partsList as $part) : ?>
             <option value="<?= $part->part_name ?>">
-          <?php endforeach; ?>
+            <?php endforeach; ?>
         </datalist>
       </p>
     </div>
@@ -207,9 +226,9 @@
       <p class="control is-expanded">
         <input list="parts_list" class="input is-success" id="item_7" name="item_7">
         <datalist id="parts_list">
-          <?php foreach($partsList as $part): ?>
+          <?php foreach ($partsList as $part) : ?>
             <option value="<?= $part->part_name ?>">
-          <?php endforeach; ?>
+            <?php endforeach; ?>
         </datalist>
       </p>
     </div>
@@ -225,9 +244,9 @@
       <p class="control is-expanded">
         <input list="parts_list" class="input is-success" id="item_8" name="item_8">
         <datalist id="parts_list">
-          <?php foreach($partsList as $part): ?>
+          <?php foreach ($partsList as $part) : ?>
             <option value="<?= $part->part_name ?>">
-          <?php endforeach; ?>
+            <?php endforeach; ?>
         </datalist>
       </p>
     </div>
@@ -243,9 +262,9 @@
       <p class="control is-expanded">
         <input list="parts_list" class="input is-success" id="item_9" name="item_9">
         <datalist id="parts_list">
-          <?php foreach($partsList as $part): ?>
+          <?php foreach ($partsList as $part) : ?>
             <option value="<?= $part->part_name ?>">
-          <?php endforeach; ?>
+            <?php endforeach; ?>
         </datalist>
       </p>
     </div>
@@ -261,9 +280,9 @@
       <p class="control is-expanded">
         <input list="parts_list" class="input is-success" id="item_10" name="item_10">
         <datalist id="parts_list">
-          <?php foreach($partsList as $part): ?>
+          <?php foreach ($partsList as $part) : ?>
             <option value="<?= $part->part_name ?>">
-          <?php endforeach; ?>
+            <?php endforeach; ?>
         </datalist>
       </p>
     </div>
@@ -305,32 +324,31 @@
 </div>
 
 <script>
-    const modal = document.querySelector('.modal');
-    const buttonOpenModal = document.querySelector('.toggle');
-    const buttonCloseModal = document.querySelector('.close-toggle');
+  const modal = document.querySelector('.modal');
+  const buttonOpenModal = document.querySelector('.toggle');
+  const buttonCloseModal = document.querySelector('.close-toggle');
 
-    const toggle = function() {
+  const toggle = function() {
 
-      let total = document.querySelector('input[name="total_cost"]');
-      let labor = document.querySelector('input[name="labor_cost"]');
+    let total = document.querySelector('input[name="total_cost"]');
+    let labor = document.querySelector('input[name="labor_cost"]');
 
-      let message = `Giá tổng cộng là ${total.value} và tiền công là ${labor.value}, đúng ko?`;
+    let message = `Giá tổng cộng là ${total.value} và tiền công là ${labor.value}, đúng ko?`;
 
-      document.querySelector('.modal-card-body').innerHTML = message;
+    document.querySelector('.modal-card-body').innerHTML = message;
 
-      modal.classList.add('is-active');
+    modal.classList.add('is-active');
 
-     };
+  };
 
-     const closeToggle = function() {
+  const closeToggle = function() {
 
-      modal.classList.remove('is-active');
+    modal.classList.remove('is-active');
 
-     };
+  };
 
-    buttonOpenModal.addEventListener('click', toggle);
-    buttonCloseModal.addEventListener('click', closeToggle);
-
+  buttonOpenModal.addEventListener('click', toggle);
+  buttonCloseModal.addEventListener('click', closeToggle);
 </script>
 
 

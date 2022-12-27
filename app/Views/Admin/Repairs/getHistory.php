@@ -13,9 +13,9 @@
       <p class="control is-expanded">
         <input autofocus autocomplete="off" list="current_bikes" class="input is-success" id="plate_number" name="plate_number">
         <datalist id="current_bikes">
-          <?php foreach($currentBikes as $currentBike): ?>
+          <?php foreach ($currentBikes as $currentBike) : ?>
             <option value="<?= $currentBike->plate_number ?>">
-          <?php endforeach; ?>
+            <?php endforeach; ?>
         </datalist>
       </p>
     </div>
@@ -60,13 +60,12 @@
   </thead>
 
   <tbody class="repairHistory">
-  
+
   </tbody>
 </table>
 
 
 <script>
-
   // Create consts for the input and button. Then add an event listener to the button which will:
   // 1) POST the plate number asyncrhonously to a controller which will return the full repair history as json
   // 2) Create and append to the table body one row for each repair record
@@ -81,82 +80,81 @@
 
   sendButton.addEventListener('click', function(e) {
 
-            table.classList.remove('hidden');
+    table.classList.remove('hidden');
 
-            // Remember to get rid of any existing rows in the table body!!!
-            const tableBody = document.querySelector('tbody');
-            tableBody.querySelectorAll('tr').forEach(function(e) {
-              e.remove();
-            })
+    // Remember to get rid of any existing rows in the table body!!!
+    const tableBody = document.querySelector('tbody');
+    tableBody.querySelectorAll('tr').forEach(function(e) {
+      e.remove();
+    })
 
-            const formData = new FormData();
-            formData.append('plate_number', plateNumber.value);
+    const formData = new FormData();
+    formData.append('plate_number', plateNumber.value);
 
-                fetch("<?= site_url('Admin/Repairs/showHistory') ?>", {
-                method: 'POST',
-                body: formData
-            }).then(response => response.json().then(
-              function(json) {
-                
-                let fragment = new DocumentFragment(); // to hold all the rows until they're ready to append
-                for (x in json) {
-                  let row = document.createElement('tr'); // create a row for each numbered index of json (equal to one record)
-                  let cell1 = document.createElement('td');
-                  let cell2 = document.createElement('td');
-                  let cell3 = document.createElement('td');
-                  let cell4 = document.createElement('td');
-                  let cell5 = document.createElement('td');
-                  let cell6 = document.createElement('td');
-                  let cell7 = document.createElement('td');
-                  let cell8 = document.createElement('td');
-                  let cell9 = document.createElement('td');
-                  let cell10 = document.createElement('td');
-                  let cell11 = document.createElement('td');
-                  let cell12 = document.createElement('td');
-                  let cell13 = document.createElement('td');
-                  let cell14 = document.createElement('td');
-                  let cell15 = document.createElement('td');
-                  cell1.innerText = json[x]['repair_date'];
-                  row.append(cell1);
-                  cell2.innerText = json[x]['odometer'];
-                  row.append(cell2);
-                  cell3.innerText = json[x]['total_cost'];
-                  row.append(cell3);
-                  cell4.innerText = json[x]['labor_cost'];
-                  row.append(cell4);
-                  cell5.innerText = json[x]['nhot'];
-                  row.append(cell5);
-                  cell6.innerText = json[x]['item_1'];
-                  row.append(cell6);
-                  cell7.innerText = json[x]['item_2'];
-                  row.append(cell7);
-                  cell8.innerText = json[x]['item_3'];
-                  row.append(cell8);
-                  cell9.innerText = json[x]['item_4'];
-                  row.append(cell9);
-                  cell10.innerText = json[x]['item_5'];
-                  row.append(cell10);
-                  cell11.innerText = json[x]['item_6'];
-                  row.append(cell11);
-                  cell12.innerText = json[x]['item_7'];
-                  row.append(cell12);
-                  cell13.innerText = json[x]['item_8'];
-                  row.append(cell13);
-                  cell14.innerText = json[x]['item_9'];
-                  row.append(cell14);
-                  cell15.innerText = json[x]['item_10'];
-                  row.append(cell15);
-                  fragment.append(row);
-                  }              
-                repairHistory.append(fragment);
-              }
-            )
-                .catch(error => console.log(error)));
-            
-        });
+    fetch("<?= site_url('Admin/Repairs/showHistory') ?>", {
+      method: 'POST',
+      body: formData
+    }).then(response => response.json().then(
+        function(json) {
 
+          let fragment = new DocumentFragment(); // to hold all the rows until they're ready to append
+          for (x in json) {
+            let row = document.createElement('tr'); // create a row for each numbered index of json (equal to one record)
+            let cell1 = document.createElement('td');
+            let cell2 = document.createElement('td');
+            let cell3 = document.createElement('td');
+            let cell4 = document.createElement('td');
+            let cell5 = document.createElement('td');
+            let cell6 = document.createElement('td');
+            let cell7 = document.createElement('td');
+            let cell8 = document.createElement('td');
+            let cell9 = document.createElement('td');
+            let cell10 = document.createElement('td');
+            let cell11 = document.createElement('td');
+            let cell12 = document.createElement('td');
+            let cell13 = document.createElement('td');
+            let cell14 = document.createElement('td');
+            let cell15 = document.createElement('td');
+            let cell16 = document.createElement('td');
+            cell1.innerText = json[x]['repair_date'];
+            row.append(cell1);
+            cell2.innerText = json[x]['repaired_by'];
+            row.append(cell2);
+            cell3.innerText = json[x]['odometer'];
+            row.append(cell3);
+            cell4.innerText = json[x]['total_cost'];
+            row.append(cell4);
+            cell5.innerText = json[x]['labor_cost'];
+            row.append(cell5);
+            cell6.innerText = json[x]['nhot'];
+            row.append(cell6);
+            cell7.innerText = json[x]['item_1'];
+            row.append(cell7);
+            cell8.innerText = json[x]['item_2'];
+            row.append(cell8);
+            cell9.innerText = json[x]['item_3'];
+            row.append(cell9);
+            cell10.innerText = json[x]['item_4'];
+            row.append(cell10);
+            cell11.innerText = json[x]['item_5'];
+            row.append(cell11);
+            cell12.innerText = json[x]['item_6'];
+            row.append(cell12);
+            cell13.innerText = json[x]['item_7'];
+            row.append(cell13);
+            cell14.innerText = json[x]['item_8'];
+            row.append(cell14);
+            cell15.innerText = json[x]['item_9'];
+            row.append(cell15);
+            cell16.innerText = json[x]['item_10'];
+            row.append(cell16);
+            fragment.append(row);
+          }
+          repairHistory.append(fragment);
+        }
+      )
+      .catch(error => console.log(error)));
 
+  });
 </script>
 <?= $this->endSection() ?>
-
-
