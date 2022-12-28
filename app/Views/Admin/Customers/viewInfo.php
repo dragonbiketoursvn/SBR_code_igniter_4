@@ -59,6 +59,19 @@ if (!$customer) {
 
   <div class="field is-horizontal" style="bottom: 200px !important;">
     <div class="field-label is-normal">
+      <label class="label" for="primary_contact_channel">Primary Contact Channel</label>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <p class="control is-expanded">
+          <input autocomplete="off" readonly class="input is-success" id="primary_contact_channel" name="primary_contact_channel" value="<?= $customer->primary_contact_channel ?>">
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="field is-horizontal" style="bottom: 200px !important;">
+    <div class="field-label is-normal">
       <label class="label" for="phone_number">Phone Number</label>
     </div>
     <div class="field-body">
