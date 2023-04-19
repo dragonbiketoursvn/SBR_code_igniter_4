@@ -105,7 +105,7 @@ class Appointments extends BaseController
             )
     ";
 
-    // dd($sql);
+    dd($sql);
 
     $this->db->simpleQuery($sql); // update record
     $appointment = service('auth')->validateToken($token); // select updated record from db
