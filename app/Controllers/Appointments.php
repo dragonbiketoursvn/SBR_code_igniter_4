@@ -9,30 +9,30 @@ use App\Libraries\Authentication;
 class Appointments extends BaseController
 {
   protected $model;
+  protected $db;
 
   public function __construct()
-	{
-      $this->model = new AppointmentsModel;
-	}
+  {
+    $this->model = new AppointmentsModel;
+    $this->db = \Config\Database::connect();
+  }
 
   public function select($token = null)
-	{
+  {
     $alreadyBookedArray = [];
     $appointment = service('auth')->validateToken($token);
     $scheduledAppointments = $this->model->getScheduledAppointments();
 
-    if(($appointment->appointment_time === "0000-00-00 00:00:00") || ($appointment->appointment_time === null)) {
+    if (($appointment->appointment_time === "0000-00-00 00:00:00") || ($appointment->appointment_time === null)) {
 
       return view('Appointments/select', [
         'token'                   => $token,
         'scheduledAppointments'   => $scheduledAppointments,
         'alreadyBookedArray'      => $alreadyBookedArray,
       ]);
-
     } else {
 
       return redirect()->to(site_url('appointments/display/' . $token));
-
     }
 
     /*
@@ -55,29 +55,65 @@ class Appointments extends BaseController
 
     }
     */
-
   }
 
 
-  public function display($token = null) {
+  public function display($token = null)
+  {
 
     $appointment = service('auth')->validateToken($token);
 
     return view('Appointments/display', [
-                                          'appointment' => $appointment,
-                                                'token' => $token
-                                        ]);
-
+      'appointment' => $appointment,
+      'token' => $token
+    ]);
   }
 
+  // public function chooseTime($token = null)
+  // {
+  //   $appointment = service('auth')->validateToken($token);
+
+  //   $this->model->update($appointment->id, ['appointment_time' => $this->request->getPost('appointment_start')]);
+
+  //   return redirect()->to(site_url('appointments/chooseLocation/' . $token));
+  // }
+
   public function chooseTime($token = null)
-	{
-      $appointment = service('auth')->validateToken($token);
+  {
+    $appointment = service('auth')->validateToken($token);
+    $appointment_time = $this->request->getPost('appointment_start');
+    // $this->model->update($appointment->id, ['appointment_time' => $this->request->getPost('appointment_start')]);
 
-      $this->model->update($appointment->id, [ 'appointment_time'=> $this->request->getPost('appointment_start')]);
+    $sql = "
+            UPDATE appointments 
+            SET appointment_time = '{$appointment_time}'
+            WHERE id = {$appointment->id}
+            AND '{$appointment_time}'
+            NOT IN ( 
+                SELECT time FROM ( 
+                    SELECT DATE_ADD(appointment_time, INTERVAL 30 MINUTE) AS time FROM appointments 
+                ) t WHERE time IS NOT NULL 
+            ) 
+            AND '{$appointment_time}' NOT IN ( 
+                SELECT time FROM ( 
+                    SELECT DATE_SUB(appointment_time, INTERVAL 30 MINUTE) AS time FROM appointments 
+                ) t WHERE time IS NOT NULL 
+            )
+            AND '{$appointment_time}' NOT IN ( 
+                SELECT appointment_time 
+                FROM appointments
+            )
+    ";
 
+    $this->db->simpleQuery($sql); // update record
+    $appointment = service('auth')->validateToken($token); // select updated record from db
+
+    if ($appointment->appointment_time === $appointment_time) {
       return redirect()->to(site_url('appointments/chooseLocation/' . $token));
-	}
+    } else {
+      return redirect()->back();
+    }
+  }
 
   public function chooseLocation($token = null)
   {
@@ -87,33 +123,29 @@ class Appointments extends BaseController
   }
 
   public function saveLocation($token = null)
-	{
+  {
     $appointment = service('auth')->validateToken($token);
 
     $post = $this->request->getPost();
 
     $appointment->fill($post);
 
-    if($appointment->hasChanged()) {
+    if ($appointment->hasChanged()) {
 
       $this->model->save($appointment);
-
     }
 
-      return redirect()->to(site_url('appointments/select/' . $token));
-
-	}
+    return redirect()->to(site_url('appointments/select/' . $token));
+  }
 
   public function delete($token = null)
-	{
-      $appointment = service('auth')->validateToken($token);
+  {
+    $appointment = service('auth')->validateToken($token);
 
-      $this->model->update($appointment->id, [ 'appointment_time'=> $this->request->getPost('appointment_start')]);
+    $this->model->update($appointment->id, ['appointment_time' => $this->request->getPost('appointment_start')]);
 
-      //$scheduledAppointments = $this->model->getScheduledAppointments();
+    //$scheduledAppointments = $this->model->getScheduledAppointments();
 
-      return redirect()->to(site_url('appointments/select/') . $token);
-
-	}
-
+    return redirect()->to(site_url('appointments/select/') . $token);
+  }
 }

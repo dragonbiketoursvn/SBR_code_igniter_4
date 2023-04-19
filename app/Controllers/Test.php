@@ -3,7 +3,10 @@
 namespace App\Controllers;
 
 use App\Models\BikesModel;
+use App\Models\AppointmentsModel;
 use App\Libraries\Token;
+use App\Entities\Appointment;
+
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -12,6 +15,12 @@ use CodeIgniter\I18n\Time;
 
 class Test extends BaseController
 {
+  protected $db;
+
+  public function __construct()
+  {
+    $this->db = \Config\Database::connect();
+  }
 
   public function asyncRequest()
   {
@@ -113,9 +122,74 @@ class Test extends BaseController
     }
   }
 
+  public function sendMaintenanceNotifications()
+  {
+    require ROOTPATH . '/vendor/PHPMailer-master/src/Exception.php';
+    require ROOTPATH . '/vendor/PHPMailer-master/src/PHPMailer.php';
+    require ROOTPATH . '/vendor/PHPMailer-master/src/SMTP.php';
+
+    $model = new AppointmentsModel;
+
+    $sql = "SELECT * FROM customers WHERE id IN (1080, 2359, 3358)"; // get our testers!
+    $result = $this->db->query($sql);
+
+    // iterate over results, create and insert new appointment record for each
+    foreach ($result->getResultObject() as $row) {
+
+      $sql2 = "SELECT plate_number 
+              FROM `bike_status_change` 
+              WHERE customer_id = {$row->id}
+              ORDER BY date_time DESC
+              LIMIT 1";
+
+      $currentBike = $this->db->query($sql2)
+        ->getResultObject()[0]
+        ->plate_number;
+
+      $appointment = new Appointment();
+      $appointment->customer_id = $row->id;
+      $appointment->customer_name = $row->customer_name;
+      $appointment->current_bike = $currentBike;
+      $appointment->startActivation();
+
+      $model->insert($appointment);
+    }
+
+    $mail = new PHPMailer(true);
+    $mail->isSMTP();
+    $mail->Host = 'mail.saigonbikerentals.com';
+    $mail->SMTPAuth = true;
+    $mail->Username = 'patrick@saigonbikerentals.com';
+    $mail->Password = 'n1FaZ!Sz#)vB';
+    $mail->SMTPSecure = 'tls';
+    $mail->Port = 26;
+    $mail->setFrom('patrick@saigonbikerentals.com');
+    $mail->addAddress('dragonbiketoursvn@gmail.com');
+    $mail->isHTML(true);
+    $mail->Subject = "Let's Meet!";
+
+    $mail->Body = '<p>' . 'Hi ' . $name . ',' . '</p><p>' . 'According to our records, you are currently renting the bike 
+                with plate number <b>' .
+      $plateNumber . '</b>, which is due for maintenance. If this is not the correct bike please reply directly to this email
+                and let us know. Otherwise, please click on the link below to schedule a service appointment.' . '</p><p>' .
+      'Best regards,' . '</p><p>' . 'Saigon Bike Rentals' . '</p>';
+
+    if (!$mail->send()) {
+
+      echo 'Mailer Error: ' . $mail->ErrorInfo;
+    } else {
+
+      $path = '{sng103.hawkhost.com:993/ssl}INBOX.Sent';
+      $imapStream = imap_open($path, 'patrick@saigonbikerentals.com', 'n1FaZ!Sz#)vB');
+      imap_append($imapStream, $path, $mail->getSentMIMEMessage());
+      imap_close($imapStream);
+      echo 'Message sent!';
+    }
+  }
+
   public function addPhotoPaths()
   {
-    $db = db_connect();
+    // $db = db_connect();
     $path = WRITEPATH . 'uploads/registration_cards';
     $fileNameArray = scandir($path);
     $model = new \App\Models\BikesModel;
@@ -140,18 +214,18 @@ class Test extends BaseController
       // We can't use CodeIgniter's model functions since the primary key isn't explictly named 'id'
       // So, we'll have to create and run our own query
       $sql = "UPDATE bikes SET reg_front = '{$bike->reg_front}', reg_back = '{$bike->reg_back}' WHERE plate_number = '{$bike->plate_number}'";
-      $db->simpleQuery($sql);
+      $this->db->query($sql);
     }
   }
 
   public function testPenis()
   {
-    $db = db_connect();
+    // $db = db_connect();
     $sql = "SELECT plate_number, purchase_date, brand, model, year, purchase_price, extra_key, sale_date, sale_price FROM bikes WHERE plate_number = '51K2-1782'";
 
     // $result = $db->query($sql);
 
-    $result  = $db->query($sql);
+    $result  = $this->db->query($sql);
     // $fields = $query->fieldData();
 
     $fieldData = $result->getFieldData();
