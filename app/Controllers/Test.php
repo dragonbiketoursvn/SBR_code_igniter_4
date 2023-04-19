@@ -165,7 +165,8 @@ class Test extends BaseController
       $mail->SMTPSecure = 'tls';
       $mail->Port = 26;
       $mail->setFrom('patrick@saigonbikerentals.com');
-      $mail->addAddress($row->email_address);
+      // $mail->addAddress($row->email_address);
+      $mail->addAddress('dragonbiketoursvn@gmail.com');
       $mail->isHTML(true);
       $mail->Subject = "Let's Meet!";
 
