@@ -122,9 +122,8 @@ class Reports extends \App\Controllers\BaseController
             $mail->Subject = "Bike Maintenance";
             $mail->Body = '<p>' . 'Hi ' . $name . ',' . '</p><p>' . 'According to our records, you are currently renting the bike 
                 with plate number <b>' .
-                $plateNumber . '</b>, which is due for maintenance. If this is not the correct bike please click on the 
-                          following link [LINK] to let us know. Otherwise, please click on the link below to schedule a service 
-                          appointment.' . '</p><p>' .
+                $plateNumber . '</b>, which is due for maintenance. If this is not the correct bike please reply directly to this email
+                and let us know. Otherwise, please click on the link below to schedule a service appointment.' . '</p><p>' .
                 'Best regards,' . '</p><p>' . 'Saigon Bike Rentals' . '</p>';
 
             if (!$mail->send()) {
@@ -138,12 +137,6 @@ class Reports extends \App\Controllers\BaseController
                 imap_close($imapStream);
                 echo 'Message sent!';
             }
-            //             Hi [NAME],
-
-            // According to our records, you are currently renting [PLATE_NUMBER], which is due for maintenance. If this is not the correct bike please click on the following link [LINK] to let us know. Otherwise, please click on the link below to schedule an appointment.
-
-            // Best regards,
-            // Saigon Bike Rentals
         }
     }
 }
