@@ -152,6 +152,7 @@ class Test extends BaseController
       $appointment->customer_id = $row->id;
       $appointment->customer_name = $row->customer_name;
       $appointment->current_bike = $currentBike;
+      // $appointment->appointment_time = NULL;
       $appointment->startActivation();
 
       $model->insert($appointment);

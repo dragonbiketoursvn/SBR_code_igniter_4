@@ -102,6 +102,7 @@ class Appointments extends BaseController
             AND '{$appointment_time}' NOT IN ( 
                 SELECT appointment_time 
                 FROM appointments
+                WHERE appointment_time IS NOT NULL
             )
     ";
 
