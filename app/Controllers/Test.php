@@ -146,6 +146,8 @@ class Test extends BaseController
         ->getResultObject()[0]
         ->plate_number;
 
+      $name = trim($row->customer_name, "0..9");
+
       $appointment = new Appointment();
       $appointment->customer_id = $row->id;
       $appointment->customer_name = $row->customer_name;
@@ -167,11 +169,16 @@ class Test extends BaseController
       $mail->isHTML(true);
       $mail->Subject = "Let's Meet!";
 
-      $mail->Body = '<p>' . 'Hi ' . $name . ',' . '</p><p>' . 'According to our records, you are currently renting the bike 
-                with plate number <b>' .
-        $plateNumber . '</b>, which is due for maintenance. If this is not the correct bike please reply directly to this email
-                and let us know. Otherwise, please click on the link below to schedule a service appointment.' . '</p><p>' .
-        'Best regards,' . '</p><p>' . 'Saigon Bike Rentals' . '</p>';
+      $link = site_url("Appointments/select/{$appointment->token}");
+
+      $mail->Body = "<p>Hi {$name},</p><p>According to our records, you are 
+                    currently renting the bike with plate number <b>
+                    {$currentBike}</b>, which is now due for maintenance. If this 
+                    is not the correct bike please reply directly to this email 
+                    and let us know. Otherwise, please click on the link below 
+                    to schedule a service appointment.</p><p>Best regards,</p>
+                    <p>Saigon Bike Rentals</p><p><a href='{$link}'>Book 
+                    Appointment</a></p>";
 
       if (!$mail->send()) {
 
