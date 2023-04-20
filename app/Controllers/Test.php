@@ -181,7 +181,7 @@ class Test extends BaseController
                     <p>Saigon Bike Rentals</p><p><a href='{$link}'>Book 
                     Appointment</a></p>";
 
-      dd($row->email_address);
+      // dd($row->email_address);
 
       if (!$mail->send()) {
 
