@@ -171,7 +171,7 @@ class Test extends BaseController
       $mail->Subject = "Let's Meet!";
 
       $link = site_url("Appointments/select/{$appointment->token}");
-      dd($link);
+
       $mail->Body = "<p>Hi {$name},</p><p>According to our records, you are 
                     currently renting the bike with plate number <b>
                     {$currentBike}</b>, which is now due for maintenance. If this 
@@ -180,6 +180,8 @@ class Test extends BaseController
                     to schedule a service appointment.</p><p>Best regards,</p>
                     <p>Saigon Bike Rentals</p><p><a href='{$link}'>Book 
                     Appointment</a></p>";
+
+      dd($mail->Body);
 
       if (!$mail->send()) {
 
