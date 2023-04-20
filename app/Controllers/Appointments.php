@@ -145,7 +145,14 @@ class Appointments extends BaseController
   {
     $appointment = service('auth')->validateToken($token);
 
-    $this->model->update($appointment->id, ['appointment_time' => $this->request->getPost('appointment_start')]);
+    $this->model->update($appointment->id, [
+      'appointment_time' => $this->request->getPost('appointment_start'),
+      'building_name' => 'Saigon Bike Rentals',
+      'number' => '182/5A',
+      'street_name' => 'De Tham',
+      'ward' => 'Cau Ong Lanh',
+      'district' => '1',
+    ]);
 
     //$scheduledAppointments = $this->model->getScheduledAppointments();
 
