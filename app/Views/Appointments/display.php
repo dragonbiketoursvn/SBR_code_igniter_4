@@ -8,7 +8,7 @@
   <section class="hero is-link">
     <div class="hero-body has-text-centered">
       <p class="title">
-       Your Currently Scheduled Appointment:
+        Your Currently Scheduled Appointment:
       </p>
     </div>
   </section>
@@ -22,19 +22,16 @@
     <div class="field-body">
       <div class="field">
         <p class="control is-expanded">
-          <input class="input is-success" type="text" id="appointment_time" name="building_name"
-          value="<?php if($appointment->appointment_time === '0000-00-00 00:00:00') {
+          <input class="input is-success" type="text" id="appointment_time" name="building_name" value="<?php if ($appointment->appointment_time === '0000-00-00 00:00:00') {
 
-            echo 'No Time Currently Scheduled';
-            
-          } else {
+                                                                                                          echo 'No Time Currently Scheduled';
+                                                                                                        } else {
 
-            $datetime = new \DateTime($appointment->appointment_time);
-            echo $datetime->format('D, j F - G:iA');
+                                                                                                          $datetime = new \DateTime($appointment->appointment_time);
+                                                                                                          echo $datetime->format('D, j F - G:iA');
+                                                                                                        }
 
-          }
-
-          ?>" disabled>
+                                                                                                        ?>" disabled>
       </div>
     </div>
   </div>
@@ -111,10 +108,10 @@
       <div class="field">
         <div class="control">
           <?= form_open(site_url('/appointments/delete/' . $token)) ?>
-            <input type="hidden" name="appointment_start" value=''>
-            <button class="button is-danger is-large is-fullwidth">
-              <b>Click Here if You'd Like to Reschedule :)</b>
-            </button>
+          <input type="hidden" name="appointment_start" value=''>
+          <button class="button is-danger is-large is-fullwidth">
+            <b>Cancel</b>
+          </button>
           </form>
         </div>
       </div>
