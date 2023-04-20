@@ -14,7 +14,8 @@
   </section>
 </div>
 
-<div style="padding-right: 100px;">
+
+<div style="padding-right: 0;">
   <div class="field is-horizontal">
     <div class="field-label is-normal">
       <label class="label" for="appointment_time">Appointment Time</label>
