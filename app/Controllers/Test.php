@@ -169,7 +169,7 @@ class Test extends BaseController
       $mail->addAddress('dragonbiketoursvn@gmail.com');
       $mail->isHTML(true);
       $mail->Subject = "Let's Meet!";
-
+      dd('test');
       $link = site_url("Appointments/select/{$appointment->token}");
 
       $mail->Body = "<p>Hi {$name},</p><p>According to our records, you are 
