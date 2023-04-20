@@ -111,7 +111,7 @@
           <?= form_open(site_url('/appointments/delete/' . $token)) ?>
           <input type="hidden" name="appointment_start" value=''>
           <button class="button is-danger is-large is-fullwidth">
-            <b>Cancel</b>
+            <b>Cancel and Reschedule</b>
           </button>
           </form>
         </div>
