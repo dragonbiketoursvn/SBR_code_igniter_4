@@ -130,7 +130,7 @@ class Test extends BaseController
 
     $model = new AppointmentsModel;
 
-    $sql = "SELECT * FROM customers WHERE id IN (1080, 2359, 3358)"; // get our testers!
+    $sql = "SELECT * FROM customers WHERE id IN (1080, 2359, 3358, 6055)"; // get our testers!
     $result = $this->db->query($sql);
 
     // iterate over results, create and insert new appointment record for each
