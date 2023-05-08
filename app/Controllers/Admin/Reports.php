@@ -39,7 +39,7 @@ class Reports extends \App\Controllers\BaseController
 
     public function getMaintenanceList()
     {
-        $sql = 'SELECT SUBSTRING_INDEX(t1.plate_number, " ", 1), c.customer_name, c.email_address
+        $sql = 'SELECT SUBSTRING_INDEX(t1.plate_number, " ", 1) AS plate_number, c.customer_name, c.email_address
             FROM ( 
                 SELECT * 
             FROM bike_status_change
