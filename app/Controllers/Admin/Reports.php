@@ -75,7 +75,7 @@ class Reports extends \App\Controllers\BaseController
                     ) t2 
                     ON t1.plate_number = t2.plate_number 
                     JOIN customers c on c.id = t1.customer_id  
-            ORDER BY t1.plate_number
+            -- ORDER BY t1.plate_number
             LIMIT 20
             ';
 
@@ -102,7 +102,7 @@ class Reports extends \App\Controllers\BaseController
         require ROOTPATH . '/vendor/PHPMailer-master/src/SMTP.php';
 
         $resultArray = $this->getMaintenanceList()->getResultArray();
-
+        dd($resultArray);
         foreach ($resultArray as $row) {
             $name = trim($row['customer_name'], "0..9");
             $email = $row['email_address'];
