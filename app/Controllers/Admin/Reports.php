@@ -141,8 +141,8 @@ class Reports extends \App\Controllers\BaseController
                     is not the correct bike please reply directly to this email 
                     and let us know. Otherwise, please click on the link below 
                     to schedule a service appointment.</p><p>Best regards,</p>
-                    <p>Saigon Bike Rentals</p><p><a href='{$link}'>Book 
-                    Appointment</a></p><br><p><strong>PS - THIS IS A NEW 
+                    <p>Saigon Bike Rentals</p><p><button><a href='{$link}'>Book 
+                    Appointment</a></button></p><br><p><strong>PS - THIS IS A NEW 
                     AUTOMATED SCHEDULING SYSTEM I HAVE BEEN WORKING ON SO PLEASE LET ME KNOW IF YOU NOTICE ANY BUGS
                     AS THIS IS STILL IN BETA :)</strong?</p><br><p><strong>PPS - IF YOUR BROWSER IS SAFARI WHEN YOUR APPOINTMENT
                     INFO DISPLAYS (AFTER BOOKING) THE TEXT WILL BE NEARLY INVISIBLE -SORRY!</strong?</p>";
