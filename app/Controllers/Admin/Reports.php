@@ -39,7 +39,7 @@ class Reports extends \App\Controllers\BaseController
 
     public function getMaintenanceList()
     {
-        $sql = 'SELECT SUBSTRING_INDEX(t1.plate_number, " ", 1) AS plate_number, c.customer_name, c.email_address
+        $sql = 'SELECT SUBSTRING_INDEX(t1.plate_number, " ", 1) AS plate_number, t1.customer_id, c.customer_name, c.email_address
             FROM ( 
                 SELECT * 
             FROM bike_status_change
@@ -102,7 +102,7 @@ class Reports extends \App\Controllers\BaseController
         require ROOTPATH . '/vendor/PHPMailer-master/src/SMTP.php';
 
         $resultArray = $this->getMaintenanceList()->getResultArray();
-        // dd($resultArray);
+        dd($resultArray);
         foreach ($resultArray as $row) {
             $name = trim($row['customer_name'], "0..9");
             $email = $row['email_address'];
