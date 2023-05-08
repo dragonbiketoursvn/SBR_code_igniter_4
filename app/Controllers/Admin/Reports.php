@@ -132,13 +132,27 @@ class Reports extends \App\Controllers\BaseController
             $mail->addAddress('dragonbiketoursvn@gmail.com'); // send to self first to test
             $mail->isHTML(true);
             $mail->Subject = "Bike Maintenance";
-            $mail->Body = '<p>' . 'Hi ' . $name . ',' . '</p><p>' . 'According to our records, you are currently renting the bike 
-                with plate number <b>' .
-                $plateNumber . '</b>, which is due for maintenance. If this is not the correct bike please reply directly to this email
-                and let us know. Otherwise, please click on the link below to schedule a service appointment.' . '</p><p>' .
-                'Best regards,' . '</p><p>' . 'Saigon Bike Rentals' . '</p><br><p><strong>PS - THIS IS A NEW 
-                AUTOMATED SCHEDULING SYSTEM I HAVE BEEN WORKING ON SO PLEASE LET ME KNOW IF YOU NOTICE ANY BUGS
-                AS THIS IS STILL IN BETA :)</strong?</p>';
+
+            $link = site_url("Appointments/select/{$appointment->token}");
+
+            $mail->Body = "<p>Hi {$name},</p><p>According to our records, you are 
+                    currently renting the bike with plate number <b>
+                    {$plateNumber}</b>, which is now due for maintenance. If this 
+                    is not the correct bike please reply directly to this email 
+                    and let us know. Otherwise, please click on the link below 
+                    to schedule a service appointment.</p><p>Best regards,</p>
+                    <p>Saigon Bike Rentals</p><p><a href='{$link}'>Book 
+                    Appointment</a></p><br><p><strong>PS - THIS IS A NEW 
+                    AUTOMATED SCHEDULING SYSTEM I HAVE BEEN WORKING ON SO PLEASE LET ME KNOW IF YOU NOTICE ANY BUGS
+                    AS THIS IS STILL IN BETA :)</strong?</p>";
+
+            // $mail->Body = '<p>' . 'Hi ' . $name . ',' . '</p><p>' . 'According to our records, you are currently renting the bike 
+            //     with plate number <b>' .
+            //     $plateNumber . '</b>, which is due for maintenance. If this is not the correct bike please reply directly to this email
+            //     and let us know. Otherwise, please click on the link below to schedule a service appointment.' . '</p><p>' .
+            //     'Best regards,' . '</p><p>' . 'Saigon Bike Rentals' . '</p><br><p><strong>PS - THIS IS A NEW 
+            //     AUTOMATED SCHEDULING SYSTEM I HAVE BEEN WORKING ON SO PLEASE LET ME KNOW IF YOU NOTICE ANY BUGS
+            //     AS THIS IS STILL IN BETA :)</strong?</p>';
 
             if (!$mail->send()) {
 
