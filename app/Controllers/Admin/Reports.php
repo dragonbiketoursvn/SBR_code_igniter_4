@@ -144,7 +144,8 @@ class Reports extends \App\Controllers\BaseController
                     <p>Saigon Bike Rentals</p><p><a href='{$link}'>Book 
                     Appointment</a></p><br><p><strong>PS - THIS IS A NEW 
                     AUTOMATED SCHEDULING SYSTEM I HAVE BEEN WORKING ON SO PLEASE LET ME KNOW IF YOU NOTICE ANY BUGS
-                    AS THIS IS STILL IN BETA :)</strong?</p>";
+                    AS THIS IS STILL IN BETA :)</strong?</p><br><p><strong>PPS - IF YOUR BROWSER IS SAFARI WHEN YOUR APPOINTMENT
+                    INFO DISPLAYS (AFTER BOOKING) THE TEXT WILL BE NEARLY INVISIBLE -SORRY!</strong?</p>";
 
             // $mail->Body = '<p>' . 'Hi ' . $name . ',' . '</p><p>' . 'According to our records, you are currently renting the bike 
             //     with plate number <b>' .
