@@ -76,7 +76,7 @@ class Reports extends \App\Controllers\BaseController
                     ON t1.plate_number = t2.plate_number 
                     JOIN customers c on c.id = t1.customer_id  
             -- ORDER BY t1.plate_number
-            LIMIT 20
+            LIMIT 5
             ';
 
         $db = db_connect();
@@ -102,7 +102,7 @@ class Reports extends \App\Controllers\BaseController
         require ROOTPATH . '/vendor/PHPMailer-master/src/SMTP.php';
 
         $resultArray = $this->getMaintenanceList()->getResultArray();
-        dd($resultArray);
+        // dd($resultArray);
         foreach ($resultArray as $row) {
             $name = trim($row['customer_name'], "0..9");
             $email = $row['email_address'];
@@ -118,14 +118,16 @@ class Reports extends \App\Controllers\BaseController
             $mail->Port = 26;
             $mail->setFrom('patrick@saigonbikerentals.com');
             // $mail->addAddress($email);
-            $mail->addAddress('dragonbiketoursvn@gmail.com'); // sned to self first to test
+            $mail->addAddress('dragonbiketoursvn@gmail.com'); // send to self first to test
             $mail->isHTML(true);
             $mail->Subject = "Bike Maintenance";
             $mail->Body = '<p>' . 'Hi ' . $name . ',' . '</p><p>' . 'According to our records, you are currently renting the bike 
                 with plate number <b>' .
                 $plateNumber . '</b>, which is due for maintenance. If this is not the correct bike please reply directly to this email
                 and let us know. Otherwise, please click on the link below to schedule a service appointment.' . '</p><p>' .
-                'Best regards,' . '</p><p>' . 'Saigon Bike Rentals' . '</p>';
+                'Best regards,' . '</p><p>' . 'Saigon Bike Rentals' . '</p><br><p><strong>PS - THIS IS A NEW 
+                AUTOMATED SCHEDULING SYSTEM I HAVE BEEN WORKING ON SO PLEASE LET ME KNOW IF YOU NOTICE ANY BUGS
+                AS THIS IS STILL IN BETA :)</strong?</p>';
 
             if (!$mail->send()) {
 
