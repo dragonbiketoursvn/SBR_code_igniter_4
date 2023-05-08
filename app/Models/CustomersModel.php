@@ -64,8 +64,8 @@ class CustomersModel extends \CodeIgniter\Model
   public function getCurrentCustomerByName($name)
   {
 
-    return $this->where('currently_renting', 1)
-      ->where('customer_name', $name)
+    return $this->where('customer_name', $name)
+      ->orderBy('id', 'DESC')
       ->first();
   }
 

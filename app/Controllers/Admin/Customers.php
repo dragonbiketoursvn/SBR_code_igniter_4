@@ -109,6 +109,22 @@ class Customers extends \App\Controllers\BaseController
 
       // Pass all info from contract to use in activation email
       $this->sendActivationEmail($customer, $bike, $value);
+
+      // Get new customer record
+      $newCustomer = $this->model->getCurrentCustomerByName($customer->customer_name);
+
+      // Now use new customer record together with original entity to create bike_status_change record
+      $statusChangeModel = new \App\Models\BikeStatusChangeModel;
+      $bikeStatusChange = new \App\Entities\BikeStatusChange;
+
+      $bikeStatusChange->user = 'ADMIN';
+      $bikeStatusChange->plate_number = $customer->current_bike;
+      $bikeStatusChange->date_time = date('Y-m-d H:i:s');
+      $bikeStatusChange->new_status = $customer->customer_name;
+      $bikeStatusChange->customer_id = $newCustomer->id;
+
+      $statusChangeModel->insert($bikeStatusChange);
+
       return redirect()->to(site_url('Admin/Home'));
     } else {
 
@@ -186,19 +202,22 @@ class Customers extends \App\Controllers\BaseController
 
     $customer = $model->activateByToken($token);
 
-    if ($customer) {
+    // This code makes creation of the `bike_status_change` record dependent on customer action
+    // which brings no benefit and high possibility of error!
 
-      $statusChangeModel = new \App\Models\BikeStatusChangeModel;
-      $bikeStatusChange = new \App\Entities\BikeStatusChange;
+    // if ($customer) {
 
-      $bikeStatusChange->user = 'ADMIN';
-      $bikeStatusChange->plate_number = $customer->current_bike;
-      $bikeStatusChange->date_time = $customer->start_date;
-      $bikeStatusChange->new_status = $customer->customer_name;
-      $bikeStatusChange->customer_id = $customer->id;
+    //   $statusChangeModel = new \App\Models\BikeStatusChangeModel;
+    //   $bikeStatusChange = new \App\Entities\BikeStatusChange;
 
-      $statusChangeModel->save($bikeStatusChange);
-    }
+    //   $bikeStatusChange->user = 'ADMIN';
+    //   $bikeStatusChange->plate_number = $customer->current_bike;
+    //   $bikeStatusChange->date_time = $customer->start_date;
+    //   $bikeStatusChange->new_status = $customer->customer_name;
+    //   $bikeStatusChange->customer_id = $customer->id;
+
+    //   $statusChangeModel->save($bikeStatusChange);
+    // }
 
     return view('Admin/Customers/activated');
   }
@@ -321,7 +340,7 @@ class Customers extends \App\Controllers\BaseController
     $customers = $this->model->getCurrentCustomers();
     $customerEmails = [];
 
-    foreach($customers as $customer) {
+    foreach ($customers as $customer) {
       $customerEmails[$customer->customer_name] = $customer->email_address;
     }
 
@@ -419,20 +438,19 @@ class Customers extends \App\Controllers\BaseController
   public function displayCustomerPhoto($path)
   {
     $path = WRITEPATH . 'uploads/renter_docs/' . $path;
-    
+
     // Since we don't erase the $customer->path property when deleting images from the server we need to check if there's still
     // a file located at $path
-    if(is_file($path)) {
+    if (is_file($path)) {
 
       $finfo = new \finfo(FILEINFO_MIME);
-    
+
       $type = $finfo->file($path);
-      
+
       header("Content-Type: $type");
       header("Content-Length: " . filesize($path));
-      
+
       readfile($path);
-      
     }
 
     exit;
@@ -441,11 +459,10 @@ class Customers extends \App\Controllers\BaseController
   // Deletes photo from writable directory if it exists
   public function deleteCustomerPhoto($path)
   {
-    $path = WRITEPATH . 'uploads/renter_docs/' . $path;   
-    
-    if(is_file($path)) {
-      unlink($path);
-    }        
-  }
+    $path = WRITEPATH . 'uploads/renter_docs/' . $path;
 
+    if (is_file($path)) {
+      unlink($path);
+    }
+  }
 }
