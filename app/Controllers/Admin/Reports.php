@@ -2,9 +2,10 @@
 
 namespace App\Controllers\Admin;
 
-
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+use App\Models\AppointmentsModel;
+use App\Entities\Appointment;
 
 class Reports extends \App\Controllers\BaseController
 {
@@ -102,6 +103,7 @@ class Reports extends \App\Controllers\BaseController
         require ROOTPATH . '/vendor/PHPMailer-master/src/SMTP.php';
 
         $resultArray = $this->getMaintenanceList()->getResultArray();
+        $model = new AppointmentsModel;
 
         foreach ($resultArray as $row) {
             $name = trim($row['customer_name'], "0..9");
@@ -114,6 +116,7 @@ class Reports extends \App\Controllers\BaseController
             $appointment->customer_name = $name;
             $appointment->current_bike = $plateNumber;
             $appointment->startActivation();
+            $model->insert($appointment);
 
             // $mail = new PHPMailer(true);
             // $mail->isSMTP();
