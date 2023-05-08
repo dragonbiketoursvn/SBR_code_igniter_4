@@ -39,7 +39,7 @@ class Reports extends \App\Controllers\BaseController
 
     public function getMaintenanceList()
     {
-        $sql = 'SELECT t1.plate_number, c.customer_name, c.email_address
+        $sql = 'SELECT SUBSTRING_INDEX(t1.plate_number, " ", 1), c.customer_name, c.email_address
             FROM ( 
                 SELECT * 
             FROM bike_status_change
@@ -76,7 +76,7 @@ class Reports extends \App\Controllers\BaseController
                     ON t1.plate_number = t2.plate_number 
                     JOIN customers c on c.id = t1.customer_id  
             -- ORDER BY t1.plate_number
-            LIMIT 20
+            LIMIT 5 
             ';
 
         $db = db_connect();
@@ -117,7 +117,8 @@ class Reports extends \App\Controllers\BaseController
             $mail->SMTPSecure = 'tls';
             $mail->Port = 26;
             $mail->setFrom('patrick@saigonbikerentals.com');
-            $mail->addAddress($email);
+            // $mail->addAddress($email);
+            $mail->addAddress('dragonbiketoursvn@gmail.com'); // sned to self first to test
             $mail->isHTML(true);
             $mail->Subject = "Bike Maintenance";
             $mail->Body = '<p>' . 'Hi ' . $name . ',' . '</p><p>' . 'According to our records, you are currently renting the bike 
