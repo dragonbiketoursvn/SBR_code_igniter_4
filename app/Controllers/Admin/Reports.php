@@ -115,6 +115,7 @@ class Reports extends \App\Controllers\BaseController
             $appointment->customer_id = $customerID;
             $appointment->customer_name = $name;
             $appointment->current_bike = $plateNumber;
+            $appointment->appointment_time = NULL;
             $appointment->startActivation();
             $model->insert($appointment);
 
