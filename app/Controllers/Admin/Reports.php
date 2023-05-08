@@ -77,7 +77,7 @@ class Reports extends \App\Controllers\BaseController
                     ON t1.plate_number = t2.plate_number 
                     JOIN customers c on c.id = t1.customer_id  
             -- ORDER BY t1.plate_number
-            LIMIT 5
+            LIMIT 10
             ';
 
         $db = db_connect();
@@ -128,8 +128,8 @@ class Reports extends \App\Controllers\BaseController
             $mail->SMTPSecure = 'tls';
             $mail->Port = 26;
             $mail->setFrom('patrick@saigonbikerentals.com');
-            // $mail->addAddress($email);
-            $mail->addAddress('dragonbiketoursvn@gmail.com'); // send to self first to test
+            $mail->addAddress($email);
+            // $mail->addAddress('dragonbiketoursvn@gmail.com'); // send to self first to test
             $mail->isHTML(true);
             $mail->Subject = "Bike Maintenance";
 
