@@ -119,38 +119,38 @@ class Reports extends \App\Controllers\BaseController
             $appointment->startActivation();
             $model->insert($appointment);
 
-            // $mail = new PHPMailer(true);
-            // $mail->isSMTP();
-            // $mail->Host = 'mail.saigonbikerentals.com';
-            // $mail->SMTPAuth = true;
-            // $mail->Username = 'patrick@saigonbikerentals.com';
-            // $mail->Password = 'n1FaZ!Sz#)vB';
-            // $mail->SMTPSecure = 'tls';
-            // $mail->Port = 26;
-            // $mail->setFrom('patrick@saigonbikerentals.com');
-            // // $mail->addAddress($email);
-            // $mail->addAddress('dragonbiketoursvn@gmail.com'); // send to self first to test
-            // $mail->isHTML(true);
-            // $mail->Subject = "Bike Maintenance";
-            // $mail->Body = '<p>' . 'Hi ' . $name . ',' . '</p><p>' . 'According to our records, you are currently renting the bike 
-            //     with plate number <b>' .
-            //     $plateNumber . '</b>, which is due for maintenance. If this is not the correct bike please reply directly to this email
-            //     and let us know. Otherwise, please click on the link below to schedule a service appointment.' . '</p><p>' .
-            //     'Best regards,' . '</p><p>' . 'Saigon Bike Rentals' . '</p><br><p><strong>PS - THIS IS A NEW 
-            //     AUTOMATED SCHEDULING SYSTEM I HAVE BEEN WORKING ON SO PLEASE LET ME KNOW IF YOU NOTICE ANY BUGS
-            //     AS THIS IS STILL IN BETA :)</strong?</p>';
+            $mail = new PHPMailer(true);
+            $mail->isSMTP();
+            $mail->Host = 'mail.saigonbikerentals.com';
+            $mail->SMTPAuth = true;
+            $mail->Username = 'patrick@saigonbikerentals.com';
+            $mail->Password = 'n1FaZ!Sz#)vB';
+            $mail->SMTPSecure = 'tls';
+            $mail->Port = 26;
+            $mail->setFrom('patrick@saigonbikerentals.com');
+            // $mail->addAddress($email);
+            $mail->addAddress('dragonbiketoursvn@gmail.com'); // send to self first to test
+            $mail->isHTML(true);
+            $mail->Subject = "Bike Maintenance";
+            $mail->Body = '<p>' . 'Hi ' . $name . ',' . '</p><p>' . 'According to our records, you are currently renting the bike 
+                with plate number <b>' .
+                $plateNumber . '</b>, which is due for maintenance. If this is not the correct bike please reply directly to this email
+                and let us know. Otherwise, please click on the link below to schedule a service appointment.' . '</p><p>' .
+                'Best regards,' . '</p><p>' . 'Saigon Bike Rentals' . '</p><br><p><strong>PS - THIS IS A NEW 
+                AUTOMATED SCHEDULING SYSTEM I HAVE BEEN WORKING ON SO PLEASE LET ME KNOW IF YOU NOTICE ANY BUGS
+                AS THIS IS STILL IN BETA :)</strong?</p>';
 
-            // if (!$mail->send()) {
+            if (!$mail->send()) {
 
-            //     echo 'Mailer Error: ' . $mail->ErrorInfo;
-            // } else {
+                echo 'Mailer Error: ' . $mail->ErrorInfo;
+            } else {
 
-            //     $path = '{sng103.hawkhost.com:993/ssl}INBOX.Sent';
-            //     $imapStream = imap_open($path, 'patrick@saigonbikerentals.com', 'n1FaZ!Sz#)vB');
-            //     imap_append($imapStream, $path, $mail->getSentMIMEMessage());
-            //     imap_close($imapStream);
-            //     echo 'Message sent!';
-            // }
+                $path = '{sng103.hawkhost.com:993/ssl}INBOX.Sent';
+                $imapStream = imap_open($path, 'patrick@saigonbikerentals.com', 'n1FaZ!Sz#)vB');
+                imap_append($imapStream, $path, $mail->getSentMIMEMessage());
+                imap_close($imapStream);
+                echo 'Message sent!';
+            }
         }
     }
 }
