@@ -39,6 +39,7 @@ class Appointments extends \App\Controllers\BaseController
     $appointment = $this->model->where('appointment_time', $dateString)->first();
 
     session()->set('appointment', $appointment);
+    $appointment = session()->get('appointment');
 
     if (isset($appointment->paid_rent) && $appointment->paid_rent == 1) {
 
@@ -63,7 +64,6 @@ class Appointments extends \App\Controllers\BaseController
   public function bikeStatusCheck()
   {
     $appointment = session()->get('appointment');
-    dd($appointment);
 
     if (($appointment->received_bike == 1) || ($appointment->returned_bike == 1)) {
 
