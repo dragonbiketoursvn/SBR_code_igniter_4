@@ -8,6 +8,7 @@ class Home extends \App\Controllers\BaseController
 	{
 		session()->remove('appointment');
 		session()->set('test', 'session test');
+		dd(session()->get());
 		return view('Admin/Home/index');
 	}
 }
