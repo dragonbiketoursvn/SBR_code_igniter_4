@@ -50,7 +50,6 @@ class Appointments extends \App\Controllers\BaseController
 
   public function paymentCheck()
   {
-    // dd(session()->get('appointment'));
     $appointment = session()->get('appointment');
 
     if ($appointment->paid_rent == 1) {
@@ -193,6 +192,8 @@ class Appointments extends \App\Controllers\BaseController
     $currentStatus = $statusChangeModel->getCurrentStatus($contract_number);
 
     $this->model->save($appointment);
+    $appointment = $this->model->getNewestRecord(); // get the saved record from model so we have its auto-generated id
+
     session()->set('appointment', $appointment);
 
     return redirect()->to(site_url('Admin/Appointments/paymentCheck'));

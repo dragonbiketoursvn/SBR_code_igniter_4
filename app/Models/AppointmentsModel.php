@@ -46,4 +46,9 @@ class AppointmentsModel extends \CodeIgniter\Model
       ->where('appointment_completed', 1)
       ->findAll();
   }
+
+  public function getNewestRecord()
+  {
+    return $this->orderBy('id', 'DESC')->first();
+  }
 }
