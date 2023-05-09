@@ -39,7 +39,7 @@ class Appointments extends \App\Controllers\BaseController
     $appointment = $this->model->where('appointment_time', $dateString)->first();
 
     session()->set('appointment', $appointment);
-
+    dd($appointment);
     if (isset($appointment->paid_rent) && $appointment->paid_rent == 1) {
 
       return redirect()->to(site_url('Admin/Appointments/bikeStatusCheck'));
