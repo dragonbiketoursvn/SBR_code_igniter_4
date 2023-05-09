@@ -40,6 +40,7 @@ class Appointments extends \App\Controllers\BaseController
 
     session()->set('appointment', $appointment);
     $appointment = session()->get('appointment');
+    dd($appointment);
 
     if (isset($appointment->paid_rent) && $appointment->paid_rent == 1) {
 
