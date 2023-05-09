@@ -63,7 +63,6 @@ class Appointments extends \App\Controllers\BaseController
   public function bikeStatusCheck()
   {
     $appointment = session()->get('appointment');
-    dd($appointment);
 
     if (($appointment->received_bike == 1) || ($appointment->returned_bike == 1)) {
 
