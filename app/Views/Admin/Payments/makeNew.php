@@ -9,16 +9,16 @@
   <section class="hero is-success">
     <div class="hero-body has-text-centered" style="margin-bottom: 0px;">
       <p class="title">
-       Phiếu Thu Tiền
+        Phiếu Thu Tiền
       </p>
     </div>
   </section>
 </div>
 
-<?php if(session()->has('errors')): ?>
+<?php if (session()->has('errors')) : ?>
   <div class="block">
     <ul>
-      <?php foreach(session('errors') as $error): ?>
+      <?php foreach (session('errors') as $error) : ?>
         <li style="color: tomato;"><b><?= $error ?></b></li>
       <?php endforeach; ?>
     </ul>
@@ -46,7 +46,7 @@
   </div>
   <div class="field-body">
     <div class="field">
-        <input autofocus required autocomplete="off" class="input is-success" type="text" id="amount" name="amount" value="<?= old('amount') ?>">
+      <input autofocus required autocomplete="off" class="input is-success" type="text" id="amount" name="amount" value="<?= old('amount') ?>">
     </div>
   </div>
 </div>
@@ -71,7 +71,7 @@
   <div class="field-body">
     <div class="field">
       <p class="control is-expanded">
-        <input required autocomplete="off" readonly class="input is-success" type="text" id="payment_date" name="payment_date" value="<?= date('Y-m-d') ?>">
+        <input required autocomplete="off" class="input is-success" type="date" id="payment_date" name="payment_date" value="<?= date('Y-m-d') ?>">
       </p>
     </div>
   </div>
@@ -80,21 +80,21 @@
 <?php if (session()->get('user_level') == 'super') : ?>
 
   <div class="field">
-  <div class="control">
-    <label class="radio">
-      <input type="radio" name="payment_method" value="cash" checked>
-      Cash
-    </label>
-    <label class="radio">
-      <input type="radio" name="payment_method" value="bank_tranfer">
-      Bank Transfer
-    </label>
-    <label class="radio">
-      <input type="radio" name="payment_method" value="paypal">
-      PayPal
-    </label>
+    <div class="control">
+      <label class="radio">
+        <input type="radio" name="payment_method" value="cash" checked>
+        Cash
+      </label>
+      <label class="radio">
+        <input type="radio" name="payment_method" value="bank_transfer">
+        Bank Transfer
+      </label>
+      <label class="radio">
+        <input type="radio" name="payment_method" value="paypal">
+        PayPal
+      </label>
+    </div>
   </div>
-</div>
 
 <?php endif; ?>
 
@@ -111,8 +111,11 @@
   </div>
 </div>
 
+<?php if (session()->get('user_level') !== 'super') : ?>
 
-<input type="hidden" name="payment_method" value="cash">
+  <input type="hidden" name="payment_method" value="cash">
+
+<?php endif; ?>
 
 </form>
 
@@ -149,36 +152,35 @@
 </div>
 
 <script>
+  //Form validation
+  const form = document.querySelector('.random_class');
 
-//Form validation
-const form = document.querySelector('.random_class');
+  const validator = function(e) {
 
-const validator = function(e) {
+    let amount = document.querySelector('input[name="amount"]');
+    let months_paid = document.querySelector('input[name="months_paid"]');
+    errorMessages = [];
 
-  let amount = document.querySelector('input[name="amount"]');
-  let months_paid = document.querySelector('input[name="months_paid"]');
-  errorMessages = [];
+    if (amount.value > 10001 || amount.value < 500) {
 
-  if(amount.value > 10001 || amount.value < 500) {
+      errorMessages.push('Khoản tiền này ko phù hợp');
 
-    errorMessages.push('Khoản tiền này ko phù hợp');
+    }
 
-  }
+    if (months_paid.value > 8 || months_paid.value < 0) {
 
-  if(months_paid.value > 8 || months_paid.value < 0) {
+      errorMessages.push('Số tháng này ko phù hợp');
 
-    errorMessages.push('Số tháng này ko phù hợp');
+    }
 
-  }
+    if (errorMessages.length > 0) {
 
-  if(errorMessages.length > 0) {
+      alert(errorMessages.join(', '));
+      e.preventDefault();
+    }
+  };
 
-    alert(errorMessages.join(', '));
-    e.preventDefault();
-  }
-};
-
-form.addEventListener('submit', validator);
+  form.addEventListener('submit', validator);
 
 
   //Modal stuff
@@ -198,17 +200,16 @@ form.addEventListener('submit', validator);
 
     document.querySelector('.modal-card-body').innerHTML = `${stringSegment1}${amount.value}${stringSegment2}${months_paid.value}${stringSegment3}`;
 
-   };
+  };
 
-   const closeToggle = function() {
+  const closeToggle = function() {
 
     modal.classList.remove('is-active');
 
-   };
+  };
 
   buttonOpenModal.addEventListener('click', toggle);
   buttonCloseModal.addEventListener('click', closeToggle);
-
 </script>
 
 <?= $this->endSection() ?>
