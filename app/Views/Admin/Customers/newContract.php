@@ -17,6 +17,19 @@
 
       <?= form_open_multipart('Admin/Customers/save', 'id="rental_contract"') ?>
 
+      <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label class="label" for="start_date">Date</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <p class="control is-expanded">
+              <input required autocomplete="off" class="input is-success" type="date" name="start_date" id="start_date" value="<?= date('Y-m-d') ?>">
+            </p>
+          </div>
+        </div>
+      </div>
+
       <div class="field is-horizontal" style="bottom: 200px !important;">
         <div class="field-label is-normal">
           <label class="label" for="first_name">First Name</label>
@@ -44,7 +57,6 @@
       </div>
 
       <input type="hidden" class="full_name" name="customer_name" value>
-      <input type="hidden" name="start_date" value="<?= date('Y-m-d') ?>">
 
       <div class="field is-horizontal" style="bottom: 200px !important;">
         <div class="field-label is-normal">
