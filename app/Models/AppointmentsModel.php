@@ -35,8 +35,8 @@ class AppointmentsModel extends \CodeIgniter\Model
 
   public function getScheduledAppointments()
   {
-
-    return $this->where('appointment_time >', date('Y-m-d H:i:s'))->findAll();
+    $date = strtotime("yesterday"); // otherwise today's appointments won't be visible after their time passes
+    return $this->where('appointment_time >', date('Y-m-d H:i:s', $date))->findAll();
   }
 
   public function getCompletedAppointments()
