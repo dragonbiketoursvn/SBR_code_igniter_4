@@ -229,25 +229,26 @@ class Test extends BaseController
 
   public function testPenis()
   {
-    // $db = db_connect();
-    $sql = "SELECT plate_number, purchase_date, brand, model, year, purchase_price, extra_key, sale_date, sale_price FROM bikes WHERE plate_number = '51K2-1782'";
+    // // $db = db_connect();
+    // $sql = "SELECT plate_number, purchase_date, brand, model, year, purchase_price, extra_key, sale_date, sale_price FROM bikes WHERE plate_number = '51K2-1782'";
 
-    // $result = $db->query($sql);
+    // // $result = $db->query($sql);
 
-    $result  = $this->db->query($sql);
-    // $fields = $query->fieldData();
+    // $result  = $this->db->query($sql);
+    // // $fields = $query->fieldData();
 
-    $fieldData = $result->getFieldData();
+    // $fieldData = $result->getFieldData();
 
-    $names = [];
-    $types = [];
+    // $names = [];
+    // $types = [];
 
-    for ($i = 0; $i < count($fieldData); $i++) {
-      $names[] = $fieldData[$i]->name;
-      $types[] = $fieldData[$i]->type_name;
-    }
+    // for ($i = 0; $i < count($fieldData); $i++) {
+    //   $names[] = $fieldData[$i]->name;
+    //   $types[] = $fieldData[$i]->type_name;
+    // }
 
-    return view('Tests/testPenis', ['fieldData' => $fieldData]);
+    // return view('Tests/testPenis', ['fieldData' => $fieldData]);
+    return view('Tests/testPenis');
   }
 
   public function  viewCurrentCustomers()

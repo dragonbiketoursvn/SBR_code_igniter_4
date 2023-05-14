@@ -9,13 +9,7 @@
 </head>
 
 <body>
-    <table style="border: 2px black solid;">
-        <tr>
-            <?php foreach ($fieldData as $field) : ?>
-                <th style="border: 2px black solid;" class="<?= $field->type_name ?>"><?= strtoupper(str_replace('_', ' ', $field->name)) ?></th>
-            <?php endforeach; ?>
-        </tr>
-    </table>
+    <a href="https://api.whatsapp.com/send?phone=84972451273"><button>CALL SELF</button></a>
 </body>
 
 </html>
