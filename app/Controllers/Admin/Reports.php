@@ -77,7 +77,7 @@ class Reports extends \App\Controllers\BaseController
                     ON t1.plate_number = t2.plate_number 
                     JOIN customers c on c.id = t1.customer_id  
             -- ORDER BY t1.plate_number
-            LIMIT 30
+            LIMIT 1
             ';
 
         $db = db_connect();
@@ -128,8 +128,8 @@ class Reports extends \App\Controllers\BaseController
             $mail->SMTPSecure = 'tls';
             $mail->Port = 26;
             $mail->setFrom('patrick@saigonbikerentals.com');
-            $mail->addAddress($email);
-            // $mail->addAddress('dragonbiketoursvn@gmail.com'); // send to self first to test
+            // $mail->addAddress($email);
+            $mail->addAddress('dragonbiketoursvn@gmail.com'); // send to self first to test
             $mail->isHTML(true);
             $mail->Subject = "Bike Maintenance";
 
@@ -141,7 +141,13 @@ class Reports extends \App\Controllers\BaseController
                     is not the correct bike please reply directly to this email 
                     and let us know. Otherwise, please click on the link below 
                     to schedule a service appointment.</p><p>Best regards,</p>
-                    <p>Saigon Bike Rentals</p><p><button><a href='{$link}'>Book 
+                    <p>Saigon Bike Rentals</p><p><button style='width: 100%; color: #fff; background: blue; padding: 20px; 
+                    font-size: 2em; text-align: center; text-shadow: 1px 1px 1px #000; border-radius: 10px; 
+                    background-image: linear-gradient(to top left,
+                                    rgba(0, 0, 0, .2),
+                                    rgba(0, 0, 0, .2) 30%,
+                                    rgba(0, 0, 0, 0)); box-shadow: inset 2px 2px 3px rgba(255, 255, 255, .6),
+                    inset -2px -2px 3px rgba(0, 0, 0, .6);'><a href='{$link}'>Book 
                     Appointment</a></button></p><br><p><strong>PS - THIS IS A NEW 
                     AUTOMATED SCHEDULING SYSTEM I HAVE BEEN WORKING ON SO PLEASE LET ME KNOW IF YOU NOTICE ANY BUGS
                     AS THIS IS STILL IN BETA :)</strong?</p><br><p><strong>PPS - IF YOUR BROWSER IS SAFARI WHEN YOUR APPOINTMENT
