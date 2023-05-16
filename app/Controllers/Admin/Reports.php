@@ -141,16 +141,16 @@ class Reports extends \App\Controllers\BaseController
                     is not the correct bike please reply directly to this email 
                     and let us know. Otherwise, please click on the link below 
                     to schedule a service appointment.</p><p>Best regards,</p>
-                    <p>Saigon Bike Rentals</p><p><button style='width: 100%; color: #fff; background: blue; padding: 20px; 
+                    <p>Saigon Bike Rentals</p><p><a href='{$link}'><button style='width: 100%; color: #fff; background: blue; padding: 20px; 
                     font-size: 2em; text-align: center; text-shadow: 1px 1px 1px #000; border-radius: 10px; 
                     background-image: linear-gradient(to top left,
                                     rgba(0, 0, 0, .2),
                                     rgba(0, 0, 0, .2) 30%,
                                     rgba(0, 0, 0, 0)); box-shadow: inset 2px 2px 3px rgba(255, 255, 255, .6),
-                    inset -2px -2px 3px rgba(0, 0, 0, .6);'><a href='{$link}'>Book 
-                    Appointment</a></button></p><br><p><strong>PS - THIS IS A NEW 
+                    inset -2px -2px 3px rgba(0, 0, 0, .6);'>Click Here to Book Appointment</button></a></p>
+                    <br><p><strong>PS - THIS IS A NEW 
                     AUTOMATED SCHEDULING SYSTEM I HAVE BEEN WORKING ON SO PLEASE LET ME KNOW IF YOU NOTICE ANY BUGS
-                    AS THIS IS STILL IN BETA :)</strong?</p><br><p><strong>PPS - IF YOUR BROWSER IS SAFARI WHEN YOUR APPOINTMENT
+                    AS THIS IS STILL IN BETA :)</strong?</p><br><p><strong>PPS - IF YOUR PHONE USES iOS WHEN YOUR APPOINTMENT
                     INFO DISPLAYS (AFTER BOOKING) THE TEXT WILL BE NEARLY INVISIBLE -SORRY!</strong?</p>";
 
             // $mail->Body = '<p>' . 'Hi ' . $name . ',' . '</p><p>' . 'According to our records, you are currently renting the bike 
