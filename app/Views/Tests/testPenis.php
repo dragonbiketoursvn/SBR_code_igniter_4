@@ -35,6 +35,8 @@
             email.value = '';
             nameInput.selectedIndex = 0;
             messageBox.value = '';
+
+            alert('penis face');
         });
     </script>
 </body>
