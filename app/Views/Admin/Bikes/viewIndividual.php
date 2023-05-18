@@ -419,6 +419,13 @@
 
 <script>
   alert('testing');
+
+  // Create constants for the plate_number input, the viewProfile button and the profile section itself
+  const profile = document.querySelector('.profile');
+  const viewProfile = document.querySelector('.viewProfile');
+  const selectNewProfile = document.querySelector('.selectNewProfile');
+  const plateNumber = document.querySelector('#plate_number');
+  const plateNumberDiv = document.querySelector('.plateNumberDiv');
 </script>
 
 <!-- <script>
