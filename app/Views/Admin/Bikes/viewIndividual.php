@@ -418,6 +418,7 @@
 </div>
 
 <script>
+  alert('godzilla!');
   // Create constants for the plate_number input, the viewProfile button and the profile section itself
   const profile = document.querySelector('.profile');
   const viewProfile = document.querySelector('.viewProfile');
@@ -646,7 +647,7 @@
     let result = regEx.exec(urlString);
     const path = result[0];
     const url = urlBase + path;
-    alert('godzilla!');
+
     // Call the controller method to delete the photo from server
     if (path.length < 80) {
       fetch(url).catch((error) => console.log(error));
