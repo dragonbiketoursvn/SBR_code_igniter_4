@@ -418,7 +418,7 @@
 </div>
 
 <script>
-  alert('testing a!')
+  alert('testing b!')
   // Create constants for the plate_number input, the viewProfile button and the profile section itself
   const profile = document.querySelector('.profile');
   const viewProfile = document.querySelector('.viewProfile');
@@ -640,11 +640,11 @@
       urlBase = urlBaseBike;
     }
 
-    let regEx = /(?<=o\/).*/i;
-    let urlString = e.previousElementSibling.src;
-    let result = regEx.exec(urlString);
-    const path = result[0];
-    const url = urlBase + path;
+    // let regEx = /(?<=o\/).*/i;
+    // let urlString = e.previousElementSibling.src;
+    // let result = regEx.exec(urlString);
+    // const path = result[0];
+    // const url = urlBase + path;
 
     // Call the controller method to delete the photo from server
     // if (path.length < 80) {
