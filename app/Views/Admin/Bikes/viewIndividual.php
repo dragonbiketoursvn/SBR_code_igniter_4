@@ -418,7 +418,7 @@
 </div>
 
 <script>
-  alert('testing 6!')
+  alert('testing 7!')
   // Create constants for the plate_number input, the viewProfile button and the profile section itself
   const profile = document.querySelector('.profile');
   const viewProfile = document.querySelector('.viewProfile');
@@ -590,39 +590,39 @@
 
   }
 
-  // // Once we've successfully selected a file the change event fires and our callback is invoked
-  // photoInputs.forEach((e) => e.addEventListener('change', function(event) {
+  // Once we've successfully selected a file the change event fires and our callback is invoked
+  photoInputs.forEach((e) => e.addEventListener('change', function(event) {
 
-  //   // Set constants for the photoInput's parent photoBox and its sibling photoImage, deleteButon, and selectPhoto
-  //   const photoBox = event.target.parentNode;
-  //   const photoImage = photoBox.querySelector('.photoImage');
-  //   const deleteButton = photoBox.querySelector('.deleteButton');
-  //   const selectPhoto = photoBox.querySelector('.selectPhoto');
+    // Set constants for the photoInput's parent photoBox and its sibling photoImage, deleteButon, and selectPhoto
+    const photoBox = event.target.parentNode;
+    const photoImage = photoBox.querySelector('.photoImage');
+    const deleteButton = photoBox.querySelector('.deleteButton');
+    const selectPhoto = photoBox.querySelector('.selectPhoto');
 
-  //   // Assign file selected by input (via the input's files attribute) to const file
-  //   const file = event.target.files[0];
+    // Assign file selected by input (via the input's files attribute) to const file
+    const file = event.target.files[0];
 
-  //   // Exit if no file was selected
-  //   if (!file) return;
+    // Exit if no file was selected
+    if (!file) return;
 
-  //   // Create a FileReader object 
-  //   const reader = new FileReader();
+    // Create a FileReader object 
+    const reader = new FileReader();
 
-  //   // Read file into reader as DataURL
-  //   reader.readAsDataURL(file);
+    // Read file into reader as DataURL
+    reader.readAsDataURL(file);
 
-  //   // Once read operation has successfully finished, set photoImage's src attribute to the value of the reader's 
-  //   // result property (in this case a DataURL)
-  //   // Then unhide photoImage and deletButton and hide selectPhoto
-  //   reader.onload = function(event) {
+    // Once read operation has successfully finished, set photoImage's src attribute to the value of the reader's 
+    // result property (in this case a DataURL)
+    // Then unhide photoImage and deletButton and hide selectPhoto
+    reader.onload = function(event) {
 
-  //     photoImage.src = event.target.result;
-  //     photoImage.classList.remove('hidden');
-  //     deleteButton.classList.remove('hidden');
-  //     selectPhoto.classList.add('hidden');
-  //   }
+      photoImage.src = event.target.result;
+      photoImage.classList.remove('hidden');
+      deleteButton.classList.remove('hidden');
+      selectPhoto.classList.add('hidden');
+    }
 
-  // }));
+  }));
 
 
   // // Have the delete button asynchronously call the deleteCustomerPhoto controller
