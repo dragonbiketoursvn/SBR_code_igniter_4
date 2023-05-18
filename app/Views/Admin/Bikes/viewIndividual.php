@@ -418,6 +418,8 @@
 </div>
 
 <script>
+  alert('testing');
+
   // Create constants for the plate_number input, the viewProfile button and the profile section itself
   const profile = document.querySelector('.profile');
   const viewProfile = document.querySelector('.viewProfile');
@@ -680,7 +682,6 @@
   const messageBox = document.querySelector('.messageBox');
 
   window.addEventListener('load', function(e) {
-    alert('testing');
     fetch(url).then((response) => response.json()).then(function(json) {
       emailJSON = json;
     });
