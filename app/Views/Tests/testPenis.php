@@ -26,7 +26,16 @@
 
     <script>
         const mailForm = document.querySelector(".mailForm");
-        mailForm.style.display = "none";
+
+        window.addEventListener('load', function(e) {
+            // fetch(url).then((response) => response.json()).then(function(json) {
+            //     emailJSON = json;
+            // });
+            mailForm.classList.add('hidden');
+            email.value = '';
+            nameInput.selectedIndex = 0;
+            messageBox.value = '';
+        });
     </script>
 </body>
 
