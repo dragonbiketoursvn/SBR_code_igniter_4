@@ -646,7 +646,7 @@
     let result = regEx.exec(urlString);
     const path = result[0];
     const url = urlBase + path;
-
+    alert('godzilla!');
     // Call the controller method to delete the photo from server
     if (path.length < 80) {
       fetch(url).catch((error) => console.log(error));
