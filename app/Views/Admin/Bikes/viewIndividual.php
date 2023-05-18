@@ -644,8 +644,8 @@
     // Therefore an alternative approach must be used
     // let regEx = /(?<=o\/).*/i; 
     let urlString = e.previousElementSibling.src;
-    let result = regEx.exec(urlString);
-    const path = result[0];
+    let idx = urlString.lastIndexOf("/");
+    const path = urlString.slice(idx + 1);
     const url = urlBase + path;
 
     // Call the controller method to delete the photo from server
@@ -725,9 +725,13 @@
     e.target.nextElementSibling.classList.remove('hidden');
     e.target.parentNode.querySelector('img').style.filter = 'brightness(50%)';
     const path = e.target.parentNode.querySelector('img').src;
-    const regEx = /(?<=o\/).*/i;
-    const result = regEx.exec(path);
-    selected.push(result[0]);
+    // const regEx = /(?<=o\/).*/i;
+    // const result = regEx.exec(path);
+    let idx = path.lastIndexOf("/");
+    const result = path.slice(idx + 1);
+    const url = urlBase + path;
+
+    selected.push(result);
 
     if (selected.length > 4) {
       selectButtons.forEach((button) => button.classList.add('hidden'));
@@ -743,12 +747,14 @@
     e.target.classList.add('hidden');
     e.target.previousElementSibling.classList.remove('hidden');
     e.target.parentNode.querySelector('img').style.filter = 'brightness(100%)';
-    const path = e.target.parentNode.querySelector('img').src;
-    const regEx = /(?<=o\/).*/i;
-    const result = regEx.exec(path);
+
+    const path = e.target.parentNode.querySelector('img').src; // full path of image
+    // const regEx = /(?<=o\/).*/i;
+    let idx = path.lastIndexOf("/");
+    const result = path.slice(idx + 1);
 
     selected = selected.filter(function(element) {
-      return element !== result[0];
+      return element !== result;
     });
 
     if (selected.length < 1) {
