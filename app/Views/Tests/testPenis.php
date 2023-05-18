@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
+<?= $this->extend("layouts/default") ?>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test Penis</title>
-</head>
+<?= $this->section('title') ?>Test Penis<?= $this->endSection() ?>
+
+<?= $this->section("content") ?>
 
 <body>
     <div class="mailForm">
