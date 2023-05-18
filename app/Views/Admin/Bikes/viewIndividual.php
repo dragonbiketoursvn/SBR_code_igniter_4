@@ -647,9 +647,9 @@
     const url = urlBase + path;
 
     // Call the controller method to delete the photo from server
-    if (path.length < 80) {
-      fetch(url).catch((error) => console.log(error));
-    }
+    // if (path.length < 80) {
+    //   fetch(url).catch((error) => console.log(error));
+    // }
 
     // // And remove the image from page by setting src to empty string
     // event.target.previousElementSibling.src = '';
