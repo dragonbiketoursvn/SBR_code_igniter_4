@@ -418,7 +418,7 @@
 </div>
 
 <script>
-  alert('testing 7!')
+  alert('testing 8!')
   // Create constants for the plate_number input, the viewProfile button and the profile section itself
   const profile = document.querySelector('.profile');
   const viewProfile = document.querySelector('.viewProfile');
@@ -625,48 +625,48 @@
   }));
 
 
-  // // Have the delete button asynchronously call the deleteCustomerPhoto controller
-  // deleteButtons.forEach((e) => e.addEventListener('click', function(event) {
+  // Have the delete button asynchronously call the deleteCustomerPhoto controller
+  deleteButtons.forEach((e) => e.addEventListener('click', function(event) {
 
-  //   const urlBaseReg = "<?= site_url('Admin/Bikes/deleteRegPhoto/') ?>";
-  //   const urlBaseBike = "<?= site_url('Admin/Bikes/deleteBikePhoto/') ?>";
-  //   let urlBase;
+    const urlBaseReg = "<?= site_url('Admin/Bikes/deleteRegPhoto/') ?>";
+    const urlBaseBike = "<?= site_url('Admin/Bikes/deleteBikePhoto/') ?>";
+    let urlBase;
 
-  //   // So we can use this function with each photoBox we need to put together the correct url
-  //   // by using a regex to tease out the path name from the img's src attribute
-  //   if (e.previousElementSibling.previousElementSibling.textContent.includes('Registration')) {
-  //     urlBase = urlBaseReg;
-  //   } else {
-  //     urlBase = urlBaseBike;
-  //   }
+    // So we can use this function with each photoBox we need to put together the correct url
+    // by using a regex to tease out the path name from the img's src attribute
+    if (e.previousElementSibling.previousElementSibling.textContent.includes('Registration')) {
+      urlBase = urlBaseReg;
+    } else {
+      urlBase = urlBaseBike;
+    }
 
-  //   let regEx = /(?<=o\/).*/i;
-  //   let urlString = e.previousElementSibling.src;
-  //   let result = regEx.exec(urlString);
-  //   const path = result[0];
-  //   const url = urlBase + path;
+    let regEx = /(?<=o\/).*/i;
+    let urlString = e.previousElementSibling.src;
+    let result = regEx.exec(urlString);
+    const path = result[0];
+    const url = urlBase + path;
 
-  //   // Call the controller method to delete the photo from server
-  //   if (path.length < 80) {
-  //     fetch(url).catch((error) => console.log(error));
-  //   }
+    // Call the controller method to delete the photo from server
+    if (path.length < 80) {
+      fetch(url).catch((error) => console.log(error));
+    }
 
-  //   // And remove the image from page by setting src to empty string
-  //   event.target.previousElementSibling.src = '';
+    // And remove the image from page by setting src to empty string
+    event.target.previousElementSibling.src = '';
 
-  //   // Since there's currently nothing to delete, hide the button
-  //   event.target.classList.add('hidden');
+    // Since there's currently nothing to delete, hide the button
+    event.target.classList.add('hidden');
 
-  //   // Remove any previously selected image from the file input so we don't upload it
-  //   const input = event.target.parentNode.querySelector('input');
-  //   input.value = '';
+    // Remove any previously selected image from the file input so we don't upload it
+    const input = event.target.parentNode.querySelector('input');
+    input.value = '';
 
-  //   // Show our little selectPhoto tag and hide the empty img
-  //   const selectPhoto = event.target.parentNode.querySelector('.selectPhoto');
-  //   selectPhoto.classList.remove('hidden');
-  //   event.target.previousElementSibling.classList.add('hidden');
+    // Show our little selectPhoto tag and hide the empty img
+    const selectPhoto = event.target.parentNode.querySelector('.selectPhoto');
+    selectPhoto.classList.remove('hidden');
+    event.target.previousElementSibling.classList.add('hidden');
 
-  // }));
+  }));
 
 
   // // This section of code provides some functionality for our mailForm.
