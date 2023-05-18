@@ -418,7 +418,7 @@
 </div>
 
 <script>
-  alert('testing 4!')
+  alert('testing 5!')
   // Create constants for the plate_number input, the viewProfile button and the profile section itself
   const profile = document.querySelector('.profile');
   const viewProfile = document.querySelector('.viewProfile');
@@ -536,34 +536,34 @@
     });
   });
 
-  // // Create consts for the UNIQUE individual page elements plus consts for the other elements taken as UNIQUE groups.
-  // // This is necessary so that we can set event listeners that will change the state of individual components while leaving
-  // // other, identical components unaffected.
+  // Create consts for the UNIQUE individual page elements plus consts for the other elements taken as UNIQUE groups.
+  // This is necessary so that we can set event listeners that will change the state of individual components while leaving
+  // other, identical components unaffected.
 
-  // const photoBoxes = document.querySelectorAll('.photoBox'); // boxes for displaying/editing photos associated with record
-  // const photoCaptions = document.querySelectorAll('.photoCaption'); // captions for each photo
-  // const photoImages = document.querySelectorAll('.photoImage'); // the img elements in each photoBox
-  // const deleteButtons = document.querySelectorAll('.deleteButton'); // delete buttons for each photo
-  // const photoInputs = document.querySelectorAll('.photoInput'); // photo inputs remain hidden
-  // const selectPhotos = document.querySelectorAll('.selectPhoto'); // 'selectPhoto' buttons, which display during edit mode in photoBoxes which have no image
+  const photoBoxes = document.querySelectorAll('.photoBox'); // boxes for displaying/editing photos associated with record
+  const photoCaptions = document.querySelectorAll('.photoCaption'); // captions for each photo
+  const photoImages = document.querySelectorAll('.photoImage'); // the img elements in each photoBox
+  const deleteButtons = document.querySelectorAll('.deleteButton'); // delete buttons for each photo
+  const photoInputs = document.querySelectorAll('.photoInput'); // photo inputs remain hidden
+  const selectPhotos = document.querySelectorAll('.selectPhoto'); // 'selectPhoto' buttons, which display during edit mode in photoBoxes which have no image
 
-  // // For each photoImage that loads set its photoBox's data-image attribute to "loaded" (default is "unloaded")
-  // photoImages.forEach(function(e) {
-  //   e.addEventListener('load', function() {
-  //     e.parentNode.dataset.image = "loaded";
-  //   });
-  // });
+  // For each photoImage that loads set its photoBox's data-image attribute to "loaded" (default is "unloaded")
+  photoImages.forEach(function(e) {
+    e.addEventListener('load', function() {
+      e.parentNode.dataset.image = "loaded";
+    });
+  });
 
-  // // Set another click event listener on the editButton to display deleteButtons for any photoBox whose img's classlist
-  // // doesn't currently contain 'hidden'
-  // editButton.addEventListener('click', function(event) {
+  // Set another click event listener on the editButton to display deleteButtons for any photoBox whose img's classlist
+  // doesn't currently contain 'hidden'
+  editButton.addEventListener('click', function(event) {
 
-  //   deleteButtons.forEach(function(e) {
-  //     if (!(e.previousElementSibling.classList.contains('hidden'))) {
-  //       e.classList.remove('hidden');
-  //     }
-  //   })
-  // });
+    deleteButtons.forEach(function(e) {
+      if (!(e.previousElementSibling.classList.contains('hidden'))) {
+        e.classList.remove('hidden');
+      }
+    })
+  });
 
   // // Set all elements to correct initial state when page loads
   // window.onload = function() {
