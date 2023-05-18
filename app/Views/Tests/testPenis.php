@@ -5,7 +5,7 @@
 <?= $this->section("content") ?>
 
 <body>
-    <div class="mailForm" style="display: none;">
+    <div class="mailForm">
 
         <div class="customerSelect">
             <label for="names">Select Customer</label>
@@ -23,6 +23,11 @@
         </div>
 
     </div>
+
+    <script>
+        const mailForm = document.querySelector(".mailForm");
+        mailForm.style.display = "none";
+    </script>
 </body>
 
 </html>
