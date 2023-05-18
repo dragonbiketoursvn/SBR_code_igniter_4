@@ -418,7 +418,6 @@
 </div>
 
 <script>
-  alert('testing f!')
   // Create constants for the plate_number input, the viewProfile button and the profile section itself
   const profile = document.querySelector('.profile');
   const viewProfile = document.querySelector('.viewProfile');
@@ -640,9 +639,10 @@
       urlBase = urlBaseBike;
     }
 
-    // let regEx = /(?<=o\/).*/i;
+    // Safari DOES NOT IMPLEMENT look ahead or look behind regex!!!
+    // Therefore an alternative approach must be used
+    // let regEx = /(?<=o\/).*/i; 
     let urlString = e.previousElementSibling.src;
-    console.log(urlString);
     let result = regEx.exec(urlString);
     const path = result[0];
     const url = urlBase + path;
