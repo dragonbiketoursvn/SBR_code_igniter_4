@@ -418,7 +418,7 @@
 </div>
 
 <script>
-  alert('testing d!')
+  alert('testing e!')
   // Create constants for the plate_number input, the viewProfile button and the profile section itself
   const profile = document.querySelector('.profile');
   const viewProfile = document.querySelector('.viewProfile');
@@ -641,7 +641,7 @@
     }
 
     let regEx = /(?<=o\/).*/i;
-    let urlString = e.previousElementSibling.src;
+    // let urlString = e.previousElementSibling.src;
     // let result = regEx.exec(urlString);
     // const path = result[0];
     // const url = urlBase + path;
