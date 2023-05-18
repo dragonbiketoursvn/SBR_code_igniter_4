@@ -5,7 +5,7 @@
 <?= $this->section("content") ?>
 
 <body>
-    <div class="mailForm">
+    <div class="mailForm" style="display: none;">
 
         <div class="customerSelect">
             <label for="names">Select Customer</label>
