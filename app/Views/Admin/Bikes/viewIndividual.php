@@ -418,7 +418,7 @@
 </div>
 
 <script>
-  alert('testing 3!')
+  alert('testing 4!')
   // Create constants for the plate_number input, the viewProfile button and the profile section itself
   const profile = document.querySelector('.profile');
   const viewProfile = document.querySelector('.viewProfile');
@@ -487,54 +487,54 @@
   // When the viewProfile button is clicked, make an async post request to Bikes/showProfile()
   // If we get json back display the profile, inserting relevant values returned by controller
   // and displaying any photos.
-  // viewProfile.addEventListener('click', function(e) {
+  viewProfile.addEventListener('click', function(e) {
 
-  //       const formData = new FormData();
+    const formData = new FormData();
 
-  //   formData.append('plate_number', plateNumber.value);
+    formData.append('plate_number', plateNumber.value);
 
-  //   fetch("<?= site_url('Admin/Bikes/showProfile') ?>", {
-  //     method: 'POST',
-  //     body: formData
-  //   }).then(response => response.json()).then(function(json) {
-  //     if (json !== null) {
-  //       // Update all the inputs
-  //       profile.classList.remove('hidden');
-  //       purchaseDate.value = json.purchase_date;
-  //       purchasedFrom.value = json.purchased_from;
-  //       purchasePrice.value = json.purchase_price;
-  //       saleDate.value = json.sale_date;
-  //       salePrice.value = json.sale_price;
-  //       notes.value = json.notes;
-  //       brand.value = json.brand;
-  //       model.value = json.model;
-  //       year.value = json.year;
-  //       extraKey.checked = ((json.extra_key === '1') ? true : false);
-  //       giayUyQuyen.checked = ((json.giay_uy_quyen === '1') ? true : false);
-  //       NgaDungTen.checked = ((json.Nga_dung_ten === '1') ? true : false);
-  //       KimAnhDungTen.checked = ((json.Kim_Anh_dung_ten === '1') ? true : false);
-  //       DragonBikes.checked = ((json.dragon_bikes === '1') ? true : false);
-  //       insuranceExpires.value = json.insurance_expires;
+    fetch("<?= site_url('Admin/Bikes/showProfile') ?>", {
+      method: 'POST',
+      body: formData
+    }).then(response => response.json()).then(function(json) {
+      if (json !== null) {
+        // Update all the inputs
+        profile.classList.remove('hidden');
+        purchaseDate.value = json.purchase_date;
+        purchasedFrom.value = json.purchased_from;
+        purchasePrice.value = json.purchase_price;
+        saleDate.value = json.sale_date;
+        salePrice.value = json.sale_price;
+        notes.value = json.notes;
+        brand.value = json.brand;
+        model.value = json.model;
+        year.value = json.year;
+        extraKey.checked = ((json.extra_key === '1') ? true : false);
+        giayUyQuyen.checked = ((json.giay_uy_quyen === '1') ? true : false);
+        NgaDungTen.checked = ((json.Nga_dung_ten === '1') ? true : false);
+        KimAnhDungTen.checked = ((json.Kim_Anh_dung_ten === '1') ? true : false);
+        DragonBikes.checked = ((json.dragon_bikes === '1') ? true : false);
+        insuranceExpires.value = json.insurance_expires;
 
-  //       // Display any photos
-  //       picSide.parentNode.querySelector('img').src = "<?= site_url('Admin/Bikes/displayBikePhoto/') ?>" + json.pic_side;
-  //       picFront.parentNode.querySelector('img').src = "<?= site_url('Admin/Bikes/displayBikePhoto/') ?>" + json.pic_front;
-  //       picRear.parentNode.querySelector('img').src = "<?= site_url('Admin/Bikes/displayBikePhoto/') ?>" + json.pic_rear;
-  //       picTrunk.parentNode.querySelector('img').src = "<?= site_url('Admin/Bikes/displayBikePhoto/') ?>" + json.pic_trunk;
-  //       regFront.parentNode.querySelector('img').src = "<?= site_url('Admin/Bikes/displayRegPhoto/') ?>" + json.reg_front;
-  //       regBack.parentNode.querySelector('img').src = "<?= site_url('Admin/Bikes/displayRegPhoto/') ?>" + json.reg_back;
+        // Display any photos
+        picSide.parentNode.querySelector('img').src = "<?= site_url('Admin/Bikes/displayBikePhoto/') ?>" + json.pic_side;
+        picFront.parentNode.querySelector('img').src = "<?= site_url('Admin/Bikes/displayBikePhoto/') ?>" + json.pic_front;
+        picRear.parentNode.querySelector('img').src = "<?= site_url('Admin/Bikes/displayBikePhoto/') ?>" + json.pic_rear;
+        picTrunk.parentNode.querySelector('img').src = "<?= site_url('Admin/Bikes/displayBikePhoto/') ?>" + json.pic_trunk;
+        regFront.parentNode.querySelector('img').src = "<?= site_url('Admin/Bikes/displayRegPhoto/') ?>" + json.reg_front;
+        regBack.parentNode.querySelector('img').src = "<?= site_url('Admin/Bikes/displayRegPhoto/') ?>" + json.reg_back;
 
-  //       // Set all inputs to readonly (until 'edit' button is pressed)
-  //       inputs.forEach(e => e.setAttribute('readonly', 'true'));
+        // Set all inputs to readonly (until 'edit' button is pressed)
+        inputs.forEach(e => e.setAttribute('readonly', 'true'));
 
-  //       // Hide plateNumber and viewProfile. Show selectNewProfile
-  //       plateNumberDiv.classList.add('hidden');
-  //       viewProfile.classList.add('hidden');
-  //       selectNewProfile.classList.remove('hidden');
-  //       editButton.classList.remove('hidden');
-  //     }
-  //   });
-  // });
+        // Hide plateNumber and viewProfile. Show selectNewProfile
+        plateNumberDiv.classList.add('hidden');
+        viewProfile.classList.add('hidden');
+        selectNewProfile.classList.remove('hidden');
+        editButton.classList.remove('hidden');
+      }
+    });
+  });
 
   // // Create consts for the UNIQUE individual page elements plus consts for the other elements taken as UNIQUE groups.
   // // This is necessary so that we can set event listeners that will change the state of individual components while leaving
