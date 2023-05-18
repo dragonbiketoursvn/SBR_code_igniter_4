@@ -418,7 +418,7 @@
 </div>
 
 <script>
-  alert('testing 8!')
+  alert('testing 9!')
   // Create constants for the plate_number input, the viewProfile button and the profile section itself
   const profile = document.querySelector('.profile');
   const viewProfile = document.querySelector('.viewProfile');
@@ -634,11 +634,11 @@
 
     // // So we can use this function with each photoBox we need to put together the correct url
     // // by using a regex to tease out the path name from the img's src attribute
-    // if (e.previousElementSibling.previousElementSibling.textContent.includes('Registration')) {
-    //   urlBase = urlBaseReg;
-    // } else {
-    //   urlBase = urlBaseBike;
-    // }
+    if (e.previousElementSibling.previousElementSibling.textContent.includes('Registration')) {
+      urlBase = urlBaseReg;
+    } else {
+      urlBase = urlBaseBike;
+    }
 
     // let regEx = /(?<=o\/).*/i;
     // let urlString = e.previousElementSibling.src;
