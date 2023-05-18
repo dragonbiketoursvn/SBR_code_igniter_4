@@ -418,7 +418,7 @@
 </div>
 
 <script>
-  alert('testing 5!')
+  alert('testing 6!')
   // Create constants for the plate_number input, the viewProfile button and the profile section itself
   const profile = document.querySelector('.profile');
   const viewProfile = document.querySelector('.viewProfile');
@@ -566,29 +566,29 @@
   });
 
   // // Set all elements to correct initial state when page loads
-  // window.onload = function() {
+  window.onload = function() {
 
-  //   plateNumber.value = "<?php
-                            //                         if (isset($plateNumber)) {
-                            //                           echo $plateNumber;
-                            //                         } else {
-                            //                           echo '';
-                            //                         }
-                            //                         
-                            ?>";
+    plateNumber.value = "<?php
+                          if (isset($plateNumber)) {
+                            echo $plateNumber;
+                          } else {
+                            echo '';
+                          }
 
-  //   // plateNumber.value = plateNumber;
-  //   viewProfile.click();
+                          ?>";
 
-  //   deleteButtons.forEach((e) => e.classList.add('hidden')); // hide the delete buttons
-  //   photoInputs.forEach((e) => e.classList.add('hidden')); // hide each of the photo inputs
-  //   photoImages.forEach((e) => e.classList.add('hidden')); // hide the img elements since they're empty
-  //   // But have them display when an image has loaded
-  //   photoImages.forEach((e) => e.addEventListener('load', function(event) {
-  //     event.target.classList.remove('hidden');
-  //   }));
+    // plateNumber.value = plateNumber;
+    viewProfile.click();
 
-  // }
+    deleteButtons.forEach((e) => e.classList.add('hidden')); // hide the delete buttons
+    photoInputs.forEach((e) => e.classList.add('hidden')); // hide each of the photo inputs
+    photoImages.forEach((e) => e.classList.add('hidden')); // hide the img elements since they're empty
+    // But have them display when an image has loaded
+    photoImages.forEach((e) => e.addEventListener('load', function(event) {
+      event.target.classList.remove('hidden');
+    }));
+
+  }
 
   // // Once we've successfully selected a file the change event fires and our callback is invoked
   // photoInputs.forEach((e) => e.addEventListener('change', function(event) {
