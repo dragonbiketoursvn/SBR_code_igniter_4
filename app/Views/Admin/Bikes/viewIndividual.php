@@ -641,7 +641,8 @@
     }
 
     // let regEx = /(?<=o\/).*/i;
-    // let urlString = e.previousElementSibling.src;
+    let urlString = e.previousElementSibling.src;
+    console.log(urlString);
     // let result = regEx.exec(urlString);
     // const path = result[0];
     // const url = urlBase + path;
