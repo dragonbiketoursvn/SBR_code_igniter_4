@@ -647,7 +647,7 @@
     const path = result[0];
     const url = urlBase + path;
 
-    Call the controller method to delete the photo from server
+    // Call the controller method to delete the photo from server
     if (path.length < 80) {
       fetch(url).catch((error) => console.log(error));
     }
