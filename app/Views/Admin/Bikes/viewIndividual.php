@@ -680,6 +680,7 @@
   const messageBox = document.querySelector('.messageBox');
 
   window.addEventListener('load', function(e) {
+    alert('testing');
     fetch(url).then((response) => response.json()).then(function(json) {
       emailJSON = json;
     });
