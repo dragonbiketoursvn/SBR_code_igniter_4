@@ -418,7 +418,6 @@
 </div>
 
 <script>
-  alert('godzilla!');
   // Create constants for the plate_number input, the viewProfile button and the profile section itself
   const profile = document.querySelector('.profile');
   const viewProfile = document.querySelector('.viewProfile');
