@@ -382,7 +382,6 @@ class Customers extends \App\Controllers\BaseController
     $startDate = $startDate->createFromFormat('Y-m-d', $customer->start_date);
     $paidUpTo = $startDate->addMonths($monthsPaid)->toDateString();
 
-
     return view('Admin/Customers/viewInfo', [
       'customer' => $customer,
       'customers' => $customers,

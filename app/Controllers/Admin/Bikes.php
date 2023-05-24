@@ -3,7 +3,7 @@
 namespace App\Controllers\Admin;
 
 use App\Entities\Bike;
-
+use App\Models\BikeStatusChangeModel;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -200,6 +200,11 @@ class Bikes extends \App\Controllers\BaseController
   {
     $plateNumber = $this->request->getPost('plate_number');
     $bike = $this->model->getBikeByPlateNumber($plateNumber);
+
+    // we'd like to have the bike's current status as well...
+    $bikeStatusChangeModel = new BikeStatusChangeModel;
+    $currentStatus = $bikeStatusChangeModel->getCurrentStatusByPlateNumber($plateNumber);
+    $bike->current_status = $currentStatus->new_status;
 
     return ($this->response->setJSON($bike));
   }

@@ -6,7 +6,7 @@ use App\Models\BikesModel;
 use App\Models\AppointmentsModel;
 use App\Libraries\Token;
 use App\Entities\Appointment;
-
+use App\Models\BikeStatusChangeModel;
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -229,27 +229,10 @@ class Test extends BaseController
 
   public function testPenis()
   {
-    // // $db = db_connect();
-    // $sql = "SELECT plate_number, purchase_date, brand, model, year, purchase_price, extra_key, sale_date, sale_price FROM bikes WHERE plate_number = '51K2-1782'";
-
-    // // $result = $db->query($sql);
-
-    // $result  = $this->db->query($sql);
-    // // $fields = $query->fieldData();
-
-    // $fieldData = $result->getFieldData();
-
-    // $names = [];
-    // $types = [];
-
-    // for ($i = 0; $i < count($fieldData); $i++) {
-    //   $names[] = $fieldData[$i]->name;
-    //   $types[] = $fieldData[$i]->type_name;
-    // }
-
-    // return view('Tests/testPenis', ['fieldData' => $fieldData]);
-    $curl = curl_init();
-    return view('Tests/testPenis');
+    $plateNumber = '55P1-8859';
+    $bikeStatusChangeModel = new BikeStatusChangeModel;
+    $currentStatus = $bikeStatusChangeModel->getCurrentStatusByPlateNumber($plateNumber);
+    dd($currentStatus);
   }
 
   public function  viewCurrentCustomers()

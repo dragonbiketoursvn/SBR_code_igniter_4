@@ -39,6 +39,14 @@ class BikeStatusChangeModel extends \CodeIgniter\Model
       ->first();
   }
 
+  public function getCurrentStatusByPlateNumber($plate_number)
+  {
+
+    return $this->where('plate_number', $plate_number)
+      ->orderBy('date_time', 'DESC')
+      ->first();
+  }
+
   public function getTodaysRecords()
   {
     $yesterday = date('Y-m-d', time() - 24 * 3600) . ' 23:59:59';

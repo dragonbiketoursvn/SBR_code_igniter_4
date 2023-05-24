@@ -126,6 +126,19 @@
 
   <div class="field is-horizontal" style="bottom: 200px !important;">
     <div class="field-label is-normal">
+      <label class="label" for="current_status">Current Status</label>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <p class="control is-expanded">
+          <input autocomplete="off" class="input is-success current_status" id="current_status">
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="field is-horizontal" style="bottom: 200px !important;">
+    <div class="field-label is-normal">
       <label class="label" for="purchase_date">Purchase Date</label>
     </div>
     <div class="field-body">
@@ -429,6 +442,7 @@
   const editButton = document.querySelector('#edit_button');
   const updateButton = document.querySelector('#update_button');
   const cancelButton = document.querySelector('#cancel_button');
+  const currentStatus = document.querySelector('#current_status');
   const purchaseDate = document.querySelector('#purchase_date');
   const purchasedFrom = document.querySelector('#purchased_from');
   const purchasePrice = document.querySelector('#purchase_price');
@@ -498,6 +512,7 @@
     }).then(response => response.json()).then(function(json) {
       if (json !== null) {
         // Update all the inputs
+        currentStatus.value = json.current_status;
         profile.classList.remove('hidden');
         purchaseDate.value = json.purchase_date;
         purchasedFrom.value = json.purchased_from;
@@ -577,7 +592,7 @@
                           ?>";
 
     // plateNumber.value = plateNumber;
-    viewProfile.click();
+    // viewProfile.click(); // wtf is this for??
 
     deleteButtons.forEach((e) => e.classList.add('hidden')); // hide the delete buttons
     photoInputs.forEach((e) => e.classList.add('hidden')); // hide each of the photo inputs
