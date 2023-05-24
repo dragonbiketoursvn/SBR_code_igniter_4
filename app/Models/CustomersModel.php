@@ -65,7 +65,7 @@ class CustomersModel extends \CodeIgniter\Model
   {
 
     return $this->where('customer_name', $name)
-      ->orderBy('id', 'DESC')
+      ->where('currently_renting', 1)
       ->first();
   }
 
