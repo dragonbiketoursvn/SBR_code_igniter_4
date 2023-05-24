@@ -248,6 +248,7 @@ class Test extends BaseController
     // }
 
     // return view('Tests/testPenis', ['fieldData' => $fieldData]);
+    $curl = curl_init();
     return view('Tests/testPenis');
   }
 
