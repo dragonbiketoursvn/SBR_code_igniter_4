@@ -35,6 +35,7 @@ class BikeStatusChangeModel extends \CodeIgniter\Model
   {
 
     return $this->where('customer_id', $contract_number)
+      ->orderBy('date_time', 'DESC')
       ->first();
   }
 
