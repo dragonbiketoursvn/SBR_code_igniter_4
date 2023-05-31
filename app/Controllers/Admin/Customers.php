@@ -35,6 +35,7 @@ class Customers extends \App\Controllers\BaseController
   {
     $customer = new Customer;
     $customer->fill($this->request->getPost());
+    $customer->currently_renting = 1;
 
     // Get all the uploaded files
     $files = $this->request->getFiles();
