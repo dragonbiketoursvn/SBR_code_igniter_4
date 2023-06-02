@@ -191,7 +191,8 @@ class Customers extends \App\Controllers\BaseController
     if ($this->model->skipValidation(true)->save($customer)) {
 
       // If customer is no longer renting so bike's status must be changed to SBR
-      if ($customer->currently_renting = 0) {
+      if ($customer->currently_renting === 0) {
+
         $statusChangeModel = new \App\Models\BikeStatusChangeModel;
         $bikeStatusChange = new \App\Entities\BikeStatusChange;
 
