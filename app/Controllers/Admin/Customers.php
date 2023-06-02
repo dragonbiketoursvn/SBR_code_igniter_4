@@ -190,6 +190,22 @@ class Customers extends \App\Controllers\BaseController
     // viewCurrentCustomers if successful or otherwise redirecting back so the user can fix any errors
     if ($this->model->skipValidation(true)->save($customer)) {
 
+      // If customer is no longer renting so bike's status must be changed to SBR
+      if ($customer->currently_renting = 0) {
+        $statusChangeModel = new \App\Models\BikeStatusChangeModel;
+        $bikeStatusChange = new \App\Entities\BikeStatusChange;
+
+        $bikeStatusChange->user = 'ADMIN';
+        // $bikeStatusChange->plate_number = $statusChangeModel
+        //   ->getCurrentStatus($customer->id)
+        //   ->plate_number;
+        $bikeStatusChange->plate_number = $customer->current_bike;
+        $bikeStatusChange->date_time = $customer->finish_date;
+        $bikeStatusChange->new_status = 'Saigon Bike Rentals';
+
+        $statusChangeModel->insert($bikeStatusChange);
+      }
+
       return redirect()->to(site_url('Admin/Customers/viewCurrentCustomers'));
     } else {
 
