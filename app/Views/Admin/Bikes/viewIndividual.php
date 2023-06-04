@@ -144,7 +144,7 @@
     <div class="field-body">
       <div class="field">
         <p class="control is-expanded">
-          <input required autocomplete="off" type="date" class="input is-success purchase_date" id="purchase_date" name="purchase_date">
+          <input autocomplete="off" type="date" class="input is-success purchase_date" id="purchase_date" name="purchase_date">
         </p>
       </div>
     </div>
@@ -157,7 +157,7 @@
     <div class="field-body">
       <div class="field">
         <p class="control is-expanded">
-          <input required autocomplete="off" type="tel" class="input is-success purchase_price" id="purchase_price" name="purchase_price">
+          <input autocomplete="off" type="tel" class="input is-success purchase_price" id="purchase_price" name="purchase_price">
         </p>
       </div>
     </div>
@@ -171,7 +171,7 @@
     <div class="field-body">
       <div class="field">
         <p class="control is-expanded">
-          <input required autocomplete="off" type="text" class="input is-success" id="purchased_from" name="purchased_from" value="<?= old('purchased_from') ?>">
+          <input autocomplete="off" type="text" class="input is-success" id="purchased_from" name="purchased_from" value="<?= old('purchased_from') ?>">
         </p>
       </div>
     </div>
@@ -223,7 +223,7 @@
     <div class="field-body">
       <div class="field">
         <p class="control is-expanded">
-          <input required autocomplete="off" list="brand_list" class="input is-success" id="brand" name="brand" value="<?= old('brand') ?>">
+          <input autocomplete="off" list="brand_list" class="input is-success" id="brand" name="brand" value="<?= old('brand') ?>">
           <datalist id="brand_list">
             <option value="HONDA">
             <option value="YAMAHA">
@@ -241,7 +241,7 @@
     <div class="field-body">
       <div class="field">
         <p class="control is-expanded">
-          <input required autocomplete="off" list="model_list" class="input is-success" id="model" name="model" value="<?= old('model') ?>">
+          <input autocomplete="off" list="model_list" class="input is-success" id="model" name="model" value="<?= old('model') ?>">
           <datalist id="model_list">
             <?php foreach ($currentModels as $currentModel) : ?>
               <option value="<?= $currentModel->model ?>">
@@ -342,7 +342,7 @@
     <div class="field-body">
       <div class="field">
         <p class="control is-expanded">
-          <input autocomplete="off" type="date" class="input is-success insurance_expires" id="insurance_expires" name="insurance_expires" value="<?= old('insurance_expires') ?>">
+          <input autocomplete="off" type="date" class="input is-success insurance_expires" id="insurance_expires" name="insurance_expires" value="<?= old('purchase_date') ?>">
         </p>
       </div>
     </div>
@@ -540,7 +540,9 @@
 
         // Set all inputs to readonly (until 'edit' button is pressed)
         inputs.forEach(e => e.setAttribute('readonly', 'true'));
-
+        purchaseDate.setAttribute('required', 'true');
+        purchasePrice.setAttribute('required', 'true');
+        purchasedFrom.setAttribute('required', 'true');
         // Hide plateNumber and viewProfile. Show selectNewProfile
         plateNumberDiv.classList.add('hidden');
         viewProfile.classList.add('hidden');
