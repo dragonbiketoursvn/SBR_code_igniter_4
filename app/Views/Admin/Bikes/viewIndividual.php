@@ -342,7 +342,7 @@
     <div class="field-body">
       <div class="field">
         <p class="control is-expanded">
-          <input autocomplete="off" type="date" class="input is-success insurance_expires" id="insurance_expires" name="insurance_expires" value="<?= old('purchase_date') ?>">
+          <input autocomplete="off" type="date" class="input is-success insurance_expires" id="insurance_expires" name="insurance_expires" value="<?= old('insurance_expires') ?>">
         </p>
       </div>
     </div>
@@ -743,7 +743,7 @@
     // const result = regEx.exec(path);
     let idx = path.lastIndexOf("/");
     const result = path.slice(idx + 1);
-    const url = urlBase + path;
+    // const url = urlBase + path;
 
     selected.push(result);
 
