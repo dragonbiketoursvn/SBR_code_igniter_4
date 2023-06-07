@@ -77,7 +77,7 @@ class Reports extends \App\Controllers\BaseController
                     ON t1.plate_number = t2.plate_number 
                     JOIN customers c on c.id = t1.customer_id  
             -- ORDER BY t1.plate_number
-            LIMIT 1
+            LIMIT 40
             ';
 
         $db = db_connect();
