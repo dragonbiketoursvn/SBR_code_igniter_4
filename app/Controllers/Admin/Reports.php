@@ -184,7 +184,6 @@ class Reports extends \App\Controllers\BaseController
         }
 
         $table .= '</table>';
-        dd($table);
 
         $mail = new PHPMailer(true);
         $mail->isSMTP();
