@@ -76,22 +76,10 @@ class Reports extends \App\Controllers\BaseController
                     ) t2 
                     ON t1.plate_number = t2.plate_number 
                     JOIN customers c on c.id = t1.customer_id  
-            -- ORDER BY t1.plate_number
             LIMIT 40
             ';
 
         $db = db_connect();
-        //     $query_result = $db->query('SELECT * FROM bikes');
-        //     dd($query_result);
-
-        // $db = db_connect();
-        // $sql = 'SELECT id, customer_name, email_address, DATE_ADD(start_date, INTERVAL months_paid MONTH) AS paid_up_to, current_bike,
-        // (SELECT repair_date FROM repairs WHERE nhot = 1 AND plate_number = a.current_bike ORDER BY repair_date DESC LIMIT 1) AS last_oil_change,
-        // (SELECT total_cost FROM repairs WHERE nhot = 1 AND plate_number = a.current_bike ORDER BY repair_date DESC LIMIT 1) AS last_repair_total
-        // FROM (SELECT id, customer_name, email_address, start_date, (SELECT SUM(months_paid) FROM payments
-        // WHERE id = c.id) AS months_paid, (SELECT plate_number FROM bike_status_change
-        // WHERE id = c.id ORDER BY date_time DESC LIMIT 1) AS current_bike
-        // FROM customers c WHERE currently_renting = 1)a ORDER BY paid_up_to DESC';
 
         return $db->query($sql);
     }
@@ -152,14 +140,6 @@ class Reports extends \App\Controllers\BaseController
                     AS THIS IS STILL IN BETA :)</strong?</p><br><p><strong>PPS - IF YOUR PHONE USES iOS WHEN YOUR APPOINTMENT
                     INFO DISPLAYS (AFTER BOOKING) THE TEXT WILL BE NEARLY INVISIBLE -SORRY!</strong?</p>";
 
-            // $mail->Body = '<p>' . 'Hi ' . $name . ',' . '</p><p>' . 'According to our records, you are currently renting the bike 
-            //     with plate number <b>' .
-            //     $plateNumber . '</b>, which is due for maintenance. If this is not the correct bike please reply directly to this email
-            //     and let us know. Otherwise, please click on the link below to schedule a service appointment.' . '</p><p>' .
-            //     'Best regards,' . '</p><p>' . 'Saigon Bike Rentals' . '</p><br><p><strong>PS - THIS IS A NEW 
-            //     AUTOMATED SCHEDULING SYSTEM I HAVE BEEN WORKING ON SO PLEASE LET ME KNOW IF YOU NOTICE ANY BUGS
-            //     AS THIS IS STILL IN BETA :)</strong?</p>';
-
             if (!$mail->send()) {
 
                 echo 'Mailer Error: ' . $mail->ErrorInfo;
@@ -171,6 +151,65 @@ class Reports extends \App\Controllers\BaseController
                 imap_close($imapStream);
                 echo 'Message sent!';
             }
+        }
+    }
+
+    public function getFailedToBookMaintenanceAppointment()
+    {
+        $sql = 'SELECT c.customer_name, c.email_address
+                    FROM customers c JOIN appointments a
+                        ON c.id = a.customer_id
+                        WHERE a.created_at > DATE_SUB(CURRENT_DATE(), INTERVAL 5 DAY)
+                        AND a.activation_hash IS NOT NULL
+                        AND a.appointment_time = "0000-00-00"
+            ';
+
+        $db = db_connect();
+
+        return $db->query($sql);
+    }
+
+    public function remindFailedToBookMaintenanceAppointment()
+    {
+        require ROOTPATH . '/vendor/PHPMailer-master/src/Exception.php';
+        require ROOTPATH . '/vendor/PHPMailer-master/src/PHPMailer.php';
+        require ROOTPATH . '/vendor/PHPMailer-master/src/SMTP.php';
+
+        $resultArray = $this->getFailedToBookMaintenanceAppointment()->getResultArray();
+        $table = '<table style="border: 2px solid black; border-collapse: collapse">';
+
+        foreach ($resultArray as $key => $val) {
+
+            $table .= "<tr><td style='border: 1px solid black; padding: 2px'>{$key}</td><td style='border: 1px solid black; padding: 2px'>{$val}</td></tr>";
+        }
+
+        $table .= '</table>';
+
+        $mail = new PHPMailer(true);
+        $mail->isSMTP();
+        $mail->Host = 'mail.saigonbikerentals.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = 'patrick@saigonbikerentals.com';
+        $mail->Password = 'n1FaZ!Sz#)vB';
+        $mail->SMTPSecure = 'tls';
+        $mail->Port = 26;
+        $mail->setFrom('patrick@saigonbikerentals.com');
+        $mail->addAddress('dragonbiketoursvn@gmail.com');
+        $mail->isHTML(true);
+        $mail->Subject = "No Response to Bike Maintenance Notification";
+
+        $mail->Body = "<p>The following renters have not yet responded to the most recent notification:</p>{$table}";
+
+        if (!$mail->send()) {
+
+            echo 'Mailer Error: ' . $mail->ErrorInfo;
+        } else {
+
+            $path = '{sng103.hawkhost.com:993/ssl}INBOX.Sent';
+            $imapStream = imap_open($path, 'patrick@saigonbikerentals.com', 'n1FaZ!Sz#)vB');
+            imap_append($imapStream, $path, $mail->getSentMIMEMessage());
+            imap_close($imapStream);
+            echo 'Message sent!';
         }
     }
 }
