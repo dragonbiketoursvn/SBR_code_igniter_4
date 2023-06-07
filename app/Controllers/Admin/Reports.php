@@ -171,45 +171,47 @@ class Reports extends \App\Controllers\BaseController
 
     public function remindFailedToBookMaintenanceAppointment()
     {
-        require ROOTPATH . '/vendor/PHPMailer-master/src/Exception.php';
-        require ROOTPATH . '/vendor/PHPMailer-master/src/PHPMailer.php';
-        require ROOTPATH . '/vendor/PHPMailer-master/src/SMTP.php';
+        if (is_cli()) {
+            require ROOTPATH . '/vendor/PHPMailer-master/src/Exception.php';
+            require ROOTPATH . '/vendor/PHPMailer-master/src/PHPMailer.php';
+            require ROOTPATH . '/vendor/PHPMailer-master/src/SMTP.php';
 
-        $resultArray = $this->getFailedToBookMaintenanceAppointment()->getResultArray();
-        $table = '<table style="border: 2px solid black; border-collapse: collapse">';
+            $resultArray = $this->getFailedToBookMaintenanceAppointment()->getResultArray();
+            $table = '<table style="border: 2px solid black; border-collapse: collapse">';
 
-        foreach ($resultArray as $record) {
+            foreach ($resultArray as $record) {
 
-            $table .= "<tr><td style='border: 1px solid black; padding: 2px'>{$record['customer_name']}</td><td style='border: 1px solid black; padding: 2px'>{$record['email_address']}</td></tr>";
-        }
+                $table .= "<tr><td style='border: 1px solid black; padding: 2px'>{$record['customer_name']}</td><td style='border: 1px solid black; padding: 2px'>{$record['email_address']}</td></tr>";
+            }
 
-        $table .= '</table>';
+            $table .= '</table>';
 
-        $mail = new PHPMailer(true);
-        $mail->isSMTP();
-        $mail->Host = 'mail.saigonbikerentals.com';
-        $mail->SMTPAuth = true;
-        $mail->Username = 'patrick@saigonbikerentals.com';
-        $mail->Password = 'n1FaZ!Sz#)vB';
-        $mail->SMTPSecure = 'tls';
-        $mail->Port = 26;
-        $mail->setFrom('patrick@saigonbikerentals.com');
-        $mail->addAddress('dragonbiketoursvn@gmail.com');
-        $mail->isHTML(true);
-        $mail->Subject = "No Response to Bike Maintenance Notification";
+            $mail = new PHPMailer(true);
+            $mail->isSMTP();
+            $mail->Host = 'mail.saigonbikerentals.com';
+            $mail->SMTPAuth = true;
+            $mail->Username = 'patrick@saigonbikerentals.com';
+            $mail->Password = 'n1FaZ!Sz#)vB';
+            $mail->SMTPSecure = 'tls';
+            $mail->Port = 26;
+            $mail->setFrom('patrick@saigonbikerentals.com');
+            $mail->addAddress('dragonbiketoursvn@gmail.com');
+            $mail->isHTML(true);
+            $mail->Subject = "No Response to Bike Maintenance Notification";
 
-        $mail->Body = "<p>The following renters have not yet responded to the most recent notification:</p>{$table}";
+            $mail->Body = "<p>The following renters have not yet responded to the most recent notification:</p>{$table}";
 
-        if (!$mail->send()) {
+            if (!$mail->send()) {
 
-            echo 'Mailer Error: ' . $mail->ErrorInfo;
-        } else {
+                echo 'Mailer Error: ' . $mail->ErrorInfo;
+            } else {
 
-            $path = '{sng103.hawkhost.com:993/ssl}INBOX.Sent';
-            $imapStream = imap_open($path, 'patrick@saigonbikerentals.com', 'n1FaZ!Sz#)vB');
-            imap_append($imapStream, $path, $mail->getSentMIMEMessage());
-            imap_close($imapStream);
-            echo 'Message sent!';
+                $path = '{sng103.hawkhost.com:993/ssl}INBOX.Sent';
+                $imapStream = imap_open($path, 'patrick@saigonbikerentals.com', 'n1FaZ!Sz#)vB');
+                imap_append($imapStream, $path, $mail->getSentMIMEMessage());
+                imap_close($imapStream);
+                echo 'Message sent!';
+            }
         }
     }
 }
