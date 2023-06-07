@@ -177,11 +177,11 @@ class Reports extends \App\Controllers\BaseController
 
         $resultArray = $this->getFailedToBookMaintenanceAppointment()->getResultArray();
         $table = '<table style="border: 2px solid black; border-collapse: collapse">';
+        dd($resultArray);
+        // foreach ($resultArray as $key => $val) {
 
-        foreach ($resultArray as $key => $val) {
-
-            $table .= "<tr><td style='border: 1px solid black; padding: 2px'>{$key}</td><td style='border: 1px solid black; padding: 2px'>{$val}</td></tr>";
-        }
+        //     $table .= "<tr><td style='border: 1px solid black; padding: 2px'>{$key}</td><td style='border: 1px solid black; padding: 2px'>{$val}</td></tr>";
+        // }
 
         $table .= '</table>';
 
