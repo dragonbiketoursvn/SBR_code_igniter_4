@@ -128,8 +128,7 @@ class Reports extends \App\Controllers\BaseController
             $mail->SMTPSecure = 'tls';
             $mail->Port = 26;
             $mail->setFrom('patrick@saigonbikerentals.com');
-            // $mail->addAddress($email);
-            $mail->addAddress('dragonbiketoursvn@gmail.com'); // send to self first to test
+            $mail->addAddress($email);
             $mail->isHTML(true);
             $mail->Subject = "Bike Maintenance";
 
