@@ -156,7 +156,7 @@ class Reports extends \App\Controllers\BaseController
 
     public function getFailedToBookMaintenanceAppointment()
     {
-        $sql = 'SELECT c.customer_name, c.email_address
+        $sql = 'SELECT DISTINCT(c.customer_name), c.email_address
                     FROM customers c JOIN appointments a
                         ON c.id = a.customer_id
                         WHERE a.created_at > DATE_SUB(CURRENT_DATE(), INTERVAL 5 DAY)
@@ -177,13 +177,14 @@ class Reports extends \App\Controllers\BaseController
 
         $resultArray = $this->getFailedToBookMaintenanceAppointment()->getResultArray();
         $table = '<table style="border: 2px solid black; border-collapse: collapse">';
-        dd($resultArray);
-        // foreach ($resultArray as $key => $val) {
 
-        //     $table .= "<tr><td style='border: 1px solid black; padding: 2px'>{$key}</td><td style='border: 1px solid black; padding: 2px'>{$val}</td></tr>";
-        // }
+        foreach ($resultArray as $record) {
+
+            $table .= "<tr><td style='border: 1px solid black; padding: 2px'>{$record['customer_name']}</td><td style='border: 1px solid black; padding: 2px'>{$record['email_address']}</td></tr>";
+        }
 
         $table .= '</table>';
+        dd($table);
 
         $mail = new PHPMailer(true);
         $mail->isSMTP();
