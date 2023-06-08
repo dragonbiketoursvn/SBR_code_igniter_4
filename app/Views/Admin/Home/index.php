@@ -28,6 +28,23 @@
   <div class="field-body">
     <div class="field">
       <div class="control">
+        <a href="<?= site_url("Admin/ParkedInGarage/addRecords") ?>">
+          <button class="button is-link is-large is-fullwidth">
+            Đếm Xe Bãi Tại Xe
+          </button>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="field is-horizontal">
+  <div class="field-label">
+    <!-- Left empty for spacing -->
+  </div>
+  <div class="field-body">
+    <div class="field">
+      <div class="control">
         <a href="<?= site_url("Admin/Appointments/addNew") ?>">
           <button class="button is-warning is-large is-fullwidth">
             Bắt Đầu Lúc Gặp Khách &nbsp; <span style="text-decoration: underline;">KHÔNG CÓ HẸN</span>
