@@ -41,6 +41,7 @@ class ParkedInGarage extends \App\Controllers\BaseController
       $this->model->insert($record);
     }
 
+    $this->response->setHeader('Access-Control-Allow-Origin', 'https://hagiangadventures.com');
     return $this->response->setJSON(['message' => 'THÀNH CÔNG!!!']);
   }
 }
