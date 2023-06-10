@@ -91,6 +91,7 @@ class Reports extends \App\Controllers\BaseController
         require ROOTPATH . '/vendor/PHPMailer-master/src/SMTP.php';
 
         $resultArray = $this->getMaintenanceList()->getResultArray();
+        dd($resultArray);
         $model = new AppointmentsModel;
 
         foreach ($resultArray as $row) {
