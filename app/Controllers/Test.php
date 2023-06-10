@@ -353,13 +353,58 @@ class Test extends BaseController
 
   public function getFailedToBookMaintenanceAppointment()
   {
+    // $sql = 'SELECT DISTINCT(c.customer_name), c.email_address
+    //                 FROM customers c JOIN appointments a
+    //                     ON c.id = a.customer_id
+    //                     WHERE a.created_at > DATE_SUB(CURRENT_DATE(), INTERVAL 5 DAY)
+    //                     AND a.activation_hash IS NOT NULL
+    //                     AND a.appointment_time = "0000-00-00"
+    //         ';
+
     $sql = 'SELECT DISTINCT(c.customer_name), c.email_address
                     FROM customers c JOIN appointments a
                         ON c.id = a.customer_id
                         WHERE a.created_at > DATE_SUB(CURRENT_DATE(), INTERVAL 5 DAY)
                         AND a.activation_hash IS NOT NULL
                         AND a.appointment_time = "0000-00-00"
-            ';
+                        AND c.id IN (
+                        SELECT t1.customer_id
+                        FROM ( 
+                            SELECT * 
+                            FROM bike_status_change
+                            WHERE (plate_number, date_time) 
+                            IN
+                            (
+                                SELECT t1.plate_number, MAX(t1.date_time) AS date_time
+                                FROM
+                                (
+                                    SELECT * FROM bike_status_change 
+                                    WHERE (customer_id, date_time) IN ( 
+                                        SELECT customer_id, MAX(date_time) AS date_time FROM bike_status_change 
+                                        WHERE customer_id IN ( 
+                                            SELECT id FROM customers WHERE currently_renting = 1 
+                                        ) 
+                                        GROUP BY customer_id 
+                                    )
+                                )t1
+                                GROUP BY t1.plate_number
+                            )
+                                ) t1 JOIN ( 
+                                    SELECT plate_number, MAX(repair_date) AS repair_date
+                                    FROM repairs 
+                                    WHERE nhot = 1 
+                                    AND plate_number NOT IN ( 
+                                        SELECT plate_number 
+                                        FROM bikes 
+                                        WHERE sale_date > "2000-01-01" 
+                                    ) 
+                                    GROUP BY plate_number 
+                                    HAVING MAX(repair_date) < DATE_SUB(CURRENT_TIMESTAMP(), INTERVAL 3 MONTH) 
+                                    ORDER BY MAX(repair_date) 
+                                    ) t2 
+                                    ON t1.plate_number = t2.plate_number 
+                                    JOIN customers c on c.id = t1.customer_id  
+                                    )';
 
     $db = db_connect();
 
