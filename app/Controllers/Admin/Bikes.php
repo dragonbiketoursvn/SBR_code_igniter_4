@@ -204,7 +204,7 @@ class Bikes extends \App\Controllers\BaseController
     // we'd like to have the bike's current status as well...
     $bikeStatusChangeModel = new BikeStatusChangeModel;
     $currentStatus = $bikeStatusChangeModel->getCurrentStatusByPlateNumber($plateNumber);
-    $bike->current_status = $currentStatus->new_status;
+    $bike->current_status = $currentStatus->new_status ?? "Saigon Bike Rentals";
 
     return ($this->response->setJSON($bike));
   }
