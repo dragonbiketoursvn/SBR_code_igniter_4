@@ -22,50 +22,6 @@ class Test extends BaseController
     $this->db = \Config\Database::connect();
   }
 
-  public function asyncRequest()
-  {
-    return view('Tests/asyncRequest');
-  }
-
-  public function returnValue()
-  {
-    // $plate_number = $_POST;
-    $model = new \App\Models\BikesModel;
-    $bike = $model->getBikeByPlateNumber('51R5-3876');
-    // $data = ['penis' => 'enormous'];
-    return $this->response->setJSON($bike);
-  }
-
-
-  public function testTwo()
-  {
-    // $path = $this->request->getFile('photo')->store('images/');
-    $file = $this->request->getFile('photo');
-    $path = $file->store('images/');
-    $path = WRITEPATH . 'uploads/' . $path;
-    $path = urlencode($path);
-    dd($path);
-    // $name = $file->getName();
-
-    // return view('Tests/testTwo', ['name' => $name]);
-    return view('Tests/testTwo', ['path' => $path]);
-  }
-
-  public function showImage($path)
-  {
-    $path = WRITEPATH . 'uploads/images/' . $name;
-
-    $finfo = new \finfo(FILEINFO_MIME);
-
-    $type = $finfo->file($path);
-
-    header("Content-Type: $type");
-    header("Content-Length: " . filesize($path));
-
-    readfile($path);
-    exit;
-  }
-
   public function sendActivationEmail()
   {
     require ROOTPATH . '/vendor/PHPMailer-master/src/Exception.php';
@@ -118,6 +74,80 @@ class Test extends BaseController
       if (!$mail->send()) {
 
         echo 'Mailer Error: ' . $mail->ErrorInfo;
+      }
+    }
+  }
+
+  public function getBikesInOilDangerZone()
+  {
+    $sql = 'SELECT b.plate_number, b.brand, b.model, MAX(r.repair_date) AS latest_oil_change 
+            FROM bikes b JOIN repairs r ON b.plate_number = r.plate_number 
+            WHERE b.sale_date = "0000-00-00" 
+            OR b.sale_date IS NULL 
+            AND r.nhot = 1 OR b.plate_number NOT IN ( 
+              SELECT plate_number 
+              FROM repairs 
+              WHERE nhot = 1 
+              AND repair_date > "2022-07-01" 
+              ) 
+            GROUP BY b.plate_number, b.brand, b.model 
+            HAVING latest_oil_change > "2022-07-01" 
+            AND latest_oil_change < DATE_SUB(CURRENT_DATE(), INTERVAL 4 MONTH)
+            ORDER BY `latest_oil_change` ASC
+    ';
+    return $this->db->query($sql);
+  }
+
+  public function sendOilDangerZoneWarning()
+  {
+    $resultArray = $this->getBikesInOilDangerZone()->getResultArray();
+
+    if (is_cli() && count($resultArray) > 0) {
+      require ROOTPATH . '/vendor/PHPMailer-master/src/Exception.php';
+      require ROOTPATH . '/vendor/PHPMailer-master/src/PHPMailer.php';
+      require ROOTPATH . '/vendor/PHPMailer-master/src/SMTP.php';
+
+      $table = '<table style="border: 2px solid black; border-collapse: collapse">
+                <tr><th style="border: 1px solid black; padding: 2px">PLATE NUMBER</th>
+                <th style="border: 1px solid black; padding: 2px">BRAND</th>
+                <th style="border: 1px solid black; padding: 2px">MODEL</th>
+                <th style="border: 1px solid black; padding: 2px">LATEST OIL CHANGE</th></tr>';
+
+      foreach ($resultArray as $record) {
+
+        $table .= "<tr><td style='border: 1px solid black; padding: 2px'>{$record['plate_number']}</td>
+                  <td style='border: 1px solid black; padding: 2px'>{$record['brand']}</td>
+                  <td style='border: 1px solid black; padding: 2px'>{$record['model']}</td>
+                  <td style='border: 1px solid black; padding: 2px'>{$record['latest_oil_change']}</td></tr>";
+      }
+
+      $table .= '</table>';
+
+      $mail = new PHPMailer(true);
+      $mail->isSMTP();
+      $mail->Host = 'mail.saigonbikerentals.com';
+      $mail->SMTPAuth = true;
+      $mail->Username = 'patrick@saigonbikerentals.com';
+      $mail->Password = 'n1FaZ!Sz#)vB';
+      $mail->SMTPSecure = 'tls';
+      $mail->Port = 26;
+      $mail->setFrom('patrick@saigonbikerentals.com');
+      $mail->addAddress('dragonbiketoursvn@gmail.com');
+      $mail->isHTML(true);
+      $mail->Subject = "Bikes In Oil Danger Zone";
+
+      $mail->Body = "<p>The following bikes are dangerously overdue for an oil change:</p>{$table}";
+
+      if (!$mail->send()) {
+
+        echo 'Mailer Error: ' . $mail->ErrorInfo;
+      } else {
+
+        $path = '{sng103.hawkhost.com:993/ssl}INBOX.Sent';
+        $imapStream = imap_open($path, 'patrick@saigonbikerentals.com', 'n1FaZ!Sz#)vB');
+        imap_append($imapStream, $path, $mail->getSentMIMEMessage());
+        imap_close($imapStream);
+        echo 'Message sent!';
       }
     }
   }
@@ -198,7 +228,6 @@ class Test extends BaseController
 
   public function addPhotoPaths()
   {
-    // $db = db_connect();
     $path = WRITEPATH . 'uploads/registration_cards';
     $fileNameArray = scandir($path);
     $model = new \App\Models\BikesModel;
@@ -225,14 +254,6 @@ class Test extends BaseController
       $sql = "UPDATE bikes SET reg_front = '{$bike->reg_front}', reg_back = '{$bike->reg_back}' WHERE plate_number = '{$bike->plate_number}'";
       $this->db->query($sql);
     }
-  }
-
-  public function testPenis()
-  {
-    $plateNumber = '55P1-8859';
-    $bikeStatusChangeModel = new BikeStatusChangeModel;
-    $currentStatus = $bikeStatusChangeModel->getCurrentStatusByPlateNumber($plateNumber);
-    dd($currentStatus);
   }
 
   public function  viewCurrentCustomers()
@@ -283,28 +304,6 @@ class Test extends BaseController
   public function selectCustomerView()
   {
     return view('Tests/selectCustomerView');
-  }
-
-  public function jsonTest()
-  {
-    $model = new \App\Models\CustomersModel;
-    $customers = $model->getCurrentCustomers();
-    $customer = $customers[3];
-
-    return view('Tests/jsonTest', ['customers' => $customers, 'customer' => $customer]);
-  }
-
-  public function jsonReturn()
-  {
-    $model = new \App\Models\CustomersModel;
-    $customers = $model->getCurrentCustomers();
-    $customerEmails = [];
-
-    foreach ($customers as $customer) {
-      $customerEmails[$customer->customer_name] = $customer->email_address;
-    }
-
-    return $this->response->setJSON($customerEmails);
   }
 
   public function mailPhotos()
@@ -406,9 +405,9 @@ class Test extends BaseController
                                     JOIN customers c on c.id = t1.customer_id  
                                     )';
 
-    $db = db_connect();
+    // $db = db_connect();
 
-    return $db->query($sql);
+    return $this->db->query($sql);
   }
 
   public function remindFailedToBookMaintenanceAppointment()
