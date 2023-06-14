@@ -133,6 +133,13 @@
   removeBike.addEventListener('click', remove);
 
   const sendDataButton = document.querySelector('#sendData');
+
+  const clearForm = () => {
+    form.innerHTML = '';
+    form.appendChild(original);
+    form.elements[0].value = '';
+  };
+
   const sendData = () => {
     if (currentValues.length > 0 || latestInput.value.trim() !== '') {
       let form = new FormData(document.forms[0]);
@@ -141,7 +148,8 @@
           method: 'POST',
           body: form,
         }).then((response) => response.json())
-        .then((json) => alert(json.message));
+        .then((json) => alert(json.message))
+        .then(() => clearForm());
     };
   }
 
