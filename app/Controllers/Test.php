@@ -460,10 +460,6 @@ class Test extends BaseController
 
   public function addedToGarage()
   {
-    // this will get all bikes currently in garage which were not there
-    // at time of previous inventory check
-    // for each bike it will then add a new record to `inventory_changes`
-    // containing `plate_number`, `in` = 1, `period_start`, and `period_end`
     $model = new InventoryChangesModel;
 
     $sql = 'SELECT plate_number, 
@@ -505,6 +501,43 @@ class Test extends BaseController
 
   public function removedFromGarage()
   {
+    $model = new InventoryChangesModel;
+
+    $sql = 'SELECT plate_number, 
+        (SELECT MAX(date) FROM parked_in_garage 
+              WHERE date < (SELECT MAX(date) FROM parked_in_garage)) AS period_start,
+        (SELECT MAX(date) FROM parked_in_garage) AS period_end
+          FROM bikes
+          WHERE plate_number 
+          NOT IN (
+              SELECT plate_number
+              FROM parked_in_garage
+              WHERE date = (SELECT MAX(date) FROM parked_in_garage)
+          )
+          AND plate_number
+          IN (
+            SELECT plate_number
+                FROM parked_in_garage
+                WHERE date = (
+                      SELECT MAX(date) 
+                      FROM parked_in_garage
+                      WHERE date < (
+                        SELECT MAX(date)
+                          FROM parked_in_garage
+                      )
+                  )
+          )';
+
+    $bikesRemoved = $this->db->query($sql)->getResultArray();
+    dd($bikesRemoved);
+    // foreach ($bikesRemoved as $bike) {
+    //   $inventoryChange = new InventoryChange;
+    //   $inventoryChange->plate_number = $bike['plate_number'];
+    //   $inventoryChange->period_start = $bike['period_start'];
+    //   $inventoryChange->period_end = $bike['period_end'];
+    //   $inventoryChange->bike_in = 1;
+    //   $model->insert($inventoryChange);
+    // }
   }
 
   public function updateInventoryChanges()
