@@ -37,7 +37,7 @@ class ParkedInGarage extends \App\Controllers\BaseController
     foreach ($plateNumbers as $plateNumber) {
       $record = new ParkingRecord();
       $record->plate_number = $plateNumber;
-      $record->date = date('Y-m-d');
+      $record->date = date('Y-m-d H:i:s');
       $this->model->insert($record);
     }
 
