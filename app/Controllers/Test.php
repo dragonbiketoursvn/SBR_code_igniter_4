@@ -490,8 +490,15 @@ class Test extends BaseController
                     )';
 
     $bikesAdded = $this->db->query($sql)->getResultArray();
-    dd($bikesAdded);
-    // $inventoryChange = new InventoryChange;
+
+    foreach ($bikesAdded as $bike) {
+      $inventoryChange = new InventoryChange;
+      $inventoryChange->plate_number = $bike['plate_number'];
+      $inventoryChange->period_start = $bike['period_start'];
+      $inventoryChange->period_end = $bike['period_end'];
+      $inventoryChange->bike_in = 1;
+      dd($inventoryChange);
+    }
   }
 
   public function removedFromGarage()
