@@ -7,6 +7,8 @@ use App\Models\AppointmentsModel;
 use App\Libraries\Token;
 use App\Entities\Appointment;
 use App\Models\BikeStatusChangeModel;
+use App\Entities\InventoryChange;
+use App\Models\InventoryChangesModel;
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -454,5 +456,52 @@ class Test extends BaseController
         echo 'Message sent!';
       }
     }
+  }
+
+  public function addedToGarage()
+  {
+    // this will get all bikes currently in garage which were not there
+    // at time of previous inventory check
+    // for each bike it will then add a new record to `inventory_changes`
+    // containing `plate_number`, `in` = 1, `period_start`, and `period_end`
+    $sql = 'SELECT plate_number, 
+                  (SELECT MAX(date) FROM parked_in_garage 
+                      WHERE date < (SELECT MAX(date) FROM parked_in_garage)) AS period_start,
+                  (SELECT MAX(date) FROM parked_in_garage) AS period_end
+                    FROM bikes
+                    WHERE plate_number 
+                    IN (
+                        SELECT plate_number
+                        FROM parked_in_garage
+                        WHERE date = (SELECT MAX(date) FROM parked_in_garage)
+                    )
+                    AND plate_number
+                    NOT IN (
+                      SELECT plate_number
+                          FROM parked_in_garage
+                          WHERE date = (
+                                SELECT MAX(date) 
+                                FROM parked_in_garage
+                                WHERE date < (
+                                  SELECT MAX(date)
+                                    FROM parked_in_garage
+                                )
+                            )
+                    )';
+
+    $bikesAdded = $this->db->query($sql)->getResultArray();
+    dd($bikesAdded);
+    // $inventoryChange = new InventoryChange;
+  }
+
+  public function removedFromGarage()
+  {
+  }
+
+  public function updateInventoryChanges()
+  {
+    // This will check first that the newest date in `parked_in_garage`
+    // is greater than the highest value for `period_end` in `inventory_changes`
+    // if yes, it will call `addedToGarage` and then `removedFromGarage`
   }
 }

@@ -2,6 +2,6 @@
 
 namespace App\Entities;
 
-class ParkingRecord extends \CodeIgniter\Entity
+class InventoryChange extends \CodeIgniter\Entity
 {
 }
