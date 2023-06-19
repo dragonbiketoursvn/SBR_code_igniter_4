@@ -529,15 +529,15 @@ class Test extends BaseController
           )';
 
     $bikesRemoved = $this->db->query($sql)->getResultArray();
-    dd($bikesRemoved);
-    // foreach ($bikesRemoved as $bike) {
-    //   $inventoryChange = new InventoryChange;
-    //   $inventoryChange->plate_number = $bike['plate_number'];
-    //   $inventoryChange->period_start = $bike['period_start'];
-    //   $inventoryChange->period_end = $bike['period_end'];
-    //   $inventoryChange->bike_in = 1;
-    //   $model->insert($inventoryChange);
-    // }
+
+    foreach ($bikesRemoved as $bike) {
+      $inventoryChange = new InventoryChange;
+      $inventoryChange->plate_number = $bike['plate_number'];
+      $inventoryChange->period_start = $bike['period_start'];
+      $inventoryChange->period_end = $bike['period_end'];
+      $inventoryChange->bike_out = 1;
+      $model->insert($inventoryChange);
+    }
   }
 
   public function updateInventoryChanges()
