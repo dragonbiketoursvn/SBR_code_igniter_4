@@ -546,10 +546,11 @@ class Test extends BaseController
     // is greater than the highest value for `period_end` in `inventory_changes`
     // if yes, it will call `addedToGarage` and then `removedFromGarage`
     $sql1 = 'SELECT MAX(date) AS date FROM parked_in_garage';
+    $sql2 = 'SELECT MAX(period_end) AS date FROM inventory_changes';
 
     $maxParkedInGarage = $this->db->query($sql1)->getResultArray();
-    // $maxInventoryChange = null;
-    // list($maxInventoryChange, $maxParkedInGarage) = $result;
-    dd($maxParkedInGarage[0]['date']);
+    $maxInventoryChange = $this->db->query($sql2)->getResultArray();
+
+    dd($maxParkedInGarage[0]['date'] == $maxParkedInGarage[0]['date']);
   }
 }
