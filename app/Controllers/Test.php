@@ -551,6 +551,8 @@ class Test extends BaseController
     $maxParkedInGarage = $this->db->query($sql1)->getResultArray();
     $maxInventoryChange = $this->db->query($sql2)->getResultArray();
 
-    dd($maxParkedInGarage[0]['date'] == $maxParkedInGarage[0]['date']);
+    if (!(($maxParkedInGarage[0]['date'] == $maxParkedInGarage[0]['date']))) {
+      dd('penis');
+    }
   }
 }
