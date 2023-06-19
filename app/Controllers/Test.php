@@ -550,6 +550,6 @@ class Test extends BaseController
     $maxParkedInGarage = $this->db->query($sql1)->getResultArray();
     // $maxInventoryChange = null;
     // list($maxInventoryChange, $maxParkedInGarage) = $result;
-    dd($maxParkedInGarage['date']);
+    dd($maxParkedInGarage);
   }
 }
