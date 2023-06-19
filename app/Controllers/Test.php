@@ -464,6 +464,8 @@ class Test extends BaseController
     // at time of previous inventory check
     // for each bike it will then add a new record to `inventory_changes`
     // containing `plate_number`, `in` = 1, `period_start`, and `period_end`
+    $model = new InventoryChangesModel;
+
     $sql = 'SELECT plate_number, 
                   (SELECT MAX(date) FROM parked_in_garage 
                       WHERE date < (SELECT MAX(date) FROM parked_in_garage)) AS period_start,
@@ -497,7 +499,7 @@ class Test extends BaseController
       $inventoryChange->period_start = $bike['period_start'];
       $inventoryChange->period_end = $bike['period_end'];
       $inventoryChange->bike_in = 1;
-      dd($inventoryChange);
+      $model->insert($inventoryChange);
     }
   }
 
