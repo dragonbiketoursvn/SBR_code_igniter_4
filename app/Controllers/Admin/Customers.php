@@ -201,7 +201,7 @@ class Customers extends \App\Controllers\BaseController
         //   ->getCurrentStatus($customer->id)
         //   ->plate_number;
         $bikeStatusChange->plate_number = $customer->current_bike;
-        $bikeStatusChange->date_time = time('Y-m-d H:i:s');
+        $bikeStatusChange->date_time = date('Y-m-d H:i:s', time());
         $bikeStatusChange->new_status = 'Saigon Bike Rentals';
 
         $statusChangeModel->insert($bikeStatusChange);
