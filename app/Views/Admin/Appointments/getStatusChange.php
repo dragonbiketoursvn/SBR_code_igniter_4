@@ -4,6 +4,12 @@
 
 <?= $this->section("content") ?>
 
+<?php if (session()->has('info')) {
+  $message = session()->get('info');
+
+  echo "<h1 style='color:red;'>{$message}</h1>";
+} ?>
+
 <?= form_open('Admin/Appointments/saveStatusChange', 'id="status_change"') ?>
 
 <div class="field is-horizontal" style="bottom: 200px !important;">
@@ -15,9 +21,9 @@
       <p class="control is-expanded">
         <input autocomplete="off" list="current_bikes" class="input is-success" id="bike_out" name="bike_out">
         <datalist id="current_bikes">
-          <?php foreach($currentBikes as $currentBike): ?>
+          <?php foreach ($currentBikes as $currentBike) : ?>
             <option value="<?= $currentBike->plate_number ?>">
-          <?php endforeach; ?>
+            <?php endforeach; ?>
         </datalist>
       </p>
     </div>
@@ -33,9 +39,9 @@
       <p class="control is-expanded">
         <input autocomplete="off" list="current_bikes" class="input is-success" id="bike_in" name="bike_in">
         <datalist id="current_bikes">
-          <?php foreach($currentBikes as $currentBike): ?>
+          <?php foreach ($currentBikes as $currentBike) : ?>
             <option value="<?= $currentBike->plate_number ?>">
-          <?php endforeach; ?>
+            <?php endforeach; ?>
         </datalist>
       </p>
     </div>
@@ -79,59 +85,59 @@
 
 
 <script>
-const modal = document.querySelector('.modal');
-const buttonOpenModal = document.querySelector('.toggle');
-const buttonCloseModal = document.querySelector('.close-toggle');
+  const modal = document.querySelector('.modal');
+  const buttonOpenModal = document.querySelector('.toggle');
+  const buttonCloseModal = document.querySelector('.close-toggle');
 
-const stringSegment1 = "Khách <b>trả lại</b> xe biển số <b>";
-const stringSegment2 = "</b><br>";
-const stringSegment3 = "Khách <b>nhận</b> xe biển số <b>";
-const stringSegment4 = "</b><br> Thông tin này có đúng ko?";
+  const stringSegment1 = "Khách <b>trả lại</b> xe biển số <b>";
+  const stringSegment2 = "</b><br>";
+  const stringSegment3 = "Khách <b>nhận</b> xe biển số <b>";
+  const stringSegment4 = "</b><br> Thông tin này có đúng ko?";
 
-const toggle = function() {
+  const toggle = function() {
 
-  let bike_in = document.querySelector('input[name="bike_in"]');
-  let bike_out = document.querySelector('input[name="bike_out"]');
+    let bike_in = document.querySelector('input[name="bike_in"]');
+    let bike_out = document.querySelector('input[name="bike_out"]');
 
-  let message = '';
+    let message = '';
 
-  if(bike_in.value != ''){
+    if (bike_in.value != '') {
 
-    message += stringSegment1 + bike_in.value + stringSegment2;
+      message += stringSegment1 + bike_in.value + stringSegment2;
 
-  } else {
+    } else {
 
-    message += 'Khách ko trả lại xe.<br>'
+      message += 'Khách ko trả lại xe.<br>'
 
-  }
+    }
 
-  if(bike_out.value != ''){
+    if (bike_out.value != '') {
 
-    message += stringSegment3 + bike_out.value;
+      message += stringSegment3 + bike_out.value;
 
-  } else {
+    } else {
 
-    message += 'Khách ko nhận xe.'
+      message += 'Khách ko nhận xe.'
 
-  }
+    }
 
-  message += stringSegment4;
+    message += stringSegment4;
 
 
-  document.querySelector('.modal-card-body').innerHTML = message;
+    document.querySelector('.modal-card-body').innerHTML = message;
 
-  modal.classList.add('is-active');
+    modal.classList.add('is-active');
 
- };
+  };
 
- const closeToggle = function() {
+  const closeToggle = function() {
 
-  modal.classList.remove('is-active');
+    modal.classList.remove('is-active');
 
- };
+  };
 
-buttonOpenModal.addEventListener('click', toggle);
-buttonCloseModal.addEventListener('click', closeToggle);
+  buttonOpenModal.addEventListener('click', toggle);
+  buttonCloseModal.addEventListener('click', closeToggle);
 </script>
 
 

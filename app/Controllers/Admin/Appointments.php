@@ -95,12 +95,21 @@ class Appointments extends \App\Controllers\BaseController
     $post = $this->request->getPost();
     $appointment = session()->get('appointment');
     $model = new \App\Models\BikeStatusChangeModel;
+    $bikesModel = new \App\Models\BikesModel;
+    $currentBikes = $bikesModel->getCurrentBikes();
+    $currentBikesPlateNumbers = [];
+
+    foreach ($currentBikes as $currentBike) {
+      $currentBikesPlateNumbers[] = $currentBike->plate_number;
+    };
+
     $bikeOutStatusChange = new \App\Entities\BikeStatusChange;
     $bikeInStatusChange = new \App\Entities\BikeStatusChange;
 
-    if ((!$post['bike_in']) && (!$post['bike_out'])) {
-
-      return redirect()->back()->with('info', 'Chưa Ghi Biển Số!');
+    if (($post['bike_in'] !== '' && !(in_array($post['bike_in'], $currentBikesPlateNumbers)))
+      || $post['bike_out'] !== '' && !(in_array($post['bike_out'], $currentBikesPlateNumbers))
+    ) {
+      return redirect()->back()->with('info', 'Kiểm Tra Lại Biển Số!');
     } elseif ($post['bike_out']) {
 
       //Record in the appointment record that customer received a bike
