@@ -542,18 +542,20 @@ class Test extends BaseController
 
   public function updateInventoryChanges()
   {
-    // This will check first that the newest date in `parked_in_garage`
-    // is greater than the highest value for `period_end` in `inventory_changes`
-    // if yes, it will call `addedToGarage` and then `removedFromGarage`
-    $sql1 = 'SELECT MAX(date) AS date FROM parked_in_garage';
-    $sql2 = 'SELECT MAX(period_end) AS date FROM inventory_changes';
+    if (is_cli()) {
+      // This will check first that the newest date in `parked_in_garage`
+      // is greater than the highest value for `period_end` in `inventory_changes`
+      // if yes, it will call `addedToGarage` and then `removedFromGarage`
+      $sql1 = 'SELECT MAX(date) AS date FROM parked_in_garage';
+      $sql2 = 'SELECT MAX(period_end) AS date FROM inventory_changes';
 
-    $maxParkedInGarage = $this->db->query($sql1)->getResultArray();
-    $maxInventoryChange = $this->db->query($sql2)->getResultArray();
+      $maxParkedInGarage = $this->db->query($sql1)->getResultArray();
+      $maxInventoryChange = $this->db->query($sql2)->getResultArray();
 
-    if (!(($maxParkedInGarage[0]['date'] == $maxInventoryChange[0]['date']))) {
-      $this->addedToGarage();
-      $this->removedFromGarage();
+      if (!(($maxParkedInGarage[0]['date'] == $maxInventoryChange[0]['date']))) {
+        $this->addedToGarage();
+        $this->removedFromGarage();
+      }
     }
   }
 }
