@@ -14,9 +14,18 @@ class Customers extends \App\Controllers\BaseController
 {
   private $model;
 
+  protected $db;
+
   public function __construct()
   {
     $this->model = new \App\Models\CustomersModel;
+    $this->db = \Config\Database::connect();
+  }
+
+  public function selectContractType()
+  {
+
+    return view('Admin/Customers/selectContractType');
   }
 
   public function newContract()
@@ -31,11 +40,36 @@ class Customers extends \App\Controllers\BaseController
     ]);
   }
 
+  public function newContractShort()
+  {
+    $nationalities = $this->model->select('nationality')->distinct()->findAll();
+    $model = new \App\Models\BikesModel;
+    $currentBikes = $model->getCurrentBikes();
+
+    return view('Admin/Customers/newContractShort', [
+      'nationalities' => $nationalities,
+      'currentBikes' => $currentBikes,
+    ]);
+  }
+
+  private function getModelYearCode($plateNumber)
+  {
+    $sql = "SELECT myc.code 
+            FROM bikes b 
+            JOIN model_year_codes myc
+            ON (b.model = myc.model AND b.year = myc.year)
+            WHERE b.plate_number = '59T2-12475'";
+
+    return $this->db->query($sql)->getRow()->code;
+  }
+
   public function save()
   {
     $customer = new Customer;
     $customer->fill($this->request->getPost());
     $customer->currently_renting = 1;
+    $customer->model_year_code = $this->getModelYearCode($customer->current_bike);
+    // $customer->model_year_code = 1;
 
     // Get all the uploaded files
     $files = $this->request->getFiles();
@@ -97,19 +131,23 @@ class Customers extends \App\Controllers\BaseController
     }
 
     if ($this->model->insert($customer)) {
+
       // Get record of rental bike
       $bikesModel = new \App\Models\BikesModel;
       $bike = $bikesModel->getBikeByPlateNumber($customer->current_bike);
 
-      // Get bike's current market value
-      $bikeValuationsModel = new \App\Models\BikeValuationsModel;
-      $valuationRecord = $bikeValuationsModel->getValueByModelAndYear($bike->model, $bike->year);
+      // Pass all info from contract to use in activation email (monthly renters only)
+      if ($customer->short_term !== "1") {
 
-      // Format the value
-      $value = number_format($valuationRecord->value * 1000, 0, '.', ',');
+        // Get bike's current market value
+        $bikeValuationsModel = new \App\Models\BikeValuationsModel;
+        $valuationRecord = $bikeValuationsModel->getValueByModelAndYear($bike->model, $bike->year);
 
-      // Pass all info from contract to use in activation email
-      $this->sendActivationEmail($customer, $bike, $value);
+        // Format the value
+        $value = number_format($valuationRecord->value * 1000, 0, '.', ',');
+
+        $this->sendActivationEmail($customer, $bike, $value);
+      }
 
       // Get new customer record
       $newCustomer = $this->model->getCurrentCustomerByName($customer->customer_name);

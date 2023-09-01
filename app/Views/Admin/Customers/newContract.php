@@ -133,6 +133,8 @@
         </div>
       </div>
 
+      <input type="hidden" autocomplete="off" class="input is-success" id="rent_usd" name="rent_usd" value="<?= old('rent_usd') ?>">
+
       <div class="field is-horizontal" style="bottom: 200px !important;">
         <div class="field-label is-normal">
           <label type="number" min=500 max=5000 step=100 class="label" for="rent">Rental Amount (x1000 dong)</label>
@@ -311,6 +313,6 @@
       </div>
 
       <script src="<?= site_url('js/Customers/newContract.js') ?>"></script>
-
+      <script src="<?= site_url('js/Customers/currencyConversion.js') ?>"></script>
 
       <?= $this->endSection() ?>

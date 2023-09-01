@@ -13,7 +13,12 @@ class CustomersModel extends \CodeIgniter\Model
     'found_via', 'currently_renting', 'start_date', 'deposit_type', 'current_bike', 'rent',
     'finish_date', 'notes', 'building_name', 'building_number', 'street_name', 'ward', 'district', 'city',
     'passport_photo', 'license_photo', 'dragon_bikes', 'activation_hash', 'is_active', 'passport', 'TRC_or_visa',
-    'license_front', 'license_back'
+    'license_front', 'license_back', 'short_term', 'model_year_code', 'rent_usd', 'number_full_helmets',
+    'replacement_cost_full_helmet', 'number_three_quarter_helmets', 'replacement_cost_three_quarter_helmet',
+    'givi_topcase', 'givi_topcase_replacement_cost', 'givi_pannier_quantity', 'givi_pannier_replacement_cost',
+    'madfox_saddlebags', 'madfox_saddlebags_replacement_cost', 'inner_tubes_quantity',
+    'inner_tubes_replacement_cost', 'damage_insurance_amount', 'additional_items_services',
+    'additional_items_cost'
   ];
 
   protected $returnType = 'App\Entities\Customer';
@@ -23,18 +28,16 @@ class CustomersModel extends \CodeIgniter\Model
   protected $validationRules = [
     'customer_name' => 'required',
     'email_address' => 'required|valid_email',
-    'current_bike'  => 'required',
-    'rent' => 'required|greater_than[100]|less_than[20000]',
-    'district' => 'required',
+    'current_bike'  => 'required'
   ];
 
   protected $validationMessages = [
     'customer_name' => 'Please enter a name',
     'email_address' => 'Please enter a valid email address',
-    'current_bike'  => 'Please enter the plate number',
-    'rent' => 'Please enter a valid rental amount',
-    'street_name' => 'Please enter the name of the street',
-    'district' => 'Please enter the name of the district',
+    'current_bike'  => 'Please enter the plate number'
+    // 'rent' => 'Please enter a valid rental amount',
+    // 'street_name' => 'Please enter the name of the street',
+    // 'district' => 'Please enter the name of the district',
   ];
 
   protected $beforeUpdate = ['trimWhiteSpace'];

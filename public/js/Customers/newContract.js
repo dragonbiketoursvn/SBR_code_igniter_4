@@ -8,12 +8,12 @@ const surname = document.querySelector(".surname");
 let full_name = document.querySelector(".full_name");
 
 form.addEventListener("submit", function (e) {
-  first_name.value = first_name.value.toLowerCase();
+  first_name.value = first_name.value.trim().toLowerCase();
   let firstArray = [...first_name.value];
   firstArray[0] = firstArray[0].toUpperCase();
   first_name.value = firstArray.join("");
 
-  surname.value = surname.value.toLowerCase();
+  surname.value = surname.value.trim().toLowerCase();
   let secondArray = [...surname.value];
   secondArray[0] = secondArray[0].toUpperCase();
   surname.value = secondArray.join("");
