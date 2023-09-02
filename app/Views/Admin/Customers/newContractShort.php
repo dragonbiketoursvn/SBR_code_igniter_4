@@ -475,6 +475,6 @@
 
       <script src="<?= site_url('js/Customers/newContract.js') ?>"></script>
 
-      <script src="<?= site_url('js/Customers/currencyConversion2.js') ?>"></script>
+      <script src="<?= site_url('js/Customers/currencyConversion.js') ?>"></script>
 
       <?= $this->endSection() ?>
