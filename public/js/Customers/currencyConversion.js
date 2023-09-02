@@ -37,3 +37,5 @@ const convertDollarsToDong = (e) => {
 rentInput.addEventListener("input", convertDongToDollars);
 
 rentInputUSD.addEventListener("input", convertDollarsToDong);
+
+alert("Walrus!");
