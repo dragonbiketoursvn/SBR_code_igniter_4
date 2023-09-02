@@ -17,6 +17,9 @@
 
       <?= form_open_multipart('Admin/Customers/save', 'id="rental_contract"') ?>
 
+      <input type="hidden" id="usd_to_vnd" value=<?= $USD_TO_VND ?>>
+      <input type="hidden" id="vnd_to_usd" value=<?= $VND_TO_USD ?>>
+
       <div class="field is-horizontal">
         <div class="field-label is-normal">
           <label class="label" for="start_date">Start Date</label>
