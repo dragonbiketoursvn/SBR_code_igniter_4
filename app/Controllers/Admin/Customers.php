@@ -97,7 +97,7 @@ class Customers extends \App\Controllers\BaseController
             FROM bikes b 
             JOIN model_year_codes myc
             ON (b.model = myc.model AND b.year = myc.year)
-            WHERE b.plate_number = '59T2-12475'";
+            WHERE b.plate_number = {$plateNumber}";
 
     return $this->db->query($sql)->getRow()->code;
   }
