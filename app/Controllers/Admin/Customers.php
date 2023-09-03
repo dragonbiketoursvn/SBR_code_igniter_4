@@ -97,7 +97,7 @@ class Customers extends \App\Controllers\BaseController
             FROM bikes b 
             JOIN model_year_codes myc
             ON (b.model = myc.model AND b.year = myc.year)
-            WHERE b.plate_number = {$plateNumber}";
+            WHERE b.plate_number = '{$plateNumber}'";
 
     return $this->db->query($sql)->getRow()->code;
   }
@@ -108,7 +108,6 @@ class Customers extends \App\Controllers\BaseController
     $customer->fill($this->request->getPost());
     $customer->currently_renting = 1;
     $customer->model_year_code = $this->getModelYearCode($customer->current_bike);
-    // $customer->model_year_code = 1;
 
     // Get all the uploaded files
     $files = $this->request->getFiles();
