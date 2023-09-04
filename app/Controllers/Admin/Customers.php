@@ -13,13 +13,17 @@ use PHPMailer\PHPMailer\Exception;
 class Customers extends \App\Controllers\BaseController
 {
   private $model;
+  private $db;
+  private $currentBikes;
 
-  protected $db;
 
   public function __construct()
   {
     $this->model = new \App\Models\CustomersModel;
     $this->db = \Config\Database::connect();
+
+    $bikesModel = new \App\Models\BikesModel;
+    $this->currentBikes = $bikesModel->getCurrentBikes();
   }
 
   public function selectContractType()
@@ -64,12 +68,12 @@ class Customers extends \App\Controllers\BaseController
   {
     $nationalities = $this->model->select('nationality')->distinct()->findAll();
     $model = new \App\Models\BikesModel;
-    $currentBikes = $model->getCurrentBikes();
+    // $currentBikes = $model->getCurrentBikes();
     [$USD_TO_VND, $VND_TO_USD] = $this->getExchangeRates();
 
     return view('Admin/Customers/newContract', [
       'nationalities' => $nationalities,
-      'currentBikes' => $currentBikes,
+      'currentBikes' => $this->currentBikes,
       'USD_TO_VND' => $USD_TO_VND,
       'VND_TO_USD' => $VND_TO_USD
     ]);
@@ -79,13 +83,13 @@ class Customers extends \App\Controllers\BaseController
   {
     $nationalities = $this->model->select('nationality')->distinct()->findAll();
     $model = new \App\Models\BikesModel;
-    $currentBikes = $model->getCurrentBikes();
+    // $currentBikes = $model->getCurrentBikes();
     [$USD_TO_VND, $VND_TO_USD] = $this->getExchangeRates();
 
 
     return view('Admin/Customers/newContractShort', [
       'nationalities' => $nationalities,
-      'currentBikes' => $currentBikes,
+      'currentBikes' => $this->currentBikes,
       'USD_TO_VND' => $USD_TO_VND,
       'VND_TO_USD' => $VND_TO_USD
     ]);
@@ -104,9 +108,21 @@ class Customers extends \App\Controllers\BaseController
 
   public function save()
   {
+    $plateNumbers = [];
+
+    foreach ($this->currentBikes as $bike) {
+      $plateNumbers[] = $bike->plate_number;
+    };
+
     $customer = new Customer;
     $customer->fill($this->request->getPost());
     $customer->currently_renting = 1;
+
+    if (!in_array($customer->current_bike, $plateNumbers)) {
+      session()->set('errors', ['Plate Number Not Found']);
+      return redirect()->back()->withInput();
+    }
+
     $customer->model_year_code = $this->getModelYearCode($customer->current_bike);
 
     // Get all the uploaded files
@@ -469,7 +485,7 @@ class Customers extends \App\Controllers\BaseController
     }
 
     $currentStatus = $model->getCurrentStatus($customer->id);
-    $currentBikes = $bikesModel->getCurrentBikes();
+    // $currentBikes = $bikesModel->getCurrentBikes();
     $payments = $paymentsModel->getByContractNumber($customer->id);
     $monthsPaid = $paymentsModel->getTotalMonthsPaid($customer->id)->months_paid ?? 0;
     $startDate = new Time();
@@ -480,7 +496,7 @@ class Customers extends \App\Controllers\BaseController
       'customer' => $customer,
       'customers' => $customers,
       'currentStatus' => $currentStatus,
-      'currentBikes' => $currentBikes,
+      'currentBikes' => $this->currentBikes,
       'payments' => $payments,
       'paidUpTo' => $paidUpTo,
     ]);

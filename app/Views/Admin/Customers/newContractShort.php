@@ -8,7 +8,7 @@
   <ul>
     <?php foreach (session('errors') as $error) : ?>
       <li>
-        <?= $error ?>
+        <h1 style="color:red;"><?= $error ?></h1>
       <li>
       <?php endforeach; ?>
       <ul>
