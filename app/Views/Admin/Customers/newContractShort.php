@@ -139,6 +139,19 @@
 
       <div class="field is-horizontal" style="bottom: 200px !important;">
         <div class="field-label is-normal">
+          <label class="label" for="odometer_start">Odometer Start</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <p class="control is-expanded">
+              <input autocomplete="off" class="input is-success" id="odometer_start" name="odometer_start" value="<?= old('odometer_start') ?>">
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="field is-horizontal" style="bottom: 200px !important;">
+        <div class="field-label is-normal">
           <label class="label" for="deposit_type">Deposit</label>
         </div>
         <div class="field-body">

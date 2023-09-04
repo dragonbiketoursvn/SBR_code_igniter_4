@@ -18,7 +18,7 @@ class CustomersModel extends \CodeIgniter\Model
     'givi_topcase', 'givi_topcase_replacement_cost', 'givi_pannier_quantity', 'givi_pannier_replacement_cost',
     'madfox_saddlebags', 'madfox_saddlebags_replacement_cost', 'inner_tubes_quantity',
     'inner_tubes_replacement_cost', 'damage_insurance_amount', 'additional_items_services',
-    'additional_items_cost'
+    'additional_items_cost', 'odometer_start', 'odometer_finish'
   ];
 
   protected $returnType = 'App\Entities\Customer';
