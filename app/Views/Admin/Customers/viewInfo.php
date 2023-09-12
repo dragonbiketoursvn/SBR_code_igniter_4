@@ -15,6 +15,23 @@ if (!$customer) {
 <?= form_open_multipart('Admin/Customers/update') ?>
 
 <input type="hidden" name="id" value="<?= $customer->id ?>">
+<input type="hidden" name="short_term" value="<?= $customer->short_term ?>">
+
+<?php if ($customer->short_term) : ?>
+
+  <div class="field is-horizontal" style="bottom: 200px !important;">
+    <div class="field-label is-normal">
+      <label class="label" for="currently_renting" style="color:red; font-weight:bold;">Currently Renting</label>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <p class="control is-expanded">
+          <input autocomplete="off" readonly class="input is-success" id="currently_renting" name="currently_renting" value="<?= $customer->currently_renting ?>">
+        </p>
+      </div>
+    </div>
+  </div>
+<?php endif; ?>
 
 <div class="field is-horizontal" style="bottom: 200px !important;">
   <div class="field-label is-normal">
@@ -23,7 +40,7 @@ if (!$customer) {
   <div class="field-body">
     <div class="field">
       <p class="control is-expanded">
-        <input autocomplete="off" readonly class="input is-success first_name" id="first_name" name="customer_name" value="<?= old('customer_name', esc($customer->customer_name)) ?>">
+        <input autocomplete="off" readonly class="input is-success first_name" id="first_name" name="customer_name" value="<?= $customer->customer_name ?>">
       </p>
     </div>
   </div>
@@ -140,70 +157,74 @@ if (!$customer) {
     </div>
   </div>
 
-  <div class="field is-horizontal" style="bottom: 200px !important;">
-    <div class="field-label is-normal">
-      <label class="label" for="building_name">Building Name</label>
-    </div>
-    <div class="field-body">
-      <div class="field">
-        <p class="control is-expanded">
-          <input autocomplete="off" readonly class="input is-success" id="building_name" name="building_name" value="<?= $customer->building_name ?>">
-        </p>
-      </div>
-    </div>
-  </div>
+  <?php if (!$customer->short_term) : ?>
 
-  <div class="field is-horizontal" style="bottom: 200px !important;">
-    <div class="field-label is-normal">
-      <label class="label" for="building_number">Building Number</label>
-    </div>
-    <div class="field-body">
-      <div class="field">
-        <p class="control is-expanded">
-          <input autocomplete="off" readonly class="input is-success" id="building_number" name="building_number" value="<?= $customer->building_number ?>">
-        </p>
+    <div class="field is-horizontal" style="bottom: 200px !important;">
+      <div class="field-label is-normal">
+        <label class="label" for="building_name">Building Name</label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="control is-expanded">
+            <input autocomplete="off" readonly class="input is-success" id="building_name" name="building_name" value="<?= $customer->building_name ?>">
+          </p>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="field is-horizontal" style="bottom: 200px !important;">
-    <div class="field-label is-normal">
-      <label class="label" for="street_name">Street Name</label>
-    </div>
-    <div class="field-body">
-      <div class="field">
-        <p class="control is-expanded">
-          <input autocomplete="off" readonly class="input is-success" id="street_name" name="street_name" value="<?= $customer->street_name ?>">
-        </p>
+    <div class="field is-horizontal" style="bottom: 200px !important;">
+      <div class="field-label is-normal">
+        <label class="label" for="building_number">Building Number</label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="control is-expanded">
+            <input autocomplete="off" readonly class="input is-success" id="building_number" name="building_number" value="<?= $customer->building_number ?>">
+          </p>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="field is-horizontal" style="bottom: 200px !important;">
-    <div class="field-label is-normal">
-      <label class="label" for="ward">Ward</label>
-    </div>
-    <div class="field-body">
-      <div class="field">
-        <p class="control is-expanded">
-          <input autocomplete="off" readonly class="input is-success" id="ward" name="ward" value="<?= $customer->ward ?>">
-        </p>
+    <div class="field is-horizontal" style="bottom: 200px !important;">
+      <div class="field-label is-normal">
+        <label class="label" for="street_name">Street Name</label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="control is-expanded">
+            <input autocomplete="off" readonly class="input is-success" id="street_name" name="street_name" value="<?= $customer->street_name ?>">
+          </p>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="field is-horizontal" style="bottom: 200px !important;">
-    <div class="field-label is-normal">
-      <label class="label" for="district">District</label>
-    </div>
-    <div class="field-body">
-      <div class="field">
-        <p class="control is-expanded">
-          <input autocomplete="off" readonly class="input is-success" id="district" name="district" value="<?= $customer->district ?>">
-        </p>
+    <div class="field is-horizontal" style="bottom: 200px !important;">
+      <div class="field-label is-normal">
+        <label class="label" for="ward">Ward</label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="control is-expanded">
+            <input autocomplete="off" readonly class="input is-success" id="ward" name="ward" value="<?= $customer->ward ?>">
+          </p>
+        </div>
       </div>
     </div>
-  </div>
+
+    <div class="field is-horizontal" style="bottom: 200px !important;">
+      <div class="field-label is-normal">
+        <label class="label" for="district">District</label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="control is-expanded">
+            <input autocomplete="off" readonly class="input is-success" id="district" name="district" value="<?= $customer->district ?>">
+          </p>
+        </div>
+      </div>
+    </div>
+
+  <?php endif; ?>
 
   <div class="field is-horizontal" style="bottom: 200px !important;">
     <div class="field-label is-normal">
@@ -230,6 +251,246 @@ if (!$customer) {
       </div>
     </div>
   </div>
+
+  <?php if ($customer->short_term) : ?>
+
+    <div class="field is-horizontal" style="bottom: 200px !important;">
+      <div class="field-label is-normal">
+        <label class="label" for="odometer_start">Odometer Start</label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="control is-expanded">
+            <input autocomplete="off" class="input is-success" id="odometer_start" name="odometer_start" value="<?= $customer->odometer_start ?>">
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="field is-horizontal" style="bottom: 200px !important;">
+      <div class="field-label is-normal">
+        <label class="label" for="odometer_finish">Odometer Finish</label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="control is-expanded">
+            <input autocomplete="off" class="input is-success" id="odometer_finish" name="odometer_finish" value="<?= $customer->odometer_finish ?>">
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="field is-horizontal" style="bottom: 200px !important;">
+      <div class="field-label is-normal">
+        <label class="label" for="number_full_helmets"># Full Helmets</label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="control is-expanded">
+            <input autocomplete="off" type="tel" class="input is-success" id="number_full_helmets" name="number_full_helmets" value="<?= $customer->number_full_helmets ?>">
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="field is-horizontal" style="bottom: 200px !important;">
+      <div class="field-label is-normal">
+        <label class="label" for="replacement_cost_full_helmet">Replacement Cost Per Item</label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="control is-expanded">
+            <input autocomplete="off" type="tel" class="input is-success" id="replacement_cost_full_helmet" name="replacement_cost_full_helmet" value="<?= $customer->replacement_cost_full_helmet ?>">
+          </p>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="field is-horizontal" style="bottom: 200px !important;">
+      <div class="field-label is-normal">
+        <label class="label" for="number_three_quarter_helmets"># 3/4 Helmets</label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="control is-expanded">
+            <input autocomplete="off" type="tel" class="input is-success" id="number_three_quarter_helmets" name="number_three_quarter_helmets" value="<?= $customer->number_three_quarter_helmets ?>">
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="field is-horizontal" style="bottom: 200px !important;">
+      <div class="field-label is-normal">
+        <label class="label" for="replacement_cost_three_quarter_helmet">Replacement Cost Per Item</label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="control is-expanded">
+            <input autocomplete="off" type="tel" class="input is-success" id="replacement_cost_three_quarter_helmet" name="replacement_cost_three_quarter_helmet" value="<?= $customer->replacement_cost_three_quarter_helmet ?>">
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="field is-horizontal" style="bottom: 200px !important;">
+      <div class="field-label is-normal">
+        <label class="label" for="givi_topcase"># Givi Topcases</label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="control is-expanded">
+            <input autocomplete="off" type="tel" class="input is-success" id="givi_topcase" name="givi_topcase" value="<?= $customer->givi_topcase ?>">
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="field is-horizontal" style="bottom: 200px !important;">
+      <div class="field-label is-normal">
+        <label class="label" for="givi_topcase_replacement_cost">Replacement Cost Per Item</label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="control is-expanded">
+            <input autocomplete="off" type="tel" class="input is-success" id="givi_topcase_replacement_cost" name="givi_topcase_replacement_cost" value="<?= $customer->givi_topcase_replacement_cost ?>">
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="field is-horizontal" style="bottom: 200px !important;">
+      <div class="field-label is-normal">
+        <label class="label" for="givi_pannier_quantity"># Givi Panniers</label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="control is-expanded">
+            <input autocomplete="off" type="tel" class="input is-success" id="givi_pannier_quantity" name="givi_pannier_quantity" value="<?= $customer->givi_pannier_quantity ?>">
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="field is-horizontal" style="bottom: 200px !important;">
+      <div class="field-label is-normal">
+        <label class="label" for="givi_pannier_replacement_cost">Replacement Cost Per Item</label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="control is-expanded">
+            <input autocomplete="off" type="tel" class="input is-success" id="givi_pannier_replacement_cost" name="givi_pannier_replacement_cost" value="<?= $customer->givi_pannier_replacement_cost ?>">
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="field is-horizontal" style="bottom: 200px !important;">
+      <div class="field-label is-normal">
+        <label class="label" for="madfox_saddlebags"># MadFox Saddlebags</label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="control is-expanded">
+            <input autocomplete="off" type="tel" class="input is-success" id="madfox_saddlebags" name="madfox_saddlebags" value="<?= $customer->madfox_saddlebags ?>">
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="field is-horizontal" style="bottom: 200px !important;">
+      <div class="field-label is-normal">
+        <label class="label" for="madfox_saddlebags_replacement_cost">Replacement Cost Per Item</label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="control is-expanded">
+            <input autocomplete="off" type="tel" class="input is-success" id="madfox_saddlebags_replacement_cost" name="madfox_saddlebags_replacement_cost" value="<?= $customer->madfox_saddlebags_replacement_cost ?>">
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="field is-horizontal" style="bottom: 200px !important;">
+      <div class="field-label is-normal">
+        <label class="label" for="inner_tubes_quantity"># Inner Tubes</label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="control is-expanded">
+            <input autocomplete="off" type="tel" class="input is-success" id="inner_tubes_quantity" name="inner_tubes_quantity" value="<?= $customer->inner_tubes_quantity ?>">
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="field is-horizontal" style="bottom: 200px !important;">
+      <div class="field-label is-normal">
+        <label class="label" for="inner_tubes_replacement_cost">Replacement Cost Per Item</label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="control is-expanded">
+            <input autocomplete="off" type="tel" class="input is-success" id="inner_tubes_replacement_cost" name="inner_tubes_replacement_cost" value="<?= $customer->inner_tubes_replacement_cost ?>">
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="field is-horizontal" style="bottom: 200px !important;">
+      <div class="field-label is-normal">
+        <label class="label" for="damage_insurance_amount">Damage Insurance Amount</label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="control is-expanded">
+            <input autocomplete="off" type="tel" class="input is-success" id="damage_insurance_amount" name="damage_insurance_amount" value="<?= $customer->damage_insurance_amount ?>">
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="field is-horizontal" style="bottom: 200px !important;">
+      <div class="field-label is-normal">
+        <label class="label" for="additional_items_services">Additional Items/Services</label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="control is-expanded">
+            <input autocomplete="off" class="input is-success" id="additional_items_services" name="additional_items_services" value="<?= $customer->additional_items_services ?>">
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="field is-horizontal" style="bottom: 200px !important;">
+      <div class="field-label is-normal">
+        <label class="label" for="service_complete">Service Complete?</label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="control is-expanded">
+            <input autocomplete="off" class="input is-success" id="service_complete" name="service_complete" value="<?= $customer->service_complete ?>">
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="field is-horizontal" style="bottom: 200px !important;">
+      <div class="field-label is-normal">
+        <label class="label" for="additional_items_cost">Cost</label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="control is-expanded">
+            <input autocomplete="off" type="tel" class="input is-success" id="additional_items_cost" name="additional_items_cost" value="<?= $customer->additional_items_cost ?>">
+          </p>
+        </div>
+      </div>
+    </div>
+
+
+  <?php endif; ?>
 
   <div class="field is-horizontal photoInput" style="bottom: 200px !important;">
     <div class="field-label is-normal">
@@ -260,7 +521,7 @@ if (!$customer) {
   <div class="photoSection">
     <div class="photoBox" data-image="unloaded">
       <div class="photoCaption">Passport</div>
-      <img class="photoImage" src="<?= site_url("Admin/Customers/displayCustomerPhoto/" . $customer->passport) ?>">
+      <img class="photoImage" src="<?= $customer->passport ? site_url("Admin/Customers/displayCustomerPhoto/" . $customer->passport) : '' ?>">
       <div class="deleteButton">Delete</div>
       <label class="selectPhoto" for="passport">Select Photo</label>
       <input autocomplete="off" type="file" class="photoInput" id="passport" name="passport">
@@ -268,7 +529,7 @@ if (!$customer) {
 
     <div class="photoBox" data-image="unloaded">
       <div class="photoCaption">TRC or Visa</div>
-      <img class="photoImage" src="<?= site_url("Admin/Customers/displayCustomerPhoto/" . $customer->TRC_or_visa) ?>">
+      <img class="photoImage" src="<?= $customer->TRC_or_visa ? site_url("Admin/Customers/displayCustomerPhoto/" . $customer->TRC_or_visa) : '' ?>">
       <div class="deleteButton">Delete</div>
       <label class="selectPhoto" for="TRC_or_visa">Select Photo</label>
       <input autocomplete="off" type="file" class="photoInput" id="TRC_or_visa" name="TRC_or_visa">
@@ -276,7 +537,7 @@ if (!$customer) {
 
     <div class="photoBox" data-image="unloaded">
       <div class="photoCaption">License (Front)</div>
-      <img class="photoImage" src="<?= site_url("Admin/Customers/displayCustomerPhoto/" . $customer->license_front) ?>">
+      <img class="photoImage" src="<?= $customer->license_front ? site_url("Admin/Customers/displayCustomerPhoto/" . $customer->license_front) : '' ?>">
       <div class="deleteButton">Delete</div>
       <label class="selectPhoto" for="license_front">Select Photo</label>
       <input autocomplete="off" type="file" class="photoInput" id="license_front" name="license_front">
@@ -284,7 +545,7 @@ if (!$customer) {
 
     <div class="photoBox" data-image="unloaded">
       <div class="photoCaption">License (Back)</div>
-      <img class="photoImage" src="<?= site_url("Admin/Customers/displayCustomerPhoto/" . $customer->license_back) ?>">
+      <img class="photoImage" src="<?= $customer->license_back ? site_url("Admin/Customers/displayCustomerPhoto/" . $customer->license_back) : '' ?>">
       <div class="deleteButton">Delete</div>
       <label class="selectPhoto" for="license_back">Select Photo</label>
       <input autocomplete="off" type="file" class="photoInput" id="license_back" name="license_back">

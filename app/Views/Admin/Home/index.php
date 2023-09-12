@@ -30,7 +30,7 @@
       <div class="control">
         <a href="<?= site_url("Admin/ParkedInGarage/addRecords") ?>">
           <button class="button is-link is-large is-fullwidth">
-            Đếm Xe Bãi Tại Xe
+            Đếm Xe Tại Bãi Xe
           </button>
         </a>
       </div>

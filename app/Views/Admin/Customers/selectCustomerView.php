@@ -19,7 +19,24 @@
             <div class="control">
                 <a href="<?= site_url('Admin/Customers/viewCurrentCustomers') ?>">
                     <button class="button is-success is-large is-fullwidth toggle">
-                        View Current Customers
+                        View Current Monthly Customers
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="field is-horizontal">
+    <div class="field-label">
+        <!-- Left empty for spacing -->
+    </div>
+    <div class="field-body">
+        <div class="field">
+            <div class="control">
+                <a href="<?= site_url('Admin/Customers/viewCurrentCustomersShortTerm') ?>">
+                    <button class="button is-warning is-large is-fullwidth toggle">
+                        View Current Short-Term Customers
                     </button>
                 </a>
             </div>

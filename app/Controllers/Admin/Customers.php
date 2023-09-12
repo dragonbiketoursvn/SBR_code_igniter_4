@@ -231,8 +231,11 @@ class Customers extends \App\Controllers\BaseController
     $customer = new Customer;
     $customer->fill($this->request->getPost());
 
-    // If a value has been added for finish_date then this customer is no longer renting
-    if ($this->request->getPost('finish_date') > '2000-01-01') {
+    // If a value has been added for finish_date and `short_term` isn't true then this customer is no longer renting
+    if (
+      $this->request->getPost('finish_date') > '2000-01-01'
+      && $customer->short_term === '0'
+    ) {
 
       $customer->currently_renting = 0;
     }
@@ -299,7 +302,9 @@ class Customers extends \App\Controllers\BaseController
         $statusChangeModel->insert($bikeStatusChange);
       }
 
-      return redirect()->to(site_url('Admin/Customers/viewCurrentCustomers'));
+      $redirectView = $customer->short_term ? 'Admin/Customers/viewCurrentCustomersShortTerm' : 'Admin/Customers/viewCurrentCustomers';
+
+      return redirect()->to(site_url($redirectView));
     } else {
 
       return redirect()->back()->with('errors', $this->model->errors())->withInput();
@@ -459,30 +464,31 @@ class Customers extends \App\Controllers\BaseController
 
   public function viewInfo()
   {
-    if (!$this->request->getPost('customer_name')) {
+    if (!$this->request->getPost('customer_name') || !$this->request->getPost('id')) {
       return redirect()->back();
     }
 
-    $customers = $this->model->getAllCustomers();
-    $customer = new Customer;
+    $customer = $this->model->getCustomerByID($this->request->getPost('id'));
+
+    if (!$customer) {
+      return redirect()->back();
+    }
+
+    // $customer = new Customer;
     $model = new \App\Models\BikeStatusChangeModel;
     $bikesModel = new \App\Models\BikesModel;
     $paymentsModel = new \App\Models\PaymentsModel;
-    $found = 'false';
+    // $found = 'false';
 
-    foreach ($customers as $record) {
+    // foreach ($customers as $record) {
 
-      if (($record->customer_name === $this->request->getPost('customer_name')) && ($record->id === $this->request->getPost('id'))) {
+    //   if (($record->customer_name === $this->request->getPost('customer_name')) && ($record->id === $this->request->getPost('id'))) {
 
-        $customer = $record;
-        $found = 'true';
-      }
-    }
+    //     $customer = $record;
+    //     $found = 'true';
+    //   }
+    // }
 
-    if ($found === 'false') {
-
-      return redirect()->back();
-    }
 
     $currentStatus = $model->getCurrentStatus($customer->id);
     // $currentBikes = $bikesModel->getCurrentBikes();
@@ -494,13 +500,58 @@ class Customers extends \App\Controllers\BaseController
 
     return view('Admin/Customers/viewInfo', [
       'customer' => $customer,
-      'customers' => $customers,
+      // 'customers' => $customers,
       'currentStatus' => $currentStatus,
       'currentBikes' => $this->currentBikes,
       'payments' => $payments,
-      'paidUpTo' => $paidUpTo,
+      'paidUpTo' => $paidUpTo
     ]);
   }
+
+  // public function viewInfo()
+  // {
+  //   if (!$this->request->getPost('customer_name')) {
+  //     return redirect()->back();
+  //   }
+
+  //   $customers = $this->model->getAllCustomers();
+  //   $customer = new Customer;
+  //   $model = new \App\Models\BikeStatusChangeModel;
+  //   $bikesModel = new \App\Models\BikesModel;
+  //   $paymentsModel = new \App\Models\PaymentsModel;
+  //   $found = 'false';
+
+  //   foreach ($customers as $record) {
+
+  //     if (($record->customer_name === $this->request->getPost('customer_name')) && ($record->id === $this->request->getPost('id'))) {
+
+  //       $customer = $record;
+  //       $found = 'true';
+  //     }
+  //   }
+
+  //   if ($found === 'false') {
+
+  //     return redirect()->back();
+  //   }
+
+  //   $currentStatus = $model->getCurrentStatus($customer->id);
+  //   // $currentBikes = $bikesModel->getCurrentBikes();
+  //   $payments = $paymentsModel->getByContractNumber($customer->id);
+  //   $monthsPaid = $paymentsModel->getTotalMonthsPaid($customer->id)->months_paid ?? 0;
+  //   $startDate = new Time();
+  //   $startDate = $startDate->createFromFormat('Y-m-d', $customer->start_date);
+  //   $paidUpTo = $startDate->addMonths($monthsPaid)->toDateString();
+
+  //   return view('Admin/Customers/viewInfo', [
+  //     'customer' => $customer,
+  //     'customers' => $customers,
+  //     'currentStatus' => $currentStatus,
+  //     'currentBikes' => $this->currentBikes,
+  //     'payments' => $payments,
+  //     'paidUpTo' => $paidUpTo,
+  //   ]);
+  // }
 
   public function  viewCurrentCustomers()
   {
@@ -529,6 +580,27 @@ class Customers extends \App\Controllers\BaseController
     });
 
     return view('Admin/Customers/viewCurrentCustomers', ['customers' => $customers]);
+  }
+
+  public function  viewCurrentCustomersShortTerm()
+  {
+    $paymentsModel = new \App\Models\PaymentsModel;
+    $customers = $this->model->getCurrentCustomersShortTerm();
+
+    foreach ($customers as $customer) {
+      $startDate = new Time();
+      $startDate = $startDate->createFromFormat('Y-m-d', $customer->start_date);
+      $payments = $paymentsModel->getByContractNumber($customer->id);
+    }
+
+    usort($customers, function ($customerA, $customerB) {
+      if ($customerA->finish_date == $customerB->finish_date) {
+        return 0;
+      }
+      return ($customerA->finish_date < $customerB->finish_date) ? -1 : 1;
+    });
+
+    return view('Admin/Customers/viewCurrentCustomersShortTerm', ['customers' => $customers]);
   }
 
   public function  viewAllCustomers()

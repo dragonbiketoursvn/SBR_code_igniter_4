@@ -1,0 +1,726 @@
+CRITICAL - 2023-09-11 08:18:25 --> Too few arguments to function App\Controllers\Admin\Customers::displayCustomerPhoto(), 0 passed in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php on line 824 and exactly 1 expected
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(824): App\Controllers\Admin\Customers->displayCustomerPhoto()
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(410): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Customers))
+#2 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(318): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\public\index.php(43): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2023-09-11 08:18:25 --> Uncaught ErrorException: Undefined property: Config\Exceptions::$sensitiveDataInTrace in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php:242
+Stack trace:
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\Users\\hp\\Doc...', 242)
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(110): CodeIgniter\Debug\Exceptions->collectVars(Object(ArgumentCountError), 500)
+#2 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(ArgumentCountError))
+#3 {main}
+  thrown
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2023-09-11 08:18:48 --> Too few arguments to function App\Controllers\Admin\Customers::displayCustomerPhoto(), 0 passed in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php on line 824 and exactly 1 expected
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(824): App\Controllers\Admin\Customers->displayCustomerPhoto()
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(410): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Customers))
+#2 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(318): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\public\index.php(43): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2023-09-11 08:18:48 --> Uncaught ErrorException: Undefined property: Config\Exceptions::$sensitiveDataInTrace in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php:242
+Stack trace:
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\Users\\hp\\Doc...', 242)
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(110): CodeIgniter\Debug\Exceptions->collectVars(Object(ArgumentCountError), 500)
+#2 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(ArgumentCountError))
+#3 {main}
+  thrown
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2023-09-11 08:23:05 --> Too few arguments to function App\Controllers\Admin\Customers::displayCustomerPhoto(), 0 passed in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php on line 824 and exactly 1 expected
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(824): App\Controllers\Admin\Customers->displayCustomerPhoto()
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(410): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Customers))
+#2 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(318): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\public\index.php(43): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2023-09-11 08:23:05 --> Uncaught ErrorException: Undefined property: Config\Exceptions::$sensitiveDataInTrace in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php:242
+Stack trace:
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\Users\\hp\\Doc...', 242)
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(110): CodeIgniter\Debug\Exceptions->collectVars(Object(ArgumentCountError), 500)
+#2 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(ArgumentCountError))
+#3 {main}
+  thrown
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2023-09-11 08:23:59 --> Too few arguments to function App\Controllers\Admin\Customers::displayCustomerPhoto(), 0 passed in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php on line 824 and exactly 1 expected
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(824): App\Controllers\Admin\Customers->displayCustomerPhoto()
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(410): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Customers))
+#2 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(318): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\public\index.php(43): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2023-09-11 08:23:59 --> Uncaught ErrorException: Undefined property: Config\Exceptions::$sensitiveDataInTrace in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php:242
+Stack trace:
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\Users\\hp\\Doc...', 242)
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(110): CodeIgniter\Debug\Exceptions->collectVars(Object(ArgumentCountError), 500)
+#2 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(ArgumentCountError))
+#3 {main}
+  thrown
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2023-09-11 08:25:28 --> Too few arguments to function App\Controllers\Admin\Customers::displayCustomerPhoto(), 0 passed in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php on line 824 and exactly 1 expected
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(824): App\Controllers\Admin\Customers->displayCustomerPhoto()
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(410): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Customers))
+#2 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(318): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\public\index.php(43): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2023-09-11 08:25:28 --> Uncaught ErrorException: Undefined property: Config\Exceptions::$sensitiveDataInTrace in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php:242
+Stack trace:
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\Users\\hp\\Doc...', 242)
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(110): CodeIgniter\Debug\Exceptions->collectVars(Object(ArgumentCountError), 500)
+#2 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(ArgumentCountError))
+#3 {main}
+  thrown
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2023-09-11 08:28:02 --> Too few arguments to function App\Controllers\Admin\Customers::displayCustomerPhoto(), 0 passed in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php on line 824 and exactly 1 expected
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(824): App\Controllers\Admin\Customers->displayCustomerPhoto()
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(410): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Customers))
+#2 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(318): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\public\index.php(43): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2023-09-11 08:28:02 --> Uncaught ErrorException: Undefined property: Config\Exceptions::$sensitiveDataInTrace in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php:242
+Stack trace:
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\Users\\hp\\Doc...', 242)
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(110): CodeIgniter\Debug\Exceptions->collectVars(Object(ArgumentCountError), 500)
+#2 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(ArgumentCountError))
+#3 {main}
+  thrown
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2023-09-11 08:28:45 --> Too few arguments to function App\Controllers\Admin\Customers::displayCustomerPhoto(), 0 passed in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php on line 824 and exactly 1 expected
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(824): App\Controllers\Admin\Customers->displayCustomerPhoto()
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(410): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Customers))
+#2 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(318): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\public\index.php(43): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2023-09-11 08:28:45 --> Uncaught ErrorException: Undefined property: Config\Exceptions::$sensitiveDataInTrace in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php:242
+Stack trace:
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\Users\\hp\\Doc...', 242)
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(110): CodeIgniter\Debug\Exceptions->collectVars(Object(ArgumentCountError), 500)
+#2 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(ArgumentCountError))
+#3 {main}
+  thrown
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2023-09-11 08:31:22 --> Too few arguments to function App\Controllers\Admin\Customers::displayCustomerPhoto(), 0 passed in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php on line 824 and exactly 1 expected
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(824): App\Controllers\Admin\Customers->displayCustomerPhoto()
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(410): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Customers))
+#2 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(318): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\public\index.php(43): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2023-09-11 08:31:22 --> Uncaught ErrorException: Undefined property: Config\Exceptions::$sensitiveDataInTrace in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php:242
+Stack trace:
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\Users\\hp\\Doc...', 242)
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(110): CodeIgniter\Debug\Exceptions->collectVars(Object(ArgumentCountError), 500)
+#2 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(ArgumentCountError))
+#3 {main}
+  thrown
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2023-09-11 08:32:00 --> Too few arguments to function App\Controllers\Admin\Customers::displayCustomerPhoto(), 0 passed in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php on line 824 and exactly 1 expected
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(824): App\Controllers\Admin\Customers->displayCustomerPhoto()
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(410): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Customers))
+#2 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(318): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\public\index.php(43): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2023-09-11 08:32:00 --> Uncaught ErrorException: Undefined property: Config\Exceptions::$sensitiveDataInTrace in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php:242
+Stack trace:
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\Users\\hp\\Doc...', 242)
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(110): CodeIgniter\Debug\Exceptions->collectVars(Object(ArgumentCountError), 500)
+#2 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(ArgumentCountError))
+#3 {main}
+  thrown
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2023-09-11 08:36:11 --> Too few arguments to function App\Controllers\Admin\Customers::displayCustomerPhoto(), 0 passed in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php on line 824 and exactly 1 expected
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(824): App\Controllers\Admin\Customers->displayCustomerPhoto()
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(410): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Customers))
+#2 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(318): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\public\index.php(43): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2023-09-11 08:36:11 --> Uncaught ErrorException: Undefined property: Config\Exceptions::$sensitiveDataInTrace in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php:242
+Stack trace:
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\Users\\hp\\Doc...', 242)
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(110): CodeIgniter\Debug\Exceptions->collectVars(Object(ArgumentCountError), 500)
+#2 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(ArgumentCountError))
+#3 {main}
+  thrown
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2023-09-11 08:39:59 --> Too few arguments to function App\Controllers\Admin\Customers::displayCustomerPhoto(), 0 passed in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php on line 824 and exactly 1 expected
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(824): App\Controllers\Admin\Customers->displayCustomerPhoto()
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(410): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Customers))
+#2 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(318): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\public\index.php(43): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2023-09-11 08:39:59 --> Uncaught ErrorException: Undefined property: Config\Exceptions::$sensitiveDataInTrace in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php:242
+Stack trace:
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\Users\\hp\\Doc...', 242)
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(110): CodeIgniter\Debug\Exceptions->collectVars(Object(ArgumentCountError), 500)
+#2 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(ArgumentCountError))
+#3 {main}
+  thrown
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2023-09-11 08:40:36 --> Too few arguments to function App\Controllers\Admin\Customers::displayCustomerPhoto(), 0 passed in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php on line 824 and exactly 1 expected
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(824): App\Controllers\Admin\Customers->displayCustomerPhoto()
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(410): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Customers))
+#2 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(318): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\public\index.php(43): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2023-09-11 08:40:36 --> Uncaught ErrorException: Undefined property: Config\Exceptions::$sensitiveDataInTrace in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php:242
+Stack trace:
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\Users\\hp\\Doc...', 242)
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(110): CodeIgniter\Debug\Exceptions->collectVars(Object(ArgumentCountError), 500)
+#2 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(ArgumentCountError))
+#3 {main}
+  thrown
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2023-09-11 08:40:59 --> Too few arguments to function App\Controllers\Admin\Customers::displayCustomerPhoto(), 0 passed in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php on line 824 and exactly 1 expected
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(824): App\Controllers\Admin\Customers->displayCustomerPhoto()
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(410): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Customers))
+#2 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(318): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\public\index.php(43): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2023-09-11 08:40:59 --> Uncaught ErrorException: Undefined property: Config\Exceptions::$sensitiveDataInTrace in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php:242
+Stack trace:
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\Users\\hp\\Doc...', 242)
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(110): CodeIgniter\Debug\Exceptions->collectVars(Object(ArgumentCountError), 500)
+#2 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(ArgumentCountError))
+#3 {main}
+  thrown
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2023-09-11 08:42:17 --> Too few arguments to function App\Controllers\Admin\Customers::displayCustomerPhoto(), 0 passed in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php on line 824 and exactly 1 expected
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(824): App\Controllers\Admin\Customers->displayCustomerPhoto()
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(410): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Customers))
+#2 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(318): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\public\index.php(43): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2023-09-11 08:42:17 --> Uncaught ErrorException: Undefined property: Config\Exceptions::$sensitiveDataInTrace in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php:242
+Stack trace:
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\Users\\hp\\Doc...', 242)
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(110): CodeIgniter\Debug\Exceptions->collectVars(Object(ArgumentCountError), 500)
+#2 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(ArgumentCountError))
+#3 {main}
+  thrown
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2023-09-11 08:43:05 --> Too few arguments to function App\Controllers\Admin\Customers::displayCustomerPhoto(), 0 passed in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php on line 824 and exactly 1 expected
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(824): App\Controllers\Admin\Customers->displayCustomerPhoto()
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(410): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Customers))
+#2 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(318): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\public\index.php(43): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2023-09-11 08:43:05 --> Uncaught ErrorException: Undefined property: Config\Exceptions::$sensitiveDataInTrace in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php:242
+Stack trace:
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\Users\\hp\\Doc...', 242)
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(110): CodeIgniter\Debug\Exceptions->collectVars(Object(ArgumentCountError), 500)
+#2 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(ArgumentCountError))
+#3 {main}
+  thrown
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2023-09-11 08:43:43 --> Too few arguments to function App\Controllers\Admin\Customers::displayCustomerPhoto(), 0 passed in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php on line 824 and exactly 1 expected
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(824): App\Controllers\Admin\Customers->displayCustomerPhoto()
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(410): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Customers))
+#2 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(318): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\public\index.php(43): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2023-09-11 08:43:43 --> Uncaught ErrorException: Undefined property: Config\Exceptions::$sensitiveDataInTrace in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php:242
+Stack trace:
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\Users\\hp\\Doc...', 242)
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(110): CodeIgniter\Debug\Exceptions->collectVars(Object(ArgumentCountError), 500)
+#2 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(ArgumentCountError))
+#3 {main}
+  thrown
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2023-09-11 15:08:59 --> Too few arguments to function App\Controllers\Admin\Customers::displayCustomerPhoto(), 0 passed in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php on line 824 and exactly 1 expected
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(824): App\Controllers\Admin\Customers->displayCustomerPhoto()
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(410): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Customers))
+#2 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(318): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\public\index.php(43): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2023-09-11 15:08:59 --> Uncaught ErrorException: Undefined property: Config\Exceptions::$sensitiveDataInTrace in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php:242
+Stack trace:
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\Users\\hp\\Doc...', 242)
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(110): CodeIgniter\Debug\Exceptions->collectVars(Object(ArgumentCountError), 500)
+#2 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(ArgumentCountError))
+#3 {main}
+  thrown
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2023-09-11 15:09:27 --> Too few arguments to function App\Controllers\Admin\Customers::displayCustomerPhoto(), 0 passed in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php on line 824 and exactly 1 expected
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(824): App\Controllers\Admin\Customers->displayCustomerPhoto()
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(410): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Customers))
+#2 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(318): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\public\index.php(43): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2023-09-11 15:09:27 --> Uncaught ErrorException: Undefined property: Config\Exceptions::$sensitiveDataInTrace in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php:242
+Stack trace:
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\Users\\hp\\Doc...', 242)
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(110): CodeIgniter\Debug\Exceptions->collectVars(Object(ArgumentCountError), 500)
+#2 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(ArgumentCountError))
+#3 {main}
+  thrown
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2023-09-11 15:11:03 --> syntax error, unexpected token ":"
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Router\Router.php(176): CodeIgniter\Router\Router->autoRoute('Admin/Customers...')
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(718): CodeIgniter\Router\Router->handle('Admin/Customers...')
+#2 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(359): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+#3 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(318): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\public\index.php(43): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2023-09-11 15:11:03 --> Uncaught ErrorException: Undefined property: Config\Exceptions::$sensitiveDataInTrace in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php:242
+Stack trace:
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\Users\\hp\\Doc...', 242)
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(225): CodeIgniter\Debug\Exceptions->collectVars(Object(ParseError), 500)
+#2 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(232): CodeIgniter\Debug\Exceptions->CodeIgniter\Debug\{closure}()
+#3 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(116): CodeIgniter\Debug\Exceptions->render(Object(ParseError), 500)
+#4 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(ParseError))
+#5 {main}
+  thrown
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2023-09-11 15:11:12 --> syntax error, unexpected token ":"
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Router\Router.php(176): CodeIgniter\Router\Router->autoRoute('Admin/Customers...')
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(718): CodeIgniter\Router\Router->handle('Admin/Customers...')
+#2 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(359): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+#3 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(318): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\public\index.php(43): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2023-09-11 15:11:12 --> Uncaught ErrorException: Undefined property: Config\Exceptions::$sensitiveDataInTrace in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php:242
+Stack trace:
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\Users\\hp\\Doc...', 242)
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(225): CodeIgniter\Debug\Exceptions->collectVars(Object(ParseError), 500)
+#2 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(232): CodeIgniter\Debug\Exceptions->CodeIgniter\Debug\{closure}()
+#3 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(116): CodeIgniter\Debug\Exceptions->render(Object(ParseError), 500)
+#4 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(ParseError))
+#5 {main}
+  thrown
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2023-09-11 15:12:40 --> Too few arguments to function App\Controllers\Admin\Customers::displayCustomerPhoto(), 0 passed in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php on line 824 and exactly 1 expected
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(824): App\Controllers\Admin\Customers->displayCustomerPhoto()
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(410): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Customers))
+#2 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(318): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\public\index.php(43): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2023-09-11 15:12:40 --> Uncaught ErrorException: Undefined property: Config\Exceptions::$sensitiveDataInTrace in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php:242
+Stack trace:
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\Users\\hp\\Doc...', 242)
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(110): CodeIgniter\Debug\Exceptions->collectVars(Object(ArgumentCountError), 500)
+#2 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(ArgumentCountError))
+#3 {main}
+  thrown
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2023-09-11 15:12:57 --> Too few arguments to function App\Controllers\Admin\Customers::displayCustomerPhoto(), 0 passed in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php on line 824 and exactly 1 expected
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(824): App\Controllers\Admin\Customers->displayCustomerPhoto()
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(410): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Customers))
+#2 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(318): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\public\index.php(43): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2023-09-11 15:12:57 --> Uncaught ErrorException: Undefined property: Config\Exceptions::$sensitiveDataInTrace in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php:242
+Stack trace:
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\Users\\hp\\Doc...', 242)
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(110): CodeIgniter\Debug\Exceptions->collectVars(Object(ArgumentCountError), 500)
+#2 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(ArgumentCountError))
+#3 {main}
+  thrown
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2023-09-11 15:13:13 --> Too few arguments to function App\Controllers\Admin\Customers::displayCustomerPhoto(), 0 passed in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php on line 824 and exactly 1 expected
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(824): App\Controllers\Admin\Customers->displayCustomerPhoto()
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(410): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Customers))
+#2 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(318): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\public\index.php(43): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2023-09-11 15:13:13 --> Uncaught ErrorException: Undefined property: Config\Exceptions::$sensitiveDataInTrace in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php:242
+Stack trace:
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\Users\\hp\\Doc...', 242)
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(110): CodeIgniter\Debug\Exceptions->collectVars(Object(ArgumentCountError), 500)
+#2 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(ArgumentCountError))
+#3 {main}
+  thrown
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2023-09-11 15:14:23 --> Too few arguments to function App\Controllers\Admin\Customers::displayCustomerPhoto(), 0 passed in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php on line 824 and exactly 1 expected
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(824): App\Controllers\Admin\Customers->displayCustomerPhoto()
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(410): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Customers))
+#2 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(318): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\public\index.php(43): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2023-09-11 15:14:23 --> Uncaught ErrorException: Undefined property: Config\Exceptions::$sensitiveDataInTrace in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php:242
+Stack trace:
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\Users\\hp\\Doc...', 242)
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(110): CodeIgniter\Debug\Exceptions->collectVars(Object(ArgumentCountError), 500)
+#2 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(ArgumentCountError))
+#3 {main}
+  thrown
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2023-09-11 15:16:55 --> Too few arguments to function App\Controllers\Admin\Customers::displayCustomerPhoto(), 0 passed in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php on line 824 and exactly 1 expected
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(824): App\Controllers\Admin\Customers->displayCustomerPhoto()
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(410): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Customers))
+#2 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(318): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\public\index.php(43): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2023-09-11 15:16:55 --> Uncaught ErrorException: Undefined property: Config\Exceptions::$sensitiveDataInTrace in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php:242
+Stack trace:
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\Users\\hp\\Doc...', 242)
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(110): CodeIgniter\Debug\Exceptions->collectVars(Object(ArgumentCountError), 500)
+#2 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(ArgumentCountError))
+#3 {main}
+  thrown
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2023-09-11 15:18:32 --> Too few arguments to function App\Controllers\Admin\Customers::displayCustomerPhoto(), 0 passed in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php on line 824 and exactly 1 expected
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(824): App\Controllers\Admin\Customers->displayCustomerPhoto()
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(410): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Customers))
+#2 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(318): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\public\index.php(43): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2023-09-11 15:18:32 --> Uncaught ErrorException: Undefined property: Config\Exceptions::$sensitiveDataInTrace in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php:242
+Stack trace:
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\Users\\hp\\Doc...', 242)
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(110): CodeIgniter\Debug\Exceptions->collectVars(Object(ArgumentCountError), 500)
+#2 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(ArgumentCountError))
+#3 {main}
+  thrown
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2023-09-11 15:21:24 --> Too few arguments to function App\Controllers\Admin\Customers::displayCustomerPhoto(), 0 passed in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php on line 824 and exactly 1 expected
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(824): App\Controllers\Admin\Customers->displayCustomerPhoto()
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(410): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Customers))
+#2 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(318): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\public\index.php(43): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2023-09-11 15:21:24 --> Uncaught ErrorException: Undefined property: Config\Exceptions::$sensitiveDataInTrace in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php:242
+Stack trace:
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\Users\\hp\\Doc...', 242)
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(110): CodeIgniter\Debug\Exceptions->collectVars(Object(ArgumentCountError), 500)
+#2 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(ArgumentCountError))
+#3 {main}
+  thrown
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2023-09-11 15:21:54 --> Too few arguments to function App\Controllers\Admin\Customers::displayCustomerPhoto(), 0 passed in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php on line 824 and exactly 1 expected
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(824): App\Controllers\Admin\Customers->displayCustomerPhoto()
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(410): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Customers))
+#2 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(318): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\public\index.php(43): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2023-09-11 15:21:54 --> Uncaught ErrorException: Undefined property: Config\Exceptions::$sensitiveDataInTrace in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php:242
+Stack trace:
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\Users\\hp\\Doc...', 242)
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(110): CodeIgniter\Debug\Exceptions->collectVars(Object(ArgumentCountError), 500)
+#2 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(ArgumentCountError))
+#3 {main}
+  thrown
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2023-09-11 15:22:13 --> Too few arguments to function App\Controllers\Admin\Customers::displayCustomerPhoto(), 0 passed in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php on line 824 and exactly 1 expected
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(824): App\Controllers\Admin\Customers->displayCustomerPhoto()
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(410): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Customers))
+#2 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(318): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\public\index.php(43): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2023-09-11 15:22:13 --> Uncaught ErrorException: Undefined property: Config\Exceptions::$sensitiveDataInTrace in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php:242
+Stack trace:
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\Users\\hp\\Doc...', 242)
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(110): CodeIgniter\Debug\Exceptions->collectVars(Object(ArgumentCountError), 500)
+#2 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(ArgumentCountError))
+#3 {main}
+  thrown
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2023-09-11 15:27:41 --> Too few arguments to function App\Controllers\Admin\Customers::displayCustomerPhoto(), 0 passed in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php on line 824 and exactly 1 expected
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(824): App\Controllers\Admin\Customers->displayCustomerPhoto()
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(410): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Customers))
+#2 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(318): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\public\index.php(43): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2023-09-11 15:27:41 --> Uncaught ErrorException: Undefined property: Config\Exceptions::$sensitiveDataInTrace in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php:242
+Stack trace:
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\Users\\hp\\Doc...', 242)
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(110): CodeIgniter\Debug\Exceptions->collectVars(Object(ArgumentCountError), 500)
+#2 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(ArgumentCountError))
+#3 {main}
+  thrown
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2023-09-11 15:28:47 --> Too few arguments to function App\Controllers\Admin\Customers::displayCustomerPhoto(), 0 passed in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php on line 824 and exactly 1 expected
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(824): App\Controllers\Admin\Customers->displayCustomerPhoto()
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(410): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Customers))
+#2 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(318): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\public\index.php(43): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2023-09-11 15:28:47 --> Uncaught ErrorException: Undefined property: Config\Exceptions::$sensitiveDataInTrace in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php:242
+Stack trace:
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\Users\\hp\\Doc...', 242)
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(110): CodeIgniter\Debug\Exceptions->collectVars(Object(ArgumentCountError), 500)
+#2 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(ArgumentCountError))
+#3 {main}
+  thrown
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2023-09-11 15:28:57 --> Too few arguments to function App\Controllers\Admin\Customers::displayCustomerPhoto(), 0 passed in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php on line 824 and exactly 1 expected
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(824): App\Controllers\Admin\Customers->displayCustomerPhoto()
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(410): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Customers))
+#2 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(318): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\public\index.php(43): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2023-09-11 15:28:57 --> Uncaught ErrorException: Undefined property: Config\Exceptions::$sensitiveDataInTrace in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php:242
+Stack trace:
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\Users\\hp\\Doc...', 242)
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(110): CodeIgniter\Debug\Exceptions->collectVars(Object(ArgumentCountError), 500)
+#2 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(ArgumentCountError))
+#3 {main}
+  thrown
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2023-09-11 15:29:13 --> Too few arguments to function App\Controllers\Admin\Customers::displayCustomerPhoto(), 0 passed in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php on line 824 and exactly 1 expected
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(824): App\Controllers\Admin\Customers->displayCustomerPhoto()
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(410): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Customers))
+#2 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(318): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\public\index.php(43): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2023-09-11 15:29:13 --> Uncaught ErrorException: Undefined property: Config\Exceptions::$sensitiveDataInTrace in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php:242
+Stack trace:
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\Users\\hp\\Doc...', 242)
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(110): CodeIgniter\Debug\Exceptions->collectVars(Object(ArgumentCountError), 500)
+#2 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(ArgumentCountError))
+#3 {main}
+  thrown
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2023-09-11 15:34:12 --> Too few arguments to function App\Controllers\Admin\Customers::displayCustomerPhoto(), 0 passed in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php on line 824 and exactly 1 expected
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(824): App\Controllers\Admin\Customers->displayCustomerPhoto()
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(410): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Customers))
+#2 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(318): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\public\index.php(43): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2023-09-11 15:34:12 --> Uncaught ErrorException: Undefined property: Config\Exceptions::$sensitiveDataInTrace in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php:242
+Stack trace:
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\Users\\hp\\Doc...', 242)
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(110): CodeIgniter\Debug\Exceptions->collectVars(Object(ArgumentCountError), 500)
+#2 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(ArgumentCountError))
+#3 {main}
+  thrown
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2023-09-11 15:34:35 --> Too few arguments to function App\Controllers\Admin\Customers::displayCustomerPhoto(), 0 passed in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php on line 824 and exactly 1 expected
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(824): App\Controllers\Admin\Customers->displayCustomerPhoto()
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(410): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Customers))
+#2 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(318): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\public\index.php(43): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2023-09-11 15:34:35 --> Uncaught ErrorException: Undefined property: Config\Exceptions::$sensitiveDataInTrace in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php:242
+Stack trace:
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\Users\\hp\\Doc...', 242)
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(110): CodeIgniter\Debug\Exceptions->collectVars(Object(ArgumentCountError), 500)
+#2 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(ArgumentCountError))
+#3 {main}
+  thrown
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2023-09-11 15:35:27 --> Too few arguments to function App\Controllers\Admin\Customers::displayCustomerPhoto(), 0 passed in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php on line 824 and exactly 1 expected
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(824): App\Controllers\Admin\Customers->displayCustomerPhoto()
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(410): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Customers))
+#2 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(318): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\public\index.php(43): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2023-09-11 15:35:27 --> Uncaught ErrorException: Undefined property: Config\Exceptions::$sensitiveDataInTrace in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php:242
+Stack trace:
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\Users\\hp\\Doc...', 242)
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(110): CodeIgniter\Debug\Exceptions->collectVars(Object(ArgumentCountError), 500)
+#2 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(ArgumentCountError))
+#3 {main}
+  thrown
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2023-09-11 15:36:51 --> Too few arguments to function App\Controllers\Admin\Customers::displayCustomerPhoto(), 0 passed in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php on line 824 and exactly 1 expected
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(824): App\Controllers\Admin\Customers->displayCustomerPhoto()
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(410): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Customers))
+#2 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(318): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\public\index.php(43): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2023-09-11 15:36:51 --> Uncaught ErrorException: Undefined property: Config\Exceptions::$sensitiveDataInTrace in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php:242
+Stack trace:
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\Users\\hp\\Doc...', 242)
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(110): CodeIgniter\Debug\Exceptions->collectVars(Object(ArgumentCountError), 500)
+#2 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(ArgumentCountError))
+#3 {main}
+  thrown
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2023-09-11 15:37:10 --> Too few arguments to function App\Controllers\Admin\Customers::displayCustomerPhoto(), 0 passed in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php on line 824 and exactly 1 expected
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(824): App\Controllers\Admin\Customers->displayCustomerPhoto()
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(410): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Customers))
+#2 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(318): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\public\index.php(43): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2023-09-11 15:37:10 --> Uncaught ErrorException: Undefined property: Config\Exceptions::$sensitiveDataInTrace in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php:242
+Stack trace:
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\Users\\hp\\Doc...', 242)
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(110): CodeIgniter\Debug\Exceptions->collectVars(Object(ArgumentCountError), 500)
+#2 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(ArgumentCountError))
+#3 {main}
+  thrown
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2023-09-11 17:03:35 --> Too few arguments to function App\Controllers\Admin\Customers::displayCustomerPhoto(), 0 passed in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php on line 824 and exactly 1 expected
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(824): App\Controllers\Admin\Customers->displayCustomerPhoto()
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(410): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Customers))
+#2 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(318): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\public\index.php(43): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2023-09-11 17:03:35 --> Uncaught ErrorException: Undefined property: Config\Exceptions::$sensitiveDataInTrace in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php:242
+Stack trace:
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\Users\\hp\\Doc...', 242)
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(110): CodeIgniter\Debug\Exceptions->collectVars(Object(ArgumentCountError), 500)
+#2 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(ArgumentCountError))
+#3 {main}
+  thrown
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2023-09-11 17:06:15 --> Too few arguments to function App\Controllers\Admin\Customers::displayCustomerPhoto(), 0 passed in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php on line 824 and exactly 1 expected
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(824): App\Controllers\Admin\Customers->displayCustomerPhoto()
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(410): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Customers))
+#2 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(318): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\public\index.php(43): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2023-09-11 17:06:15 --> Uncaught ErrorException: Undefined property: Config\Exceptions::$sensitiveDataInTrace in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php:242
+Stack trace:
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\Users\\hp\\Doc...', 242)
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(110): CodeIgniter\Debug\Exceptions->collectVars(Object(ArgumentCountError), 500)
+#2 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(ArgumentCountError))
+#3 {main}
+  thrown
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2023-09-11 17:06:35 --> Too few arguments to function App\Controllers\Admin\Customers::displayCustomerPhoto(), 0 passed in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php on line 824 and exactly 1 expected
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(824): App\Controllers\Admin\Customers->displayCustomerPhoto()
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(410): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Customers))
+#2 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(318): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\public\index.php(43): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2023-09-11 17:06:35 --> Uncaught ErrorException: Undefined property: Config\Exceptions::$sensitiveDataInTrace in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php:242
+Stack trace:
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\Users\\hp\\Doc...', 242)
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(110): CodeIgniter\Debug\Exceptions->collectVars(Object(ArgumentCountError), 500)
+#2 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(ArgumentCountError))
+#3 {main}
+  thrown
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2023-09-11 17:15:55 --> Too few arguments to function App\Controllers\Admin\Customers::displayCustomerPhoto(), 0 passed in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php on line 824 and exactly 1 expected
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(824): App\Controllers\Admin\Customers->displayCustomerPhoto()
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(410): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Customers))
+#2 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(318): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\public\index.php(43): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2023-09-11 17:15:55 --> Uncaught ErrorException: Undefined property: Config\Exceptions::$sensitiveDataInTrace in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php:242
+Stack trace:
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\Users\\hp\\Doc...', 242)
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(110): CodeIgniter\Debug\Exceptions->collectVars(Object(ArgumentCountError), 500)
+#2 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(ArgumentCountError))
+#3 {main}
+  thrown
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2023-09-11 17:17:01 --> Too few arguments to function App\Controllers\Admin\Customers::displayCustomerPhoto(), 0 passed in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php on line 824 and exactly 1 expected
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(824): App\Controllers\Admin\Customers->displayCustomerPhoto()
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(410): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Customers))
+#2 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(318): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\public\index.php(43): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2023-09-11 17:17:01 --> Uncaught ErrorException: Undefined property: Config\Exceptions::$sensitiveDataInTrace in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php:242
+Stack trace:
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\Users\\hp\\Doc...', 242)
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(110): CodeIgniter\Debug\Exceptions->collectVars(Object(ArgumentCountError), 500)
+#2 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(ArgumentCountError))
+#3 {main}
+  thrown
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2023-09-11 17:17:27 --> Too few arguments to function App\Controllers\Admin\Customers::displayCustomerPhoto(), 0 passed in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php on line 824 and exactly 1 expected
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(824): App\Controllers\Admin\Customers->displayCustomerPhoto()
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(410): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Customers))
+#2 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(318): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\public\index.php(43): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2023-09-11 17:17:27 --> Uncaught ErrorException: Undefined property: Config\Exceptions::$sensitiveDataInTrace in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php:242
+Stack trace:
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\Users\\hp\\Doc...', 242)
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(110): CodeIgniter\Debug\Exceptions->collectVars(Object(ArgumentCountError), 500)
+#2 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(ArgumentCountError))
+#3 {main}
+  thrown
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2023-09-11 17:32:07 --> Too few arguments to function App\Controllers\Admin\Customers::displayCustomerPhoto(), 0 passed in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php on line 824 and exactly 1 expected
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(824): App\Controllers\Admin\Customers->displayCustomerPhoto()
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(410): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Customers))
+#2 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(318): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\public\index.php(43): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2023-09-11 17:32:07 --> Uncaught ErrorException: Undefined property: Config\Exceptions::$sensitiveDataInTrace in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php:242
+Stack trace:
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\Users\\hp\\Doc...', 242)
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(110): CodeIgniter\Debug\Exceptions->collectVars(Object(ArgumentCountError), 500)
+#2 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(ArgumentCountError))
+#3 {main}
+  thrown
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2023-09-11 17:32:40 --> Too few arguments to function App\Controllers\Admin\Customers::displayCustomerPhoto(), 0 passed in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php on line 824 and exactly 1 expected
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(824): App\Controllers\Admin\Customers->displayCustomerPhoto()
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(410): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Customers))
+#2 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(318): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\public\index.php(43): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2023-09-11 17:32:40 --> Uncaught ErrorException: Undefined property: Config\Exceptions::$sensitiveDataInTrace in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php:242
+Stack trace:
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\Users\\hp\\Doc...', 242)
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(110): CodeIgniter\Debug\Exceptions->collectVars(Object(ArgumentCountError), 500)
+#2 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(ArgumentCountError))
+#3 {main}
+  thrown
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2023-09-11 17:37:36 --> Too few arguments to function App\Controllers\Admin\Customers::displayCustomerPhoto(), 0 passed in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php on line 824 and exactly 1 expected
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(824): App\Controllers\Admin\Customers->displayCustomerPhoto()
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(410): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Customers))
+#2 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(318): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\public\index.php(43): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2023-09-11 17:37:36 --> Uncaught ErrorException: Undefined property: Config\Exceptions::$sensitiveDataInTrace in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php:242
+Stack trace:
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\Users\\hp\\Doc...', 242)
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(110): CodeIgniter\Debug\Exceptions->collectVars(Object(ArgumentCountError), 500)
+#2 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(ArgumentCountError))
+#3 {main}
+  thrown
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2023-09-11 17:43:01 --> Too few arguments to function App\Controllers\Admin\Customers::displayCustomerPhoto(), 0 passed in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php on line 824 and exactly 1 expected
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(824): App\Controllers\Admin\Customers->displayCustomerPhoto()
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(410): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Customers))
+#2 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(318): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\public\index.php(43): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2023-09-11 17:43:01 --> Uncaught ErrorException: Undefined property: Config\Exceptions::$sensitiveDataInTrace in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php:242
+Stack trace:
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\Users\\hp\\Doc...', 242)
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(110): CodeIgniter\Debug\Exceptions->collectVars(Object(ArgumentCountError), 500)
+#2 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(ArgumentCountError))
+#3 {main}
+  thrown
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}

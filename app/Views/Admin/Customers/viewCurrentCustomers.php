@@ -14,6 +14,10 @@
             width: 90%;
         }
 
+        tr:nth-child(2n + 1) {
+            background-color: #eee;
+        }
+
         td,
         th {
             border: 1px solid black;

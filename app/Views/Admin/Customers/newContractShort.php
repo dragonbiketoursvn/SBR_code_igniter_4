@@ -46,6 +46,32 @@
         </div>
       </div>
 
+      <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label class="label" for="start_city">Start City</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <p class="control is-expanded">
+              <input required autocomplete="off" class="input is-success" name="start_city" id="start_city" value="<?= old('start_city') ?>">
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label class="label" for="start_city">Finish City</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <p class="control is-expanded">
+              <input required autocomplete="off" class="input is-success" name="finish_city" id="finish_city" value="<?= old('finish_city') ?>">
+            </p>
+          </div>
+        </div>
+      </div>
+
       <div class="field is-horizontal" style="bottom: 200px !important;">
         <div class="field-label is-normal">
           <label class="label" for="first_name">First Name</label>
@@ -105,7 +131,7 @@
           </div>
         </div>
       </div>
-      <!-- 
+
       <div class="field is-horizontal" style="bottom: 200px !important;">
         <div class="field-label is-normal">
           <label type="tel" class="label" for="phone_number">Phone Number</label>
@@ -117,7 +143,7 @@
             </p>
           </div>
         </div>
-      </div> -->
+      </div>
 
       <div class="field is-horizontal" style="bottom: 200px !important;">
         <div class="field-label is-normal">

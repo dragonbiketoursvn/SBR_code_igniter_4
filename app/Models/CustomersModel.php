@@ -17,8 +17,8 @@ class CustomersModel extends \CodeIgniter\Model
     'replacement_cost_full_helmet', 'number_three_quarter_helmets', 'replacement_cost_three_quarter_helmet',
     'givi_topcase', 'givi_topcase_replacement_cost', 'givi_pannier_quantity', 'givi_pannier_replacement_cost',
     'madfox_saddlebags', 'madfox_saddlebags_replacement_cost', 'inner_tubes_quantity',
-    'inner_tubes_replacement_cost', 'damage_insurance_amount', 'additional_items_services',
-    'additional_items_cost', 'odometer_start', 'odometer_finish'
+    'inner_tubes_replacement_cost', 'damage_insurance_amount', 'additional_items_services', 'service_complete',
+    'additional_items_cost', 'odometer_start', 'odometer_finish', 'start_city', 'finish_city'
   ];
 
   protected $returnType = 'App\Entities\Customer';
@@ -59,9 +59,23 @@ class CustomersModel extends \CodeIgniter\Model
       ->findAll();
   }
 
+  public function getCurrentCustomersShortTerm()
+  {
+    return $this->where('currently_renting', 1)
+      ->where('short_term', 1)
+      ->findAll();
+  }
+
   public function getAllCustomers()
   {
     return $this->orderBy('start_date', 'DESC')->findAll();
+  }
+
+  public function getCustomerByID($id)
+  {
+
+    return $this->where('id', $id)
+      ->first();
   }
 
   public function getCurrentCustomerByName($name)
