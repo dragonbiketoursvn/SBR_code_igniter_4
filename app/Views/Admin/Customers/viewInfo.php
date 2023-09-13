@@ -275,6 +275,43 @@ if (!$customer) {
 
   <?php if ($customer->short_term) : ?>
 
+    <div class="field is-horizontal">
+      <div class="field-label is-normal">
+        <label class="label" for="start_city">Start City</label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="control is-expanded">
+            <input required autocomplete="off" list="city_list" class="input is-success" name="start_city" id="start_city" value="<?= old('start_city') ?>">
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="field is-horizontal">
+      <div class="field-label is-normal">
+        <label class="label" for="start_city">Finish City</label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="control is-expanded">
+            <input required autocomplete="off" list="city_list" class="input is-success" name="finish_city" id="finish_city" value="<?= old('finish_city') ?>">
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <datalist id="city_list">
+      <option value="HCMC">
+      <option value="Hanoi">
+      <option value="Da Nang">
+      <option value="Hue">
+      <option value="Da Lat">
+      <option value="Nha Trang">
+      <option value="Mui Ne">
+      <option value="Quy Nhon">
+    </datalist>
+
     <div class="field is-horizontal" style="bottom: 200px !important;">
       <div class="field-label is-normal">
         <label class="label" for="odometer_start">Odometer Start</label>
