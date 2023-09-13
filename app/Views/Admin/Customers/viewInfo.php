@@ -16,6 +16,9 @@ if (!$customer) {
 
 <input type="hidden" name="id" value="<?= $customer->id ?>">
 <input type="hidden" name="short_term" value="<?= $customer->short_term ?>">
+<input type="hidden" id="usd_to_vnd" value=<?= $USD_TO_VND ?>>
+<input type="hidden" id="vnd_to_usd" value=<?= $VND_TO_USD ?>>
+<input type="hidden" name="rent" id="rent" value="<?= $customer->rent ?>">
 
 <?php if ($customer->short_term) : ?>
 
@@ -131,18 +134,36 @@ if (!$customer) {
     </div>
   </div>
 
-  <div class="field is-horizontal" style="bottom: 200px !important;">
-    <div class="field-label is-normal">
-      <label class="label" for="rent">Rental Amount</label>
-    </div>
-    <div class="field-body">
-      <div class="field">
-        <p class="control is-expanded">
-          <input autocomplete="off" readonly class="input is-success" id="rent" name="rent" value="<?= $customer->rent ?>">
-        </p>
+  <?php if ($customer->short_term === '0') : ?>
+    <div class="field is-horizontal" style="bottom: 200px !important;">
+      <div class="field-label is-normal">
+        <label class="label" for="rent">Rental Amount</label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="control is-expanded">
+            <input autocomplete="off" readonly class="input is-success" id="rent" name="rent" value="<?= $customer->rent ?>">
+          </p>
+        </div>
       </div>
     </div>
-  </div>
+  <?php endif; ?>
+
+  <?php if ($customer->short_term === '1') : ?>
+    <div class="field is-horizontal" style="bottom: 200px !important;">
+      <div class="field-label is-normal">
+        <label class="label" for="rent_usd">Rental Amount (USD)</label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="control is-expanded">
+            <input autocomplete="off" readonly class="input is-success" id="rent_usd" name="rent_usd" value="<?= $customer->rent_usd ?>">
+          </p>
+        </div>
+      </div>
+    </div>
+  <?php endif; ?>
+
 
   <div class="field is-horizontal" style="bottom: 200px !important;">
     <div class="field-label is-normal">
@@ -687,5 +708,6 @@ if (!$customer) {
 </div>
 
 <script src="<?= site_url('js/Customers/viewInfo.js'); ?>"></script>
+<script src="<?= site_url('js/Customers/currencyConversion5.js') ?>"></script>
 
 <?= $this->endSection() ?>

@@ -34,6 +34,10 @@ const convertDollarsToDong = (e) => {
   rentInput.value = ((e.target.value * USD_TO_VND) / 1000).toFixed(0);
 };
 
-rentInput.addEventListener("input", convertDongToDollars);
+if (rentInput !== null) {
+  rentInput.addEventListener("input", convertDongToDollars);
+}
 
-rentInputUSD.addEventListener("input", convertDollarsToDong);
+if (rentInputUSD !== null) {
+  rentInputUSD.addEventListener("input", convertDollarsToDong);
+}

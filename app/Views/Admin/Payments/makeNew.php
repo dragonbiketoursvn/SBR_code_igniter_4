@@ -28,6 +28,10 @@
 <?= form_open('Admin/Payments/savePayment', 'id="payment_form" class="random_class"') ?>
 
 <input type="hidden" name="customer_id" value="<?= esc($appointment->customer_id) ?>">
+<input type="hidden" id="usd_to_vnd" value=<?= $USD_TO_VND ?>>
+<input type="hidden" id="vnd_to_usd" value=<?= $VND_TO_USD ?>>
+<input type="hidden" name="amount_usd" id="rent_usd">
+
 
 <div class="field is-horizontal">
   <div class="field-label is-normal">
@@ -42,11 +46,11 @@
 
 <div class="field is-horizontal">
   <div class="field-label is-normal">
-    <label class="label" for="amount">Khoản Tiền (x1000 đồng)</label>
+    <label class="label" for="rent">Khoản Tiền (x1000 đồng)</label>
   </div>
   <div class="field-body">
     <div class="field">
-      <input autofocus required autocomplete="off" class="input is-success" type="text" id="amount" name="amount" value="<?= old('amount') ?>">
+      <input autofocus required autocomplete="off" class="input is-success" type="text" id="rent" name="amount" value="<?= old('amount') ?>">
     </div>
   </div>
 </div>
@@ -211,5 +215,7 @@
   buttonOpenModal.addEventListener('click', toggle);
   buttonCloseModal.addEventListener('click', closeToggle);
 </script>
+
+<script src="<?= site_url('js/Customers/currencyConversion5.js') ?>"></script>
 
 <?= $this->endSection() ?>

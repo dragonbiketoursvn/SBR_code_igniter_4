@@ -53,7 +53,7 @@
         <div class="field-body">
           <div class="field">
             <p class="control is-expanded">
-              <input required autocomplete="off" class="input is-success" name="start_city" id="start_city" value="<?= old('start_city') ?>">
+              <input required autocomplete="off" list="city_list" class="input is-success" name="start_city" id="start_city" value="<?= old('start_city') ?>">
             </p>
           </div>
         </div>
@@ -66,11 +66,22 @@
         <div class="field-body">
           <div class="field">
             <p class="control is-expanded">
-              <input required autocomplete="off" class="input is-success" name="finish_city" id="finish_city" value="<?= old('finish_city') ?>">
+              <input required autocomplete="off" list="city_list" class="input is-success" name="finish_city" id="finish_city" value="<?= old('finish_city') ?>">
             </p>
           </div>
         </div>
       </div>
+
+      <datalist id="city_list">
+        <option value="HCMC">
+        <option value="Hanoi">
+        <option value="Da Nang">
+        <option value="Hue">
+        <option value="Da Lat">
+        <option value="Nha Trang">
+        <option value="Mui Ne">
+        <option value="Quy Nhon">
+      </datalist>
 
       <div class="field is-horizontal" style="bottom: 200px !important;">
         <div class="field-label is-normal">
@@ -134,12 +145,12 @@
 
       <div class="field is-horizontal" style="bottom: 200px !important;">
         <div class="field-label is-normal">
-          <label type="tel" class="label" for="phone_number">Phone Number</label>
+          <label class="label" for="phone_number">Phone Number</label>
         </div>
         <div class="field-body">
           <div class="field">
             <p class="control is-expanded">
-              <input required autocomplete="off" class="input is-success" id="phone_number" name="phone_number" value="<?= old('phone_number') ?>">
+              <input required autocomplete="off" type="tel" class="input is-success" id="phone_number" name="phone_number" value="<?= old('phone_number') ?>">
             </p>
           </div>
         </div>
@@ -212,6 +223,23 @@
               <input required autocomplete="off" class="input is-success" id="rent" name="rent" value="<?= old('rent') ?>">
             </p>
           </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="control">
+          <label class="radio">
+            <input type="radio" name="payment_method" value="cash" checked>
+            Cash
+          </label>
+          <label class="radio">
+            <input type="radio" name="payment_method" value="bank_transfer">
+            Bank Transfer
+          </label>
+          <label class="radio">
+            <input type="radio" name="payment_method" value="paypal">
+            PayPal
+          </label>
         </div>
       </div>
 

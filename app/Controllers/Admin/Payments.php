@@ -16,17 +16,54 @@ class Payments extends \App\Controllers\BaseController
     $this->model = new \App\Models\PaymentsModel;
   }
 
+  private function getExchangeRates()
+  {
+    $FIXER_API_BASE = "http://data.fixer.io/api/";
+    $FIXER_API_KEY = "1eab7800720a67d57ee29ae5dd6ca378";
+    $EUR_TO_USD = null;
+    $EUR_TO_VND = null;
+
+    $url = "{$FIXER_API_BASE}latest?access_key={$FIXER_API_KEY}&symbols=USD,VND";
+
+    $curl = curl_init(); // initializes cURL session and returns handle
+    curl_setopt($curl, CURLOPT_URL, $url); // sets the URL to be accessed
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true); // transfers return value of curl_exec() as a string
+
+    $resp = curl_exec($curl); // sends the request
+    $val = json_decode($resp, $associative = true, $depth = 512);
+
+
+    foreach ($val as $key => $item) {
+      if (is_array($item)) {
+        // echo $key . "=>" . implode(": ", $item) . "\n";
+        $pre_array = implode(":", $item);
+        $array = explode(":", $pre_array);
+        $EUR_TO_USD = $array[0];
+        $EUR_TO_VND = $array[1];
+      }
+    }
+    $USD_TO_VND = (1 / $EUR_TO_USD) * $EUR_TO_VND;
+    $VND_TO_USD = 1 / $USD_TO_VND;
+
+    return [$USD_TO_VND, $VND_TO_USD];
+  }
+
   public function makeNew()
   {
-
     $appointment = session()->get('appointment');
+    [$USD_TO_VND, $VND_TO_USD] = $this->getExchangeRates();
+
 
     //This is prevent multiple payments being recorded accidentally
     if ($appointment->paid_rent == 1) {
 
       return redirect()->to(site_url('Admin/Appointments/bikeStatusCheck'));
     }
-    return view('Admin/Payments/makeNew', ['appointment' => $appointment]);
+    return view('Admin/Payments/makeNew', [
+      'appointment' => $appointment,
+      'USD_TO_VND' => $USD_TO_VND,
+      'VND_TO_USD' => $VND_TO_USD
+    ]);
   }
 
   public function savePayment()

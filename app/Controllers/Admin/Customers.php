@@ -114,8 +114,9 @@ class Customers extends \App\Controllers\BaseController
       $plateNumbers[] = $bike->plate_number;
     };
 
+    $post = $this->request->getPost();
     $customer = new Customer;
-    $customer->fill($this->request->getPost());
+    $customer->fill($post);
     $customer->currently_renting = 1;
 
     if (!in_array($customer->current_bike, $plateNumbers)) {
@@ -218,6 +219,21 @@ class Customers extends \App\Controllers\BaseController
 
       $statusChangeModel->insert($bikeStatusChange);
 
+      // If this is a short-term rental, the one and only rental payment will be made at pick up
+      // so this can be integrated into contract creation
+
+      if ($newCustomer->short_term === '1') {
+        $paymentsModel = new \App\Models\PaymentsModel;
+        $payment = new \App\Entities\Payment;
+        $payment->customer_id = $newCustomer->id;
+        $payment->amount = $newCustomer->rent;
+        $payment->months_paid = 0;
+        $payment->user = 'ADMIN';
+        $payment->payment_date = $newCustomer->start_date;
+        $payment->payment_method = $post["payment_method"];
+        $paymentsModel->insert($payment);
+      }
+
       return redirect()->to(site_url('Admin/Home'));
     } else {
 
@@ -286,7 +302,7 @@ class Customers extends \App\Controllers\BaseController
     if ($this->model->skipValidation(true)->save($customer)) {
 
       // If customer is no longer renting so bike's status must be changed to SBR
-      if ($customer->currently_renting === 0) {
+      if ($customer->currently_renting === '0') {
 
         $statusChangeModel = new \App\Models\BikeStatusChangeModel;
         $bikeStatusChange = new \App\Entities\BikeStatusChange;
@@ -300,6 +316,19 @@ class Customers extends \App\Controllers\BaseController
         $bikeStatusChange->new_status = 'Saigon Bike Rentals';
 
         $statusChangeModel->insert($bikeStatusChange);
+      }
+
+      // If customer is short-term we need to update the payment record in case the amount has changed
+      if ($customer->short_term === '1') {
+        $paymentsModel = new \App\Models\PaymentsModel;
+        $payment = $paymentsModel->getByContractNumber($customer->id)[0];
+        $payment->amount = $customer->rent;
+        $payment->amount_usd = $customer->rent_usd;
+        $payment->customer_name = $customer->customer_name;
+
+        if ($payment->hasChanged()) {
+          $paymentsModel->save($payment);
+        }
       }
 
       $redirectView = $customer->short_term ? 'Admin/Customers/viewCurrentCustomersShortTerm' : 'Admin/Customers/viewCurrentCustomers';
@@ -497,6 +526,7 @@ class Customers extends \App\Controllers\BaseController
     $startDate = new Time();
     $startDate = $startDate->createFromFormat('Y-m-d', $customer->start_date);
     $paidUpTo = $startDate->addMonths($monthsPaid)->toDateString();
+    [$USD_TO_VND, $VND_TO_USD] = $this->getExchangeRates();
 
     return view('Admin/Customers/viewInfo', [
       'customer' => $customer,
@@ -504,7 +534,9 @@ class Customers extends \App\Controllers\BaseController
       'currentStatus' => $currentStatus,
       'currentBikes' => $this->currentBikes,
       'payments' => $payments,
-      'paidUpTo' => $paidUpTo
+      'paidUpTo' => $paidUpTo,
+      'USD_TO_VND' => $USD_TO_VND,
+      'VND_TO_USD' => $VND_TO_USD
     ]);
   }
 

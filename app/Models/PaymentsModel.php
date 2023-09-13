@@ -6,14 +6,17 @@ class PaymentsModel extends \CodeIgniter\Model
 {
   protected $table = 'payments';
 
-  protected $allowedFields = ['user', 'customer_id', 'customer_name', 'amount', 'months_paid', 'payment_date', 'notes', 'payment_method'];
+  protected $allowedFields = [
+    'user', 'customer_id', 'customer_name', 'amount', 'amount_usd',
+    'months_paid', 'payment_date', 'notes', 'payment_method'
+  ];
 
   protected $returnType = 'App\Entities\Payment';
 
   protected $useTimestamps = false;
 
   protected $validationRules = [
-    'amount' => 'required|numeric|greater_than[499]|less_than[10000]',
+    'amount' => 'required|numeric|greater_than[499]',
     'months_paid' => 'required|numeric|greater_than[-1]|less_than[10]',
   ];
 

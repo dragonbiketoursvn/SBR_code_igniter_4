@@ -31,7 +31,7 @@
   <div class="field-body">
     <div class="field">
       <p class="control is-expanded">
-        <input required autocomplete="off" class="input is-success" type="date" name="repair_date" id="repair_date">
+        <input required autocomplete="off" class="input is-success" type="date" name="repair_date" id="repair_date" value="<?= date('Y-m-d') ?>">
       </p>
     </div>
   </div>
