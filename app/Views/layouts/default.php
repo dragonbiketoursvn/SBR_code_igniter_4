@@ -183,6 +183,7 @@
         <?= $this->renderSection("content") ?>
 
     </section>
+    <script src="<?= site_url('js/Forms/sanitization.js') ?>"></script>
 
 </body>
 
