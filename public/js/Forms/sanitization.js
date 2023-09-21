@@ -1,4 +1,4 @@
-const inputs = document.querySelectorAll("input");
+const inputs = document.querySelectorAll('input:not([type="file"])');
 
 const trimInputValue = (e) => {
   e.target.value = e.target.value.trim();
