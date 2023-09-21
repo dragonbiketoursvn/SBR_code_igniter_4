@@ -153,79 +153,81 @@ class Test extends BaseController
     }
   }
 
-  public function sendMaintenanceNotifications()
-  {
-    require ROOTPATH . '/vendor/PHPMailer-master/src/Exception.php';
-    require ROOTPATH . '/vendor/PHPMailer-master/src/PHPMailer.php';
-    require ROOTPATH . '/vendor/PHPMailer-master/src/SMTP.php';
+  /* DON'T USE THIS IN PROD! USE 'Admin/Reports/sendEmailsToMaintenanceList' */
 
-    $model = new AppointmentsModel;
+  // public function sendMaintenanceNotifications()
+  // {
+  //   require ROOTPATH . '/vendor/PHPMailer-master/src/Exception.php';
+  //   require ROOTPATH . '/vendor/PHPMailer-master/src/PHPMailer.php';
+  //   require ROOTPATH . '/vendor/PHPMailer-master/src/SMTP.php';
 
-    $sql = "SELECT * FROM customers WHERE id IN (1080, 2359, 3358, 6055)"; // get our testers!
-    $result = $this->db->query($sql);
+  //   $model = new AppointmentsModel;
 
-    // iterate over results, create and insert new appointment record for each
-    foreach ($result->getResultObject() as $row) {
+  //   $sql = "SELECT * FROM customers WHERE id IN (1080, 2359, 3358, 6055)"; // get our testers!
+  //   $result = $this->db->query($sql);
 
-      $sql2 = "SELECT plate_number 
-              FROM `bike_status_change` 
-              WHERE customer_id = {$row->id}
-              ORDER BY date_time DESC
-              LIMIT 1";
+  //   // iterate over results, create and insert new appointment record for each
+  //   foreach ($result->getResultObject() as $row) {
 
-      $currentBike = $this->db->query($sql2)
-        ->getResultObject()[0]
-        ->plate_number;
+  //     $sql2 = "SELECT plate_number 
+  //             FROM `bike_status_change` 
+  //             WHERE customer_id = {$row->id}
+  //             ORDER BY date_time DESC
+  //             LIMIT 1";
 
-      $name = trim($row->customer_name, "0..9");
+  //     $currentBike = $this->db->query($sql2)
+  //       ->getResultObject()[0]
+  //       ->plate_number;
 
-      $appointment = new Appointment();
-      $appointment->customer_id = $row->id;
-      $appointment->customer_name = $row->customer_name;
-      $appointment->current_bike = $currentBike;
-      // $appointment->appointment_time = NULL;
-      $appointment->startActivation();
+  //     $name = trim($row->customer_name, "0..9");
 
-      $model->insert($appointment);
+  //     $appointment = new Appointment();
+  //     $appointment->customer_id = $row->id;
+  //     $appointment->customer_name = $row->customer_name;
+  //     $appointment->current_bike = $currentBike;
+  //     // $appointment->appointment_time = NULL;
+  //     $appointment->startActivation();
 
-      $mail = new PHPMailer(true);
-      $mail->isSMTP();
-      $mail->Host = 'mail.saigonbikerentals.com';
-      $mail->SMTPAuth = true;
-      $mail->Username = 'patrick@saigonbikerentals.com';
-      $mail->Password = 'n1FaZ!Sz#)vB';
-      $mail->SMTPSecure = 'tls';
-      $mail->Port = 26;
-      $mail->setFrom('patrick@saigonbikerentals.com');
-      $mail->addAddress($row->email_address);
-      // $mail->addAddress('dragonbiketoursvn@gmail.com');
-      $mail->isHTML(true);
-      $mail->Subject = "Let's Meet!";
+  //     $model->insert($appointment);
 
-      $link = site_url("Appointments/select/{$appointment->token}");
+  //     $mail = new PHPMailer(true);
+  //     $mail->isSMTP();
+  //     $mail->Host = 'mail.saigonbikerentals.com';
+  //     $mail->SMTPAuth = true;
+  //     $mail->Username = 'patrick@saigonbikerentals.com';
+  //     $mail->Password = 'n1FaZ!Sz#)vB';
+  //     $mail->SMTPSecure = 'tls';
+  //     $mail->Port = 26;
+  //     $mail->setFrom('patrick@saigonbikerentals.com');
+  //     $mail->addAddress($row->email_address);
+  //     // $mail->addAddress('dragonbiketoursvn@gmail.com');
+  //     $mail->isHTML(true);
+  //     $mail->Subject = "Let's Meet!";
 
-      $mail->Body = "<p>Hi {$name},</p><p>According to our records, you are 
-                    currently renting the bike with plate number <b>
-                    {$currentBike}</b>, which is now due for maintenance. If this 
-                    is not the correct bike please reply directly to this email 
-                    and let us know. Otherwise, please click on the link below 
-                    to schedule a service appointment.</p><p>Best regards,</p>
-                    <p>Saigon Bike Rentals</p><p><a href='{$link}'>Book 
-                    Appointment</a></p>";
+  //     $link = site_url("Appointments/select/{$appointment->token}");
 
-      if (!$mail->send()) {
+  //     $mail->Body = "<p>Hi {$name},</p><p>According to our records, you are 
+  //                   currently renting the bike with plate number <b>
+  //                   {$currentBike}</b>, which is now due for maintenance. If this 
+  //                   is not the correct bike please reply directly to this email 
+  //                   and let us know. Otherwise, please click on the link below 
+  //                   to schedule a service appointment.</p><p>Best regards,</p>
+  //                   <p>Saigon Bike Rentals</p><p><a href='{$link}'>Book 
+  //                   Appointment</a></p>";
 
-        echo 'Mailer Error: ' . $mail->ErrorInfo;
-      } else {
+  //     if (!$mail->send()) {
 
-        $path = '{sng103.hawkhost.com:993/ssl}INBOX.Sent';
-        $imapStream = imap_open($path, 'patrick@saigonbikerentals.com', 'n1FaZ!Sz#)vB');
-        imap_append($imapStream, $path, $mail->getSentMIMEMessage());
-        imap_close($imapStream);
-        echo 'Message sent!';
-      }
-    }
-  }
+  //       echo 'Mailer Error: ' . $mail->ErrorInfo;
+  //     } else {
+
+  //       $path = '{sng103.hawkhost.com:993/ssl}INBOX.Sent';
+  //       $imapStream = imap_open($path, 'patrick@saigonbikerentals.com', 'n1FaZ!Sz#)vB');
+  //       imap_append($imapStream, $path, $mail->getSentMIMEMessage());
+  //       imap_close($imapStream);
+  //       echo 'Message sent!';
+  //     }
+  //   }
+  // }
 
   public function addPhotoPaths()
   {

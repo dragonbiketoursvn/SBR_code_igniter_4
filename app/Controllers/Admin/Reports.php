@@ -135,9 +135,7 @@ class Reports extends \App\Controllers\BaseController
                                     rgba(0, 0, 0, .2) 30%,
                                     rgba(0, 0, 0, 0)); box-shadow: inset 2px 2px 3px rgba(255, 255, 255, .6),
                     inset -2px -2px 3px rgba(0, 0, 0, .6);'>Click Here to Book Appointment</button></a></p>
-                    <br><p><strong>PS - THIS IS A NEW 
-                    AUTOMATED SCHEDULING SYSTEM I HAVE BEEN WORKING ON SO PLEASE LET ME KNOW IF YOU NOTICE ANY BUGS
-                    AS THIS IS STILL IN BETA :)</strong?</p><br><p><strong>PPS - IF YOUR PHONE USES iOS WHEN YOUR APPOINTMENT
+                    <br><p><strong>PS - IF YOUR PHONE USES iOS WHEN YOUR APPOINTMENT
                     INFO DISPLAYS (AFTER BOOKING) THE TEXT WILL BE NEARLY INVISIBLE -SORRY!</strong?</p>";
 
             if (!$mail->send()) {
