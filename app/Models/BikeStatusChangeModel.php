@@ -8,7 +8,7 @@ class BikeStatusChangeModel extends \CodeIgniter\Model
 {
   protected $table = 'bike_status_change';
 
-  protected $allowedFields = ['plate_number', 'user', 'date_time', 'new_status', 'customer_id'];
+  protected $allowedFields = ['plate_number', 'user', 'date_time', 'new_status', 'customer_id', 'temporary'];
 
   protected $returnType = 'App\Entities\BikeStatusChange';
 

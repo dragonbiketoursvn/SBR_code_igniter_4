@@ -48,6 +48,19 @@
   </div>
 </div>
 
+<div class="field">
+  <div class="control">
+    <label class="radio">
+      <input type="radio" name="temporary" value="1">
+      <span style="color: tomato;"><b>Khách Đổi Xe Tạm Thời</b></span>
+    </label>
+    <label class="radio">
+      <input type="radio" name="temporary" value="0">
+      <span style="color: green;"><b>Khách Đổi Xe Vĩnh Viễn</b></span>
+    </label>
+  </div>
+</div>
+
 </form>
 
 <div class="field is-horizontal">
@@ -64,8 +77,6 @@
     </div>
   </div>
 </div>
-
-
 
 
 <div class="modal">
@@ -138,6 +149,20 @@
 
   buttonOpenModal.addEventListener('click', toggle);
   buttonCloseModal.addEventListener('click', closeToggle);
+
+  const temporaryValue = document.forms[0].temporary.value;
+
+  const submitButtonClickHandler = (e) => {
+    let formData = new FormData(document.forms[0]);
+
+    if (formData.get('temporary') === null) {
+      e.preventDefault();
+      alert('Khách đổi xe tạm thời hoặc vĩnh viễn?');
+    }
+  };
+
+  const submitButton = document.querySelector('button[type="submit"');
+  submitButton.addEventListener('click', submitButtonClickHandler);
 </script>
 
 

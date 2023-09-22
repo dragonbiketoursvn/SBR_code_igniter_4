@@ -115,6 +115,7 @@ class Appointments extends \App\Controllers\BaseController
       //Record in the appointment record that customer received a bike
       $this->model->update($appointment->id, ['received_bike' => 1]);
       $bikeOutStatusChange->plate_number = $post['bike_out'];
+      $bikeOutStatusChange->temporary = $post['temporary'];
       $bikeOutStatusChange->date_time = date('Y-m-d H:i:s');
       $bikeOutStatusChange->new_status = $appointment->customer_name;
       $bikeOutStatusChange->customer_id = $appointment->customer_id;
@@ -130,6 +131,7 @@ class Appointments extends \App\Controllers\BaseController
       $this->model->update($appointment->id, ['returned_bike' => 1]);
 
       $bikeInStatusChange->plate_number = $post['bike_in'];
+      $bikeInStatusChange->temporary = $post['temporary'];
       $bikeInStatusChange->date_time = date('Y-m-d H:i:s');
       $bikeInStatusChange->new_status = 'Saigon Bike Rentals';
 
