@@ -23,6 +23,11 @@ class Bikes extends \App\Controllers\BaseController
     return view('Admin/Bikes/selectView');
   }
 
+  public function currentInventory()
+  {
+    return view('Admin/Bikes/currentInventory');
+  }
+
   public function viewIndividual()
   {
     $currentBikes = $this->model->getCurrentBikes();

@@ -1,0 +1,20 @@
+CRITICAL - 2023-09-29 07:54:03 --> Uncaught ErrorException: Undefined property: Config\Exceptions::$sensitiveDataInTrace in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php:242
+Stack trace:
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\Users\\hp\\Doc...', 242)
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(225): CodeIgniter\Debug\Exceptions->collectVars(Object(CodeIgniter\Exceptions\PageNotFoundException), 404)
+#2 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(232): CodeIgniter\Debug\Exceptions->CodeIgniter\Debug\{closure}()
+#3 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(116): CodeIgniter\Debug\Exceptions->render(Object(CodeIgniter\Exceptions\PageNotFoundException), 404)
+#4 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(CodeIgniter\Exceptions\PageNotFoundException))
+#5 {main}
+  thrown
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2023-09-29 08:16:20 --> Uncaught ErrorException: Undefined property: Config\Exceptions::$sensitiveDataInTrace in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php:242
+Stack trace:
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\Users\\hp\\Doc...', 242)
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(110): CodeIgniter\Debug\Exceptions->collectVars(Object(CodeIgniter\Exceptions\PageNotFoundException), 404)
+#2 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(CodeIgniter\Exceptions\PageNotFoundException))
+#3 {main}
+  thrown
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}

@@ -1,0 +1,194 @@
+CRITICAL - 2023-09-28 21:22:14 --> mysqli_result::fetch_object(): Argument #1 ($class) must be a valid class name, App\Entities\Reservation given
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Database\MySQLi\Result.php(148): mysqli_result->fetch_object('App\\Entities\\Re...')
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Database\BaseResult.php(149): CodeIgniter\Database\MySQLi\Result->fetchObject('App\\Entities\\Re...')
+#2 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Database\BaseResult.php(106): CodeIgniter\Database\BaseResult->getCustomResultObject('App\\Entities\\Re...')
+#3 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Model.php(184): CodeIgniter\Database\BaseResult->getResult('App\\Entities\\Re...')
+#4 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\BaseModel.php(584): CodeIgniter\Model->doFindAll(0, 0)
+#5 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\app\Models\ReservationsModel.php(38): CodeIgniter\BaseModel->findAll()
+#6 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Reservations.php(18): App\Models\ReservationsModel->getActiveReservations()
+#7 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(824): App\Controllers\Admin\Reservations->getActiveReservations()
+#8 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(410): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Reservations))
+#9 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(318): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\public\index.php(43): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2023-09-28 21:22:14 --> Uncaught ErrorException: Undefined property: Config\Exceptions::$sensitiveDataInTrace in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php:242
+Stack trace:
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\Users\\hp\\Doc...', 242)
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(225): CodeIgniter\Debug\Exceptions->collectVars(Object(TypeError), 500)
+#2 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(232): CodeIgniter\Debug\Exceptions->CodeIgniter\Debug\{closure}()
+#3 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(116): CodeIgniter\Debug\Exceptions->render(Object(TypeError), 500)
+#4 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(TypeError))
+#5 {main}
+  thrown
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2023-09-28 21:24:35 --> mysqli_result::fetch_object(): Argument #1 ($class) must be a valid class name, App\Entities\Reservation given
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Database\MySQLi\Result.php(148): mysqli_result->fetch_object('App\\Entities\\Re...')
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Database\BaseResult.php(149): CodeIgniter\Database\MySQLi\Result->fetchObject('App\\Entities\\Re...')
+#2 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Database\BaseResult.php(106): CodeIgniter\Database\BaseResult->getCustomResultObject('App\\Entities\\Re...')
+#3 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Model.php(184): CodeIgniter\Database\BaseResult->getResult('App\\Entities\\Re...')
+#4 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\BaseModel.php(584): CodeIgniter\Model->doFindAll(0, 0)
+#5 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\app\Models\ReservationsModel.php(38): CodeIgniter\BaseModel->findAll()
+#6 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Reservations.php(18): App\Models\ReservationsModel->getActiveReservations()
+#7 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(824): App\Controllers\Admin\Reservations->getActiveReservations()
+#8 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(410): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Reservations))
+#9 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(318): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\public\index.php(43): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2023-09-28 21:24:35 --> Uncaught ErrorException: Undefined property: Config\Exceptions::$sensitiveDataInTrace in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php:242
+Stack trace:
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\Users\\hp\\Doc...', 242)
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(225): CodeIgniter\Debug\Exceptions->collectVars(Object(TypeError), 500)
+#2 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(232): CodeIgniter\Debug\Exceptions->CodeIgniter\Debug\{closure}()
+#3 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(116): CodeIgniter\Debug\Exceptions->render(Object(TypeError), 500)
+#4 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(TypeError))
+#5 {main}
+  thrown
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2023-09-28 21:25:22 --> mysqli_result::fetch_object(): Argument #1 ($class) must be a valid class name, App\Entities\Reservation given
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Database\MySQLi\Result.php(148): mysqli_result->fetch_object('App\\Entities\\Re...')
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Database\BaseResult.php(149): CodeIgniter\Database\MySQLi\Result->fetchObject('App\\Entities\\Re...')
+#2 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Database\BaseResult.php(106): CodeIgniter\Database\BaseResult->getCustomResultObject('App\\Entities\\Re...')
+#3 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Model.php(184): CodeIgniter\Database\BaseResult->getResult('App\\Entities\\Re...')
+#4 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\BaseModel.php(584): CodeIgniter\Model->doFindAll(0, 0)
+#5 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\app\Models\ReservationsModel.php(37): CodeIgniter\BaseModel->findAll()
+#6 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Reservations.php(18): App\Models\ReservationsModel->getActiveReservations()
+#7 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(824): App\Controllers\Admin\Reservations->getActiveReservations()
+#8 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(410): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Reservations))
+#9 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(318): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\public\index.php(43): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2023-09-28 21:25:22 --> Uncaught ErrorException: Undefined property: Config\Exceptions::$sensitiveDataInTrace in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php:242
+Stack trace:
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\Users\\hp\\Doc...', 242)
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(225): CodeIgniter\Debug\Exceptions->collectVars(Object(TypeError), 500)
+#2 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(232): CodeIgniter\Debug\Exceptions->CodeIgniter\Debug\{closure}()
+#3 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(116): CodeIgniter\Debug\Exceptions->render(Object(TypeError), 500)
+#4 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(TypeError))
+#5 {main}
+  thrown
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2023-09-28 21:26:39 --> mysqli_result::fetch_object(): Argument #1 ($class) must be a valid class name, App\Entities\Reservation given
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Database\MySQLi\Result.php(148): mysqli_result->fetch_object('App\\Entities\\Re...')
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Database\BaseResult.php(149): CodeIgniter\Database\MySQLi\Result->fetchObject('App\\Entities\\Re...')
+#2 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Database\BaseResult.php(106): CodeIgniter\Database\BaseResult->getCustomResultObject('App\\Entities\\Re...')
+#3 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Model.php(184): CodeIgniter\Database\BaseResult->getResult('App\\Entities\\Re...')
+#4 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\BaseModel.php(584): CodeIgniter\Model->doFindAll(0, 0)
+#5 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\app\Models\ReservationsModel.php(38): CodeIgniter\BaseModel->findAll()
+#6 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Reservations.php(18): App\Models\ReservationsModel->getActiveReservations()
+#7 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(824): App\Controllers\Admin\Reservations->getActiveReservations()
+#8 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(410): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Reservations))
+#9 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(318): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\public\index.php(43): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2023-09-28 21:26:39 --> Uncaught ErrorException: Undefined property: Config\Exceptions::$sensitiveDataInTrace in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php:242
+Stack trace:
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\Users\\hp\\Doc...', 242)
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(225): CodeIgniter\Debug\Exceptions->collectVars(Object(TypeError), 500)
+#2 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(232): CodeIgniter\Debug\Exceptions->CodeIgniter\Debug\{closure}()
+#3 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(116): CodeIgniter\Debug\Exceptions->render(Object(TypeError), 500)
+#4 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(TypeError))
+#5 {main}
+  thrown
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2023-09-28 21:32:04 --> mysqli_result::fetch_object(): Argument #1 ($class) must be a valid class name, App\Entities\Reservation given
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Database\MySQLi\Result.php(148): mysqli_result->fetch_object('App\\Entities\\Re...')
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Database\BaseResult.php(149): CodeIgniter\Database\MySQLi\Result->fetchObject('App\\Entities\\Re...')
+#2 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Database\BaseResult.php(106): CodeIgniter\Database\BaseResult->getCustomResultObject('App\\Entities\\Re...')
+#3 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Model.php(184): CodeIgniter\Database\BaseResult->getResult('App\\Entities\\Re...')
+#4 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\BaseModel.php(584): CodeIgniter\Model->doFindAll(0, 0)
+#5 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\app\Models\ReservationsModel.php(37): CodeIgniter\BaseModel->findAll()
+#6 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Reservations.php(18): App\Models\ReservationsModel->getActiveReservations()
+#7 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(824): App\Controllers\Admin\Reservations->getActiveReservations()
+#8 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(410): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Reservations))
+#9 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(318): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\public\index.php(43): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2023-09-28 21:32:04 --> Uncaught ErrorException: Undefined property: Config\Exceptions::$sensitiveDataInTrace in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php:242
+Stack trace:
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\Users\\hp\\Doc...', 242)
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(225): CodeIgniter\Debug\Exceptions->collectVars(Object(TypeError), 500)
+#2 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(232): CodeIgniter\Debug\Exceptions->CodeIgniter\Debug\{closure}()
+#3 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(116): CodeIgniter\Debug\Exceptions->render(Object(TypeError), 500)
+#4 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(TypeError))
+#5 {main}
+  thrown
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2023-09-28 21:32:23 --> mysqli_result::fetch_object(): Argument #1 ($class) must be a valid class name, App\Entities\Reservation given
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Database\MySQLi\Result.php(148): mysqli_result->fetch_object('App\\Entities\\Re...')
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Database\BaseResult.php(149): CodeIgniter\Database\MySQLi\Result->fetchObject('App\\Entities\\Re...')
+#2 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Database\BaseResult.php(106): CodeIgniter\Database\BaseResult->getCustomResultObject('App\\Entities\\Re...')
+#3 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Model.php(184): CodeIgniter\Database\BaseResult->getResult('App\\Entities\\Re...')
+#4 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\BaseModel.php(584): CodeIgniter\Model->doFindAll(0, 0)
+#5 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\app\Models\ReservationsModel.php(37): CodeIgniter\BaseModel->findAll()
+#6 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Reservations.php(18): App\Models\ReservationsModel->getActiveReservations()
+#7 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(824): App\Controllers\Admin\Reservations->getActiveReservations()
+#8 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(410): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Reservations))
+#9 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(318): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\public\index.php(43): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2023-09-28 21:32:23 --> Uncaught ErrorException: Undefined property: Config\Exceptions::$sensitiveDataInTrace in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php:242
+Stack trace:
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\Users\\hp\\Doc...', 242)
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(225): CodeIgniter\Debug\Exceptions->collectVars(Object(TypeError), 500)
+#2 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(232): CodeIgniter\Debug\Exceptions->CodeIgniter\Debug\{closure}()
+#3 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(116): CodeIgniter\Debug\Exceptions->render(Object(TypeError), 500)
+#4 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(TypeError))
+#5 {main}
+  thrown
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2023-09-28 21:35:50 --> mysqli_result::fetch_object(): Argument #1 ($class) must be a valid class name, App\Entities\Reservation given
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Database\MySQLi\Result.php(148): mysqli_result->fetch_object('App\\Entities\\Re...')
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Database\BaseResult.php(149): CodeIgniter\Database\MySQLi\Result->fetchObject('App\\Entities\\Re...')
+#2 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Database\BaseResult.php(106): CodeIgniter\Database\BaseResult->getCustomResultObject('App\\Entities\\Re...')
+#3 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Database\BaseResult.php(379): CodeIgniter\Database\BaseResult->getResult('App\\Entities\\Re...')
+#4 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Model.php(143): CodeIgniter\Database\BaseResult->getFirstRow('App\\Entities\\Re...')
+#5 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\BaseModel.php(523): CodeIgniter\Model->doFind(true, 1)
+#6 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\app\Models\ReservationsModel.php(37): CodeIgniter\BaseModel->find(1)
+#7 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Reservations.php(18): App\Models\ReservationsModel->getActiveReservations()
+#8 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(824): App\Controllers\Admin\Reservations->getActiveReservations()
+#9 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(410): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Reservations))
+#10 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(318): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\public\index.php(43): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-09-28 21:35:50 --> Uncaught ErrorException: Undefined property: Config\Exceptions::$sensitiveDataInTrace in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php:242
+Stack trace:
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\Users\\hp\\Doc...', 242)
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(225): CodeIgniter\Debug\Exceptions->collectVars(Object(TypeError), 500)
+#2 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(232): CodeIgniter\Debug\Exceptions->CodeIgniter\Debug\{closure}()
+#3 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(116): CodeIgniter\Debug\Exceptions->render(Object(TypeError), 500)
+#4 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(TypeError))
+#5 {main}
+  thrown
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2023-09-28 21:36:02 --> mysqli_result::fetch_object(): Argument #1 ($class) must be a valid class name, App\Entities\Reservation given
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Database\MySQLi\Result.php(148): mysqli_result->fetch_object('App\\Entities\\Re...')
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Database\BaseResult.php(149): CodeIgniter\Database\MySQLi\Result->fetchObject('App\\Entities\\Re...')
+#2 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Database\BaseResult.php(106): CodeIgniter\Database\BaseResult->getCustomResultObject('App\\Entities\\Re...')
+#3 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Database\BaseResult.php(379): CodeIgniter\Database\BaseResult->getResult('App\\Entities\\Re...')
+#4 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Model.php(143): CodeIgniter\Database\BaseResult->getFirstRow('App\\Entities\\Re...')
+#5 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\BaseModel.php(523): CodeIgniter\Model->doFind(true, '1')
+#6 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\app\Models\ReservationsModel.php(37): CodeIgniter\BaseModel->find('1')
+#7 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\app\Controllers\Admin\Reservations.php(18): App\Models\ReservationsModel->getActiveReservations()
+#8 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(824): App\Controllers\Admin\Reservations->getActiveReservations()
+#9 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(410): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Reservations))
+#10 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(318): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\public\index.php(43): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-09-28 21:36:02 --> Uncaught ErrorException: Undefined property: Config\Exceptions::$sensitiveDataInTrace in C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php:242
+Stack trace:
+#0 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\Users\\hp\\Doc...', 242)
+#1 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(225): CodeIgniter\Debug\Exceptions->collectVars(Object(TypeError), 500)
+#2 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(232): CodeIgniter\Debug\Exceptions->CodeIgniter\Debug\{closure}()
+#3 C:\Users\hp\Documents\code_igniter\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(116): CodeIgniter\Debug\Exceptions->render(Object(TypeError), 500)
+#4 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(TypeError))
+#5 {main}
+  thrown
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
