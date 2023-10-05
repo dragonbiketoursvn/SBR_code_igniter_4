@@ -201,45 +201,45 @@ class Test extends BaseController
 
   public function sendEmailsToMaintenanceList()
   {
-    if (is_cli()) {
-      require ROOTPATH . '/vendor/PHPMailer-master/src/Exception.php';
-      require ROOTPATH . '/vendor/PHPMailer-master/src/PHPMailer.php';
-      require ROOTPATH . '/vendor/PHPMailer-master/src/SMTP.php';
+    // if (is_cli()) {
+    require ROOTPATH . '/vendor/PHPMailer-master/src/Exception.php';
+    require ROOTPATH . '/vendor/PHPMailer-master/src/PHPMailer.php';
+    require ROOTPATH . '/vendor/PHPMailer-master/src/SMTP.php';
 
-      $resultArray = $this->getMaintenanceList()->getResultArray();
-      $model = new AppointmentsModel;
+    $resultArray = $this->getMaintenanceList()->getResultArray();
+    $model = new AppointmentsModel;
 
-      foreach ($resultArray as $row) {
-        $name = trim($row['customer_name'], "0..9");
-        $email = $row['email_address'];
-        $plateNumber = $row['plate_number'];
-        $customerID = $row['customer_id'];
+    foreach ($resultArray as $row) {
+      $name = trim($row['customer_name'], "0..9");
+      $email = $row['email_address'];
+      $plateNumber = $row['plate_number'];
+      $customerID = $row['customer_id'];
 
-        $appointment = new Appointment();
-        $appointment->customer_id = $customerID;
-        $appointment->customer_name = $name;
-        $appointment->current_bike = $plateNumber;
-        $appointment->appointment_time = NULL;
-        $appointment->startActivation();
-        $model->insert($appointment);
+      $appointment = new Appointment();
+      $appointment->customer_id = $customerID;
+      $appointment->customer_name = $name;
+      $appointment->current_bike = $plateNumber;
+      $appointment->appointment_time = NULL;
+      $appointment->startActivation();
+      $model->insert($appointment);
 
-        $mail = new PHPMailer(true);
-        $mail->isSMTP();
-        $mail->Host = 'mail.saigonbikerentals.com';
-        $mail->SMTPAuth = true;
-        $mail->Username = 'patrick@saigonbikerentals.com';
-        $mail->Password = 'n1FaZ!Sz#)vB';
-        $mail->SMTPSecure = 'tls';
-        $mail->Port = 26;
-        $mail->setFrom('patrick@saigonbikerentals.com');
-        // $mail->addAddress($email);
-        $mail->addAddress('dragonbiketoursvn@gmail.com');
-        $mail->isHTML(true);
-        $mail->Subject = "Bike Maintenance";
+      $mail = new PHPMailer(true);
+      $mail->isSMTP();
+      $mail->Host = 'mail.saigonbikerentals.com';
+      $mail->SMTPAuth = true;
+      $mail->Username = 'patrick@saigonbikerentals.com';
+      $mail->Password = 'n1FaZ!Sz#)vB';
+      $mail->SMTPSecure = 'tls';
+      $mail->Port = 26;
+      $mail->setFrom('patrick@saigonbikerentals.com');
+      // $mail->addAddress($email);
+      $mail->addAddress('dragonbiketoursvn@gmail.com');
+      $mail->isHTML(true);
+      $mail->Subject = "Bike Maintenance";
 
-        $link = site_url("Appointments/select/{$appointment->token}");
+      $link = site_url("Appointments/select/{$appointment->token}");
 
-        $mail->Body = "<p>Hi {$name},</p><p>According to our records, you are 
+      $mail->Body = "<p>Hi {$name},</p><p>According to our records, you are 
                     currently renting the bike with plate number <b>
                     {$plateNumber}</b>, which is now due for maintenance. If this 
                     is not the correct bike please reply directly to this email 
@@ -256,19 +256,19 @@ class Test extends BaseController
                     <br><p><strong>PPS - IF YOUR PHONE USES iOS WHEN YOUR APPOINTMENT
                     INFO DISPLAYS (AFTER BOOKING) THE TEXT WILL BE NEARLY INVISIBLE -SORRY!</strong?</p>";
 
-        if (!$mail->send()) {
+      if (!$mail->send()) {
 
-          echo 'Mailer Error: ' . $mail->ErrorInfo;
-        } else {
+        echo 'Mailer Error: ' . $mail->ErrorInfo;
+      } else {
 
-          $path = '{sng103.hawkhost.com:993/ssl}INBOX.Sent';
-          $imapStream = imap_open($path, 'patrick@saigonbikerentals.com', 'n1FaZ!Sz#)vB');
-          imap_append($imapStream, $path, $mail->getSentMIMEMessage());
-          imap_close($imapStream);
-          echo 'Message sent!';
-        }
+        $path = '{sng103.hawkhost.com:993/ssl}INBOX.Sent';
+        $imapStream = imap_open($path, 'patrick@saigonbikerentals.com', 'n1FaZ!Sz#)vB');
+        imap_append($imapStream, $path, $mail->getSentMIMEMessage());
+        imap_close($imapStream);
+        echo 'Message sent!';
       }
     }
+    // }
   }
 
   public function addPhotoPaths()
