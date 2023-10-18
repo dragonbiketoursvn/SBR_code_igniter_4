@@ -6,6 +6,8 @@ use CodeIgniter\Config\BaseConfig;
 
 class App extends BaseConfig
 {
+	// baboon!
+	
 	/**
 	 * --------------------------------------------------------------------------
 	 * Base Site URL
