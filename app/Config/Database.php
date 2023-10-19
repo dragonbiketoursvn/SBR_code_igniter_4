@@ -9,6 +9,7 @@ use CodeIgniter\Database\Config;
  */
 class Database extends Config
 {
+	// a random comment
 	/**
 	 * The directory that holds the Migrations
 	 * and Seeds directories.
