@@ -6,7 +6,7 @@ use CodeIgniter\Config\BaseConfig;
 
 class App extends BaseConfig
 {	
-// test should not show up in remote
+// test should not show up in remote ...
 
 	/**
 	 * --------------------------------------------------------------------------
