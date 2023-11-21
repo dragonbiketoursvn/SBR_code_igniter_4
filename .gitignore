@@ -5,7 +5,7 @@
 !*/cache/index.html
 !*/cache/.htaccess
 .env
-/writable/*
+# /writable/*
 #I added writable
 
 user_guide_src/build/*
