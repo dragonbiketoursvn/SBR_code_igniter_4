@@ -58,6 +58,13 @@ class CustomersModel extends \CodeIgniter\Model
     return $this->where('currently_renting', 1)
       ->findAll();
   }
+ 
+  public function getCurrentCustomersMonthly()
+  {
+    return $this->where('currently_renting', 1)
+      ->where('short_term', 0)  
+      ->findAll();
+  }
 
   public function getCurrentCustomersShortTerm()
   {
