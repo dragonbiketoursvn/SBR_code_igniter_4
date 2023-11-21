@@ -4,6 +4,9 @@
 */cache/*
 !*/cache/index.html
 !*/cache/.htaccess
+.env
+/writable/*
+#I added writable
 
 user_guide_src/build/*
 user_guide_src/cilexer/build/*

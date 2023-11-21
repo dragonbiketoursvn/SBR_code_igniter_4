@@ -1,0 +1,9 @@
+CRITICAL - 2023-11-04 23:05:55 --> Uncaught ErrorException: Undefined property: Config\Exceptions::$sensitiveDataInTrace in C:\Users\admin\Documents\git_practice\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php:242
+Stack trace:
+#0 C:\Users\admin\Documents\git_practice\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\Users\\admin\\...', 242)
+#1 C:\Users\admin\Documents\git_practice\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(110): CodeIgniter\Debug\Exceptions->collectVars(Object(CodeIgniter\Exceptions\PageNotFoundException), 404)
+#2 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(CodeIgniter\Exceptions\PageNotFoundException))
+#3 {main}
+  thrown
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}

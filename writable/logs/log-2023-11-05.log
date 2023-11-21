@@ -1,0 +1,67 @@
+CRITICAL - 2023-11-05 14:48:43 --> Undefined variable $totalTime
+#0 C:\Users\admin\Documents\git_practice\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Toolbar\Views\toolbar.tpl.php(40): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\Users\\admin\\...', 40)
+#1 C:\Users\admin\Documents\git_practice\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Toolbar.php(497): include('C:\\Users\\admin\\...')
+#2 C:\Users\admin\Documents\git_practice\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Toolbar.php(460): CodeIgniter\Debug\Toolbar->format(Array, 'html')
+#3 C:\Users\admin\Documents\git_practice\SBR_code_igniter_4\app\Config\Events.php(52): CodeIgniter\Debug\Toolbar->respond()
+#4 C:\Users\admin\Documents\git_practice\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Events\Events.php(149): CodeIgniter\Events\Events::Config\{closure}()
+#5 C:\Users\admin\Documents\git_practice\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(300): CodeIgniter\Events\Events::trigger('pre_system')
+#6 C:\Users\admin\Documents\git_practice\SBR_code_igniter_4\public\index.php(43): CodeIgniter\CodeIgniter->run()
+#7 {main}
+CRITICAL - 2023-11-05 14:48:43 --> Uncaught ErrorException: Undefined property: Config\Exceptions::$sensitiveDataInTrace in C:\Users\admin\Documents\git_practice\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php:242
+Stack trace:
+#0 C:\Users\admin\Documents\git_practice\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\Users\\admin\\...', 242)
+#1 C:\Users\admin\Documents\git_practice\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(110): CodeIgniter\Debug\Exceptions->collectVars(Object(ErrorException), 500)
+#2 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(ErrorException))
+#3 {main}
+  thrown
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2023-11-05 15:03:04 --> file_get_contents(): Read of 8192 bytes failed with errno=13 Permission denied
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(8, 'file_get_conten...', 'C:\\Users\\admin\\...', 460)
+#1 C:\Users\admin\Documents\git_practice\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Toolbar.php(460): file_get_contents('C:\\Users\\admin\\...')
+#2 C:\Users\admin\Documents\git_practice\SBR_code_igniter_4\app\Config\Events.php(52): CodeIgniter\Debug\Toolbar->respond()
+#3 C:\Users\admin\Documents\git_practice\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Events\Events.php(149): CodeIgniter\Events\Events::Config\{closure}()
+#4 C:\Users\admin\Documents\git_practice\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(300): CodeIgniter\Events\Events::trigger('pre_system')
+#5 C:\Users\admin\Documents\git_practice\SBR_code_igniter_4\public\index.php(43): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2023-11-05 15:03:04 --> Uncaught ErrorException: Undefined property: Config\Exceptions::$sensitiveDataInTrace in C:\Users\admin\Documents\git_practice\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php:242
+Stack trace:
+#0 C:\Users\admin\Documents\git_practice\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\Users\\admin\\...', 242)
+#1 C:\Users\admin\Documents\git_practice\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(110): CodeIgniter\Debug\Exceptions->collectVars(Object(ErrorException), 500)
+#2 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(ErrorException))
+#3 {main}
+  thrown
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2023-11-05 21:42:19 --> Call to undefined method App\Models\TodosModel::getByID
+#0 C:\Users\admin\Documents\git_practice\SBR_code_igniter_4\app\Controllers\Admin\Todos.php(27): CodeIgniter\Model->__call('getByID', Array)
+#1 C:\Users\admin\Documents\git_practice\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(824): App\Controllers\Admin\Todos->markDone()
+#2 C:\Users\admin\Documents\git_practice\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(410): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Todos))
+#3 C:\Users\admin\Documents\git_practice\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(318): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\Users\admin\Documents\git_practice\SBR_code_igniter_4\public\index.php(43): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2023-11-05 21:42:19 --> Uncaught ErrorException: Undefined property: Config\Exceptions::$sensitiveDataInTrace in C:\Users\admin\Documents\git_practice\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php:242
+Stack trace:
+#0 C:\Users\admin\Documents\git_practice\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\Users\\admin\\...', 242)
+#1 C:\Users\admin\Documents\git_practice\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(110): CodeIgniter\Debug\Exceptions->collectVars(Object(BadMethodCallException), 500)
+#2 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(BadMethodCallException))
+#3 {main}
+  thrown
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2023-11-05 21:52:43 --> Call to undefined method App\Models\TodosModel::getByID
+#0 C:\Users\admin\Documents\git_practice\SBR_code_igniter_4\app\Controllers\Admin\Todos.php(27): CodeIgniter\Model->__call('getByID', Array)
+#1 C:\Users\admin\Documents\git_practice\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(824): App\Controllers\Admin\Todos->markDone()
+#2 C:\Users\admin\Documents\git_practice\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(410): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Todos))
+#3 C:\Users\admin\Documents\git_practice\SBR_code_igniter_4\vendor\codeigniter4\framework\system\CodeIgniter.php(318): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\Users\admin\Documents\git_practice\SBR_code_igniter_4\public\index.php(43): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2023-11-05 21:52:43 --> Uncaught ErrorException: Undefined property: Config\Exceptions::$sensitiveDataInTrace in C:\Users\admin\Documents\git_practice\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php:242
+Stack trace:
+#0 C:\Users\admin\Documents\git_practice\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\Users\\admin\\...', 242)
+#1 C:\Users\admin\Documents\git_practice\SBR_code_igniter_4\vendor\codeigniter4\framework\system\Debug\Exceptions.php(110): CodeIgniter\Debug\Exceptions->collectVars(Object(BadMethodCallException), 500)
+#2 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(BadMethodCallException))
+#3 {main}
+  thrown
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}

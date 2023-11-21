@@ -227,6 +227,23 @@
     </div>
   </div>
 
+  <div class="field is-horizontal">
+    <div class="field-label">
+      <!-- Left empty for spacing -->
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <div class="control">
+          <a href="<?= site_url("Admin/Todos/viewList") ?>">
+            <button class="button is-warning is-large is-fullwidth">
+              Check Todo List
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
 <?php endif; ?>
 
 <?= $this->endSection() ?>
