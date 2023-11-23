@@ -37,7 +37,7 @@
     </div>
 
     <label>Message
-        <textarea class="textarea" rows="10" name="message" warp="soft"></textarea>
+        <textarea class="textarea" rows="10" name="message" wrap="soft"></textarea>
     </label>
 
     <div class="field is-horizontal">

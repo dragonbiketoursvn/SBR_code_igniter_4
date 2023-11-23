@@ -723,7 +723,7 @@ class Customers extends \App\Controllers\BaseController
       $mail->addBCC($customer->email_address);
     }
 
-    $mail->isHTML(true);
+    $mail->isHTML(false);
     $mail->Subject = $subject;
     $mail->Body = $message;
 
