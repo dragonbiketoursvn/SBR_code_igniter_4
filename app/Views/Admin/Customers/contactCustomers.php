@@ -13,14 +13,14 @@
 <?= form_open('Admin/Customers/broadcastMessage') ?>
 
     <div class="control">
-    <label class="radio">
-        <input type="radio" name="selection" value="monthly">
-        Monthly
-    </label>
-    <label class="radio">
-        <input type="radio" name="selection" value="short-term">
-        Short-Term
-    </label>
+        <label class="radio">
+            <input type="radio" name="selection" value="monthly">
+            Monthly
+        </label>
+        <label class="radio">
+            <input type="radio" name="selection" value="short-term">
+            Short-Term
+        </label>
     </div>
 
     <div class="field is-horizontal" style="bottom: 200px !important;">
@@ -34,10 +34,10 @@
             </p>
           </div>
         </div>
-      </div>
+    </div>
 
     <label>Message
-        <textarea class="textarea" rows="10" name="message"></textarea>
+        <textarea class="textarea" rows="10" name="message" warp="soft"></textarea>
     </label>
 
     <div class="field is-horizontal">
@@ -47,14 +47,12 @@
         <div class="field-body">
             <div class="field">
                 <div class="control">
-                    <button class="button is-success is-large is-fullwidth toggle">
+                    <button class="button is-success is-large is-fullwidth">
                         Send
                     </button>
                 </div>
             </div>
         </div>
-
-        <div class="field is-horizontal">
     </div>
 </form>
 
@@ -72,6 +70,6 @@
             form.removeEventListener('submit', blockSubmission);
         });
     })
-</script>
+</script>man
 <?= $this->endSection() ?>
 
