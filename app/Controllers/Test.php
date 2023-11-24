@@ -169,7 +169,7 @@ class Test extends BaseController
                     WHERE (customer_id, date_time) IN ( 
                         SELECT customer_id, MAX(date_time) AS date_time FROM bike_status_change 
                         WHERE customer_id IN ( 
-                            SELECT id FROM customers WHERE currently_renting = 1 
+                            SELECT id FROM customers WHERE currently_renting = 1 AND short_term = 0
                         ) 
                         GROUP BY customer_id 
                     )
