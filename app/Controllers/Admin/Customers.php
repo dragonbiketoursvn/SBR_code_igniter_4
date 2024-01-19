@@ -68,10 +68,7 @@ class Customers extends \App\Controllers\BaseController
     } 
   }
 
-  public function newContract()
-  {
-    $nationalities = $this->model->select('nationality')->distinct()->findAll();
-    $model = new \App\Models\BikesModel;
+  private function getExchangeRates() {
     $sql = "
             SELECT price
             FROM `usd_vnd_exchange_rate`
@@ -81,7 +78,24 @@ class Customers extends \App\Controllers\BaseController
 
     $USD_TO_VND = (float) $this->db->query($sql)->getResult()[0]->price;
     $VND_TO_USD = 1 / $USD_TO_VND;
-    
+    return [$USD_TO_VND, $VND_TO_USD];
+  }
+
+  public function newContract()
+  {
+    $nationalities = $this->model->select('nationality')->distinct()->findAll();
+    $model = new \App\Models\BikesModel;
+    // $sql = "
+    //         SELECT price
+    //         FROM `usd_vnd_exchange_rate`
+    //         ORDER BY id DESC
+    //         LIMIT 1
+    //       ";
+
+    // $USD_TO_VND = (float) $this->db->query($sql)->getResult()[0]->price;
+    // $VND_TO_USD = 1 / $USD_TO_VND;
+    [$USD_TO_VND, $VND_TO_USD] = $this->getExchangeRates();
+
     return view('Admin/Customers/newContract', [
       'nationalities' => $nationalities,
       'currentBikes' => $this->currentBikes,
@@ -95,16 +109,16 @@ class Customers extends \App\Controllers\BaseController
     $nationalities = $this->model->select('nationality')->distinct()->findAll();
     $model = new \App\Models\BikesModel;
     
-    $sql = "
-        SELECT price
-        FROM `usd_vnd_exchange_rate`
-        ORDER BY id DESC
-        LIMIT 1
-      ";
+    // $sql = "
+    //     SELECT price
+    //     FROM `usd_vnd_exchange_rate`
+    //     ORDER BY id DESC
+    //     LIMIT 1
+    //   ";
 
-    $USD_TO_VND = (float) $this->db->query($sql)->getResult()[0]->price;
-    $VND_TO_USD = 1 / $USD_TO_VND;
-
+    // $USD_TO_VND = (float) $this->db->query($sql)->getResult()[0]->price;
+    // $VND_TO_USD = 1 / $USD_TO_VND;
+    [$USD_TO_VND, $VND_TO_USD] = $this->getExchangeRates();
 
     return view('Admin/Customers/newContractShort', [
       'nationalities' => $nationalities,
@@ -362,25 +376,7 @@ class Customers extends \App\Controllers\BaseController
   public function activate($token)
   {
     $model = new \App\Models\CustomersModel;
-
     $customer = $model->activateByToken($token);
-
-    // This code makes creation of the `bike_status_change` record dependent on customer action
-    // which brings no benefit and high possibility of error!
-
-    // if ($customer) {
-
-    //   $statusChangeModel = new \App\Models\BikeStatusChangeModel;
-    //   $bikeStatusChange = new \App\Entities\BikeStatusChange;
-
-    //   $bikeStatusChange->user = 'ADMIN';
-    //   $bikeStatusChange->plate_number = $customer->current_bike;
-    //   $bikeStatusChange->date_time = $customer->start_date;
-    //   $bikeStatusChange->new_status = $customer->customer_name;
-    //   $bikeStatusChange->customer_id = $customer->id;
-
-    //   $statusChangeModel->save($bikeStatusChange);
-    // }
 
     return view('Admin/Customers/activated');
   }
