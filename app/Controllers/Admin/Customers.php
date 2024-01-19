@@ -32,45 +32,56 @@ class Customers extends \App\Controllers\BaseController
     return view('Admin/Customers/selectContractType');
   }
 
-  private function getExchangeRates()
+  public function queryExchangeRateAPI()
   {
-    $FIXER_API_BASE = "http://data.fixer.io/api/";
-    $FIXER_API_KEY = "1eab7800720a67d57ee29ae5dd6ca378";
-    $EUR_TO_USD = null;
-    $EUR_TO_VND = null;
+    if (is_cli()) {
+      $FIXER_API_BASE = "http://data.fixer.io/api/";
+      $FIXER_API_KEY = "1eab7800720a67d57ee29ae5dd6ca378";
+      $EUR_TO_USD = null;
+      $EUR_TO_VND = null;
 
-    $url = "{$FIXER_API_BASE}latest?access_key={$FIXER_API_KEY}&symbols=USD,VND";
+      $url = "{$FIXER_API_BASE}latest?access_key={$FIXER_API_KEY}&symbols=USD,VND";
 
-    $curl = curl_init(); // initializes cURL session and returns handle
-    curl_setopt($curl, CURLOPT_URL, $url); // sets the URL to be accessed
-    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true); // transfers return value of curl_exec() as a string
+      $curl = curl_init(); // initializes cURL session and returns handle
+      curl_setopt($curl, CURLOPT_URL, $url); // sets the URL to be accessed
+      curl_setopt($curl, CURLOPT_RETURNTRANSFER, true); // transfers return value of curl_exec() as a string
 
-    $resp = curl_exec($curl); // sends the request
-    $val = json_decode($resp, $associative = true, $depth = 512);
+      $resp = curl_exec($curl); // sends the request
+      $val = json_decode($resp, $associative = true, $depth = 512);
 
-
-    foreach ($val as $key => $item) {
-      if (is_array($item)) {
-        // echo $key . "=>" . implode(": ", $item) . "\n";
-        $pre_array = implode(":", $item);
-        $array = explode(":", $pre_array);
-        $EUR_TO_USD = $array[0];
-        $EUR_TO_VND = $array[1];
+      foreach ($val as $key => $item) {
+        if (is_array($item)) {
+          // echo $key . "=>" . implode(": ", $item) . "\n";
+          $pre_array = implode(":", $item);
+          $array = explode(":", $pre_array);
+          $EUR_TO_USD = $array[0];
+          $EUR_TO_VND = $array[1];
+        }
       }
-    }
-    $USD_TO_VND = (1 / $EUR_TO_USD) * $EUR_TO_VND;
-    $VND_TO_USD = 1 / $USD_TO_VND;
 
-    return [$USD_TO_VND, $VND_TO_USD];
+      if (!(gettype($EUR_TO_VND) === 'string')) {
+        $USD_TO_VND = (1 / $EUR_TO_USD) * $EUR_TO_VND;
+        $sql = "INSERT INTO usd_vnd_exchange_rate(date, price)
+                VALUES (CURRENT_DATE(), {$USD_TO_VND})";
+        $this->db->query($sql);
+      }
+    } 
   }
 
   public function newContract()
   {
     $nationalities = $this->model->select('nationality')->distinct()->findAll();
     $model = new \App\Models\BikesModel;
-    // $currentBikes = $model->getCurrentBikes();
-    [$USD_TO_VND, $VND_TO_USD] = $this->getExchangeRates();
+    $sql = "
+            SELECT price
+            FROM `usd_vnd_exchange_rate`
+            ORDER BY id DESC
+            LIMIT 1
+          ";
 
+    $USD_TO_VND = (float) $this->db->query($sql)->getResult()[0]->price;
+    $VND_TO_USD = 1 / $USD_TO_VND;
+    
     return view('Admin/Customers/newContract', [
       'nationalities' => $nationalities,
       'currentBikes' => $this->currentBikes,
@@ -83,8 +94,16 @@ class Customers extends \App\Controllers\BaseController
   {
     $nationalities = $this->model->select('nationality')->distinct()->findAll();
     $model = new \App\Models\BikesModel;
-    // $currentBikes = $model->getCurrentBikes();
-    [$USD_TO_VND, $VND_TO_USD] = $this->getExchangeRates();
+    
+    $sql = "
+        SELECT price
+        FROM `usd_vnd_exchange_rate`
+        ORDER BY id DESC
+        LIMIT 1
+      ";
+
+    $USD_TO_VND = (float) $this->db->query($sql)->getResult()[0]->price;
+    $VND_TO_USD = 1 / $USD_TO_VND;
 
 
     return view('Admin/Customers/newContractShort', [
