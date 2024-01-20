@@ -68,7 +68,8 @@ class Customers extends \App\Controllers\BaseController
     } 
   }
 
-  private function getExchangeRates() {
+  private function getExchangeRates() 
+  {
     $sql = "
             SELECT price
             FROM `usd_vnd_exchange_rate`
