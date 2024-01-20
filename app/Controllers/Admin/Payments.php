@@ -14,6 +14,7 @@ class Payments extends \App\Controllers\BaseController
   public function __construct()
   {
     $this->model = new \App\Models\PaymentsModel;
+    $this->db = \Config\Database::connect();
   }
 
   // private function getExchangeRates()
