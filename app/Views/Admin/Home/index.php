@@ -234,9 +234,9 @@
     <div class="field-body">
       <div class="field">
         <div class="control">
-          <a href="<?= site_url("Admin/Todos/viewList") ?>">
+          <a href="<?= site_url("Admin/XR150Parts/viewMenu") ?>">
             <button class="button is-warning is-large is-fullwidth">
-              Check Todo List
+              XR150 Parts
             </button>
           </a>
         </div>
