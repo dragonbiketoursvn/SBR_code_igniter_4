@@ -32,9 +32,45 @@ class Customers extends \App\Controllers\BaseController
     return view('Admin/Customers/selectContractType');
   }
 
+  // public function queryExchangeRateAPI()
+  // {
+  //   if (is_cli()) {
+  //     $FIXER_API_BASE = "http://data.fixer.io/api/";
+  //     $FIXER_API_KEY = "1eab7800720a67d57ee29ae5dd6ca378";
+  //     $EUR_TO_USD = null;
+  //     $EUR_TO_VND = null;
+
+  //     $url = "{$FIXER_API_BASE}latest?access_key={$FIXER_API_KEY}&symbols=USD,VND";
+
+  //     $curl = curl_init(); // initializes cURL session and returns handle
+  //     curl_setopt($curl, CURLOPT_URL, $url); // sets the URL to be accessed
+  //     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true); // transfers return value of curl_exec() as a string
+
+  //     $resp = curl_exec($curl); // sends the request
+  //     $val = json_decode($resp, $associative = true, $depth = 512);
+
+  //     foreach ($val as $key => $item) {
+  //       if (is_array($item)) {
+  //         // echo $key . "=>" . implode(": ", $item) . "\n";
+  //         $pre_array = implode(":", $item);
+  //         $array = explode(":", $pre_array);
+  //         $EUR_TO_USD = $array[0];
+  //         $EUR_TO_VND = $array[1];
+  //       }
+  //     }
+
+  //     if (!(gettype($EUR_TO_VND) === 'string')) {
+  //       $USD_TO_VND = (1 / $EUR_TO_USD) * $EUR_TO_VND;
+  //       $sql = "INSERT INTO usd_vnd_exchange_rate(date, price)
+  //               VALUES (CURRENT_DATE(), {$USD_TO_VND})";
+  //       $this->db->query($sql);
+  //     }
+  //   } 
+  // }
+
   public function queryExchangeRateAPI()
   {
-    if (is_cli()) {
+    if (true) {
       $FIXER_API_BASE = "http://data.fixer.io/api/";
       $FIXER_API_KEY = "1eab7800720a67d57ee29ae5dd6ca378";
       $EUR_TO_USD = null;
@@ -49,26 +85,23 @@ class Customers extends \App\Controllers\BaseController
       $resp = curl_exec($curl); // sends the request
       $val = json_decode($resp, $associative = true, $depth = 512);
 
-      foreach ($val as $key => $item) {
+      foreach ($val as $item) {
         if (is_array($item)) {
           // echo $key . "=>" . implode(": ", $item) . "\n";
           $pre_array = implode(":", $item);
           $array = explode(":", $pre_array);
           $EUR_TO_USD = $array[0];
           $EUR_TO_VND = $array[1];
+          $USD_TO_VND = (1 / $EUR_TO_USD) * $EUR_TO_VND;
+          $sql = "INSERT INTO usd_vnd_exchange_rate(date, price)
+                VALUES (CURRENT_DATE(), {$USD_TO_VND})";
+          $this->db->query($sql);
         }
       }
-
-      if (!(gettype($EUR_TO_VND) === 'string')) {
-        $USD_TO_VND = (1 / $EUR_TO_USD) * $EUR_TO_VND;
-        $sql = "INSERT INTO usd_vnd_exchange_rate(date, price)
-                VALUES (CURRENT_DATE(), {$USD_TO_VND})";
-        $this->db->query($sql);
-      }
-    } 
+    }
   }
 
-  private function getExchangeRates() 
+  private function getExchangeRates()
   {
     $sql = "
             SELECT price
@@ -109,7 +142,7 @@ class Customers extends \App\Controllers\BaseController
   {
     $nationalities = $this->model->select('nationality')->distinct()->findAll();
     $model = new \App\Models\BikesModel;
-    
+
     // $sql = "
     //     SELECT price
     //     FROM `usd_vnd_exchange_rate`
@@ -695,12 +728,12 @@ class Customers extends \App\Controllers\BaseController
     }
   }
 
-  public function contactCustomers() 
+  public function contactCustomers()
   {
     return view('Admin/Customers/contactCustomers');
   }
 
-  public function broadcastMessage() 
+  public function broadcastMessage()
   {
     $post = $this->request->getPost();
     $customers = null;
@@ -713,10 +746,10 @@ class Customers extends \App\Controllers\BaseController
     } else {
       $customers = $this->model->getCurrentCustomersShortTerm();
     }
-    
-    if($this->sendBroadcastEmail($customers, $subject, $message)) {
+
+    if ($this->sendBroadcastEmail($customers, $subject, $message)) {
       return redirect()->to(site_url('Admin/Home'))->with('message', 'Message sent!');
-    }; 
+    };
   }
 
   private function sendBroadcastEmail($customers, $subject, $message)
@@ -735,7 +768,7 @@ class Customers extends \App\Controllers\BaseController
     $mail->Port = 26;
     $mail->setFrom('patrick@saigonbikerentals.com');
 
-    foreach($customers as $customer) {
+    foreach ($customers as $customer) {
       $mail->addBCC($customer->email_address);
     }
 
