@@ -70,7 +70,7 @@ class Customers extends \App\Controllers\BaseController
 
   public function queryExchangeRateAPI()
   {
-    if (is_cli()) {
+    if (true) {
       $FIXER_API_BASE = "http://data.fixer.io/api/";
       $FIXER_API_KEY = "1eab7800720a67d57ee29ae5dd6ca378";
       $EUR_TO_USD = null;
