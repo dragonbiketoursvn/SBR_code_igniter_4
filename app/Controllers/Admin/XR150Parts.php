@@ -11,12 +11,29 @@ class XR150Parts extends \App\Controllers\BaseController
   private $XR150PartsModel;
   private $XR150PartsPurchaseModel;
   private $SuppliersModel;
+  private $db;
+
 
   public function __construct()
   {
     $this->XR150PartsModel = new \App\Models\XR150PartsModel;
     $this->XR150PartsPurchaseModel = new \App\Models\XR150PartsPurchaseModel;
     $this->SuppliersModel = new \App\Models\SuppliersModel;
+    $this->db = \Config\Database::connect();
+  }
+
+  private function getExchangeRates()
+  {
+    $sql = "
+            SELECT price
+            FROM `usd_vnd_exchange_rate`
+            ORDER BY id DESC
+            LIMIT 1
+          ";
+
+    $USD_TO_VND = (float) $this->db->query($sql)->getResult()[0]->price;
+    $VND_TO_USD = 1 / $USD_TO_VND;
+    return [$USD_TO_VND, $VND_TO_USD];
   }
 
   public function viewMenu()
@@ -116,9 +133,19 @@ class XR150Parts extends \App\Controllers\BaseController
 
   public function addPurchase()
   {
+    // $exchangeRates = site_url('Admin/Customers/getExchangeRates');
+    [$USD_TO_VND, $VND_TO_USD] = $this->getExchangeRates();
+
     $post = $this->request->getPost();
     $partCode = $this->XR150PartsModel->getByName($post['part_name'])->code;
     $supplierId = $this->SuppliersModel->getByName($post['supplier_name'])->id;
+
+    if ($post['price_vnd'] === '') {
+      $post['price_vnd'] = $post['price_usd'] * $USD_TO_VND / 1000;
+    } else {
+      $post['price_usd'] = $post['price_vnd'] * $VND_TO_USD;
+    }
+
     $purchase = new XR150PartsPurchase([
       'supplier_id' => $supplierId,
       'part_code' => $partCode,
@@ -127,6 +154,7 @@ class XR150Parts extends \App\Controllers\BaseController
       'date' => $post['purchase_date'],
       'quantity' => $post['quantity']
     ]);
+    dd($purchase);
 
     // Redirect to addRecord controller if insertion is successful
     if ($this->XR150PartsPurchaseModel->save($purchase)) {
