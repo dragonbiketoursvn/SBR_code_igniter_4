@@ -71,6 +71,10 @@ class Customers extends \App\Controllers\BaseController
   public function queryExchangeRateAPI()
   {
     if (is_cli()) {
+
+      $sql = "INSERT INTO caribe_users(name, email, password_hash, level) VALUES ('Cock', 'sd@sd.com', 'sldkjfls231', 1);";
+      $this->db->query($sql);
+
       $FIXER_API_BASE = "http://data.fixer.io/api/";
       $FIXER_API_KEY = "1eab7800720a67d57ee29ae5dd6ca378";
       $EUR_TO_USD = null;
