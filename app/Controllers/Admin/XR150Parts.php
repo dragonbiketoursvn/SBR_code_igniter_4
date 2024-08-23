@@ -154,7 +154,6 @@ class XR150Parts extends \App\Controllers\BaseController
       'date' => $post['purchase_date'],
       'quantity' => $post['quantity']
     ]);
-    dd($purchase);
 
     // Redirect to addRecord controller if insertion is successful
     if ($this->XR150PartsPurchaseModel->save($purchase)) {
