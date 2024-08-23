@@ -24,6 +24,43 @@ class Test extends BaseController
     $this->db = \Config\Database::connect();
   }
 
+  public function queryExchangeRateAPI()
+  {
+    if (is_cli()) {
+
+      $sql = "INSERT INTO caribe_users(name, email, password_hash, level) VALUES ('Cock', 'sd@sd.com', 'sldkjfls231', 1);";
+      $this->db->query($sql);
+
+      $FIXER_API_BASE = "http://data.fixer.io/api/";
+      $FIXER_API_KEY = "1eab7800720a67d57ee29ae5dd6ca378";
+      $EUR_TO_USD = null;
+      $EUR_TO_VND = null;
+
+      $url = "{$FIXER_API_BASE}latest?access_key={$FIXER_API_KEY}&symbols=USD,VND";
+
+      $curl = curl_init(); // initializes cURL session and returns handle
+      curl_setopt($curl, CURLOPT_URL, $url); // sets the URL to be accessed
+      curl_setopt($curl, CURLOPT_RETURNTRANSFER, true); // transfers return value of curl_exec() as a string
+
+      $resp = curl_exec($curl); // sends the request
+      $val = json_decode($resp, $associative = true, $depth = 512);
+
+      foreach ($val as $item) {
+        if (is_array($item)) {
+          // echo $key . "=>" . implode(": ", $item) . "\n";
+          $pre_array = implode(":", $item);
+          $array = explode(":", $pre_array);
+          $EUR_TO_USD = $array[0];
+          $EUR_TO_VND = $array[1];
+          $USD_TO_VND = (1 / $EUR_TO_USD) * $EUR_TO_VND;
+          $sql = "INSERT INTO usd_vnd_exchange_rate(date, price)
+                VALUES (CURRENT_DATE(), {$USD_TO_VND})";
+          $this->db->query($sql);
+        }
+      }
+    }
+  }
+
   public function sendActivationEmail()
   {
     require ROOTPATH . '/vendor/PHPMailer-master/src/Exception.php';
