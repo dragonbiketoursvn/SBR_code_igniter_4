@@ -45,7 +45,7 @@
   <div class="field-body">
     <div class="field">
       <div class="control">
-        <a href="<?= site_url("Admin/RenterIncidents/viewByRenter") ?>">
+        <a href="<?= site_url("Admin/XR150Parts/newInventory") ?>">
           <button class="button is-danger is-large is-fullwidth">
             Add Inventory Info
           </button>
@@ -79,7 +79,7 @@
   <div class="field-body">
     <div class="field">
       <div class="control">
-        <a href="<?= site_url("Admin/RenterIncidents/newIncident") ?>">
+        <a href="<?= site_url("Admin/XR150Parts/selectPartView") ?>">
           <button class="button is-success is-large is-fullwidth">
             View Part Info
           </button>
@@ -113,7 +113,7 @@
   <div class="field-body">
     <div class="field">
       <div class="control">
-        <a href="<?= site_url("Admin/RenterIncidents/viewByRenter") ?>">
+        <a href="<?= site_url("Admin/XR150Parts/viewInventory") ?>">
           <button class="button is-danger is-large is-fullwidth">
             View Inventory
           </button>

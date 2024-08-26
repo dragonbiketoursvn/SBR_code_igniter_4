@@ -251,7 +251,7 @@ class Customers extends \App\Controllers\BaseController
 
       $bikeStatusChange->user = 'ADMIN';
       $bikeStatusChange->plate_number = $customer->current_bike;
-      $bikeStatusChange->date_time = date('Y-m-d H:i:s');
+      $bikeStatusChange->date_time = $customer->start_date;
       $bikeStatusChange->new_status = $customer->customer_name;
       $bikeStatusChange->customer_id = $newCustomer->id;
 

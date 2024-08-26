@@ -5,11 +5,13 @@ namespace App\Controllers\Admin;
 use App\Entities\XR150Part;
 use App\Entities\XR150PartsPurchase;
 use App\Entities\Supplier;
+use App\Entities\XR150PartInventoryRecord;
 
 class XR150Parts extends \App\Controllers\BaseController
 {
   private $XR150PartsModel;
   private $XR150PartsPurchaseModel;
+  private $XR150PartsInventoryModel;
   private $SuppliersModel;
   private $db;
 
@@ -18,6 +20,7 @@ class XR150Parts extends \App\Controllers\BaseController
   {
     $this->XR150PartsModel = new \App\Models\XR150PartsModel;
     $this->XR150PartsPurchaseModel = new \App\Models\XR150PartsPurchaseModel;
+    $this->XR150PartsInventoryModel = new \App\Models\XR150PartsInventoryModel;
     $this->SuppliersModel = new \App\Models\SuppliersModel;
     $this->db = \Config\Database::connect();
   }
@@ -165,5 +168,97 @@ class XR150Parts extends \App\Controllers\BaseController
 
       return redirect()->back()->with('errors', $this->SuppliersModel->errors())->withInput();
     }
+  }
+
+  public function selectPartView()
+  {
+    return view('Admin/XR150Parts/selectPartView');
+  }
+
+  public function viewBestPrices()
+  {
+    $sql = "
+            SELECT code, part_name, price_usd, MIN(price_vnd) AS price_vnd, date, supplier_name
+            FROM (  
+              SELECT xrp.code, xrp.name AS part_name, xrpp.price_usd, xrpp.price_vnd, 
+              MAX(xrpp.date) AS date, s.name AS supplier_name
+            FROM xr_150_parts xrp JOIN xr_150_parts_purchases xrpp
+              ON xrp.code = xrpp.part_code
+            JOIN suppliers s 
+              ON xrpp.supplier_id = s.id
+            GROUP BY xrp.code, xrp.name, part_name, xrpp.price_usd, xrpp.price_vnd, supplier_name
+            )t1
+            GROUP BY code, part_name
+          ";
+
+    $bestPrices = $this->db->query($sql)->getResult();
+    return view('Admin/XR150Parts/viewBestPrices', ['bestPrices' => $bestPrices]);
+  }
+
+  public function viewCurrentPricesAll()
+  {
+    $sql = "
+            SELECT xrp.code, xrp.name AS part_name, xrpp.price_usd, 
+            xrpp.price_vnd, MAX(xrpp.date) AS date, s.name AS supplier_name
+            FROM xr_150_parts xrp JOIN xr_150_parts_purchases xrpp
+            ON xrp.code = xrpp.part_code
+            JOIN suppliers s 
+            ON xrpp.supplier_id = s.id
+            GROUP BY xrp.code, xrp.name, part_name, xrpp.price_usd, xrpp.price_vnd, supplier_name
+          ";
+
+    $currentPrices = $this->db->query($sql)->getResult();
+    return view('Admin/XR150Parts/viewCurrentPricesAll', ['currentPrices' => $currentPrices]);
+  }
+
+  // public function viewAllParts()
+  // {
+  //   return view('Admin/XR150Parts/viewAllParts');
+  // }
+
+  public function viewAllSuppliers()
+  {
+    $suppliers = $this->SuppliersModel->getAll();
+    return view('Admin/XR150Parts/viewAllSuppliers', ['suppliers' => $suppliers]);
+  }
+
+  public function newInventory()
+  {
+    $parts = $this->XR150PartsModel->getAll();
+    return view('Admin/XR150Parts/newInventory', ['parts' => $parts]);
+  }
+
+  public function addInventory()
+  {
+    $post = $this->request->getPost();
+    $part = $this->XR150PartsModel->getByName($post['name']);
+    $inventoryRecord = new XR150PartInventoryRecord([
+      'part_code' => $part->code,
+      'quantity' => $post['quantity'],
+      'date' => $post['date'],
+    ]);
+
+    if ($this->XR150PartsInventoryModel->save($inventoryRecord)) {
+      session()->setFlashData('success', 'success');
+      return redirect()->to(site_url('Admin/XR150Parts/newInventory'));
+      // return view('Admin/XR150Parts/newInventory', ['parts' => $parts]);
+    } else {
+      return redirect()->back()
+        ->with('warning', 'db insertion failure');
+    }
+  }
+
+  public function viewInventory()
+  {
+    $results = $this->XR150PartsInventoryModel->getCurrent();
+    $inventoryRecords = [];
+
+    foreach ($results as $result) {
+      $part = $this->XR150PartsModel->getByCode($result->part_code);
+      $record = ['code' => $part->code, 'name' => $part->name, 'date' => $result->date];
+      $inventoryRecords[] = $record;
+    }
+
+    return view('Admin/XR150Parts/currentInventory', ['inventoryRecords' => $inventoryRecords]);
   }
 }

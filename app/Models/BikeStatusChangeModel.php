@@ -39,6 +39,14 @@ class BikeStatusChangeModel extends \CodeIgniter\Model
       ->first();
   }
 
+  public function getStatusHistoryByPlateNumber($plate_number)
+  {
+
+    return $this->where('plate_number', $plate_number)
+      ->orderBy('date_time', 'DESC')
+      ->findAll();
+  }
+
   public function getCurrentStatusByPlateNumber($plate_number)
   {
 
