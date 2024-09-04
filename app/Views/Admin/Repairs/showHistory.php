@@ -26,7 +26,7 @@
   </thead>
 
   <tbody>
-    <?php foreach($repairs as $repair): ?>
+    <?php foreach ($repairs as $repair): ?>
       <tr>
         <td><?= $repair->repair_date ?></td>
         <td><?= $repair->odometer ?></td>

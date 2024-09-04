@@ -36,4 +36,12 @@ class ParkedInGarageModel extends \CodeIgniter\Model
   {
     return $this->findAll();
   }
+
+  public function getCurrent()
+  {
+    return $this
+      ->selectMax('date')
+      ->groupBy('plate_number')
+      ->findAll();
+  }
 }

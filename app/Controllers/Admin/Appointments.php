@@ -105,6 +105,7 @@ class Appointments extends \App\Controllers\BaseController
 
     $bikeOutStatusChange = new \App\Entities\BikeStatusChange;
     $bikeInStatusChange = new \App\Entities\BikeStatusChange;
+    $dateTime = key_exists('date_time', $post) ? $post['date_time'] : date('Y-m-d H:i:s');
 
     if (($post['bike_in'] !== '' && !(in_array($post['bike_in'], $currentBikesPlateNumbers)))
       || $post['bike_out'] !== '' && !(in_array($post['bike_out'], $currentBikesPlateNumbers))
@@ -116,7 +117,7 @@ class Appointments extends \App\Controllers\BaseController
       $this->model->update($appointment->id, ['received_bike' => 1]);
       $bikeOutStatusChange->plate_number = $post['bike_out'];
       $bikeOutStatusChange->temporary = $post['temporary'];
-      $bikeOutStatusChange->date_time = date('Y-m-d H:i:s');
+      $bikeOutStatusChange->date_time = $dateTime;
       $bikeOutStatusChange->new_status = $appointment->customer_name;
       $bikeOutStatusChange->customer_id = $appointment->customer_id;
       $model->save($bikeOutStatusChange);
@@ -132,7 +133,7 @@ class Appointments extends \App\Controllers\BaseController
 
       $bikeInStatusChange->plate_number = $post['bike_in'];
       $bikeInStatusChange->temporary = $post['temporary'];
-      $bikeInStatusChange->date_time = date('Y-m-d H:i:s');
+      $bikeInStatusChange->date_time = $dateTime;
       $bikeInStatusChange->new_status = 'Saigon Bike Rentals';
 
       $model->save($bikeInStatusChange);

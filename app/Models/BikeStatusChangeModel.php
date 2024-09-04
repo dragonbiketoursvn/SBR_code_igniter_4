@@ -39,20 +39,18 @@ class BikeStatusChangeModel extends \CodeIgniter\Model
       ->first();
   }
 
-  public function getStatusHistoryByPlateNumber($plate_number)
-  {
-
-    return $this->where('plate_number', $plate_number)
-      ->orderBy('date_time', 'DESC')
-      ->findAll();
-  }
-
   public function getCurrentStatusByPlateNumber($plate_number)
   {
-
     return $this->where('plate_number', $plate_number)
       ->orderBy('date_time', 'DESC')
       ->first();
+  }
+
+  public function getStatusHistoryByPlateNumber($plate_number)
+  {
+    return $this->where('plate_number', $plate_number)
+      ->orderBy('date_time', 'DESC')
+      ->findAll();
   }
 
   public function getTodaysRecords()
@@ -61,5 +59,20 @@ class BikeStatusChangeModel extends \CodeIgniter\Model
 
     return $this->where('date_time >', $yesterday)
       ->findAll();
+  }
+
+  public function getLastSixMonths()
+  {
+    $sixMonthsAgo = date('Y-m-d', time() - 182 * 24 * 3600);
+    // dd($sixMonthsAgo);
+    return $this->where('date_time >', $sixMonthsAgo)
+      ->orderBy('date_time', 'DESC')
+      ->findAll();
+  }
+
+  public function getById($id)
+  {
+    return $this->where('id', $id)
+      ->first();
   }
 }

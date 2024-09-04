@@ -48,6 +48,19 @@
   </div>
 </div>
 
+<div class="field is-horizontal">
+  <div class="field-label is-normal">
+    <label class="label" for="date_time">Date-Time</label>
+  </div>
+  <div class="field-body">
+    <div class="field">
+      <p class="control is-expanded">
+        <input type="datetime-local" class="input is-success" id="date_time" name="date_time">
+      </p>
+    </div>
+  </div>
+</div>
+
 <div class="field">
   <div class="control">
     <label class="radio">

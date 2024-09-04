@@ -157,6 +157,23 @@
   </div>
 </div>
 
+<div class="field is-horizontal">
+  <div class="field-label">
+    <!-- Left empty for spacing -->
+  </div>
+  <div class="field-body">
+    <div class="field">
+      <div class="control">
+        <a href="<?= site_url("Admin/ParkedInGarage/viewAll") ?>">
+          <button class="button is-warning is-large is-fullwidth">
+            Bikes in Garage
+          </button>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
 <?php if (session()->get('user_level') == 'super') : ?>
 
   <div class="field is-horizontal">
@@ -237,6 +254,23 @@
           <a href="<?= site_url("Admin/XR150Parts/viewMenu") ?>">
             <button class="button is-warning is-large is-fullwidth">
               XR150 Parts
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="field is-horizontal">
+    <div class="field-label">
+      <!-- Left empty for spacing -->
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <div class="control">
+          <a href="<?= site_url("Admin/BikeStatusChanges/viewLastSixMonths") ?>">
+            <button class="button is-success is-large is-fullwidth">
+              Bike Status Changes
             </button>
           </a>
         </div>

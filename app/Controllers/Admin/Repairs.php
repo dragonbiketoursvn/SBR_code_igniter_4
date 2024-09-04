@@ -6,64 +6,77 @@ use App\Entities\Repair;
 
 class Repairs extends \App\Controllers\BaseController
 {
-    private $model;
-    private $bikeParts;
+  private $repairsModel;
+  private $bikePartsModel;
+  private $bikesModel;
 
-    public function __construct()
-    {
-        $this->model = new \App\Models\RepairsModel;
-        $this->bikeParts = new \App\Models\BikePartsModel;
+  public function __construct()
+  {
+    $this->repairsModel = new \App\Models\RepairsModel;
+    $this->bikePartsModel = new \App\Models\BikePartsModel;
+    $this->bikesModel = new \App\Models\BikesModel;
+  }
+
+  public function getInfo()
+  {
+    $model = new \App\Models\BikesModel;
+    $currentBikes = $model->getCurrentBikes();
+    $partsList = $this->bikePartsModel->findDistinct();
+
+    return view('Admin/Repairs/getInfo', [
+      'currentBikes' => $currentBikes,
+      'partsList' => $partsList,
+    ]);
+  }
+
+  public function save()
+  {
+    $repair = new Repair;
+    $repair->fill($this->request->getPost());
+    $bikes = $this->bikesModel->getAllBikes();
+    $plateNumbers = [];
+    foreach ($bikes as $bike) {
+      $plateNumbers[] = $bike->plate_number;
     }
 
-    public function getInfo()
-    {
-      $model = new \App\Models\BikesModel;
-      $currentBikes = $model->getCurrentBikes();
-      $partsList = $this->bikeParts->findDistinct();
-
-      return view('Admin/Repairs/getInfo', [
-                                            'currentBikes' => $currentBikes,
-                                            'partsList' => $partsList,
-                                           ]);
+    if (!(in_array($repair->plate_number, $plateNumbers))) {
+      return redirect()->back()->withInput();
     }
 
-    public function save()
-    {
-      $repair = new Repair;
-      $repair->fill($this->request->getPost());
-      $result = $this->model->save($repair);
-      if($result === false) {
+    $result = $this->repairsModel->save($repair);
+    if ($result === false) {
 
-        return redirect()->back()->withInput();
+      return redirect()->back()->withInput();
+    } else {
 
-      } else {
+      return redirect()->to(site_url('Admin/Home/index'));
+    }
+  }
 
-        return redirect()->to(site_url('Admin/Home/index'));
+  public function getHistory()
+  {
+    $model = new \App\Models\BikesModel;
+    $currentBikes = $model->getCurrentBikes();
 
-      }
+    return view('Admin/Repairs/getHistory', ['currentBikes' => $currentBikes,]);
+  }
+
+  public function showHistory()
+  {
+    $post = $this->request->getPost();
+    $plateNumber = ['plate_number' => $post['plate_number']];
+    $repairs = $this->repairsModel->findByPlateNumber($plateNumber);
+    $repairsArray = [];
+
+    foreach ($repairs as $repair) {
+
+      $repairsArray[] = $repair;
     }
 
-    public function getHistory()
-    {
-      $model = new \App\Models\BikesModel;
-      $currentBikes = $model->getCurrentBikes();
-
-      return view('Admin/Repairs/getHistory', ['currentBikes' => $currentBikes,]);
-
+    if (!array_key_exists('origin', $post)) {
+      return ($this->response->setJSON($repairsArray));
+    } else {
+      return view('Admin/Repairs/getHistory', ['plateNumber' => $plateNumber]);
     }
-
-    public function showHistory()
-    {
-      $plateNumber = $this->request->getPost('plate_number');
-      $repairs = $this->model->findByPlateNumber($plateNumber);
-      $repairsArray = [];
-
-      foreach ($repairs as $repair) {
-
-        $repairsArray[] = $repair;
-      }
-
-      return($this->response->setJSON($repairsArray));      
-    }
-
+  }
 }

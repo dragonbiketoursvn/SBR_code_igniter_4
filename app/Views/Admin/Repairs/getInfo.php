@@ -327,6 +327,10 @@
   const modal = document.querySelector('.modal');
   const buttonOpenModal = document.querySelector('.toggle');
   const buttonCloseModal = document.querySelector('.close-toggle');
+  const modalSubmitButton = document.querySelector('button[form="repair_form"]');
+
+  // const deactivateSubmitButton = (e) => e.target.setAttribute('disabled', true);
+  // modalSubmitButton.addEventListener('click', deactivateSubmitButton);
 
   const toggle = function() {
 
@@ -349,6 +353,28 @@
 
   buttonOpenModal.addEventListener('click', toggle);
   buttonCloseModal.addEventListener('click', closeToggle);
+
+  // prevent submission with invalid plate number
+
+  // first get array of valid plate nums from datalist#current_bikes
+  const plateNumbers = [];
+  const currentBikes = document.querySelector('#current_bikes');
+  currentBikes.querySelectorAll('option').forEach(option => {
+    plateNumbers.push(option.getAttribute('value'))
+  });
+
+  // now add code to check input[name='plate_number'] to confirm value is valid
+  // and prevent submission if not (displaying a message)
+  const repairForm = document.querySelector('#repair_form');
+  repairForm.addEventListener('submit', (e) => {
+    const plateNumber = e.target.elements.plate_number.value;
+    modalSubmitButton.setAttribute('disabled', true);
+
+    if (!plateNumbers.includes(plateNumber)) {
+      e.preventDefault();
+      alert('Biển số này ko đúng!');
+    }
+  })
 </script>
 
 

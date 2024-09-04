@@ -186,11 +186,15 @@
 
   form.addEventListener('submit', validator);
 
-
   //Modal stuff
   const modal = document.querySelector('.modal');
   const buttonOpenModal = document.querySelector('.toggle');
   const buttonCloseModal = document.querySelector('.close-toggle');
+  const modalSubmitButton = document.querySelector('button[form="payment_form"]');
+
+  const debounce = (e) => modalSubmitButton.setAttribute('disabled', true);
+  form.addEventListener('submit', debounce);
+
 
   const stringSegment1 = "Khách trả <b>";
   const stringSegment2 = "</b> đồng <br>cho <b>";

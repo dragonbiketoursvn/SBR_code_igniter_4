@@ -8,10 +8,31 @@ class BikesModel extends \CodeIgniter\Model
   protected $primaryKey = 'plate_number';
 
   protected $allowedFields = [
-    'plate_number', 'purchase_date', 'brand', 'model', 'year', 'purchase_price', 'extra_key',
-    'giay_ban_xe', 'giay_uy_quyen', 'Nga_dung_ten', 'ownership_details', 'sale_date', 'sale_price',
-    'notes', 'photo_path', 'Kim_Anh_dung_ten', 'dragon_bikes', 'insurance_expires', 'reg_front', 'reg_back',
-    'pic_front', 'pic_side', 'pic_rear', 'pic_trunk', 'purchased_from'
+    'plate_number',
+    'purchase_date',
+    'brand',
+    'model',
+    'year',
+    'purchase_price',
+    'extra_key',
+    'giay_ban_xe',
+    'giay_uy_quyen',
+    'Nga_dung_ten',
+    'ownership_details',
+    'sale_date',
+    'sale_price',
+    'notes',
+    'photo_path',
+    'Kim_Anh_dung_ten',
+    'dragon_bikes',
+    'insurance_expires',
+    'reg_front',
+    'reg_back',
+    'pic_front',
+    'pic_side',
+    'pic_rear',
+    'pic_trunk',
+    'purchased_from'
   ];
 
   protected $returnType = 'App\Entities\Bike';
@@ -68,4 +89,10 @@ class BikesModel extends \CodeIgniter\Model
     return $this->where('dragon_bikes', 1)
       ->findAll();
   }
+
+  // public function getPlateNumbers()
+  // {
+  //   return $this->select('plate_number')
+  //     ->findAll();
+  // }
 }

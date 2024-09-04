@@ -290,7 +290,6 @@ class Customers extends \App\Controllers\BaseController
       $this->request->getPost('finish_date') > '2000-01-01'
       && $customer->short_term === '0'
     ) {
-
       $customer->currently_renting = 0;
     }
 
@@ -340,7 +339,7 @@ class Customers extends \App\Controllers\BaseController
     if ($this->model->skipValidation(true)->save($customer)) {
 
       // If customer is no longer renting so bike's status must be changed to SBR
-      if ($customer->currently_renting === '0') {
+      if ($customer->currently_renting === 0) {
 
         $statusChangeModel = new \App\Models\BikeStatusChangeModel;
         $bikeStatusChange = new \App\Entities\BikeStatusChange;
@@ -352,7 +351,6 @@ class Customers extends \App\Controllers\BaseController
         $bikeStatusChange->plate_number = $customer->current_bike;
         $bikeStatusChange->date_time = date('Y-m-d H:i:s', time());
         $bikeStatusChange->new_status = 'Saigon Bike Rentals';
-
         $statusChangeModel->insert($bikeStatusChange);
       }
 
