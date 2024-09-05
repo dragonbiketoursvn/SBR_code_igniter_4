@@ -340,7 +340,6 @@ class Customers extends \App\Controllers\BaseController
 
       // If customer is no longer renting so bike's status must be changed to SBR
       if ($customer->currently_renting === 0) {
-
         $statusChangeModel = new \App\Models\BikeStatusChangeModel;
         $bikeStatusChange = new \App\Entities\BikeStatusChange;
 
@@ -349,7 +348,7 @@ class Customers extends \App\Controllers\BaseController
         //   ->getCurrentStatus($customer->id)
         //   ->plate_number;
         $bikeStatusChange->plate_number = $customer->current_bike;
-        $bikeStatusChange->date_time = date('Y-m-d H:i:s', time());
+        $bikeStatusChange->date_time = $customer->finish_date;
         $bikeStatusChange->new_status = 'Saigon Bike Rentals';
         $statusChangeModel->insert($bikeStatusChange);
       }
