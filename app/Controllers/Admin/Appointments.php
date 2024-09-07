@@ -105,7 +105,7 @@ class Appointments extends \App\Controllers\BaseController
 
     $bikeOutStatusChange = new \App\Entities\BikeStatusChange;
     $bikeInStatusChange = new \App\Entities\BikeStatusChange;
-    $dateTime = key_exists('date_time', $post) ? $post['date_time'] : date('Y-m-d H:i:s');
+    $dateTime = $post['date_time'] !== '' ? $post['date_time'] : date('Y-m-d H:i:s');
 
     if (($post['bike_in'] !== '' && !(in_array($post['bike_in'], $currentBikesPlateNumbers)))
       || $post['bike_out'] !== '' && !(in_array($post['bike_out'], $currentBikesPlateNumbers))
