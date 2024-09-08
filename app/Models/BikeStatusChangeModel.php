@@ -75,4 +75,10 @@ class BikeStatusChangeModel extends \CodeIgniter\Model
     return $this->where('id', $id)
       ->first();
   }
+
+  public function getByCustomerId($customerId)
+  {
+    return $this->where('customer_id', $customerId)
+      ->findAll();
+  }
 }

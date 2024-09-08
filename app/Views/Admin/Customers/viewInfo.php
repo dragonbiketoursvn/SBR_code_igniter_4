@@ -681,6 +681,20 @@ if (!$customer) {
   <div class="field-body">
     <div class="field">
       <div class="control">
+        <button class="button is-danger is-large is-fullwidth" id="show_bsc_records">
+          Bike Status Change History
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="field is-horizontal">
+  <div class="field-label">
+    <!-- Left empty for spacing -->
+  </div>
+  <div class="field-body">
+    <div class="field">
+      <div class="control">
         <a href="<?= site_url('Admin/Home') ?>">
           <button class="button is-warning is-large is-fullwidth" id="show_payments">
             Main Menu

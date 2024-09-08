@@ -100,7 +100,7 @@
     </tr>
 
     <?php foreach ($bikesInGarage as $bike) : ?>
-      <tr>
+      <tr <?= $bike->temporary === 1 ? "style='background: red;'" : '' ?>>
         <td class="column1"><?= $bike->plate_number; ?></td>
         <td class="column2"><?= $bike->model; ?></td>
         <td class="column3"><?= $bike->year; ?></td>

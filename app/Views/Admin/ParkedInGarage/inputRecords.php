@@ -7,19 +7,20 @@
 <form action="" style="margin-bottom: 10px;">
   <div class="field is-horizontal" style="bottom: 200px !important;" id="original">
     <div class="field-label is-normal">
-      <label class="label" for="plate_number">Biển Số Xe</label>
-    </div>
-    <div class="field-body">
-      <div class="field">
-        <p class="control is-expanded">
-          <input autofocus autocomplete="off" list="current_bikes" class="input is-success" id="plate_number" name="plate_number1">
-          <datalist id="current_bikes">
-            <?php foreach ($currentBikes as $currentBike) : ?>
-              <option value="<?= $currentBike->plate_number ?>">
-              <?php endforeach; ?>
-          </datalist>
-        </p>
-      </div>
+      <label class="label">Biển Số Xe
+        <div class="field-body">
+          <div class="field">
+            <p class="control is-expanded">
+              <input autofocus autocomplete="off" list="current_bikes" class="input is-success" id="plate_number" name="plate_number1">
+              <datalist id="current_bikes">
+                <?php foreach ($currentBikes as $currentBike) : ?>
+                  <option value="<?= $currentBike->plate_number ?>">
+                  <?php endforeach; ?>
+              </datalist>
+            </p>
+          </div>
+        </div>
+      </label>
     </div>
   </div>
 
@@ -143,8 +144,11 @@
   const sendData = () => {
     if (currentValues.length > 0 || latestInput.value.trim() !== '') {
       let form = new FormData(document.forms[0]);
+      const url = new URL(location.href);
+      const origin = url.origin;
+      const endPoint = origin + '/Admin/ParkedInGarage/saveRecords';
 
-      fetch("https://hagiangadventures.com/Admin/ParkedInGarage/saveRecords", {
+      fetch(endPoint, {
           method: 'POST',
           body: form,
         }).then((response) => response.json())

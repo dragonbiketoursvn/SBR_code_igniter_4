@@ -83,4 +83,19 @@ class BikeStatusChanges extends \App\Controllers\BaseController
 
     return ($this->response->setJSON($statusChangesArray));
   }
+
+
+  // public function fetchByContractNumber()
+  // {
+  //   $plateNumber = $this->request->getPost('customer_id');
+  //   $statusChanges = $this->model->getStatusHistoryByPlateNumber($plateNumber);
+  //   $statusChangesArray = [];
+
+  //   foreach ($statusChanges as $statusChange) {
+
+  //     $statusChangesArray[] = $statusChange;
+  //   }
+
+  //   return ($this->response->setJSON($statusChangesArray));
+  // }
 }
