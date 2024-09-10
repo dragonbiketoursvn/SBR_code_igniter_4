@@ -12,7 +12,7 @@ class Appointments extends \App\Controllers\BaseController
   public function __construct()
   {
     $this->model = new \App\Models\AppointmentsModel;
-    $this->bikeStatusChangeModel = new \App\Models\bikeStatusChangeModel;
+    $this->bikeStatusChangeModel = new \App\Models\BikeStatusChangeModel;
   }
 
   public function showAll()
