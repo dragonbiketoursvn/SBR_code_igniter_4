@@ -40,12 +40,11 @@
   <div class="field-body">
     <div class="field">
       <p class="control is-expanded">
-        <input autocomplete="off" list="supplier_list" class="input is-success" id="supplier_name" name="supplier_name">
-        <datalist id="supplier_list">
+        <select autocomplete="off" class="input is-success" id="supplier_name" name="supplier_name">
           <?php foreach ($suppliers as $supplier) : ?>
-            <option value="<?= $supplier->name ?>">
-            <?php endforeach; ?>
-        </datalist>
+            <option value="<?= $supplier->name ?>"><?= $supplier->name ?></option>
+          <?php endforeach; ?>
+        </select>
       </p>
     </div>
   </div>
