@@ -57,8 +57,12 @@ class Repairs extends \App\Controllers\BaseController
   {
     $model = new \App\Models\BikesModel;
     $currentBikes = $model->getCurrentBikes();
-
-    return view('Admin/Repairs/getHistory', ['currentBikes' => $currentBikes,]);
+    $dataArray = ['currentBikes' => $currentBikes,];
+    $appointments = (session()->get('appointment'));
+    if ($appointments) {
+      $dataArray['appointments'] = [$appointments];
+    }
+    return view('Admin/Repairs/getHistory', $dataArray);
   }
 
   public function showHistory()

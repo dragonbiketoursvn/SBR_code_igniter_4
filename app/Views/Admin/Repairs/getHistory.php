@@ -12,7 +12,9 @@
     <div class="field-body">
       <div class="field">
         <p class="control is-expanded">
-          <input autofocus autocomplete="off" list="current_bikes" class="input is-success" id="plate_number" name="plate_number">
+          <input autofocus autocomplete="off" list="current_bikes"
+            class="input is-success" id="plate_number" name="plate_number"
+            value="<?= isset($appointments) ? $appointments[0]->current_bike : ''; ?>">
           <?php if (isset($currentBikes)) {
             echo '<datalist id="current_bikes">';
             foreach ($currentBikes as $currentBike) {
@@ -203,6 +205,10 @@
       const inputAndButton = document.querySelector('#input-and-button');
       sendButton.click();
       // inputAndButton.remove();
+    }
+    // clicks the send button if plate_number input is already populated
+    if (plateNumber.value !== '') {
+      sendButton.click();
     }
   });
 

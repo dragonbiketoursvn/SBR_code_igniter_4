@@ -7,10 +7,12 @@ use App\Entities\Appointment;
 class Appointments extends \App\Controllers\BaseController
 {
   private $model;
+  private $bikeStatusChangeModel;
 
   public function __construct()
   {
     $this->model = new \App\Models\AppointmentsModel;
+    $this->bikeStatusChangeModel = new \App\Models\bikeStatusChangeModel;
   }
 
   public function showAll()
@@ -37,6 +39,9 @@ class Appointments extends \App\Controllers\BaseController
   public function showDetails($dateString)
   {
     $appointment = $this->model->where('appointment_time', $dateString)->first();
+    $currentBike = $this->bikeStatusChangeModel
+      ->getCurrentStatus($appointment->customer_id)->plate_number;
+    $appointment->current_bike = $currentBike;
 
     session()->set('appointment', $appointment);
 

@@ -60,7 +60,7 @@ class ParkedInGarage extends \App\Controllers\BaseController
               SELECT MAX(date)
               FROM parked_in_garage
             )
-            ORDER BY model, year";
+            ORDER BY model, year, plate_number";
     $bikesInGarage = $this->db->query($sql)->getResult();
 
     // get most recent bsc record for each bike, check whether ->temporary === '1'
