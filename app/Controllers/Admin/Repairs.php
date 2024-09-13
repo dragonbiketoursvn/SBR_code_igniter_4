@@ -53,6 +53,35 @@ class Repairs extends \App\Controllers\BaseController
     }
   }
 
+  public function updateOrDeleteForm()
+  {
+    $id = $this->request->getPost('id');
+    $repair = $this->repairsModel->findById($id);
+    $parts = $this->bikePartsModel->findDistinct();
+
+    return view('Admin/Repairs/updateOrDeleteForm', [
+      'repair' => $repair,
+      'parts' => $parts
+    ]);
+  }
+
+  public function updateOrDelete()
+  {
+    $post = $this->request->getPost();
+    $repair = new Repair;
+    $repair->fill($this->request->getPost());
+
+    if ($post['delete'] === '1') {
+      $this->repairsModel->delete($post['id']);
+    }
+
+    if ($this->repairsModel->skipValidation(true)->save($repair)) {
+      return redirect()->to(site_url('Admin/Repairs/getHistory'));
+    } else {
+      return redirect()->back()->withInput();
+    }
+  }
+
   public function getHistory()
   {
     $model = new \App\Models\BikesModel;

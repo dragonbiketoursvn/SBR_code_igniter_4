@@ -319,6 +319,27 @@
             row.append(cell15);
             cell16.innerText = record['item_10'];
             row.append(cell16);
+
+            <?php if (session()->get('user_level') == 'super') : ?>
+              let cell17 = document.createElement('td');
+              const url = new URL(location.href);
+              const origin = url.origin;
+              let form = document.createElement('form');
+              form.setAttribute('action', `${origin}/Admin/Repairs/updateOrDeleteForm`);
+              form.setAttribute('method', 'post');
+              form.style.height = "50px";
+              let input = document.createElement('input');
+              input.setAttribute('name', 'id');
+              input.setAttribute('value', record['id']);
+              input.setAttribute('type', 'hidden');
+              let button = document.createElement('button');
+              button.innerText = 'Update/Delete';
+              button.style.height = "100%";
+              form.appendChild(input);
+              form.appendChild(button);
+              cell17.appendChild(form);
+              row.append(cell17);
+            <?php endif; ?>
           }
           fragment.append(row);
         });

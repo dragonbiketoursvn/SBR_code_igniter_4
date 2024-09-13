@@ -9,9 +9,33 @@ class RepairsModel extends \CodeIgniter\Model
   protected $table = 'repairs';
 
   protected $allowedFields = [
-    'plate_number', 'repair_date', 'repaired_by', 'odometer', 'total_cost', 'labor_cost', 'nhot', 'item_1', 'item_2', 'item_3',
-    'item_4', 'item_5', 'item_6', 'item_7', 'item_8', 'item_9', 'item_10', 'item_11', 'item_12', 'item_13',
-    'item_14', 'item_15', 'item_16', 'item_17', 'item_18', 'item_19', 'item_20',
+    'plate_number',
+    'repair_date',
+    'repaired_by',
+    'odometer',
+    'total_cost',
+    'labor_cost',
+    'nhot',
+    'item_1',
+    'item_2',
+    'item_3',
+    'item_4',
+    'item_5',
+    'item_6',
+    'item_7',
+    'item_8',
+    'item_9',
+    'item_10',
+    'item_11',
+    'item_12',
+    'item_13',
+    'item_14',
+    'item_15',
+    'item_16',
+    'item_17',
+    'item_18',
+    'item_19',
+    'item_20',
   ];
 
   protected $returnType = 'App\Entities\Repair';
@@ -33,5 +57,11 @@ class RepairsModel extends \CodeIgniter\Model
     return $this->where('plate_number', $plateNumber)
       ->orderBy('repair_date', 'DESC')
       ->findAll();
+  }
+
+  public function findById($id)
+  {
+    return $this->where('id', $id)
+      ->first();
   }
 }
