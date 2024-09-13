@@ -37,7 +37,7 @@ if (!$repair) {
     <div class="field">
       <p class="control is-expanded">
         <input autocomplete="off" class="input is-success repair_date"
-          id="repair_date" name="customer_name" value="<?= $repair->repair_date ?>">
+          id="repair_date" name="repair_date" value="<?= $repair->repair_date ?>">
       </p>
     </div>
   </div>
