@@ -688,6 +688,29 @@ if (!$customer) {
   </div>
 </div>
 
+<!-- This stays hidden unless user presses 'Bike Status Change History' button  -->
+<div class="bike_status_change_history">
+  <table class="table block is-fullwidth">
+    <thead>
+      <tr>
+        <th>customer_id</th>
+        <th>plate_number</th>
+        <th>date_time</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <?php foreach ($bikeStatusChanges as $bikeStatusChange) : ?>
+        <tr>
+          <td><?= $bikeStatusChange->customer_id ?></td>
+          <td><?= $bikeStatusChange->plate_number ?></td>
+          <td><?= $bikeStatusChange->date_time ?></td>
+        </tr>
+      <?php endforeach; ?>
+    </tbody>
+  </table>
+</div>
+
 <div class="field is-horizontal">
   <div class="field-label">
     <!-- Left empty for spacing -->
@@ -757,6 +780,7 @@ if (!$customer) {
   </table>
 
 </div>
+
 
 <script src="<?= site_url('js/Customers/viewInfo.js'); ?>"></script>
 <script src="<?= site_url('js/Customers/currencyConversion5.js') ?>"></script>

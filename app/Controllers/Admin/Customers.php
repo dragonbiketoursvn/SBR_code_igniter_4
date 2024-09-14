@@ -13,6 +13,8 @@ use PHPMailer\PHPMailer\Exception;
 class Customers extends \App\Controllers\BaseController
 {
   private $model;
+  private $bikesModel;
+  private $bikeStatusChangeModel;
   private $db;
   private $currentBikes;
 
@@ -20,15 +22,15 @@ class Customers extends \App\Controllers\BaseController
   public function __construct()
   {
     $this->model = new \App\Models\CustomersModel;
+    $this->bikesModel = new \App\Models\BikesModel;
+    $this->bikeStatusChangeModel = new \App\Models\BikeStatusChangeModel;
     $this->db = \Config\Database::connect();
 
-    $bikesModel = new \App\Models\BikesModel;
-    $this->currentBikes = $bikesModel->getCurrentBikes();
+    $this->currentBikes = $this->bikesModel->getCurrentBikes();
   }
 
   public function selectContractType()
   {
-
     return view('Admin/Customers/selectContractType');
   }
 
@@ -62,13 +64,6 @@ class Customers extends \App\Controllers\BaseController
           $this->db->query($sql);
         }
       }
-
-      // if (!(gettype($EUR_TO_VND) === 'string')) {
-      //   $USD_TO_VND = (1 / $EUR_TO_USD) * $EUR_TO_VND;
-      //   $sql = "INSERT INTO usd_vnd_exchange_rate(date, price)
-      //           VALUES (CURRENT_DATE(), {$USD_TO_VND})";
-      //   $this->db->query($sql);
-      // }
     }
   }
 
@@ -89,16 +84,8 @@ class Customers extends \App\Controllers\BaseController
   public function newContract()
   {
     $nationalities = $this->model->select('nationality')->distinct()->findAll();
-    $model = new \App\Models\BikesModel;
-    // $sql = "
-    //         SELECT price
-    //         FROM `usd_vnd_exchange_rate`
-    //         ORDER BY id DESC
-    //         LIMIT 1
-    //       ";
+    // $model = new \App\Models\BikesModel;
 
-    // $USD_TO_VND = (float) $this->db->query($sql)->getResult()[0]->price;
-    // $VND_TO_USD = 1 / $USD_TO_VND;
     [$USD_TO_VND, $VND_TO_USD] = $this->getExchangeRates();
 
     return view('Admin/Customers/newContract', [
@@ -112,17 +99,8 @@ class Customers extends \App\Controllers\BaseController
   public function newContractShort()
   {
     $nationalities = $this->model->select('nationality')->distinct()->findAll();
-    $model = new \App\Models\BikesModel;
+    // $model = new \App\Models\BikesModel;
 
-    // $sql = "
-    //     SELECT price
-    //     FROM `usd_vnd_exchange_rate`
-    //     ORDER BY id DESC
-    //     LIMIT 1
-    //   ";
-
-    // $USD_TO_VND = (float) $this->db->query($sql)->getResult()[0]->price;
-    // $VND_TO_USD = 1 / $USD_TO_VND;
     [$USD_TO_VND, $VND_TO_USD] = $this->getExchangeRates();
 
     return view('Admin/Customers/newContractShort', [
@@ -209,8 +187,8 @@ class Customers extends \App\Controllers\BaseController
     $customer->startActivation();
 
     //Get list of all Dragon Bikes from BikesModel, put plate numbers in an array, and check whether customer's bike is in this array
-    $model = new \App\Models\BikesModel;
-    $dragonBikes = $model->getDragonBikes();
+    // $model = new \App\Models\BikesModel;
+    $dragonBikes = $this->bikesModel->getDragonBikes();
     $dragonBikesPlateNumbers = [];
 
     foreach ($dragonBikes as $dragonBike) {
@@ -226,8 +204,8 @@ class Customers extends \App\Controllers\BaseController
     if ($this->model->insert($customer)) {
 
       // Get record of rental bike
-      $bikesModel = new \App\Models\BikesModel;
-      $bike = $bikesModel->getBikeByPlateNumber($customer->current_bike);
+      // $bikesModel = new \App\Models\BikesModel;
+      $bike = $this->bikesModel->getBikeByPlateNumber($customer->current_bike);
 
       // Pass all info from contract to use in activation email (monthly renters only)
       if ($customer->short_term !== "1") {
@@ -246,7 +224,8 @@ class Customers extends \App\Controllers\BaseController
       $newCustomer = $this->model->getCurrentCustomerByName($customer->customer_name);
 
       // Now use new customer record together with original entity to create bike_status_change record
-      $statusChangeModel = new \App\Models\BikeStatusChangeModel;
+      // $statusChangeModel = new \App\Models\BikeStatusChangeModel;
+      // $statusChangeModel = $this->bikeStatusChangeModel;
       $bikeStatusChange = new \App\Entities\BikeStatusChange;
 
       $bikeStatusChange->user = 'ADMIN';
@@ -255,7 +234,7 @@ class Customers extends \App\Controllers\BaseController
       $bikeStatusChange->new_status = $customer->customer_name;
       $bikeStatusChange->customer_id = $newCustomer->id;
 
-      $statusChangeModel->insert($bikeStatusChange);
+      $this->bikeStatusChangeModel->insert($bikeStatusChange);
 
       // If this is a short-term rental, the one and only rental payment will be made at pick up
       // so this can be integrated into contract creation
@@ -340,7 +319,7 @@ class Customers extends \App\Controllers\BaseController
 
       // If customer is no longer renting so bike's status must be changed to SBR
       if ($customer->currently_renting === 0) {
-        $statusChangeModel = new \App\Models\BikeStatusChangeModel;
+        // $statusChangeModel = new \App\Models\BikeStatusChangeModel;
         $bikeStatusChange = new \App\Entities\BikeStatusChange;
 
         $bikeStatusChange->user = 'ADMIN';
@@ -350,7 +329,7 @@ class Customers extends \App\Controllers\BaseController
         $bikeStatusChange->plate_number = $customer->current_bike;
         $bikeStatusChange->date_time = $customer->finish_date;
         $bikeStatusChange->new_status = 'Saigon Bike Rentals';
-        $statusChangeModel->insert($bikeStatusChange);
+        $this->bikeStatusChangeModel->insert($bikeStatusChange);
       }
 
       // If customer is short-term we need to update the payment record in case the amount has changed
@@ -520,87 +499,27 @@ class Customers extends \App\Controllers\BaseController
       return redirect()->back();
     }
 
-    // $customer = new Customer;
-    $model = new \App\Models\BikeStatusChangeModel;
-    $bikesModel = new \App\Models\BikesModel;
     $paymentsModel = new \App\Models\PaymentsModel;
-    // $found = 'false';
-
-    // foreach ($customers as $record) {
-
-    //   if (($record->customer_name === $this->request->getPost('customer_name')) && ($record->id === $this->request->getPost('id'))) {
-
-    //     $customer = $record;
-    //     $found = 'true';
-    //   }
-    // }
-
-
-    $currentStatus = $model->getCurrentStatus($customer->id);
-    // $currentBikes = $bikesModel->getCurrentBikes();
+    $currentStatus = $this->bikeStatusChangeModel->getCurrentStatus($customer->id);
     $payments = $paymentsModel->getByContractNumber($customer->id);
     $monthsPaid = $paymentsModel->getTotalMonthsPaid($customer->id)->months_paid ?? 0;
     $startDate = new Time();
     $startDate = $startDate->createFromFormat('Y-m-d', $customer->start_date);
     $paidUpTo = $startDate->addMonths($monthsPaid)->toDateString();
     [$USD_TO_VND, $VND_TO_USD] = $this->getExchangeRates();
+    $bikeStatusChanges = $this->bikeStatusChangeModel->getByCustomerId($customer->id);
 
     return view('Admin/Customers/viewInfo', [
       'customer' => $customer,
-      // 'customers' => $customers,
       'currentStatus' => $currentStatus,
       'currentBikes' => $this->currentBikes,
       'payments' => $payments,
       'paidUpTo' => $paidUpTo,
       'USD_TO_VND' => $USD_TO_VND,
-      'VND_TO_USD' => $VND_TO_USD
+      'VND_TO_USD' => $VND_TO_USD,
+      'bikeStatusChanges' => $bikeStatusChanges
     ]);
   }
-
-  // public function viewInfo()
-  // {
-  //   if (!$this->request->getPost('customer_name')) {
-  //     return redirect()->back();
-  //   }
-
-  //   $customers = $this->model->getAllCustomers();
-  //   $customer = new Customer;
-  //   $model = new \App\Models\BikeStatusChangeModel;
-  //   $bikesModel = new \App\Models\BikesModel;
-  //   $paymentsModel = new \App\Models\PaymentsModel;
-  //   $found = 'false';
-
-  //   foreach ($customers as $record) {
-
-  //     if (($record->customer_name === $this->request->getPost('customer_name')) && ($record->id === $this->request->getPost('id'))) {
-
-  //       $customer = $record;
-  //       $found = 'true';
-  //     }
-  //   }
-
-  //   if ($found === 'false') {
-
-  //     return redirect()->back();
-  //   }
-
-  //   $currentStatus = $model->getCurrentStatus($customer->id);
-  //   // $currentBikes = $bikesModel->getCurrentBikes();
-  //   $payments = $paymentsModel->getByContractNumber($customer->id);
-  //   $monthsPaid = $paymentsModel->getTotalMonthsPaid($customer->id)->months_paid ?? 0;
-  //   $startDate = new Time();
-  //   $startDate = $startDate->createFromFormat('Y-m-d', $customer->start_date);
-  //   $paidUpTo = $startDate->addMonths($monthsPaid)->toDateString();
-
-  //   return view('Admin/Customers/viewInfo', [
-  //     'customer' => $customer,
-  //     'customers' => $customers,
-  //     'currentStatus' => $currentStatus,
-  //     'currentBikes' => $this->currentBikes,
-  //     'payments' => $payments,
-  //     'paidUpTo' => $paidUpTo,
-  //   ]);
-  // }
 
   public function  viewCurrentCustomers()
   {

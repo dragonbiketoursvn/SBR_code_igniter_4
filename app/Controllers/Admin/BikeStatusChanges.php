@@ -8,12 +8,12 @@ use App\Models\BikeStatusChangeModel;
 class BikeStatusChanges extends \App\Controllers\BaseController
 {
   private $model;
-  // private $customersModel;
+  private $db;
 
   public function __construct()
   {
     $this->model = new BikeStatusChangeModel();
-    // $this->customersModel = new \App\Models\CustomersModel;
+    $this->db = \Config\Database::connect();
   }
 
   public function fetchAll()
@@ -21,13 +21,6 @@ class BikeStatusChanges extends \App\Controllers\BaseController
     $records = $this->model->orderBy('date_time', 'DESC')->findAll();
     return $this->response->setJSON($records);
   }
-
-  // public function fetchLastSixMonths()
-  // {
-  //   $records = $this->model->getLastSixMonths();
-  //   dd($records);
-  //   return $this->response->setJSON($records);
-  // }
 
   public function viewLastSixMonths()
   {
@@ -84,18 +77,125 @@ class BikeStatusChanges extends \App\Controllers\BaseController
     return ($this->response->setJSON($statusChangesArray));
   }
 
+  public function getErrors()
+  {
+    $sqlCustomersNoBike = '
+      SELECT *
+      FROM customers
+      WHERE id
+      NOT IN (
+        SELECT DISTINCT(customer_id)
+        FROM bike_status_change
+      )
+      AND currently_renting = 1
+    ';
+    $customersNoBike = $this->db->query($sqlCustomersNoBike)->getResultArray();
 
-  // public function fetchByContractNumber()
-  // {
-  //   $plateNumber = $this->request->getPost('customer_id');
-  //   $statusChanges = $this->model->getStatusHistoryByPlateNumber($plateNumber);
-  //   $statusChangesArray = [];
+    $sqlBikesNotGargeOrCustomer = '
+      SELECT plate_number
+      FROM bikes
+      WHERE plate_number
+      NOT IN (
+        SELECT plate_number
+        FROM bikes
+        WHERE sale_date > "2009-01-01"
+      ) 
+      AND plate_number NOT IN (
+        SELECT plate_number
+        FROM bike_status_change
+        WHERE date_time = (
+          SELECT MAX(date_time)
+          FROM bike_status_change AS bsc2
+          WHERE bsc2.customer_id = bike_status_change.customer_id
+        )
+        AND customer_id
+        IN (
+          SELECT id
+          FROM customers 
+          WHERE currently_renting = 1
+        )
+      )
+      AND plate_number NOT IN (
+        SELECT plate_number
+        FROM parked_in_garage
+        WHERE date = (
+          SELECT MAX(date)
+          FROM parked_in_garage
+        )
+      )
+    ';
+    $bikesNotGargeOrCustomer = $this->db->query($sqlBikesNotGargeOrCustomer)->getResultArray();
 
-  //   foreach ($statusChanges as $statusChange) {
+    $sqlBikesMultipleStatus = '
+        SELECT *
+        FROM (
+        SELECT plate_number, customer_id, new_status
+        FROM bike_status_change
+        WHERE date_time = (
+            SELECT MAX(date_time)
+            FROM bike_status_change AS bsc2
+            WHERE bsc2.customer_id = bike_status_change.customer_id
+        )
+        AND customer_id
+        IN (
+          SELECT id
+          FROM customers 
+          WHERE currently_renting = 1
+        )
+        )t1 WHERE EXISTS (
+          SELECT 1
+          FROM (
+            SELECT plate_number, customer_id, new_status
+            FROM bike_status_change
+            WHERE date_time = (
+              SELECT MAX(date_time)
+              FROM bike_status_change AS bsc2
+              WHERE bsc2.customer_id = bike_status_change.customer_id
+          )
+          AND customer_id
+          IN (
+              SELECT id
+              FROM customers 
+            WHERE currently_renting = 1
+          )
+        )t2 WHERE t1.plate_number = t2.plate_number
+            AND t1.customer_id != t2.customer_id
+        )
+       ORDER BY plate_number ASC
+    ';
+    $bikesMultipleStatus = $this->db->query($sqlBikesMultipleStatus)->getResultArray();
 
-  //     $statusChangesArray[] = $statusChange;
-  //   }
+    $sqlCustomersBikeInGarage = '
+      SELECT customer_id, new_status, plate_number
+      FROM bike_status_change
+      WHERE date_time = (
+          SELECT MAX(date_time)
+          FROM bike_status_change AS bsc2
+          WHERE bsc2.customer_id = bike_status_change.customer_id
+      )
+      AND customer_id
+      IN (
+        SELECT id
+        FROM customers 
+        WHERE currently_renting = 1
+      )
+      AND plate_number
+      IN (
+      SELECT plate_number
+      FROM parked_in_garage
+      WHERE date = (
+        SELECT MAX(date)
+        FROM parked_in_garage
+      )
+      )
+    ';
+    $customersBikeInGarage = $this->db->query($sqlCustomersBikeInGarage)->getResultArray();
 
-  //   return ($this->response->setJSON($statusChangesArray));
-  // }
+    return view('Admin/BikeStatusChanges/getErrors', [
+      'customersNoBike' => $customersNoBike,
+      'bikesNotGargeOrCustomer' => $bikesNotGargeOrCustomer,
+      'bikesMultipleStatus' => $bikesMultipleStatus,
+      'customersBikeInGarage' => $customersBikeInGarage,
+    ]);
+  }
 }

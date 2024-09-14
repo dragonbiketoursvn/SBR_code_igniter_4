@@ -79,6 +79,7 @@ class BikeStatusChangeModel extends \CodeIgniter\Model
   public function getByCustomerId($customerId)
   {
     return $this->where('customer_id', $customerId)
+      ->orderBy('date_time', 'DESC')
       ->findAll();
   }
 }
