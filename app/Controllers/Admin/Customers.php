@@ -269,7 +269,7 @@ class Customers extends \App\Controllers\BaseController
       $this->request->getPost('finish_date') > '2000-01-01'
       && $customer->short_term === '0'
     ) {
-      $customer->currently_renting = 0;
+      $customer->currently_renting = '0';
     }
 
     // Now get all the uploaded files
@@ -318,7 +318,7 @@ class Customers extends \App\Controllers\BaseController
     if ($this->model->skipValidation(true)->save($customer)) {
 
       // If customer is no longer renting so bike's status must be changed to SBR
-      if ($customer->currently_renting === 0) {
+      if ($customer->currently_renting === '0') {
         // $statusChangeModel = new \App\Models\BikeStatusChangeModel;
         $bikeStatusChange = new \App\Entities\BikeStatusChange;
 
