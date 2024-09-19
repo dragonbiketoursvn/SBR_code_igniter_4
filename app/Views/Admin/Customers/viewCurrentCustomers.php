@@ -104,6 +104,9 @@
         <button class="remove">Remove Filters</button>
     </div>
 
+    <p>Current Customer Count: <b><?= $currentCustomerCount ?></b></p>
+    <p>Former Renters Still Owe Money: <b><?= $customersOweMoneyCount ?></b></p>
+
     <table id="displayTable">
         <tr id="filterRow">
             <th data-column="column1">Name</th>
@@ -117,8 +120,8 @@
         </tr>
 
         <?php foreach ($customers as $customer) : ?>
-            <tr <?php if ($customer->finish_date > '2000-01-01') {
-                    echo 'class="hidden"';
+            <tr <?php if ($customer->owes_money_on_old_contract === '1') {
+                    echo 'style="background: yellow;"';
                 } ?>>
                 <td class="column1"><?= $customer->customer_name; ?></td>
                 <td class="column2"><?= $customer->nationality; ?></td>

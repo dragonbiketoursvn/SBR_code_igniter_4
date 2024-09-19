@@ -526,6 +526,9 @@ class Customers extends \App\Controllers\BaseController
     $paymentsModel = new \App\Models\PaymentsModel;
 
     $customers = $this->model->getCurrentCustomers();
+    $currentCustomerCount = count($customers);
+    $customersOweMoney = $this->model->getFormerCustomersOweMoney();
+    $customersOweMoneyCount = count($customersOweMoney);
 
     foreach ($customers as $customer) {
       $monthsPaid = $paymentsModel->getTotalMonthsPaid($customer->id)->months_paid ?? 0;
@@ -547,7 +550,13 @@ class Customers extends \App\Controllers\BaseController
       return ($customerA->paid_up_to < $customerB->paid_up_to) ? -1 : 1;
     });
 
-    return view('Admin/Customers/viewCurrentCustomers', ['customers' => $customers]);
+    $customers = array_merge($customersOweMoney, $customers);
+
+    return view('Admin/Customers/viewCurrentCustomers', [
+      'customers' => $customers,
+      'currentCustomerCount' => $currentCustomerCount,
+      'customersOweMoneyCount' => $customersOweMoneyCount,
+    ]);
   }
 
   public function  viewCurrentCustomersShortTerm()

@@ -273,6 +273,20 @@ if (!$customer) {
     </div>
   </div>
 
+  <div class="field is-horizontal" id="owes_money">
+    <div class="field-label is-normal">
+      <label class="label" for="owes_money_on_old_contract">Still Owes Money</label>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <label class="checkbox">
+          <input type="hidden" name="owes_money_on_old_contract" value=0>
+          <input type="checkbox" name="owes_money_on_old_contract" value=1>
+        </label>
+      </div>
+    </div>
+  </div>
+
   <?php if ($customer->short_term) : ?>
 
     <div class="field is-horizontal">

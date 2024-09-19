@@ -9,16 +9,61 @@ class CustomersModel extends \CodeIgniter\Model
   protected $table = 'customers';
 
   protected $allowedFields = [
-    'customer_name', 'nationality', 'male', 'email_address', 'primary_contact_channel', 'email_confirmed', 'phone_number', 'employer',
-    'found_via', 'currently_renting', 'start_date', 'deposit_type', 'current_bike', 'rent',
-    'finish_date', 'notes', 'building_name', 'building_number', 'street_name', 'ward', 'district', 'city',
-    'passport_photo', 'license_photo', 'dragon_bikes', 'activation_hash', 'is_active', 'passport', 'TRC_or_visa',
-    'license_front', 'license_back', 'short_term', 'model_year_code', 'rent_usd', 'number_full_helmets',
-    'replacement_cost_full_helmet', 'number_three_quarter_helmets', 'replacement_cost_three_quarter_helmet',
-    'givi_topcase', 'givi_topcase_replacement_cost', 'givi_pannier_quantity', 'givi_pannier_replacement_cost',
-    'madfox_saddlebags', 'madfox_saddlebags_replacement_cost', 'inner_tubes_quantity',
-    'inner_tubes_replacement_cost', 'damage_insurance_amount', 'additional_items_services', 'service_complete',
-    'additional_items_cost', 'odometer_start', 'odometer_finish', 'start_city', 'finish_city'
+    'customer_name',
+    'nationality',
+    'male',
+    'email_address',
+    'primary_contact_channel',
+    'email_confirmed',
+    'phone_number',
+    'employer',
+    'found_via',
+    'currently_renting',
+    'start_date',
+    'deposit_type',
+    'current_bike',
+    'rent',
+    'finish_date',
+    'notes',
+    'building_name',
+    'building_number',
+    'street_name',
+    'ward',
+    'district',
+    'city',
+    'passport_photo',
+    'license_photo',
+    'dragon_bikes',
+    'activation_hash',
+    'is_active',
+    'passport',
+    'TRC_or_visa',
+    'license_front',
+    'license_back',
+    'short_term',
+    'model_year_code',
+    'rent_usd',
+    'number_full_helmets',
+    'replacement_cost_full_helmet',
+    'number_three_quarter_helmets',
+    'replacement_cost_three_quarter_helmet',
+    'givi_topcase',
+    'givi_topcase_replacement_cost',
+    'givi_pannier_quantity',
+    'givi_pannier_replacement_cost',
+    'madfox_saddlebags',
+    'madfox_saddlebags_replacement_cost',
+    'inner_tubes_quantity',
+    'inner_tubes_replacement_cost',
+    'damage_insurance_amount',
+    'additional_items_services',
+    'service_complete',
+    'additional_items_cost',
+    'odometer_start',
+    'odometer_finish',
+    'start_city',
+    'finish_city',
+    'owes_money_on_old_contract'
   ];
 
   protected $returnType = 'App\Entities\Customer';
@@ -58,11 +103,11 @@ class CustomersModel extends \CodeIgniter\Model
     return $this->where('currently_renting', 1)
       ->findAll();
   }
- 
+
   public function getCurrentCustomersMonthly()
   {
     return $this->where('currently_renting', 1)
-      ->where('short_term', 0)  
+      ->where('short_term', 0)
       ->findAll();
   }
 
@@ -73,6 +118,12 @@ class CustomersModel extends \CodeIgniter\Model
       ->findAll();
   }
 
+  public function getFormerCustomersOweMoney()
+  {
+    return $this->where('owes_money_on_old_contract', 1)
+      ->findAll();
+  }
+
   public function getAllCustomers()
   {
     return $this->orderBy('start_date', 'DESC')->findAll();
@@ -80,14 +131,12 @@ class CustomersModel extends \CodeIgniter\Model
 
   public function getCustomerByID($id)
   {
-
     return $this->where('id', $id)
       ->first();
   }
 
   public function getCurrentCustomerByName($name)
   {
-
     return $this->where('customer_name', $name)
       ->where('currently_renting', 1)
       ->first();

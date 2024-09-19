@@ -16,6 +16,7 @@
   const deleteButtons = document.querySelectorAll(".deleteButton"); // delete buttons for each photo
   const photoInputs = document.querySelectorAll(".photoInput"); // photo inputs are hidden until 'edit' button is pressed
   const selectPhotos = document.querySelectorAll(".selectPhoto"); // 'selectPhoto' buttons, which display during edit mode in photoBoxes which have no image
+  const owesMoney = document.querySelector("#owes_money");
 
   // Fore each photoImage that loads set its photoBox's data-image attribute to "loaded" (default is "unloaded")
   photoImages.forEach(function (e) {
@@ -45,6 +46,7 @@
 
     edit.classList.add("hidden");
     update.classList.remove("hidden");
+    owesMoney.classList.remove("hidden");
     // photoInputs.forEach((e) => e.classList.remove('hidden'));
   });
 
@@ -67,6 +69,7 @@
 
   // Show customer info when user clicks on Show Customer Details (and remove the Show Customer Details button)
   showCustomerDetails.addEventListener("click", function (e) {
+    owesMoney.classList.add("hidden");
     edit.classList.remove("hidden");
     customerInfo.classList.remove("hidden");
     e.target.classList.add("hidden");
