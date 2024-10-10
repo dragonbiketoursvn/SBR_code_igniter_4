@@ -123,7 +123,12 @@
             <tr <?php if ($customer->owes_money_on_old_contract === '1') {
                     echo 'style="background: yellow;"';
                 } ?>>
-                <td class="column1"><?= $customer->customer_name; ?></td>
+                <td class="column1"
+                    <?php
+                    if (in_array($customer->id, $customerIdsCompensation)) {
+                        echo 'style="background: green;"';
+                    }
+                    ?>><?= $customer->customer_name ?> </td>
                 <td class="column2"><?= $customer->nationality; ?></td>
                 <td class="column3"><?= $customer->rent; ?></td>
                 <td class="column4"><?= $customer->start_date; ?></td>

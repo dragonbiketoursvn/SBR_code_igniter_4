@@ -142,6 +142,11 @@ class CustomersModel extends \CodeIgniter\Model
       ->first();
   }
 
+  public function getLatestRecord()
+  {
+    return $this->orderBy('id', 'DESC')->first();
+  }
+
   public function activateByToken($token)
   {
 

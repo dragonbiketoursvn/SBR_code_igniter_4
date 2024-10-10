@@ -11,11 +11,15 @@ class Bikes extends \App\Controllers\BaseController
 {
   private $model;
   private $customersModel;
+  private $compensationTicketsModel;
+  private $compensationPaymentsModel;
 
   public function __construct()
   {
     $this->model = new \App\Models\BikesModel;
     $this->customersModel = new \App\Models\CustomersModel;
+    $this->compensationTicketsModel = new \App\Models\CompensationTicketsModel;
+    $this->compensationPaymentsModel = new \App\Models\CompensationPaymentsModel;
   }
 
   public function selectView()
@@ -214,6 +218,21 @@ class Bikes extends \App\Controllers\BaseController
     return ($this->response->setJSON($bike));
   }
 
+  public function showCompensationOwed()
+  {
+    $plateNumber = $this->request->getPost('plate_number');
+    $compensationTicket = $this->compensationTicketsModel->getActiveTicketsByPlateNumber($plateNumber);
+    $customer = $this->customersModel->getCustomerByID($compensationTicket->customer_id);
+    $compensationTicket->customer_name = $customer->customer_name;
+    $compensationTicket->paidToDate =
+      $this->compensationPaymentsModel
+        ->getTotalPaidOnTicket($compensationTicket->id)[0]->amount;
+    $compensationTicket->amountOutstanding =
+      $compensationTicket->cost_incurred - $compensationTicket->paidToDate;
+
+    return ($this->response->setJSON($compensationTicket));
+  }
+
   // Displays reg photo at $path if it exists
   public function displayRegPhoto($path)
   {
@@ -391,5 +410,20 @@ class Bikes extends \App\Controllers\BaseController
       'models' => $models,
       'customers' => $customers,
     ]);
+  }
+
+  public function viewData()
+  {
+    $currentBikes = $this->model->getCurrentBikes();
+    $bikesMoneyOwed = $this->model->getBikesOwedMoney();
+
+    $models = $this->model->getCurrentModels();
+    $customers = $this->customersModel->getCurrentCustomers();
+    dd('cock');
+    // return view('Admin/Bikes/viewAll', [
+    //   'bikes' => $bikes,
+    //   'models' => $models,
+    //   'customers' => $customers,
+    // ]);
   }
 }

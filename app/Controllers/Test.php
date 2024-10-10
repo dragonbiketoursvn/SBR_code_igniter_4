@@ -189,6 +189,46 @@ class Test extends BaseController
 
   public function getMaintenanceList()
   {
+    // $sql = 'SELECT SUBSTRING_INDEX(t1.plate_number, " ", 1) AS plate_number, t1.customer_id, c.customer_name, c.email_address
+    //         FROM ( 
+    //             SELECT * 
+    //         FROM bike_status_change
+    //         WHERE (plate_number, date_time) 
+    //         IN
+    //         (
+    //             SELECT t1.plate_number, MAX(t1.date_time) AS date_time
+    //             FROM
+    //             (
+    //                 SELECT * FROM bike_status_change 
+    //                 WHERE (customer_id, date_time) IN ( 
+    //                     SELECT customer_id, MAX(date_time) AS date_time FROM bike_status_change 
+    //                     WHERE customer_id IN ( 
+    //                         SELECT id FROM customers WHERE currently_renting = 1 AND short_term = 0
+    //                     ) 
+    //                     GROUP BY customer_id 
+    //                 )
+    //             )t1
+    //             GROUP BY t1.plate_number
+    //         )
+    //             ) t1 JOIN ( 
+    //                 SELECT plate_number, MAX(repair_date) AS repair_date
+    //                 FROM repairs 
+    //                 WHERE nhot = 1 
+    //                 AND plate_number NOT IN ( 
+    //                     SELECT plate_number 
+    //                     FROM bikes 
+    //                     WHERE sale_date > "2000-01-01" 
+    //                 ) 
+    //                 GROUP BY plate_number 
+    //                 HAVING MAX(repair_date) < DATE_SUB(CURRENT_TIMESTAMP(), INTERVAL 3 MONTH) 
+    //                 ORDER BY MAX(repair_date) 
+    //                 ) t2 
+    //                 ON t1.plate_number = t2.plate_number 
+    //                 JOIN customers c on c.id = t1.customer_id  
+    //         LIMIT 40
+    //         ';
+
+    // Update SQL statement to get newly purchased bikes which haven't yet had an oil change
     $sql = 'SELECT SUBSTRING_INDEX(t1.plate_number, " ", 1) AS plate_number, t1.customer_id, c.customer_name, c.email_address
             FROM ( 
                 SELECT * 
@@ -211,22 +251,28 @@ class Test extends BaseController
                 GROUP BY t1.plate_number
             )
                 ) t1 JOIN ( 
-                    SELECT plate_number, MAX(repair_date) AS repair_date
-                    FROM repairs 
-                    WHERE nhot = 1 
+                    SELECT plate_number 
+                    FROM bikes 
+                    WHERE purchase_date BETWEEN "2023-02-01" AND  DATE_SUB(CURRENT_TIMESTAMP(), INTERVAL 2 MONTH)
                     AND plate_number NOT IN ( 
+                        SELECT DISTINCT(plate_number) 
+                        FROM repairs 
+                        WHERE nhot = 1 
+                    ) OR plate_number IN ( 
                         SELECT plate_number 
-                        FROM bikes 
-                        WHERE sale_date > "2000-01-01" 
-                    ) 
-                    GROUP BY plate_number 
-                    HAVING MAX(repair_date) < DATE_SUB(CURRENT_TIMESTAMP(), INTERVAL 3 MONTH) 
-                    ORDER BY MAX(repair_date) 
-                    ) t2 
-                    ON t1.plate_number = t2.plate_number 
-                    JOIN customers c on c.id = t1.customer_id  
-            LIMIT 40
-            ';
+                        FROM repairs 
+                        WHERE nhot = 1 
+                        AND plate_number NOT IN ( 
+                            SELECT plate_number 
+                            FROM bikes 
+                            WHERE sale_date > "2000-01-01" 
+                        ) GROUP BY plate_number HAVING MAX(repair_date) < DATE_SUB(CURRENT_TIMESTAMP(), INTERVAL 3 MONTH) 
+                         ORDER BY MAX(repair_date) ) 
+                                        ) t2 
+                                        ON t1.plate_number = t2.plate_number 
+                                        JOIN customers c on c.id = t1.customer_id  
+                    ORDER BY `c`.`customer_name` ASC;
+    ';
 
     $db = db_connect();
 

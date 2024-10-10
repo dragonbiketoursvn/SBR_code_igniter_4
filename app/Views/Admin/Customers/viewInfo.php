@@ -49,6 +49,42 @@ if (!$customer) {
   </div>
 </div>
 
+<?php
+if ($compensationTicket) {
+  echo "
+      <div class='block'>
+        <table class='table block is-fullwidth'>
+          <thead>
+            <tr>
+              <th>
+                Outstanding Compensation Ticket
+              </th>
+            </tr>
+            <tr>
+              <th>Date</th>
+              <th>Plate</th>
+              <th>Status</th>
+              <th>Cost Incurred</th>
+              <th>Paid to Date</th>
+              <th>Amount Outstanding</th>
+            </tr>
+          </thead>
+           <tbody>
+            <tr>
+              <td>{$compensationTicket->date}</td>
+              <td>{$compensationTicket->plate_number}</td>
+              <td>{$compensationTicket->stolen_destroyed_damaged}</td>
+              <td>{$compensationTicket->cost_incurred}</td>
+              <td>{$compensationTicket->paidToDate}</td>
+              <td>{$compensationTicket->amountOutstanding}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    ";
+}
+?>
+
 <div class="customer_info">
 
   <div class="field is-horizontal" style="bottom: 200px !important;">
@@ -281,7 +317,8 @@ if (!$customer) {
       <div class="field">
         <label class="checkbox">
           <input type="hidden" name="owes_money_on_old_contract" value=0>
-          <input type="checkbox" name="owes_money_on_old_contract" value=1>
+          <input type="checkbox" name="owes_money_on_old_contract" value=1
+            <?= $customer->owes_money_on_old_contract ? 'checked' : '' ?>>
         </label>
       </div>
     </div>
@@ -669,6 +706,24 @@ if (!$customer) {
         <button class="button is-link is-large is-fullwidth" id="showCustomerDetails">
           Show Customer Details
         </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="field is-horizontal">
+  <div class="field-label">
+    <!-- Left empty for spacing -->
+  </div>
+  <div class="field-body">
+    <div class="field">
+      <div class="control">
+        <a href="<?= site_url("Admin/CompensationTickets/addForm/{$customer->id}") ?>">
+          <button class="button is-primary is-large is-fullwidth">
+            Record Bike Loss or Damage
+          </button>
+        </a>
       </div>
     </div>
   </div>

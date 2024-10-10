@@ -21,6 +21,148 @@
   </div>
 </div>
 
+<div class="block" id="compensation-table">
+  <?= form_open('Admin/compensationTickets/update') ?>
+
+  <input type="hidden" name="id" id="compensation-id">
+
+  <div class="field is-horizontal" style="bottom: 200px !important;">
+    <div class="field-label is-normal">
+      <label class="label" for="customer_name">Customer Name</label>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <p class="control is-expanded">
+          <input disabled autocomplete="off" class="input is-success"
+            id="compensation_customer_name" name="customer_name">
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="field is-horizontal" style="bottom: 200px !important;">
+    <div class="field-label is-normal">
+      <label class="label" for="compensation_date">Date</label>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <p class="control is-expanded">
+          <input disabled autocomplete="off" type="date" class="input is-success"
+            id="compensation-date" name="date" value="<?= date('Y-m-d') ?>">
+        </p>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="field is-horizontal">
+    <div class="field-label is-normal">
+      <label class="label" for="stolen_destroyed_damaged">Stolen, Destroyed, or Damaged?</label>
+    </div>
+    <div class="field-body">
+      <div class="select">
+        <select disabled name="stolen_destroyed_damaged" id="stolen_destroyed_damaged">
+          <option value="STOLEN">STOLEN</option>
+          <option value="DESTROYED">DESTROYED</option>
+          <option value="DAMAGED">DAMAGED</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="field is-horizontal" style="bottom: 200px !important;">
+    <div class="field-label is-normal">
+      <label class="label" for="compensation_plate_number">Plate Number</label>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <p class="control is-expanded">
+          <input disabled autocomplete="off" list="current_bikes"
+            class="input is-success" id="compensation_plate_number" name="compensation_plate_number">
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="field is-horizontal">
+    <div class="field-label is-normal">
+      <label class="label" for="cost_incurred">Cost Incurred</label>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <p class="control is-expanded">
+          <input disabled autocomplete="off" class="input is-success"
+            type="number" id="cost_incurred" name="cost_incurred">
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="field is-horizontal">
+    <div class="field-label is-normal">
+      <label class="label" for="paid-to-date">Amount Paid to Date</label>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <p class="control is-expanded">
+          <input readonly autocomplete="off" class="input is-success"
+            type="number" id="paid-to-date">
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="field is-horizontal">
+    <div class="field-label is-normal">
+      <label class="label" for="amount-outstanding">Amount Outstanding</label>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <p class="control is-expanded">
+          <input readonly autocomplete="off" class="input is-success"
+            type="number" id="amount-outstanding">
+        </p>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="field is-horizontal">
+    <div class="field-label is-normal">
+      <label class="label" for="active">Active?</label>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <label class="checkbox">
+          <input type="hidden" name="active" value=0>
+          <input disabled type="checkbox" name="active" id="active" value=1>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="field is-horizontal">
+    <div class="field-label">
+      <!-- Left empty for spacing -->
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <div class="control">
+          <button class="button is-primary is-large is-fullwidth" id="compensation-button">
+            Edit Compensation Ticket
+          </button>
+          <button class="button is-danger is-large is-fullwidth hidden" id="compensation-button-submit">
+            Update
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </form>
+
+</div>
+
 <?= form_open_multipart(site_url('Admin/Bikes/updateRecord')) ?>
 
 <div class="field is-horizontal plateNumberDiv" style="bottom: 200px !important;">
@@ -437,6 +579,22 @@
   const selectNewProfile = document.querySelector('.selectNewProfile');
   const plateNumber = document.querySelector('#plate_number');
   const plateNumberDiv = document.querySelector('.plateNumberDiv');
+  const compensationTable = document.querySelector('#compensation-table');
+  const compensationTableEditButton = document.querySelector('#compensation-button');
+  const compensationTableSubmitButton = document.querySelector('#compensation-button-submit');
+  const compensationInputs = compensationTable.querySelectorAll('input');
+  const compensationSelect = compensationTable.querySelector('select');
+  const compensationCustomerName = compensationTable.querySelector('#compensation_customer_name');
+
+  compensationTableEditButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    compensationInputs.forEach(input => {
+      input.removeAttribute('disabled');
+    });
+    compensationSelect.removeAttribute('disabled');
+    e.target.remove();
+    compensationTableSubmitButton.classList.remove('hidden');
+  });
 
   // And constants for all the other inputs and buttons
   const editButton = document.querySelector('#edit_button');
@@ -493,6 +651,7 @@
     updateButton.classList.add('hidden');
     cancelButton.classList.add('hidden');
     selectNewProfile.classList.add('hidden');
+    compensationTable.classList.add('hidden');
   });
 
   // This section of code is for selecting a bike and asynchronously obtaining its profile info from
@@ -550,6 +709,33 @@
         editButton.classList.remove('hidden');
       }
     });
+
+    fetch("<?= site_url('Admin/Bikes/showCompensationOwed') ?>", {
+        method: 'POST',
+        body: formData
+      }).then(response => response.json())
+      .then(json => {
+        if (json !== null) {
+          compensationTable.classList.remove('hidden');
+          const compensationId = document.querySelector("#compensation-id");
+          compensationId.value = json.id;
+          const stolenDestroyedDamaged = document.querySelector("#stolen_destroyed_damaged");
+          stolenDestroyedDamaged.value = json.stolen_destroyed_damaged;
+          const compensationDate = document.querySelector("#compensation-date");
+          compensationDate.value = json.date;
+          const compensationPlateNumber = document.querySelector("#compensation_plate_number");
+          compensationPlateNumber.value = json.plate_number;
+          const costIncurred = document.querySelector("#cost_incurred");
+          costIncurred.value = json.cost_incurred;
+          const paidToDate = document.querySelector("#paid-to-date");
+          paidToDate.value = json.paidToDate;
+          const amountOutstanding = document.querySelector("#amount-outstanding");
+          amountOutstanding.value = json.amountOutstanding;
+          compensationCustomerName.value = json.customer_name;
+          const active = document.querySelector("#active");
+          json.active ? active.setAttribute('checked', true) : null;
+        }
+      });
   });
 
   // Create consts for the UNIQUE individual page elements plus consts for the other elements taken as UNIQUE groups.
@@ -836,49 +1022,6 @@
     photoImages.forEach(e => e.style.filter = 'brightness(100%)');
 
   });
-
-  // // code to compress image files before uploading via form
-  // const fileInputs = document.querySelectorAll('input[type="file"]');
-
-  // fileInputs.forEach(fileInput => {
-
-  //   const captureImage = (image) => {
-  //     const imageFile = fileInput.files[0];
-  //     const imageURL = URL.createObjectURL(imageFile);
-  //     image.src = imageURL;
-  //   };
-
-  //   const toBlobCallback = (blob) => {
-  //     const myFile = new File([blob], String(Date.now()) + ".jpg", {
-  //       type: blob.type,
-  //     });
-  //     const dataTransfer = new DataTransfer();
-  //     dataTransfer.items.add(myFile);
-  //     fileInput.files = dataTransfer.files; // fileInput referenced from outer scope
-  //     console.log(myFile);
-  //   };
-
-  //   // using as evt listener ensures the image has loaded before canvas is created
-  //   const prepareCanvasForCompression = (evt) => {
-  //     const image = evt.target;
-  //     const canvas = document.createElement('canvas');
-  //     canvas.width = image.width;
-  //     canvas.height = image.height;
-  //     const ctx = canvas.getContext('2d');
-  //     ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
-  //     canvas.toBlob(toBlobCallback,
-  //       "image/jpeg",
-  //       0.8);
-  //   };
-
-  //   const compressAndAttachFile = (evt) => {
-  //     const image = document.createElement('img'); // needed as input by other callbacks
-  //     image.addEventListener('load', prepareCanvasForCompression); // only way to ensure img has loaded before canvas is created
-  //     captureImage(image); // captures imageFile from fileInput, creates and assigns URL to image.src
-  //   };
-
-  //   fileInput.addEventListener('change', compressAndAttachFile);
-  // });
 </script>
 
 <?= $this->endSection() ?>

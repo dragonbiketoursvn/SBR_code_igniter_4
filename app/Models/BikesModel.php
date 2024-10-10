@@ -32,7 +32,8 @@ class BikesModel extends \CodeIgniter\Model
     'pic_side',
     'pic_rear',
     'pic_trunk',
-    'purchased_from'
+    'purchased_from',
+    'owed_money'
   ];
 
   protected $returnType = 'App\Entities\Bike';
@@ -89,10 +90,4 @@ class BikesModel extends \CodeIgniter\Model
     return $this->where('dragon_bikes', 1)
       ->findAll();
   }
-
-  // public function getPlateNumbers()
-  // {
-  //   return $this->select('plate_number')
-  //     ->findAll();
-  // }
 }

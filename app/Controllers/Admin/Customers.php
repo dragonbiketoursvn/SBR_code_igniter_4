@@ -15,6 +15,8 @@ class Customers extends \App\Controllers\BaseController
   private $model;
   private $bikesModel;
   private $bikeStatusChangeModel;
+  private $compensationTicketsModel;
+  private $compensationPaymentsModel;
   private $db;
   private $currentBikes;
 
@@ -24,6 +26,8 @@ class Customers extends \App\Controllers\BaseController
     $this->model = new \App\Models\CustomersModel;
     $this->bikesModel = new \App\Models\BikesModel;
     $this->bikeStatusChangeModel = new \App\Models\BikeStatusChangeModel;
+    $this->compensationTicketsModel = new \App\Models\CompensationTicketsModel;
+    $this->compensationPaymentsModel = new \App\Models\CompensationPaymentsModel;
     $this->db = \Config\Database::connect();
 
     $this->currentBikes = $this->bikesModel->getCurrentBikes();
@@ -220,8 +224,10 @@ class Customers extends \App\Controllers\BaseController
         $this->sendActivationEmail($customer, $bike, $value);
       }
 
+      // better if we get the new customer's id!!
       // Get new customer record
-      $newCustomer = $this->model->getCurrentCustomerByName($customer->customer_name);
+      // $newCustomer = $this->model->getCurrentCustomerByName($customer->customer_name);
+      $newCustomer = $this->model->getLatestRecord();
 
       // Now use new customer record together with original entity to create bike_status_change record
       // $statusChangeModel = new \App\Models\BikeStatusChangeModel;
@@ -494,10 +500,7 @@ class Customers extends \App\Controllers\BaseController
     }
 
     $customer = $this->model->getCustomerByID($this->request->getPost('id'));
-
-    if (!$customer) {
-      return redirect()->back();
-    }
+    $compensationTicket = $this->compensationTicketsModel->getActiveTicketsByCustomerId($customer->id);
 
     $paymentsModel = new \App\Models\PaymentsModel;
     $currentStatus = $this->bikeStatusChangeModel->getCurrentStatus($customer->id);
@@ -509,6 +512,13 @@ class Customers extends \App\Controllers\BaseController
     [$USD_TO_VND, $VND_TO_USD] = $this->getExchangeRates();
     $bikeStatusChanges = $this->bikeStatusChangeModel->getByCustomerId($customer->id);
 
+    if ($compensationTicket) {
+      $compensationTicket->paidToDate = $this->compensationPaymentsModel
+        ->getTotalPaidOnTicket($compensationTicket->id)[0]->amount;
+      $compensationTicket->amountOutstanding =
+        $compensationTicket->cost_incurred - $compensationTicket->paidToDate;
+    }
+
     return view('Admin/Customers/viewInfo', [
       'customer' => $customer,
       'currentStatus' => $currentStatus,
@@ -517,7 +527,8 @@ class Customers extends \App\Controllers\BaseController
       'paidUpTo' => $paidUpTo,
       'USD_TO_VND' => $USD_TO_VND,
       'VND_TO_USD' => $VND_TO_USD,
-      'bikeStatusChanges' => $bikeStatusChanges
+      'bikeStatusChanges' => $bikeStatusChanges,
+      'compensationTicket' => $compensationTicket
     ]);
   }
 
@@ -529,6 +540,11 @@ class Customers extends \App\Controllers\BaseController
     $currentCustomerCount = count($customers);
     $customersOweMoney = $this->model->getFormerCustomersOweMoney();
     $customersOweMoneyCount = count($customersOweMoney);
+    $compensationTicketsQueryResult = $this->compensationTicketsModel->getCustomerIdsWithActiveTickets();
+    $customerIdsCompensation = [];
+    foreach ($compensationTicketsQueryResult as $customerId) {
+      $customerIdsCompensation[] = $customerId->customer_id;
+    }
 
     foreach ($customers as $customer) {
       $monthsPaid = $paymentsModel->getTotalMonthsPaid($customer->id)->months_paid ?? 0;
@@ -556,6 +572,7 @@ class Customers extends \App\Controllers\BaseController
       'customers' => $customers,
       'currentCustomerCount' => $currentCustomerCount,
       'customersOweMoneyCount' => $customersOweMoneyCount,
+      'customerIdsCompensation' => $customerIdsCompensation
     ]);
   }
 

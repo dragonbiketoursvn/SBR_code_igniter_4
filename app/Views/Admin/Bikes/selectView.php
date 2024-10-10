@@ -61,4 +61,21 @@
     </div>
 </div>
 
+<div class="field is-horizontal">
+    <div class="field-label">
+        <!-- Left empty for spacing -->
+    </div>
+    <div class="field-body">
+        <div class="field">
+            <div class="control">
+                <a href="<?= site_url('Admin/Bikes/viewData') ?>">
+                    <button class="button is-danger is-large is-fullwidth toggle">
+                        View All (Data Table)
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
 <?= $this->endSection() ?>

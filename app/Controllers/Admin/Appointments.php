@@ -8,11 +8,17 @@ class Appointments extends \App\Controllers\BaseController
 {
   private $model;
   private $bikeStatusChangeModel;
+  private $customersModel;
+  private $compensationTicketsModel;
+  private $compensationPaymentsModel;
 
   public function __construct()
   {
     $this->model = new \App\Models\AppointmentsModel;
     $this->bikeStatusChangeModel = new \App\Models\BikeStatusChangeModel;
+    $this->customersModel = new \App\Models\CustomersModel;
+    $this->compensationTicketsModel = new \App\Models\CompensationTicketsModel;
+    $this->compensationPaymentsModel = new \App\Models\CompensationPaymentsModel;
   }
 
   public function showAll()
@@ -62,7 +68,18 @@ class Appointments extends \App\Controllers\BaseController
       return redirect()->to(site_url('Admin/Appointments/bikeStatusCheck'));
     }
 
-    return view('Admin/Appointments/paymentCheck', ['appointment' => $appointment]);
+    if ($appointment->compensation === '1') {
+      $compensationTicket = $this->compensationTicketsModel
+        ->getActiveTicketsByCustomerId($appointment->customer_id);
+      $appointment->compensationTicket = $compensationTicket;
+      $paidToDate = $this->compensationPaymentsModel
+        ->getTotalPaidOnTicket($compensationTicket->id)[0]->amount;
+      $appointment->paidToDate = $paidToDate;
+
+      return view('Admin/CompensationTickets/paymentForm', ['appointment' => $appointment]);
+    } else {
+      return view('Admin/Appointments/paymentCheck', ['appointment' => $appointment]);
+    }
   }
 
   public function bikeStatusCheck()
@@ -99,7 +116,6 @@ class Appointments extends \App\Controllers\BaseController
   {
     $post = $this->request->getPost();
     $appointment = session()->get('appointment');
-    $model = new \App\Models\BikeStatusChangeModel;
     $bikesModel = new \App\Models\BikesModel;
     $currentBikes = $bikesModel->getCurrentBikes();
     $currentBikesPlateNumbers = [];
@@ -125,7 +141,7 @@ class Appointments extends \App\Controllers\BaseController
       $bikeOutStatusChange->date_time = $dateTime;
       $bikeOutStatusChange->new_status = $appointment->customer_name;
       $bikeOutStatusChange->customer_id = $appointment->customer_id;
-      $model->save($bikeOutStatusChange);
+      $this->bikeStatusChangeModel->save($bikeOutStatusChange);
 
       //And set the appointment session variable
       $appointment->received_bike = 1;
@@ -141,7 +157,7 @@ class Appointments extends \App\Controllers\BaseController
       $bikeInStatusChange->date_time = $dateTime;
       $bikeInStatusChange->new_status = 'Saigon Bike Rentals';
 
-      $model->save($bikeInStatusChange);
+      $this->bikeStatusChangeModel->save($bikeInStatusChange);
 
       //And set the appointment session variable
       $appointment->returned_bike = 1;
@@ -184,32 +200,45 @@ class Appointments extends \App\Controllers\BaseController
       return redirect()->to(site_url('Admin/Appointments/paymentCheck'));
     } else {
 
-      $model = new \App\Models\CustomersModel;
-      $currentCustomers = $model->getCurrentCustomers();
+      $currentCustomers = $this->customersModel->getCurrentCustomers();
+      $formerCustomersOweMoney = $this->customersModel->getFormerCustomersOweMoney();
+      $activeTickets = $this->compensationTicketsModel->getActiveTickets();
+      $customersOweCompensation = [];
 
-      return view('Admin/Appointments/addNew', ['currentCustomers' => $currentCustomers]);
+      foreach ($activeTickets as $ticket) {
+        $customer = $this->customersModel->getCustomerByID($ticket->customer_id);
+        $customersOweCompensation[] = $customer;
+      }
+
+      return view('Admin/Appointments/addNew', [
+        'currentCustomers' => $currentCustomers,
+        'formerCustomersOweMoney' => $formerCustomersOweMoney,
+        'customersOweCompensation' => $customersOweCompensation
+      ]);
     }
   }
 
   public function saveNew()
   {
-    $customer_name = $this->request->getPost('customer_name');
+    // we need to have customer_id here
+    $post = $this->request->getPost();
+    // $customer_name = $this->request->getPost('customer_name');
+    $customer_name = $post['customer_name'];
+    $customer_id = explode(':', $customer_name)[1];
     $appointment_time = date('Y-m-d H:i:s');
-    $model = new \App\Models\CustomersModel;
-    $statusChangeModel = new \App\Models\BikeStatusChangeModel;
     $appointment = new Appointment;
 
-    $customer = $model->getCurrentCustomerByName($customer_name);
-    $contract_number = $customer->id;
+    $customer = $this->customersModel->getCustomerByID($customer_id);
 
-    $appointment->customer_name = $customer_name;
-    $appointment->customer_id = $contract_number;
+    $appointment->customer_name = $customer->customer_name;
+    $appointment->customer_id = $customer_id;
     $appointment->appointment_time = $appointment_time;
 
-    $currentStatus = $statusChangeModel->getCurrentStatus($contract_number);
+    $currentStatus = $this->bikeStatusChangeModel->getCurrentStatus($customer_id);
 
     $this->model->save($appointment);
     $appointment = $this->model->getNewestRecord(); // get the saved record from model so we have its auto-generated id
+    $appointment->compensation = $post['compensation'];
 
     session()->set('appointment', $appointment);
 
