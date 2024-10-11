@@ -18,8 +18,8 @@ class Payments extends \App\Controllers\BaseController
   public function __construct()
   {
     $this->model = new \App\Models\PaymentsModel;
-    $this->compensationPaymentsModel = new \App\Models\compensationPaymentsModel;
-    $this->compensationTicketsModel = new \App\Models\compensationTicketsModel;
+    $this->compensationPaymentsModel = new \App\Models\CompensationPaymentsModel;
+    $this->compensationTicketsModel = new \App\Models\CompensationTicketsModel;
     $this->db = \Config\Database::connect();
   }
 
