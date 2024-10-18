@@ -5,6 +5,29 @@
 <?= $this->section("content") ?>
 
 <form action="" style="margin-bottom: 10px;">
+  <?php if (session()->get('user_level') == 'super') : ?>
+    <div class="field" id="location">
+      <div class="control">
+        <label class="radio">
+          <input type="radio" name="location" value="garage" checked>
+          Garage
+        </label>
+        <label class="radio">
+          <input type="radio" name="location" value="home">
+          Home
+        </label>
+        <label class="radio">
+          <input type="radio" name="location" value="sym">
+          SYM
+        </label>
+        <label class="radio">
+          <input type="radio" name="location" value="tay">
+          Tay
+        </label>
+      </div>
+    </div>
+  <?php endif; ?>
+
   <div class="field is-horizontal" style="bottom: 200px !important;" id="original">
     <div class="field-label is-normal">
       <label class="label">Biển Số Xe
@@ -23,7 +46,6 @@
       </label>
     </div>
   </div>
-
 </form>
 
 <div class="field is-horizontal">
@@ -91,6 +113,7 @@
 <script>
   const form = document.querySelector('form');
   const original = document.querySelector('#original');
+  const locationRadio = document.querySelector('#location');
   const addBike = document.querySelector('#addBike');
   let inputCount = 1;
   let currentValues = [];
@@ -99,7 +122,7 @@
 
   const addNewInput = () => {
     latestInput.value = latestInput.value.trim();
-
+    console.log(currentValues);
     if (!(currentValues.includes(latestInput.value) || latestInput.value === '')) {
       inputCount += 1;
       let newInput = original.cloneNode(true);
@@ -137,6 +160,8 @@
 
   const clearForm = () => {
     form.innerHTML = '';
+    // original.value = '';
+    // form.appendChild(locationRadio);
     form.appendChild(original);
     form.elements[0].value = '';
   };

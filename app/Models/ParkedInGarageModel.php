@@ -6,7 +6,7 @@ class ParkedInGarageModel extends \CodeIgniter\Model
 {
   protected $table = 'parked_in_garage';
 
-  protected $allowedFields = ['plate_number', 'date'];
+  protected $allowedFields = ['plate_number', 'date', 'location'];
 
   protected $returnType = 'App\Entities\ParkingRecord';
 

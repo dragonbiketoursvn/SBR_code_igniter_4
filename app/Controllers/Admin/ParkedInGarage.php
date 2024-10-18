@@ -29,24 +29,29 @@ class ParkedInGarage extends \App\Controllers\BaseController
 
   public function saveRecords()
   {
-    $todaysRecords = $this->request->getPost();
-    $plateNumbers = [];
+    $post = $this->request->getPost();
+    $location = array_shift($post);
+    $plateNumbers = $post;
 
-    foreach ($todaysRecords as $plateNumber) {
-      if ($plateNumber !== "") {
-        $plateNumbers[] = $plateNumber;
-      }
-    }
+    // foreach ($plateNumbers as $plateNumber) {
+    //   if ($plateNumber !== "") {
+    //     $plateNumbers[] = $plateNumber;
+    //   }
+    // }
 
     foreach ($plateNumbers as $plateNumber) {
-      $record = new ParkingRecord();
-      $record->plate_number = $plateNumber;
-      $record->date = date('Y-m-d H:i:s');
-      $this->model->insert($record);
+      if ($plateNumber !== "") {
+        $record = new ParkingRecord();
+        $record->plate_number = $plateNumber;
+        $record->date = date('Y-m-d H:i:s');
+        $record->location = $location;
+        $this->model->insert($record);
+      }
     }
 
     $this->response->setHeader('Access-Control-Allow-Origin', 'https://hagiangadventures.com');
     return $this->response->setJSON(['message' => 'THÀNH CÔNG!!!']);
+    // return $this->response->setJSON(['message' => $plateNumbers]);
   }
 
 
