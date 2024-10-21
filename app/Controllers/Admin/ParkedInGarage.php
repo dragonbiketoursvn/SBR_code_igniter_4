@@ -108,6 +108,7 @@ class ParkedInGarage extends \App\Controllers\BaseController
     // and if so, add ->temporary = 1 to object (otherwise = 0)
 
     $bikesWithTempStatus = [];
+    $bikeInGarageCount = count($bikesInGarage);
 
     foreach ($bikesInGarage as $bikeInGarage) {
       $temporary = 0;
@@ -121,7 +122,10 @@ class ParkedInGarage extends \App\Controllers\BaseController
     }
     $bikeInGarage = $bikesWithTempStatus;
 
-    return view('Admin/ParkedInGarage/viewAll', ['bikesInGarage' => $bikesInGarage,]);
+    return view('Admin/ParkedInGarage/viewAll', [
+      'bikesInGarage' => $bikesInGarage,
+      'bikesInGarageCount' => $bikeInGarageCount,
+    ]);
     // return view('Admin/ParkedInGarage/viewAll', ['bikesWithTempStatus' => $bikesWithTempStatus,]);
   }
 }

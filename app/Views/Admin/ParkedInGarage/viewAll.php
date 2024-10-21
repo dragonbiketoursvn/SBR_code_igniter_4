@@ -90,6 +90,9 @@
 </head>
 
 <body>
+  <ul>
+    <li># Bikes in Garage: <b><?= $bikesInGarageCount ?></b></li>
+  </ul>
   <table id="displayTable">
     <tr id="filterRow">
       <th data-column="column1">Plate Number</th>
