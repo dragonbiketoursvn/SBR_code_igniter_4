@@ -96,7 +96,8 @@
       <th data-column="column2">Model</th>
       <th data-column="column3">Year</th>
       <th data-column="column4" class="date">Date</th>
-      <th data-column="column4" class="date">Service History</th>
+      <th data-column="column5">Location</th>
+      <th data-column="column6" class="date">Service History</th>
     </tr>
 
     <?php foreach ($bikesInGarage as $bike) : ?>
@@ -105,6 +106,7 @@
         <td class="column2"><?= $bike->model; ?></td>
         <td class="column3"><?= $bike->year; ?></td>
         <td class="column4"><?= $bike->date; ?></td>
+        <td class="column5"><?= $bike->location; ?></td>
         <td>
           <?= form_open(site_url('Admin/Repairs/showHistory')); ?>
           <input type="hidden" name="plate_number" value="<?= $bike->plate_number; ?>">

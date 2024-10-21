@@ -5,6 +5,7 @@
 <?= $this->section("content") ?>
 
 <form action="" style="margin-bottom: 10px;">
+  <input type="hidden" name="location" value="garage">
   <?php if (session()->get('user_level') == 'super') : ?>
     <div class="field" id="location">
       <div class="control">
@@ -113,6 +114,7 @@
 <script>
   const form = document.querySelector('form');
   const original = document.querySelector('#original');
+  const plateNumber = document.querySelector('#plate_number');
   const locationRadio = document.querySelector('#location');
   const addBike = document.querySelector('#addBike');
   let inputCount = 1;
@@ -160,10 +162,9 @@
 
   const clearForm = () => {
     form.innerHTML = '';
-    // original.value = '';
-    // form.appendChild(locationRadio);
+    form.appendChild(locationRadio);
     form.appendChild(original);
-    form.elements[0].value = '';
+    plateNumber.value = '';
   };
 
   const sendData = () => {
