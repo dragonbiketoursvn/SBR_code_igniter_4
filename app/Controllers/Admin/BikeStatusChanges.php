@@ -92,59 +92,61 @@ class BikeStatusChanges extends \App\Controllers\BaseController
     $customersNoBike = $this->db->query($sqlCustomersNoBike)->getResultArray();
 
     $sqlBikesNotGargeOrCustomer = '
-      SELECT plate_number
-      FROM bikes
-      WHERE plate_number
-      NOT IN (
+      SELECT t3.plate_number, t4.last_in_garage, t4.location, t5.last_service_date, t6.last_status, t6.date_time
+      FROM (
         SELECT plate_number
         FROM bikes
-        WHERE sale_date > "2009-01-01"
-      ) 
-      AND plate_number NOT IN (
-        SELECT plate_number
-        FROM bike_status_change
-        WHERE date_time = (
-          SELECT MAX(date_time)
-          FROM bike_status_change AS bsc2
-          WHERE bsc2.customer_id = bike_status_change.customer_id
+        WHERE plate_number
+        NOT IN (
+          SELECT plate_number
+          FROM bikes
+          WHERE sale_date > "2009-01-01"
+        ) 
+        AND plate_number NOT IN (
+          SELECT plate_number
+          FROM bike_status_change
+          WHERE date_time = (
+            SELECT MAX(date_time)
+            FROM bike_status_change AS bsc2
+            WHERE bsc2.customer_id = bike_status_change.customer_id
+          )
+          AND customer_id
+          IN (
+            SELECT id
+            FROM customers 
+            WHERE currently_renting = 1
+          )
         )
-        AND customer_id
-        IN (
-          SELECT id
-          FROM customers 
-          WHERE currently_renting = 1
-        )
-      )
-      AND plate_number NOT IN (
-   
-  		SELECT t2.plate_number
-            FROM bikes b
-            JOIN (
-            SELECT plate_number, date, location
-            FROM parked_in_garage
-            WHERE (plate_number, date)
-            IN (
-            SELECT plate_number, MAX(date) AS date
-            FROM (
-            SELECT *
-            FROM parked_in_garage 
-            WHERE date IN (
-              SELECT MAX(date)
-                FROM parked_in_garage
-                WHERE location = "garage"
-            ) OR date IN (
-              SELECT MAX(date)
-                FROM parked_in_garage
-                WHERE location = "home"
-            ) OR date IN (
-              SELECT MAX(date)
-                FROM parked_in_garage
-                WHERE location = "sym"
-            ) OR date IN (
-              SELECT MAX(date)
-                FROM parked_in_garage
-                WHERE location = "tay"
-            )
+        AND plate_number NOT IN (
+    
+        SELECT t2.plate_number
+              FROM bikes b
+              JOIN (
+              SELECT plate_number, date, location
+              FROM parked_in_garage
+              WHERE (plate_number, date)
+              IN (
+              SELECT plate_number, MAX(date) AS date
+              FROM (
+              SELECT *
+              FROM parked_in_garage 
+              WHERE date IN (
+                SELECT MAX(date)
+                  FROM parked_in_garage
+                  WHERE location = "garage"
+              ) OR date IN (
+                SELECT MAX(date)
+                  FROM parked_in_garage
+                  WHERE location = "home"
+              ) OR date IN (
+                SELECT MAX(date)
+                  FROM parked_in_garage
+                  WHERE location = "sym"
+              ) OR date IN (
+                SELECT MAX(date)
+                  FROM parked_in_garage
+                  WHERE location = "tay"
+              )
             )t1
                 
             GROUP BY plate_number
@@ -153,7 +155,97 @@ class BikeStatusChanges extends \App\Controllers\BaseController
             )t2
             ON b.plate_number = t2.plate_number
       )
+)t3 LEFT JOIN (
+SELECT plate_number, date AS last_in_garage, location 
+FROM parked_in_garage 
+WHERE (plate_number, date)
+IN (
+	SELECT plate_number, MAX(date) AS last_in_garage 
+	FROM parked_in_garage
+	GROUP BY plate_number
+)
+)t4 ON t3.plate_number = t4.plate_number
+LEFT JOIN (
+	SELECT plate_number, MAX(repair_date) AS last_service_date
+FROM repairs 
+GROUP BY plate_number
+)t5 ON t3.plate_number = t5.plate_number
+LEFT JOIN (
+	
+    SELECT plate_number, new_status AS last_status, date_time
+FROM bike_status_change
+WHERE (plate_number, date_time)
+IN (
+SELECT plate_number, MAX(date_time) AS last_status_change
+FROM bike_status_change 
+GROUP BY plate_number
+)   
+    
+)t6 ON t3.plate_number = t6.plate_number
     ';
+    // $sqlBikesNotGargeOrCustomer = '
+    //   SELECT plate_number
+    //   FROM bikes
+    //   WHERE plate_number
+    //   NOT IN (
+    //     SELECT plate_number
+    //     FROM bikes
+    //     WHERE sale_date > "2009-01-01"
+    //   ) 
+    //   AND plate_number NOT IN (
+    //     SELECT plate_number
+    //     FROM bike_status_change
+    //     WHERE date_time = (
+    //       SELECT MAX(date_time)
+    //       FROM bike_status_change AS bsc2
+    //       WHERE bsc2.customer_id = bike_status_change.customer_id
+    //     )
+    //     AND customer_id
+    //     IN (
+    //       SELECT id
+    //       FROM customers 
+    //       WHERE currently_renting = 1
+    //     )
+    //   )
+    //   AND plate_number NOT IN (
+
+    // 	SELECT t2.plate_number
+    //         FROM bikes b
+    //         JOIN (
+    //         SELECT plate_number, date, location
+    //         FROM parked_in_garage
+    //         WHERE (plate_number, date)
+    //         IN (
+    //         SELECT plate_number, MAX(date) AS date
+    //         FROM (
+    //         SELECT *
+    //         FROM parked_in_garage 
+    //         WHERE date IN (
+    //           SELECT MAX(date)
+    //             FROM parked_in_garage
+    //             WHERE location = "garage"
+    //         ) OR date IN (
+    //           SELECT MAX(date)
+    //             FROM parked_in_garage
+    //             WHERE location = "home"
+    //         ) OR date IN (
+    //           SELECT MAX(date)
+    //             FROM parked_in_garage
+    //             WHERE location = "sym"
+    //         ) OR date IN (
+    //           SELECT MAX(date)
+    //             FROM parked_in_garage
+    //             WHERE location = "tay"
+    //         )
+    //         )t1
+
+    //         GROUP BY plate_number
+    //         )  
+    //         ORDER BY `parked_in_garage`.`date` DESC
+    //         )t2
+    //         ON b.plate_number = t2.plate_number
+    //   )
+    // ';
     // $sqlBikesNotGargeOrCustomer = '
     // SELECT plate_number
     // FROM bikes
