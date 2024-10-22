@@ -244,14 +244,69 @@ class BikeStatusChanges extends \App\Controllers\BaseController
       )
       AND plate_number
       IN (
-      SELECT plate_number
-      FROM parked_in_garage
-      WHERE date = (
-        SELECT MAX(date)
-        FROM parked_in_garage
-      )
+
+          		SELECT t2.plate_number
+            FROM bikes b
+            JOIN (
+            SELECT plate_number, date, location
+            FROM parked_in_garage
+            WHERE (plate_number, date)
+            IN (
+            SELECT plate_number, MAX(date) AS date
+            FROM (
+            SELECT *
+            FROM parked_in_garage 
+            WHERE date IN (
+              SELECT MAX(date)
+                FROM parked_in_garage
+                WHERE location = "garage"
+            ) OR date IN (
+              SELECT MAX(date)
+                FROM parked_in_garage
+                WHERE location = "home"
+            ) OR date IN (
+              SELECT MAX(date)
+                FROM parked_in_garage
+                WHERE location = "sym"
+            ) OR date IN (
+              SELECT MAX(date)
+                FROM parked_in_garage
+                WHERE location = "tay"
+            )
+            )t1
+                
+            GROUP BY plate_number
+            )  
+            ORDER BY `parked_in_garage`.`date` DESC
+            )t2
+            ON b.plate_number = t2.plate_number
+      
       )
     ';
+    // $sqlCustomersBikeInGarage = '
+    //   SELECT customer_id, new_status, plate_number
+    //   FROM bike_status_change
+    //   WHERE date_time = (
+    //       SELECT MAX(date_time)
+    //       FROM bike_status_change AS bsc2
+    //       WHERE bsc2.customer_id = bike_status_change.customer_id
+    //   )
+    //   AND customer_id
+    //   IN (
+    //     SELECT id
+    //     FROM customers 
+    //     WHERE currently_renting = 1
+    //   )
+    //   AND plate_number
+    //   IN (
+    //   SELECT plate_number
+    //   FROM parked_in_garage
+    //   WHERE date = (
+    //     SELECT MAX(date)
+    //     FROM parked_in_garage
+    //   )
+    //   )
+    // ';
     $customersBikeInGarage = $this->db->query($sqlCustomersBikeInGarage)->getResultArray();
 
     return view('Admin/BikeStatusChanges/getErrors', [
