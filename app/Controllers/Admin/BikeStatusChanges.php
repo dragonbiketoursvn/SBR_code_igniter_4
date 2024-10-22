@@ -115,8 +115,9 @@ class BikeStatusChanges extends \App\Controllers\BaseController
           WHERE currently_renting = 1
         )
       )
-      AND plate_number NOT IN (         
-        SELECT t2.plate_number
+      AND plate_number NOT IN (
+   
+  		SELECT t2.plate_number
             FROM bikes b
             JOIN (
             SELECT plate_number, date, location
@@ -144,47 +145,47 @@ class BikeStatusChanges extends \App\Controllers\BaseController
                 FROM parked_in_garage
                 WHERE location = "tay"
             )
-            )t1              
+            )t1
+                
             GROUP BY plate_number
             )  
             ORDER BY `parked_in_garage`.`date` DESC
             )t2
-            ON b.plate_number = t2.plate_number;
-        )
+            ON b.plate_number = t2.plate_number
       )
     ';
     // $sqlBikesNotGargeOrCustomer = '
+    // SELECT plate_number
+    // FROM bikes
+    // WHERE plate_number
+    // NOT IN (
     //   SELECT plate_number
     //   FROM bikes
-    //   WHERE plate_number
-    //   NOT IN (
-    //     SELECT plate_number
-    //     FROM bikes
-    //     WHERE sale_date > "2009-01-01"
-    //   ) 
-    //   AND plate_number NOT IN (
-    //     SELECT plate_number
-    //     FROM bike_status_change
-    //     WHERE date_time = (
-    //       SELECT MAX(date_time)
-    //       FROM bike_status_change AS bsc2
-    //       WHERE bsc2.customer_id = bike_status_change.customer_id
-    //     )
-    //     AND customer_id
-    //     IN (
-    //       SELECT id
-    //       FROM customers 
-    //       WHERE currently_renting = 1
-    //     )
+    //   WHERE sale_date > "2009-01-01"
+    // ) 
+    // AND plate_number NOT IN (
+    //   SELECT plate_number
+    //   FROM bike_status_change
+    //   WHERE date_time = (
+    //     SELECT MAX(date_time)
+    //     FROM bike_status_change AS bsc2
+    //     WHERE bsc2.customer_id = bike_status_change.customer_id
     //   )
-    //   AND plate_number NOT IN (
-    //     SELECT plate_number
+    //   AND customer_id
+    //   IN (
+    //     SELECT id
+    //     FROM customers 
+    //     WHERE currently_renting = 1
+    //   )
+    // )
+    // AND plate_number NOT IN (
+    //   SELECT plate_number
+    //   FROM parked_in_garage
+    //   WHERE date = (
+    //     SELECT MAX(date)
     //     FROM parked_in_garage
-    //     WHERE date = (
-    //       SELECT MAX(date)
-    //       FROM parked_in_garage
-    //     )
     //   )
+    // )
     // ';
     $bikesNotGargeOrCustomer = $this->db->query($sqlBikesNotGargeOrCustomer)->getResultArray();
 
