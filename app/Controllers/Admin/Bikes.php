@@ -222,15 +222,19 @@ class Bikes extends \App\Controllers\BaseController
   {
     $plateNumber = $this->request->getPost('plate_number');
     $compensationTicket = $this->compensationTicketsModel->getActiveTicketsByPlateNumber($plateNumber);
-    $customer = $this->customersModel->getCustomerByID($compensationTicket->customer_id);
-    $compensationTicket->customer_name = $customer->customer_name;
-    $compensationTicket->paidToDate =
-      $this->compensationPaymentsModel
-        ->getTotalPaidOnTicket($compensationTicket->id)[0]->amount;
-    $compensationTicket->amountOutstanding =
-      $compensationTicket->cost_incurred - $compensationTicket->paidToDate;
 
-    return ($this->response->setJSON($compensationTicket));
+    if ($compensationTicket !== null) {
+      $customer = $this->customersModel->getCustomerByID($compensationTicket->customer_id);
+      $compensationTicket->customer_name = $customer->customer_name;
+      $compensationTicket->paidToDate =
+        $this->compensationPaymentsModel
+          ->getTotalPaidOnTicket($compensationTicket->id)[0]->amount;
+      $compensationTicket->amountOutstanding =
+        $compensationTicket->cost_incurred - $compensationTicket->paidToDate;
+      return ($this->response->setJSON($compensationTicket));
+    } else {
+      return ($this->response->setJSON(null));
+    }
   }
 
   // Displays reg photo at $path if it exists

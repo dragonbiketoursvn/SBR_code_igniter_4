@@ -57,7 +57,68 @@ class ParkedInGarage extends \App\Controllers\BaseController
 
   public function viewAll()
   {
-    $sql = "SELECT t2.plate_number, b.model, b.year, t2.date, t2.location
+    // $sql = "SELECT t2.plate_number, b.model, b.year, t2.date, t2.location
+    //         FROM bikes b
+    //         JOIN (
+    //         SELECT plate_number, date, location
+    //         FROM parked_in_garage
+    //         WHERE (plate_number, date)
+    //         IN (
+    //         SELECT plate_number, MAX(date) AS date
+    //         FROM (
+    //         SELECT *
+    //         FROM parked_in_garage 
+    //         WHERE date IN (
+    //           SELECT MAX(date)
+    //             FROM parked_in_garage
+    //             WHERE location = 'garage'
+    //         ) OR date IN (
+    //           SELECT MAX(date)
+    //             FROM parked_in_garage
+    //             WHERE location = 'home'
+    //         ) OR date IN (
+    //           SELECT MAX(date)
+    //             FROM parked_in_garage
+    //             WHERE location = 'sym'
+    //         ) OR date IN (
+    //           SELECT MAX(date)
+    //             FROM parked_in_garage
+    //             WHERE location = 'tay'
+    //         )
+    //         )t1
+
+    //         GROUP BY plate_number
+    //         )  
+    //         ORDER BY `parked_in_garage`.`date` DESC
+    //         )t2
+    //         ON b.plate_number = t2.plate_number
+    //          ORDER BY model, year, plate_number";
+
+    $sql = "SELECT plate_number
+      FROM bikes
+      WHERE plate_number
+      NOT IN (
+        SELECT plate_number
+        FROM bikes
+        WHERE sale_date > '2009-01-01'
+      ) 
+      AND plate_number NOT IN (
+        SELECT plate_number
+        FROM bike_status_change
+        WHERE date_time = (
+          SELECT MAX(date_time)
+          FROM bike_status_change AS bsc2
+          WHERE bsc2.customer_id = bike_status_change.customer_id
+        )
+        AND customer_id
+        IN (
+          SELECT id
+          FROM customers 
+          WHERE currently_renting = 1
+        )
+      )
+      AND plate_number NOT IN (
+        SELECT t2.plate_number
             FROM bikes b
             JOIN (
             SELECT plate_number, date, location
@@ -92,7 +153,7 @@ class ParkedInGarage extends \App\Controllers\BaseController
             ORDER BY `parked_in_garage`.`date` DESC
             )t2
             ON b.plate_number = t2.plate_number
-             ORDER BY model, year, plate_number";
+      )";
     // $sql = "SELECT pig.plate_number, b.model, b.year, pig.date
     //         FROM parked_in_garage pig
     //         JOIN bikes b 
