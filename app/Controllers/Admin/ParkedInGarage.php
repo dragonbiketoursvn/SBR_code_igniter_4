@@ -183,7 +183,7 @@ class ParkedInGarage extends \App\Controllers\BaseController
       $bikesWithTempStatus[] = $bikeInGarage;
     }
     $bikeInGarage = $bikesWithTempStatus;
-    dd($bikeInGarage);
+
     return view('Admin/ParkedInGarage/viewAll', [
       'bikesInGarage' => $bikesInGarage,
       'bikesInGarageCount' => $bikeInGarageCount,
