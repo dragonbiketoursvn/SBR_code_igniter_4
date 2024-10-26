@@ -238,7 +238,10 @@ class Appointments extends \App\Controllers\BaseController
 
     $this->model->save($appointment);
     $appointment = $this->model->getNewestRecord(); // get the saved record from model so we have its auto-generated id
-    $appointment->compensation = $post['compensation'];
+
+    if (array_key_exists('compensation', $post)) {
+      $appointment->compensation = $post['compensation'];
+    }
 
     session()->set('appointment', $appointment);
 
