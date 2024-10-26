@@ -68,7 +68,7 @@ class Appointments extends \App\Controllers\BaseController
       return redirect()->to(site_url('Admin/Appointments/bikeStatusCheck'));
     }
 
-    if ($appointment->compensation === '1') {
+    if (property_exists($appointment, 'compensation') && $appointment->compensation === '1') {
       $compensationTicket = $this->compensationTicketsModel
         ->getActiveTicketsByCustomerId($appointment->customer_id);
       $appointment->compensationTicket = $compensationTicket;
