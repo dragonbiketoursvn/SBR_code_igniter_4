@@ -193,7 +193,7 @@ class Payments extends \App\Controllers\BaseController
 
     $appointment = session()->get('appointment');
 
-    if ($appointment->sent_email === 1) {
+    if (isset($appointment->sent_email) && $appointment->sent_email === 1) {
 
       return redirect()->to(site_url('Admin/Appointments/bikeStatusCheck'));
     } else {

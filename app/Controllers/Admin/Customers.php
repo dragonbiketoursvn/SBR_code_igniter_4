@@ -3,6 +3,8 @@
 namespace App\Controllers\Admin;
 
 use App\Entities\Customer;
+use App\Entities\Payment;
+use App\Entities\Expense;
 use App\Entities\RenterIncident;
 
 use CodeIgniter\I18n\Time;
@@ -135,8 +137,24 @@ class Customers extends \App\Controllers\BaseController
     };
 
     $post = $this->request->getPost();
+    [$USD_TO_VND, $VND_TO_USD] = $this->getExchangeRates();
+
     $customer = new Customer;
     $customer->fill($post);
+
+    // $customer->rent_usd = $customer->rent_usd + $customer->damage_insurance_amount;
+    // $customer->rent = (int) ($customer->rent_usd * $USD_TO_VND / 1000);
+    // $customer->paypal_deposit = $post['paypal_deposit'];
+    // $customer->expected_transfer_vnd = (int) (($customer->rent_usd - $customer->paypal_deposit) * $USD_TO_VND / 1000);
+
+    $payment_rent_usd = $customer->rent_usd + $customer->damage_insurance_amount;
+    $customer->rent = (int) ($customer->rent_usd * $USD_TO_VND / 1000);
+    $customer->paypal_deposit = $post['paypal_deposit'];
+    $customer->expected_transfer_vnd = (int) (($payment_rent_usd - $customer->paypal_deposit) * $USD_TO_VND / 1000);
+
+    $customer->actual_transfer_vnd = $post['actual_transfer_vnd'];
+    $customer->deposit_returned_vnd = $post['deposit_returned_vnd'];
+    $customer->cash_received_vnd_value = $post['cash_received_vnd_value'];
     $customer->currently_renting = 1;
 
     if (!in_array($customer->current_bike, $plateNumbers)) {
@@ -247,14 +265,43 @@ class Customers extends \App\Controllers\BaseController
 
       if ($newCustomer->short_term === '1') {
         $paymentsModel = new \App\Models\PaymentsModel;
+        $expensesModel = new \App\Models\ExpensesModel;
         $payment = new \App\Entities\Payment;
+        $expense = new \App\Entities\Expense;
+
         $payment->customer_id = $newCustomer->id;
         $payment->amount = $newCustomer->rent;
+        $payment->amount_usd = $newCustomer->rent_usd;
         $payment->months_paid = 0;
         $payment->user = 'ADMIN';
         $payment->payment_date = $newCustomer->start_date;
         $payment->payment_method = $post["payment_method"];
+        $payment->paypal_deposit = $customer->paypal_deposit;
+        $payment->expected_transfer_vnd = $customer->expected_transfer_vnd;
+        $payment->actual_transfer_vnd = $customer->actual_transfer_vnd;
+        $payment->deposit_returned_vnd = $customer->deposit_returned_vnd;
+        $payment->cash_received_vnd_value = $customer->cash_received_vnd_value;
         $paymentsModel->insert($payment);
+        $newPayment = $paymentsModel->getLatestRecord();
+
+        if ($payment->actual_transfer_vnd > 0 && $payment->deposit_returned_vnd > 0) {
+          $expense->user = 'super';
+          $expense->date = $newPayment->payment_date;
+          $expense->amount = $newPayment->expected_transfer_vnd -
+            ($newPayment->actual_transfer_vnd - $newPayment->deposit_returned_vnd);
+          $expense->category = 'bank transfer fee';
+          $expense->notes = $newPayment->id;
+          $expense->dragon_bikes = 1;
+          $expensesModel->insert($expense);
+        } else if ($payment->cash_received_vnd_value > 0) {
+          $expense->user = 'super';
+          $expense->date = $newPayment->payment_date;
+          $expense->amount = $newPayment->amount - $newPayment->cash_received_vnd_value;
+          $expense->category = 'cash exchange fee';
+          $expense->notes = $newPayment->id;
+          $expense->dragon_bikes = 1;
+          $expensesModel->insert($expense);
+        }
       }
 
       return redirect()->to(site_url('Admin/Home'));
@@ -267,8 +314,9 @@ class Customers extends \App\Controllers\BaseController
   public function update()
   {
     // Get all suitable values from $_POST and assign to a new Customer entity
+    $post = $this->request->getPost();
     $customer = new Customer;
-    $customer->fill($this->request->getPost());
+    $customer->fill($post);
 
     // If a value has been added for finish_date and `short_term` isn't true then this customer is no longer renting
     if (
@@ -338,17 +386,66 @@ class Customers extends \App\Controllers\BaseController
         $this->bikeStatusChangeModel->insert($bikeStatusChange);
       }
 
-      // If customer is short-term we need to update the payment record in case the amount has changed
+      // If customer is short-term we need to update the payment and/or expense 
+      // records in case the amount has changed
+      // also update bike_status_change record if necessary
       if ($customer->short_term === '1') {
         $paymentsModel = new \App\Models\PaymentsModel;
-        $payment = $paymentsModel->getByContractNumber($customer->id)[0];
-        $payment->amount = $customer->rent;
-        $payment->amount_usd = $customer->rent_usd;
-        $payment->customer_name = $customer->customer_name;
+        $expensesModel = new \App\Models\ExpensesModel;
 
-        if ($payment->hasChanged()) {
-          $paymentsModel->save($payment);
+        $bikeStatusChange = $this->bikeStatusChangeModel->getByCustomerId($customer->id)[0];
+        $bikeStatusChange->plate_number = $customer->current_bike;
+
+        if ($bikeStatusChange->hasChanged()) {
+          $this->bikeStatusChangeModel->save($bikeStatusChange);
         }
+
+        // any new values for fields in payment record should be saved
+        // but this must be an update and not insertion of new record
+        $oldPayment = $paymentsModel->getByContractNumber($customer->id)[0];
+
+        // post['id'] is the customer id so we need to grab the payment id
+        // before filling it with values from post
+        $paymentId = $oldPayment->id;
+        $oldPayment->fill($post);
+        $oldPayment->id = $paymentId;
+        $oldPayment->amount_usd = $oldPayment->rent_usd;
+        $oldPayment->amount = $oldPayment->rent;
+        $expense = $expensesModel->getByNotes($paymentId) ?? new Expense;
+        $expense->user = 'super';
+        $expense->date = $oldPayment->payment_date;
+        $expense->notes = $oldPayment->id;
+        $expense->dragon_bikes = 1;
+
+        if ($oldPayment->hasChanged()) {
+          if ($oldPayment->actual_transfer_vnd > 0 && $oldPayment->deposit_returned_vnd > 0) {
+            $expense->amount = $oldPayment->expected_transfer_vnd -
+              ($oldPayment->actual_transfer_vnd - $oldPayment->deposit_returned_vnd);
+            $expense->category = 'bank transfer fee';
+            $expensesModel->save($expense);
+          } else if ($oldPayment->cash_received_vnd_value > 0) {
+            $expense->amount = $oldPayment->amount - $oldPayment->cash_received_vnd_value;
+            $expense->category = 'cash exchange fee';
+            $expensesModel->save($expense);
+          }
+
+          $paymentsModel->save($oldPayment);
+          $expensesModel->save($expense);
+        }
+
+
+
+
+        // $customer = new Customer;
+        // $customer->fill($post);
+        // $customer->rent_usd = $customer->rent_usd + $customer->damage_insurance_amount;
+        // $customer->rent = (int) ($customer->rent_usd * $USD_TO_VND / 1000);
+        // $customer->paypal_deposit = $post['paypal_deposit'];
+        // $customer->expected_transfer_vnd = (int) (($customer->rent_usd - $customer->paypal_deposit) * $USD_TO_VND / 1000);
+        // $customer->actual_transfer_vnd = $post['actual_transfer_vnd'];
+        // $customer->deposit_returned_vnd = $post['deposit_returned_vnd'];
+        // $customer->cash_received_vnd_value = $post['cash_received_vnd_value'];
+        // $customer->currently_renting = 1;
       }
 
       $redirectView = $customer->short_term ? 'Admin/Customers/viewCurrentCustomersShortTerm' : 'Admin/Customers/viewCurrentCustomers';

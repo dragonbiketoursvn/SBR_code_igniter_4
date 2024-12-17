@@ -62,13 +62,12 @@ class Appointments extends \App\Controllers\BaseController
   public function paymentCheck()
   {
     $appointment = session()->get('appointment');
-
     if ($appointment->paid_rent == 1) {
 
       return redirect()->to(site_url('Admin/Appointments/bikeStatusCheck'));
     }
 
-    if (property_exists($appointment, 'compensation') && $appointment->compensation === '1') {
+    if (isset($appointment->compensation) && $appointment->compensation === '1') {
       $compensationTicket = $this->compensationTicketsModel
         ->getActiveTicketsByCustomerId($appointment->customer_id);
       $appointment->compensationTicket = $compensationTicket;
