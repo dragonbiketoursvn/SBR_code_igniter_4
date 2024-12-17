@@ -147,14 +147,6 @@ class Customers extends \App\Controllers\BaseController
     // $customer->paypal_deposit = $post['paypal_deposit'];
     // $customer->expected_transfer_vnd = (int) (($customer->rent_usd - $customer->paypal_deposit) * $USD_TO_VND / 1000);
 
-    $payment_rent_usd = $customer->rent_usd + $customer->damage_insurance_amount;
-    $customer->rent = (int) ($customer->rent_usd * $USD_TO_VND / 1000);
-    $customer->paypal_deposit = $post['paypal_deposit'];
-    $customer->expected_transfer_vnd = (int) (($payment_rent_usd - $customer->paypal_deposit) * $USD_TO_VND / 1000);
-
-    $customer->actual_transfer_vnd = $post['actual_transfer_vnd'];
-    $customer->deposit_returned_vnd = $post['deposit_returned_vnd'];
-    $customer->cash_received_vnd_value = $post['cash_received_vnd_value'];
     $customer->currently_renting = 1;
 
     if (!in_array($customer->current_bike, $plateNumbers)) {
@@ -269,18 +261,29 @@ class Customers extends \App\Controllers\BaseController
         $payment = new \App\Entities\Payment;
         $expense = new \App\Entities\Expense;
 
+
+
+        // $payment_rent_usd = $customer->rent_usd + $customer->damage_insurance_amount; // short-term
+        // $customer->rent = (int) ($customer->rent_usd * $USD_TO_VND / 1000); // short-term
+        // $customer->paypal_deposit = $post['paypal_deposit']; // short-term
+        // $customer->expected_transfer_vnd = (int) (($payment_rent_usd - $customer->paypal_deposit) * $USD_TO_VND / 1000); // short-term
+        // $customer->actual_transfer_vnd = $post['actual_transfer_vnd']; // short-term
+        // $customer->deposit_returned_vnd = $post['deposit_returned_vnd']; // short-term
+        // $customer->cash_received_vnd_value = $post['cash_received_vnd_value']; // short-term
+
+
         $payment->customer_id = $newCustomer->id;
-        $payment->amount = $newCustomer->rent;
-        $payment->amount_usd = $newCustomer->rent_usd;
+        $payment->amount_usd = $newCustomer->rent_usd + $newCustomer->damage_insurance_amount; // add damage insurance to total
+        $payment->amount = (int) ($payment->amount_usd * $USD_TO_VND / 1000); // vnd amount of rent + damage insurance
         $payment->months_paid = 0;
         $payment->user = 'ADMIN';
         $payment->payment_date = $newCustomer->start_date;
         $payment->payment_method = $post["payment_method"];
-        $payment->paypal_deposit = $customer->paypal_deposit;
-        $payment->expected_transfer_vnd = $customer->expected_transfer_vnd;
-        $payment->actual_transfer_vnd = $customer->actual_transfer_vnd;
-        $payment->deposit_returned_vnd = $customer->deposit_returned_vnd;
-        $payment->cash_received_vnd_value = $customer->cash_received_vnd_value;
+        $payment->paypal_deposit = $post['paypal_deposit'];
+        $payment->expected_transfer_vnd = (int) (($payment->amount_usd - $payment->paypal_deposit) * $USD_TO_VND / 1000);
+        $payment->actual_transfer_vnd = $post['actual_transfer_vnd'];
+        $payment->deposit_returned_vnd = $post['deposit_returned_vnd'];
+        $payment->cash_received_vnd_value = $post['cash_received_vnd_value'];
         $paymentsModel->insert($payment);
         $newPayment = $paymentsModel->getLatestRecord();
 
