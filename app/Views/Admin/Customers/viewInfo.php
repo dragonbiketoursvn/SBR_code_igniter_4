@@ -18,7 +18,7 @@ if (!$customer) {
 <input type="hidden" name="short_term" value="<?= $customer->short_term ?>">
 <input type="hidden" id="usd_to_vnd" value=<?= $USD_TO_VND ?>>
 <input type="hidden" id="vnd_to_usd" value=<?= $VND_TO_USD ?>>
-<input type="hidden" name="rent" id="rent" value="<?= $customer->rent ?>">
+<input type="hidden" name="rent" value="<?= $customer->rent ?>">
 
 <?php if ($customer->short_term) : ?>
 
@@ -198,6 +198,59 @@ if ($compensationTicket) {
         </div>
       </div>
     </div>
+
+    <div class="field is-horizontal" style="bottom: 200px !important;">
+      <div class="field-label is-normal">
+        <label type="number" min=500 step=100 class="label" for="rent">Rental Amount (x1000 VND)</label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="control is-expanded">
+            <input required autocomplete="off" class="input is-success" id="rent" name="rent" value="<?= $customer->rent ?>">
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="field is-horizontal" style="bottom: 200px !important;">
+      <div class="field-label is-normal">
+        <label type="number" class="label" for="paypal_deposit">PayPal Deposit Amount</label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="control is-expanded">
+            <input required autocomplete="off" class="input is-success" id="paypal_deposit" name="paypal_deposit" value="<?= $payments[0]->paypal_deposit ?? 0 ?>">
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="field is-horizontal" style="bottom: 200px !important;">
+      <div class="field-label is-normal">
+        <label type="number" class="label" for="actual_total_vnd">Actual Amount (VND)</label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="control is-expanded">
+            <input required autocomplete="off" class="input is-success" id="actual_total_vnd" name="actual_total_vnd" value="<?= $payments[0]->actual_total_vnd ?? 0 ?>">
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="field is-horizontal" style="bottom: 200px !important;">
+      <div class="field-label is-normal">
+        <label type="number" class="label" for="deposit_returned_vnd">Deposit Returned (VND)</label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="control is-expanded">
+            <input required autocomplete="off" class="input is-success" id="deposit_returned_vnd" name="deposit_returned_vnd" value="<?= $payments[0]->deposit_returned_vnd  ?? 0 ?>">
+          </p>
+        </div>
+      </div>
+    </div>
+
   <?php endif; ?>
 
 
@@ -308,6 +361,7 @@ if ($compensationTicket) {
       </div>
     </div>
   </div>
+
 
   <div class="field is-horizontal" id="owes_money">
     <div class="field-label is-normal">

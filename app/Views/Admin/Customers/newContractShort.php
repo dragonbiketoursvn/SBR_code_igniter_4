@@ -13,9 +13,9 @@
       <?php endforeach; ?>
       <ul>
       <?php endif; ?>
+      <!-- TURN OFF AUTOCOMPLETE WHEN DONE! -->
 
-
-      <?= form_open_multipart('Admin/Customers/save', 'id="rental_contract"') ?>
+      <?= form_open_multipart('Admin/Customers/save', 'id="rental_contract" autocomplete="on"') ?>
 
       <input type="hidden" id="usd_to_vnd" value=<?= $USD_TO_VND ?>>
       <input type="hidden" id="vnd_to_usd" value=<?= $VND_TO_USD ?>>
@@ -208,6 +208,45 @@
           <div class="field">
             <p class="control is-expanded">
               <input required autocomplete="off" class="input is-success" id="rent_usd" name="rent_usd" value="<?= old('rent_usd') ?>">
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="field is-horizontal" style="bottom: 200px !important;">
+        <div class="field-label is-normal">
+          <label type="number" class="label" for="paypal_deposit">PayPal Deposit Amount</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <p class="control is-expanded">
+              <input autocomplete="off" class="input is-success" id="paypal_deposit" name="paypal_deposit" value="<?= old('paypal_deposit') ?? 0 ?>">
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="field is-horizontal" style="bottom: 200px !important;">
+        <div class="field-label is-normal">
+          <label type="number" class="label" for="actual_total_vnd">Actual Total (VND)</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <p class="control is-expanded">
+              <input autocomplete="off" class="input is-success" id="actual_total_vnd" name="actual_total_vnd" value="<?= old('actual_total_vnd')  ?? 0 ?>">
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="field is-horizontal" style="bottom: 200px !important;">
+        <div class="field-label is-normal">
+          <label type="number" class="label" for="deposit_returned_vnd">Deposit Returned (VND)</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <p class="control is-expanded">
+              <input autocomplete="off" class="input is-success" id="deposit_returned_vnd" name="deposit_returned_vnd" value="<?= old('deposit_returned_vnd')  ?? 0 ?>">
             </p>
           </div>
         </div>
@@ -421,7 +460,7 @@
         <div class="field-body">
           <div class="field">
             <p class="control is-expanded">
-              <input autocomplete="off" type="tel" class="input is-success" id="damage_insurance_amount" name="damage_insurance_amount" value="<?= old('damage_insurance_amount') ?>">
+              <input autocomplete="off" type="tel" class="input is-success" id="damage_insurance_amount" name="damage_insurance_amount" value="<?= old('damage_insurance_amount') ?? 0 ?>">
             </p>
           </div>
         </div>

@@ -145,7 +145,7 @@ class Customers extends \App\Controllers\BaseController
     // $customer->rent_usd = $customer->rent_usd + $customer->damage_insurance_amount;
     // $customer->rent = (int) ($customer->rent_usd * $USD_TO_VND / 1000);
     // $customer->paypal_deposit = $post['paypal_deposit'];
-    // $customer->expected_transfer_vnd = (int) (($customer->rent_usd - $customer->paypal_deposit) * $USD_TO_VND / 1000);
+    // $customer->expected_total_vnd = (int) (($customer->rent_usd - $customer->paypal_deposit) * $USD_TO_VND / 1000);
 
     $customer->currently_renting = 1;
 
@@ -266,8 +266,8 @@ class Customers extends \App\Controllers\BaseController
         // $payment_rent_usd = $customer->rent_usd + $customer->damage_insurance_amount; // short-term
         // $customer->rent = (int) ($customer->rent_usd * $USD_TO_VND / 1000); // short-term
         // $customer->paypal_deposit = $post['paypal_deposit']; // short-term
-        // $customer->expected_transfer_vnd = (int) (($payment_rent_usd - $customer->paypal_deposit) * $USD_TO_VND / 1000); // short-term
-        // $customer->actual_transfer_vnd = $post['actual_transfer_vnd']; // short-term
+        // $customer->expected_total_vnd = (int) (($payment_rent_usd - $customer->paypal_deposit) * $USD_TO_VND / 1000); // short-term
+        // $customer->actual_total_vnd = $post['actual_total_vnd']; // short-term
         // $customer->deposit_returned_vnd = $post['deposit_returned_vnd']; // short-term
         // $customer->cash_received_vnd_value = $post['cash_received_vnd_value']; // short-term
 
@@ -280,27 +280,19 @@ class Customers extends \App\Controllers\BaseController
         $payment->payment_date = $newCustomer->start_date;
         $payment->payment_method = $post["payment_method"];
         $payment->paypal_deposit = $post['paypal_deposit'];
-        $payment->expected_transfer_vnd = (int) (($payment->amount_usd - $payment->paypal_deposit) * $USD_TO_VND / 1000);
-        $payment->actual_transfer_vnd = $post['actual_transfer_vnd'];
+        $payment->expected_total_vnd = (int) (($payment->amount_usd - $payment->paypal_deposit) * $USD_TO_VND / 1000);
+        $payment->actual_total_vnd = $post['actual_total_vnd'];
         $payment->deposit_returned_vnd = $post['deposit_returned_vnd'];
-        $payment->cash_received_vnd_value = $post['cash_received_vnd_value'];
+        // $payment->cash_received_vnd_value = $post['cash_received_vnd_value'];
         $paymentsModel->insert($payment);
         $newPayment = $paymentsModel->getLatestRecord();
 
-        if ($payment->actual_transfer_vnd > 0 && $payment->deposit_returned_vnd > 0) {
+        if ($payment->actual_total_vnd > 0 && $payment->deposit_returned_vnd > 0) {
           $expense->user = 'super';
           $expense->date = $newPayment->payment_date;
-          $expense->amount = $newPayment->expected_transfer_vnd -
-            ($newPayment->actual_transfer_vnd - $newPayment->deposit_returned_vnd);
+          $expense->amount = $newPayment->expected_total_vnd -
+            ($newPayment->actual_total_vnd - $newPayment->deposit_returned_vnd);
           $expense->category = 'bank transfer fee';
-          $expense->notes = $newPayment->id;
-          $expense->dragon_bikes = 1;
-          $expensesModel->insert($expense);
-        } else if ($payment->cash_received_vnd_value > 0) {
-          $expense->user = 'super';
-          $expense->date = $newPayment->payment_date;
-          $expense->amount = $newPayment->amount - $newPayment->cash_received_vnd_value;
-          $expense->category = 'cash exchange fee';
           $expense->notes = $newPayment->id;
           $expense->dragon_bikes = 1;
           $expensesModel->insert($expense);
@@ -316,6 +308,8 @@ class Customers extends \App\Controllers\BaseController
 
   public function update()
   {
+    [$USD_TO_VND, $VND_TO_USD] = $this->getExchangeRates();
+
     // Get all suitable values from $_POST and assign to a new Customer entity
     $post = $this->request->getPost();
     $customer = new Customer;
@@ -412,8 +406,10 @@ class Customers extends \App\Controllers\BaseController
         $paymentId = $oldPayment->id;
         $oldPayment->fill($post);
         $oldPayment->id = $paymentId;
-        $oldPayment->amount_usd = $oldPayment->rent_usd;
-        $oldPayment->amount = $oldPayment->rent;
+        $oldPayment->amount_usd = $oldPayment->rent_usd + $oldPayment->damage_insurance_amount;
+        $oldPayment->amount = (int) ($oldPayment->amount_usd * $USD_TO_VND / 1000);
+        $oldPayment->expected_total_vnd = (int) (($oldPayment->amount_usd - $oldPayment->paypal_deposit) * $USD_TO_VND / 1000);
+        // $oldPayment->amount = $oldPayment->rent;
         $expense = $expensesModel->getByNotes($paymentId) ?? new Expense;
         $expense->user = 'super';
         $expense->date = $oldPayment->payment_date;
@@ -421,19 +417,25 @@ class Customers extends \App\Controllers\BaseController
         $expense->dragon_bikes = 1;
 
         if ($oldPayment->hasChanged()) {
-          if ($oldPayment->actual_transfer_vnd > 0 && $oldPayment->deposit_returned_vnd > 0) {
-            $expense->amount = $oldPayment->expected_transfer_vnd -
-              ($oldPayment->actual_transfer_vnd - $oldPayment->deposit_returned_vnd);
+          if ($oldPayment->actual_total_vnd > 0 && $oldPayment->deposit_returned_vnd > 0) {
+            $expense->amount = $oldPayment->expected_total_vnd -
+              ($oldPayment->actual_total_vnd - $oldPayment->deposit_returned_vnd);
+            // dd([
+            //   'official_payment_amount' => $oldPayment->amount,
+            //   'expected_total_vnd' => $oldPayment->expected_total_vnd,
+            //   'actual_amount_received' => $oldPayment->actual_total_vnd,
+            //   'deposit_returned_vnd' => $oldPayment->deposit_returned_vnd,
+            //   'transfer fee' => $oldPayment->expected_total_vnd -
+            //     ($oldPayment->actual_total_vnd - $oldPayment->deposit_returned_vnd),
+            //   'string subtraction result' => ($oldPayment->actual_total_vnd - $oldPayment->deposit_returned_vnd)
+            // ]);
             $expense->category = 'bank transfer fee';
             $expensesModel->save($expense);
-          } else if ($oldPayment->cash_received_vnd_value > 0) {
-            $expense->amount = $oldPayment->amount - $oldPayment->cash_received_vnd_value;
-            $expense->category = 'cash exchange fee';
-            $expensesModel->save($expense);
           }
-
           $paymentsModel->save($oldPayment);
-          $expensesModel->save($expense);
+          // dd($oldPayment->actual_total_vnd);
+
+          // $expensesModel->save($expense);
         }
 
 
@@ -444,8 +446,8 @@ class Customers extends \App\Controllers\BaseController
         // $customer->rent_usd = $customer->rent_usd + $customer->damage_insurance_amount;
         // $customer->rent = (int) ($customer->rent_usd * $USD_TO_VND / 1000);
         // $customer->paypal_deposit = $post['paypal_deposit'];
-        // $customer->expected_transfer_vnd = (int) (($customer->rent_usd - $customer->paypal_deposit) * $USD_TO_VND / 1000);
-        // $customer->actual_transfer_vnd = $post['actual_transfer_vnd'];
+        // $customer->expected_total_vnd = (int) (($customer->rent_usd - $customer->paypal_deposit) * $USD_TO_VND / 1000);
+        // $customer->actual_total_vnd = $post['actual_total_vnd'];
         // $customer->deposit_returned_vnd = $post['deposit_returned_vnd'];
         // $customer->cash_received_vnd_value = $post['cash_received_vnd_value'];
         // $customer->currently_renting = 1;

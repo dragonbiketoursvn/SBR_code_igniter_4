@@ -5,7 +5,10 @@
 <?= $this->section("content") ?>
 
 <form action="" style="margin-bottom: 10px;">
-  <input type="hidden" name="location" value="garage">
+  <?php if (session()->get('user_level') != 'super') : ?>
+    <input type="hidden" name="location" value="garage">
+  <?php endif; ?>
+
   <?php if (session()->get('user_level') == 'super') : ?>
     <div class="field" id="location">
       <div class="control">
@@ -111,12 +114,31 @@
   </div>
 </div>
 
+<?php if (session()->get('user_level') == 'super') : ?>
+  <div class="field is-horizontal">
+    <div class="field-label">
+      <!-- Left empty for spacing -->
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <div class="control">
+          <button class="button is-info is-large is-fullwidth" id="empty">
+            Mark As Empty
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+<?php endif; ?>
+
 <script>
   const form = document.querySelector('form');
   const original = document.querySelector('#original');
   const plateNumber = document.querySelector('#plate_number');
   const locationRadio = document.querySelector('#location');
   const addBike = document.querySelector('#addBike');
+  const markEmpty = document.querySelector('#empty');
+
   let inputCount = 1;
   let currentValues = [];
   let latestInput = original.querySelector('input');
@@ -167,12 +189,16 @@
     plateNumber.value = '';
   };
 
+  const url = new URL(location.href);
+  const origin = url.origin;
+  const endPoint = origin + '/Admin/ParkedInGarage/saveRecords';
+
   const sendData = () => {
     if (currentValues.length > 0 || latestInput.value.trim() !== '') {
       let form = new FormData(document.forms[0]);
-      const url = new URL(location.href);
-      const origin = url.origin;
-      const endPoint = origin + '/Admin/ParkedInGarage/saveRecords';
+      // const url = new URL(location.href);
+      // const origin = url.origin;
+      // const endPoint = origin + '/Admin/ParkedInGarage/saveRecords';
 
       fetch(endPoint, {
           method: 'POST',
@@ -184,6 +210,20 @@
   }
 
   sendDataButton.addEventListener('click', sendData);
+
+  const sendEmpty = (e) => {
+    let formData = new FormData(document.forms[0]);
+    formData.set('plate_number1', 'EMPTY')
+
+    fetch(endPoint, {
+        method: 'POST',
+        body: formData,
+      }).then((response) => response.json())
+      .then((json) => alert(json.message))
+      .then(() => clearForm());
+  }
+
+  markEmpty.addEventListener('click', sendEmpty);
 </script>
 
 <?= $this->endSection() ?>

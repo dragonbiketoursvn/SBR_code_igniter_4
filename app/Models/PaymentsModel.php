@@ -7,8 +7,19 @@ class PaymentsModel extends \CodeIgniter\Model
   protected $table = 'payments';
 
   protected $allowedFields = [
-    'user', 'customer_id', 'customer_name', 'amount', 'amount_usd',
-    'months_paid', 'payment_date', 'notes', 'payment_method'
+    'user',
+    'customer_id',
+    'customer_name',
+    'amount',
+    'amount_usd',
+    'months_paid',
+    'payment_date',
+    'notes',
+    'payment_method',
+    'paypal_deposit',
+    'expected_total_vnd',
+    'actual_total_vnd',
+    'deposit_returned_vnd',
   ];
 
   protected $returnType = 'App\Entities\Payment';
@@ -57,5 +68,10 @@ class PaymentsModel extends \CodeIgniter\Model
 
     return $this->where('payment_date >', $yesterday)
       ->findAll();
+  }
+
+  public function getLatestRecord()
+  {
+    return $this->orderBy('id', 'DESC')->first();
   }
 }
