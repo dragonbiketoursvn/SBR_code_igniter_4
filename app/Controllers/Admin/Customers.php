@@ -308,7 +308,7 @@ class Customers extends \App\Controllers\BaseController
 
   public function update()
   {
-    [$USD_TO_VND, $VND_TO_USD] = $this->getExchangeRates();
+    // [$USD_TO_VND, $VND_TO_USD] = $this->getExchangeRates();
 
     // Get all suitable values from $_POST and assign to a new Customer entity
     $post = $this->request->getPost();
@@ -389,6 +389,7 @@ class Customers extends \App\Controllers\BaseController
       if ($customer->short_term === '1') {
         $paymentsModel = new \App\Models\PaymentsModel;
         $expensesModel = new \App\Models\ExpensesModel;
+        $USD_TO_VND = 1000 * $customer->rent / $customer->rent_usd;
 
         $bikeStatusChange = $this->bikeStatusChangeModel->getByCustomerId($customer->id)[0];
         $bikeStatusChange->plate_number = $customer->current_bike;
@@ -611,7 +612,8 @@ class Customers extends \App\Controllers\BaseController
     $startDate = new Time();
     $startDate = $startDate->createFromFormat('Y-m-d', $customer->start_date);
     $paidUpTo = $startDate->addMonths($monthsPaid)->toDateString();
-    [$USD_TO_VND, $VND_TO_USD] = $this->getExchangeRates();
+    [$USD_TO_VND, $VND_TO_USD] = $this->getExchangeRates(); // this is only needed for short-term customers and should be calculated
+    // from existing values
     $bikeStatusChanges = $this->bikeStatusChangeModel->getByCustomerId($customer->id);
 
     if ($compensationTicket) {
@@ -621,17 +623,38 @@ class Customers extends \App\Controllers\BaseController
         $compensationTicket->cost_incurred - $compensationTicket->paidToDate;
     }
 
-    return view('Admin/Customers/viewInfo', [
+    $viewSettings = [
       'customer' => $customer,
       'currentStatus' => $currentStatus,
       'currentBikes' => $this->currentBikes,
       'payments' => $payments,
       'paidUpTo' => $paidUpTo,
-      'USD_TO_VND' => $USD_TO_VND,
-      'VND_TO_USD' => $VND_TO_USD,
       'bikeStatusChanges' => $bikeStatusChanges,
       'compensationTicket' => $compensationTicket
-    ]);
+    ];
+
+    if ($customer->short_term === '1') {
+      $USD_TO_VND = 1000 * $customer->rent / $customer->rent_usd;
+      $VND_TO_USD = 1 / $USD_TO_VND;
+      $viewSettings += [
+        'USD_TO_VND' => $USD_TO_VND,
+        'VND_TO_USD' => $VND_TO_USD
+      ];
+    }
+
+    return view('Admin/Customers/viewInfo', $viewSettings);
+
+    // return view('Admin/Customers/viewInfo', [
+    //   'customer' => $customer,
+    //   'currentStatus' => $currentStatus,
+    //   'currentBikes' => $this->currentBikes,
+    //   'payments' => $payments,
+    //   'paidUpTo' => $paidUpTo,
+    //   'USD_TO_VND' => $USD_TO_VND,
+    //   'VND_TO_USD' => $VND_TO_USD,
+    //   'bikeStatusChanges' => $bikeStatusChanges,
+    //   'compensationTicket' => $compensationTicket
+    // ]);
   }
 
   public function  viewCurrentCustomers()
