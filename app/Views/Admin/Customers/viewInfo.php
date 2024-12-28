@@ -16,11 +16,11 @@ if (!$customer) {
 
 <input type="hidden" name="id" value="<?= $customer->id ?>">
 <input type="hidden" name="short_term" value="<?= $customer->short_term ?>">
-<input type="hidden" id="usd_to_vnd" value=<?= $USD_TO_VND ?>>
-<input type="hidden" id="vnd_to_usd" value=<?= $VND_TO_USD ?>>
 <input type="hidden" name="rent" value="<?= $customer->rent ?>">
 
 <?php if ($customer->short_term) : ?>
+  <input type="hidden" id="usd_to_vnd" value=<?= $USD_TO_VND ?>>
+  <input type="hidden" id="vnd_to_usd" value=<?= $VND_TO_USD ?>>
 
   <div class="field is-horizontal" style="bottom: 200px !important;">
     <div class="field-label is-normal">
