@@ -4,12 +4,6 @@
 
 <?= $this->section("content") ?>
 
-<?php if (session()->has('errors')) : ?>
-    <p>
-        <?= session()->get('errors') ?>
-    </p>
-<?php endif; ?>
-
 <div class="field is-horizontal">
     <div class="field-label">
         <!-- Left empty for spacing -->
