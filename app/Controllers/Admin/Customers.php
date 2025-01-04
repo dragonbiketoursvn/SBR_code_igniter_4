@@ -78,7 +78,7 @@ class Customers extends \App\Controllers\BaseController
     $sql = "
             SELECT price
             FROM `usd_vnd_exchange_rate`
-            ORDER BY id DESC
+            ORDER BY date DESC
             LIMIT 1
           ";
 
