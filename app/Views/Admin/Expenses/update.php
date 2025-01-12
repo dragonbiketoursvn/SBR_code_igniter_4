@@ -71,7 +71,7 @@
   <div class="field-body">
     <div class="field">
       <p class="control is-expanded">
-        <input required class="input is-success" type="text" id="notes" name="notes" value="<?= esc($expense->notes) ?>">
+        <input class="input is-success" type="text" id="notes" name="notes" value="<?= esc($expense->notes) ?>">
       </p>
     </div>
   </div>
@@ -84,7 +84,7 @@
   <div class="field-body">
     <div class="field">
       <p class="control is-expanded">
-        <input required class="input is-success" type="text" id="quantity" name="quantity" value="<?= esc($expense->quantity) ?>">
+        <input class="input is-success" type="text" id="quantity" name="quantity" value="<?= esc($expense->quantity) ?>">
       </p>
     </div>
   </div>
