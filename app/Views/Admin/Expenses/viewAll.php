@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bikes in Garage</title>
+  <title>Expenses</title>
   <style>
     table {
       border: 2px solid black;
@@ -95,10 +95,11 @@
       <th data-column="column1" class="date">Date</th>
       <th data-column="column2">Amount</th>
       <th data-column="column3">Category</th>
-      <th data-column="column4">Dragon Bikes</th>
-      <th data-column="column5">Saigon Bike Rentals</th>
-      <th data-column="column6">Personal</th>
-      <th data-column="column7">Quantity</th>
+      <th data-column="column4">Notes</th>
+      <th data-column="column5">Dragon Bikes</th>
+      <th data-column="column6">Saigon Bike Rentals</th>
+      <th data-column="column7">Personal</th>
+      <th data-column="column8">Quantity</th>
     </tr>
 
     <?php foreach ($expenses as $expense) : ?>
@@ -106,9 +107,13 @@
         <td class="column1"><?= $expense->date; ?></td>
         <td class="column2"><?= $expense->amount; ?></td>
         <td class="column3"><?= $expense->category; ?></td>
-        <td class="column4"><?= $expense->dragon_bikes; ?></td>
-        <td class="column5"><?= $expense->personal; ?></td>
-        <td class="column6"><?= $expense->quantity; ?></td>
+        <td class="column4"><?= $expense->notes; ?></td>
+        <td class="column5"><?= $expense->dragon_bikes; ?></td>
+        <td class="column6"><?= $expense->personal; ?></td>
+        <td class="column7"><?= $expense->quantity; ?></td>
+        <td class="column8">
+        <td><a href="<?= site_url('Admin/Expenses/update/') . $expense->id ?>"><button class="button is-link">Edit</button></a></td>
+        </td>
       </tr>
     <?php endforeach; ?>
 

@@ -65,4 +65,24 @@ class Expenses extends \App\Controllers\BaseController
     $expenses = $this->model->getAll();
     return view('Admin/Expenses/viewAll', ['expenses' => $expenses]);
   }
+
+  public function update($id)
+  {
+    $expense = $this->model->find($id);
+
+    return view('Admin/Expenses/update', ['expense' => $expense]);
+  }
+
+  public function saveUpdate()
+  {
+    $payment = $this->request->getPost();
+
+    if ($this->model->save($payment)) {
+
+      return redirect()->to(site_url('Admin/Expenses/viewAll'));
+    } else {
+
+      return redirect()->back()->with('errors', $this->model->errors());
+    }
+  }
 }
