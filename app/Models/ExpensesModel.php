@@ -30,4 +30,9 @@ class ExpensesModel extends \CodeIgniter\Model
   {
     return $this->where('notes', $notes)->first();
   }
+
+  public function getAll()
+  {
+    return $this->orderBy('date', 'DESC')->findAll();
+  }
 }

@@ -295,6 +295,23 @@
     </div>
   </div>
 
+  <div class="field is-horizontal">
+    <div class="field-label">
+      <!-- Left empty for spacing -->
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <div class="control">
+          <a href="<?= site_url("Admin/Expenses/viewAll") ?>">
+            <button class="button is-link is-large is-fullwidth">
+              Expense View
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
 <?php endif; ?>
 
 <?= $this->endSection() ?>
