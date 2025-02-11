@@ -13,79 +13,79 @@
 <?= form_open('Admin/BikeValuations/addRecord', 'id="formData"') ?>
 
 <div class="field is-horizontal is-justify-content-space-around">
-    <div class="field">
+  <div class="field">
     <label class="label">Hãng Xe</label>
     <div class="control">
-        <div class="select">
+      <div class="select">
         <select name="brand" id="brand">
-            <option value="Honda">HONDA</option>
-            <option value="Yamaha">YAMAHA</option>
-            <option value="SYM">SYM</option>
+          <option value="Honda">HONDA</option>
+          <option value="Yamaha">YAMAHA</option>
+          <option value="SYM">SYM</option>
         </select>
-        </div>
+      </div>
     </div>
-    </div>
+  </div>
 
-    <div class="field is-horizontal" style="bottom: 200px !important;">
+  <div class="field is-horizontal" style="bottom: 200px !important;">
     <div class="field-label is-normal">
-        <label class="label" for="model">Dòng Xe</label>
+      <label class="label" for="model">Dòng Xe</label>
     </div>
     <div class="field-body">
-        <div class="field">
+      <div class="field">
         <p class="control is-expanded">
-            <input required autocomplete="off" list="models_list" class="input is-success" id="model" name="model">
-                <datalist id="models_list">
-                <?php foreach($bikeModels as $bikeModel): ?>
-                    <option value="<?= $bikeModel->model ?>">
-                <?php endforeach; ?>
-                </datalist>
+          <input required autocomplete="off" list="models_list" class="input is-success" id="model" name="model">
+          <datalist id="models_list">
+            <?php foreach ($bikeModels as $bikeModel): ?>
+              <option value="<?= $bikeModel->model ?>">
+              <?php endforeach; ?>
+          </datalist>
         </p>
-        </div>
+      </div>
     </div>
-    </div>
+  </div>
 
-    <div class="field">
+  <div class="field">
     <label class="label">Năm Đăng Ký</label>
     <div class="control">
-        <div class="select">
-            <select name="year" id="year">
-            </select>
-        </div>
+      <div class="select">
+        <select name="year" id="year">
+        </select>
+      </div>
     </div>
-    </div>
+  </div>
 </div>
 
 <div class="field is-horizontal is-justify-content-space-around"">
-<div class="field">
-    <label class="label is-horizontal">Giá 1 (x1000 đồng)</label>
-    <input class="value" type="number" min="1000" max="50000" step="100">
+<div class=" field">
+  <label class="label is-horizontal">Giá 1 (x1000 đồng)</label>
+  <input class="value" type="number" min="1000" max="50000" step="100">
 </div>
 <div class="field">
-    <label class="label is-horizontal">Giá 2 (x1000 đồng)</label>
-    <input class="value" type="number" min="1000" max="50000" step="100">
+  <label class="label is-horizontal">Giá 2 (x1000 đồng)</label>
+  <input class="value" type="number" min="1000" max="50000" step="100">
 </div>
 <div class="field">
-    <label class="label is-horizontal">Giá 3 (x1000 đồng)</label>
-    <input class="value" type="number" min="1000" max="50000" step="100">
+  <label class="label is-horizontal">Giá 3 (x1000 đồng)</label>
+  <input class="value" type="number" min="1000" max="50000" step="100">
 </div>
 <div class="field">
-    <label class="label is-horizontal">Giá 4 (x1000 đồng)</label>
-    <input class="value" type="number" min="1000" max="50000" step="100">
+  <label class="label is-horizontal">Giá 4 (x1000 đồng)</label>
+  <input class="value" type="number" min="1000" max="50000" step="100">
 </div>
 <div class="field">
-    <label class="label is-horizontal">Giá 5 (x1000 đồng)</label>
-    <input class="value" type="number" min="1000" max="50000" step="100">
+  <label class="label is-horizontal">Giá 5 (x1000 đồng)</label>
+  <input class="value" type="number" min="1000" max="50000" step="100">
 </div>
-    
+
 </div>
 <div class="field">
-    <label class="label is-horizontal">Giá Bình Quân</label>
-    <input type="number" min="1000" max="100000" step="100" name="value" id="average_value">
-</div>   
+  <label class="label is-horizontal">Giá Bình Quân</label>
+  <input type="number" min="1000" max="100000" step="100" name="value" id="average_value">
+</div>
 
 <div class="field is-horizontal">
   <div class="field-label">
-  <!-- Left empty for spacing -->
+    <!-- Left empty for spacing -->
   </div>
   <div class="field-body">
     <div class="field">
@@ -102,7 +102,7 @@
 
 <div class="field is-horizontal">
   <div class="field-label">
-  <!-- Left empty for spacing -->
+    <!-- Left empty for spacing -->
   </div>
   <div class="field-body">
     <div class="field">
@@ -118,52 +118,50 @@
 </div>
 
 <script>
-   
-        // We'll deal with the .value inputs as a single entity
-        const values = document.querySelectorAll('.value');
+  // We'll deal with the .value inputs as a single entity
+  const values = document.querySelectorAll('.value');
 
-        // Dynamically generate options for year select menu (so current year is always at top)
-        const currentYear = new Date().getFullYear();
-        const year = document.querySelector('#year');
-           
-        for(let i = 0; i < 15; i++) {
-            let yearOption = document.createElement('option');
-            yearOption.value = yearOption.innerHTML = currentYear - i;
-            year.appendChild(yearOption);
-        }
+  // Dynamically generate options for year select menu (so current year is always at top)
+  const currentYear = new Date().getFullYear();
+  const year = document.querySelector('#year');
 
-        // Assign average_value input to a constant
-        const average_value = document.querySelector('#average_value');
+  for (let i = 0; i < 25; i++) {
+    let yearOption = document.createElement('option');
+    yearOption.value = yearOption.innerHTML = currentYear - i;
+    year.appendChild(yearOption);
+  }
 
-        // Function to get current average of all inputs of class .value and assign to average_value input
-        const currentAvgValue = function (){
-            let sum = 0;
-            let elementCount = 0;
+  // Assign average_value input to a constant
+  const average_value = document.querySelector('#average_value');
 
-            values.forEach(function(input) {
-                if (input.value > 0) {
-                    sum += Number(input.value);
-                    elementCount += 1;
-                    average = Math.floor(sum / elementCount);
-                    average_value.value = 100 * (Math.round(average / 100));
-                } 
-            });
-        }
+  // Function to get current average of all inputs of class .value and assign to average_value input
+  const currentAvgValue = function() {
+    let sum = 0;
+    let elementCount = 0;
 
-        // Add event listener to each input to update average price each time input value changes
-        values.forEach(function(input) {
-            input.addEventListener('input', currentAvgValue);
-        })
+    values.forEach(function(input) {
+      if (input.value > 0) {
+        sum += Number(input.value);
+        elementCount += 1;
+        average = Math.floor(sum / elementCount);
+        average_value.value = 100 * (Math.round(average / 100));
+      }
+    });
+  }
 
-        // Make sure that form inputs have default values when page loads
-        window.onload = function() {
-            formBrand.value = brand.value;
-            formModel.value = model.value;
-            formYear.value  = year.value;
-            document.querySelector('#formData').style.display = 'none';
-        }
-        
-    </script>
+  // Add event listener to each input to update average price each time input value changes
+  values.forEach(function(input) {
+    input.addEventListener('input', currentAvgValue);
+  })
+
+  // Make sure that form inputs have default values when page loads
+  window.onload = function() {
+    formBrand.value = brand.value;
+    formModel.value = model.value;
+    formYear.value = year.value;
+    document.querySelector('#formData').style.display = 'none';
+  }
+</script>
 
 
 <?= $this->endSection() ?>
