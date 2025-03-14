@@ -8,7 +8,7 @@
 
 <?php if (session()->has('errors')): ?>
   <ul>
-    <?php foreach(session('errors') as $error): ?>
+    <?php foreach (session('errors') as $error): ?>
       <li><?= $error ?></li>
     <?php endforeach; ?>
   </ul>
@@ -49,11 +49,11 @@
   <div class="field-body">
     <div class="field">
       <p class="control is-expanded">
-        <input required autocomplete="off"  list="parts_list" class="input is-success" id="category" name="category">
+        <input required autocomplete="off" list="parts_list" class="input is-success" id="category" name="category">
         <datalist id="parts_list">
-          <?php foreach($expenseCategories as $expenseCategory): ?>
+          <?php foreach ($expenseCategories as $expenseCategory): ?>
             <option value="<?= $expenseCategory['category'] ?>">
-          <?php endforeach; ?>
+            <?php endforeach; ?>
         </datalist>
       </p>
     </div>
@@ -61,9 +61,9 @@
 </div>
 
 
-<?php if($division === 'Dragon'): ?>
+<?php if ($division === 'Dragon'): ?>
   <input type="hidden" name="dragon_bikes" value="1">
-<?php elseif($division === 'Personal'): ?>
+<?php elseif ($division === 'Personal'): ?>
   <input type="hidden" name="personal" value="1">
 <?php endif; ?>
 
@@ -75,6 +75,24 @@
     <div class="field">
       <p class="control is-expanded">
         <input autocomplete="off" type="textarea" class="input is-success" id="notes" name="notes">
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="field is-horizontal" style="bottom: 200px !important;">
+  <div class="field-label is-normal">
+    <label class="label" for="notes">Biển Số Xe</label>
+  </div>
+  <div class="field-body">
+    <div class="field">
+      <p class="control is-expanded">
+        <input autofocus autocomplete="off" list="current_bikes" class="input is-success" id="plate_number" name="plate_number">
+        <datalist id="current_bikes">
+          <?php foreach ($currentBikes as $currentBike) : ?>
+            <option value="<?= $currentBike->plate_number ?>">
+            <?php endforeach; ?>
+        </datalist>
       </p>
     </div>
   </div>
@@ -115,32 +133,31 @@
 </div>
 
 <script>
-    const modal = document.querySelector('.modal');
-    const buttonOpenModal = document.querySelector('.toggle');
-    const buttonCloseModal = document.querySelector('.close-toggle');
+  const modal = document.querySelector('.modal');
+  const buttonOpenModal = document.querySelector('.toggle');
+  const buttonCloseModal = document.querySelector('.close-toggle');
 
-    const toggle = function() {
+  const toggle = function() {
 
-      //let total = document.querySelector('input[name="total_cost"]');
-      //let labor = document.querySelector('input[name="labor_cost"]');
+    //let total = document.querySelector('input[name="total_cost"]');
+    //let labor = document.querySelector('input[name="labor_cost"]');
 
-      let message = `Tất cả các tông tin này có đúng ko?`;
+    let message = `Tất cả các tông tin này có đúng ko?`;
 
-      document.querySelector('.modal-card-body').innerHTML = message;
+    document.querySelector('.modal-card-body').innerHTML = message;
 
-      modal.classList.add('is-active');
+    modal.classList.add('is-active');
 
-     };
+  };
 
-     const closeToggle = function() {
+  const closeToggle = function() {
 
-      modal.classList.remove('is-active');
+    modal.classList.remove('is-active');
 
-     };
+  };
 
-    buttonOpenModal.addEventListener('click', toggle);
-    buttonCloseModal.addEventListener('click', closeToggle);
-
+  buttonOpenModal.addEventListener('click', toggle);
+  buttonCloseModal.addEventListener('click', closeToggle);
 </script>
 
 

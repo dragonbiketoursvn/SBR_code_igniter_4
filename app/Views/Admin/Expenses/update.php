@@ -77,6 +77,25 @@
   </div>
 </div>
 
+<div class="field is-horizontal" style="bottom: 200px !important;">
+  <div class="field-label is-normal">
+    <label class="label" for="notes">Biển Số Xe</label>
+  </div>
+  <div class="field-body">
+    <div class="field">
+      <p class="control is-expanded">
+        <input autofocus autocomplete="off" list="current_bikes" class="input is-success" id="plate_number" name="plate_number"
+          value="<?= esc($expense->plate_number) ?>">
+        <datalist id="current_bikes">
+          <?php foreach ($currentBikes as $currentBike) : ?>
+            <option value="<?= $currentBike->plate_number ?>">
+            <?php endforeach; ?>
+        </datalist>
+      </p>
+    </div>
+  </div>
+</div>
+
 <div class="field is-horizontal">
   <div class="field-label is-normal">
     <label class="label" for="quantity">Quantity</label>

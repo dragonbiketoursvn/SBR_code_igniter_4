@@ -96,10 +96,11 @@
       <th data-column="column2">Amount</th>
       <th data-column="column3">Category</th>
       <th data-column="column4">Notes</th>
-      <th data-column="column5">Dragon Bikes</th>
-      <th data-column="column6">Saigon Bike Rentals</th>
-      <th data-column="column7">Personal</th>
-      <th data-column="column8">Quantity</th>
+      <th data-column="column5">Plate Number</th>
+      <th data-column="column6">Dragon Bikes</th>
+      <th data-column="column7">Saigon Bike Rentals</th>
+      <th data-column="column8">Personal</th>
+      <th data-column="column9">Quantity</th>
     </tr>
 
     <?php foreach ($expenses as $expense) : ?>
@@ -108,10 +109,11 @@
         <td class="column2"><?= $expense->amount; ?></td>
         <td class="column3"><?= $expense->category; ?></td>
         <td class="column4"><?= $expense->notes; ?></td>
-        <td class="column5"><?= $expense->dragon_bikes; ?></td>
-        <td class="column6"><?= $expense->personal; ?></td>
-        <td class="column7"><?= $expense->quantity; ?></td>
-        <td class="column8">
+        <td class="column5"><?= $expense->plate_number; ?></td>
+        <td class="column6"><?= $expense->dragon_bikes; ?></td>
+        <td class="column7"><?= $expense->personal; ?></td>
+        <td class="column8"><?= $expense->quantity; ?></td>
+        <td class="column9">
         <td><a href="<?= site_url('Admin/Expenses/update/') . $expense->id ?>"><button class="button is-link">Edit</button></a></td>
         </td>
       </tr>

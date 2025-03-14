@@ -7,11 +7,13 @@ use App\Entities\Expense;
 class Expenses extends \App\Controllers\BaseController
 {
   private $model;
+  private $bikesModel;
   private $categories;
 
   public function __construct()
   {
     $this->model = new \App\Models\ExpensesModel;
+    $this->bikesModel = new \App\Models\BikesModel;
   }
 
   public function chooseDivision()
@@ -35,10 +37,12 @@ class Expenses extends \App\Controllers\BaseController
       $expenseCategories = $expenseCategoriesModel->getCategories();
     }
 
+    $currentBikes = $this->bikesModel->getCurrentBikes();
 
     return view('Admin/Expenses/getInfo', [
       'division' => $division,
-      'expenseCategories' => $expenseCategories
+      'expenseCategories' => $expenseCategories,
+      'currentBikes' => $currentBikes
     ]);
   }
 
@@ -69,8 +73,9 @@ class Expenses extends \App\Controllers\BaseController
   public function update($id)
   {
     $expense = $this->model->find($id);
+    $currentBikes = $this->bikesModel->getCurrentBikes();
 
-    return view('Admin/Expenses/update', ['expense' => $expense]);
+    return view('Admin/Expenses/update', ['expense' => $expense, 'currentBikes' => $currentBikes]);
   }
 
   public function saveUpdate()

@@ -6,7 +6,17 @@ class ExpensesModel extends \CodeIgniter\Model
 {
   protected $table = 'expenses';
 
-  protected $allowedFields = ['category', 'amount', 'date', 'quantity', 'notes', 'dragon_bikes', 'personal', 'user'];
+  protected $allowedFields = [
+    'category',
+    'amount',
+    'date',
+    'quantity',
+    'notes',
+    'dragon_bikes',
+    'personal',
+    'user',
+    'plate_number'
+  ];
 
   protected $useTimestamps = false;
 
