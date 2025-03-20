@@ -38,7 +38,6 @@
       <tr>
         <th>Plate Number</th>
         <th>Last in Garage</th>
-        <th>Location</th>
         <th>Last Service Date</th>
         <th>Last Status</th>
         <th>Status Change Date</th>
@@ -50,7 +49,6 @@
         <tr>
           <td><?= $bike['plate_number'] ?></td>
           <td><?= $bike['last_in_garage'] ?></td>
-          <td><?= $bike['location'] ?></td>
           <td><?= $bike['last_service_date'] ?></td>
           <td><?= $bike['last_status'] ?></td>
           <td><?= $bike['date_time'] ?></td>
