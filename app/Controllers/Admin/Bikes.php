@@ -105,10 +105,10 @@ class Bikes extends \App\Controllers\BaseController
 
         $type = $file->getMimeType();
 
-        if (!in_array($type, ['image/png', 'image/jpeg'])) {
+        if (!in_array($type, ['image/png', 'image/jpeg', 'image/webp'])) {
 
           return redirect()->back()
-            ->with('warning', 'Invalid file format (PNG or JPEG only)');
+            ->with('warning', 'Invalid file format (PNG, JPEG, or WEBP only)');
         }
 
         // Store it in the correct folder

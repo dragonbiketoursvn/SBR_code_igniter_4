@@ -12,7 +12,7 @@
       };
 
       const toBlobCallback = (blob) => {
-        const myFile = new File([blob], String(Date.now()) + ".jpg", {
+        const myFile = new File([blob], String(Date.now()) + ".webp", {
           type: blob.type,
         });
         const dataTransfer = new DataTransfer();
@@ -29,7 +29,7 @@
         canvas.height = image.height;
         const ctx = canvas.getContext("2d");
         ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
-        canvas.toBlob(toBlobCallback, "image/jpeg", 0.8);
+        canvas.toBlob(toBlobCallback, "image/webp", 0.8);
       };
 
       const compressAndAttachFile = (evt) => {
