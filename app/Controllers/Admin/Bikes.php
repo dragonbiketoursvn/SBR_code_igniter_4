@@ -151,11 +151,10 @@ class Bikes extends \App\Controllers\BaseController
     foreach ($files as $key => $file) {
 
       // ALL INPUTS ARE NOT REQUIRED SO WE CHECK THAT FILE SIZE IS GREATER THAN ZERO TO DETERMINE WHETHER THERE'S ACTUALLY A FILE AT EACH INDEX
-      if ($file->getSizeByUnit('mb' > 0)) {
+      if ($file->getSizeByUnit('mb') > 0) {
 
         // CHECK VALIDITY
         if (!$file->isValid()) {
-
           $error_code = $file->getError();
           throw new \RuntimeException($file->getErrorString() . " " . $error_code);
         }
@@ -171,10 +170,10 @@ class Bikes extends \App\Controllers\BaseController
 
         $type = $file->getMimeType();
 
-        if (!in_array($type, ['image/png', 'image/jpeg'])) {
+        if (!in_array($type, ['image/png', 'image/jpeg', 'image/webp'])) {
 
           return redirect()->back()
-            ->with('warning', 'Invalid file format (PNG or JPEG only)');
+            ->with('warning', 'Invalid file format (PNG, WEBP, or JPEG only)');
         }
 
         // Store it in the correct folder
@@ -185,7 +184,6 @@ class Bikes extends \App\Controllers\BaseController
 
           $file->store('bike_photos/');
         }
-
         // Add path to correct bike entity property
         $bike->$key = $file->getName();
       }
@@ -197,7 +195,6 @@ class Bikes extends \App\Controllers\BaseController
     if ($this->model->find($bike->plate_number) !== null) {
       // We're going to pass this data to the view so it redisplays the updated record on loading
       session()->setFlashData('plate_number', $bike->plate_number);
-
       return redirect()->to(site_url('Admin/Bikes/viewIndividual'));
     } else {
 
