@@ -29,7 +29,7 @@
         canvas.height = image.height;
         const ctx = canvas.getContext("2d");
         ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
-        canvas.toBlob(toBlobCallback, "image/jpeg", 0.8);
+        canvas.toBlob(toBlobCallback, "image/jpeg", 0.6);
       };
 
       const compressAndAttachFile = (evt) => {
