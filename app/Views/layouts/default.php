@@ -184,7 +184,7 @@
 
     </section>
     <script src="<?= site_url('js/Forms/sanitization.js') ?>"></script>
-    <script src="<?= site_url('js/ImageProcessing/compression.js') ?>"></script>
+    <script src="<?= site_url('js/ImageProcessing/compression2.js') ?>"></script>
 
 </body>
 

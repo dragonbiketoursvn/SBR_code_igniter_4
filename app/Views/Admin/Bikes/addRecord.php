@@ -376,6 +376,6 @@
           }
         })
       </script>
-      <script src="<?= site_url('js/ImageProcessing/compression.js') ?>"></script>
+      <script src="<?= site_url('js/ImageProcessing/compression2.js') ?>"></script>
 
       <?= $this->endSection() ?>
