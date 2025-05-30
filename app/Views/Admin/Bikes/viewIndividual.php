@@ -13,7 +13,7 @@
       <div class="control">
         <a href="<?= site_url('Admin/Home') ?>">
           <button class="button is-warning is-large is-fullwidth">
-            Back to Main Menu
+            Back to Main Menu!
           </button>
         </a>
       </div>
