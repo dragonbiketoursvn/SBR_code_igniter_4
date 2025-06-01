@@ -18,15 +18,15 @@
         const dataTransfer = new DataTransfer();
         dataTransfer.items.add(myFile);
         fileInput.files = dataTransfer.files; // fileInput referenced from outer scope
-        console.log(myFile);
       };
 
       // using as evt listener ensures the image has loaded before canvas is created
       const prepareCanvasForCompression = (evt) => {
         const image = evt.target;
         const canvas = document.createElement("canvas");
-        canvas.width = image.width;
-        canvas.height = image.height;
+        const aspectRatio = image.width / image.height;
+        canvas.width = image.width > 1000 ? 1000 : image.width;
+        canvas.height = canvas.width / aspectRatio;
         const ctx = canvas.getContext("2d");
         ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
         canvas.toBlob(toBlobCallback, "image/jpeg", 0.6);
