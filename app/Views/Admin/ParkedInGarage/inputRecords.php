@@ -13,6 +13,10 @@
     <div class="field" id="location">
       <div class="control">
         <label class="radio">
+          <input type="radio" name="location" value="cong_quynh" checked>
+          Cong Quynh
+        </label>
+        <label class="radio">
           <input type="radio" name="location" value="garage" checked>
           Garage
         </label>

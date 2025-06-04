@@ -85,6 +85,10 @@ class ParkedInGarage extends \App\Controllers\BaseController
               SELECT MAX(date)
                 FROM parked_in_garage
                 WHERE location = 'tay'
+            ) OR date IN (
+              SELECT MAX(date)
+                FROM parked_in_garage
+                WHERE location = 'cong_quynh'
             )
             )t1
 
