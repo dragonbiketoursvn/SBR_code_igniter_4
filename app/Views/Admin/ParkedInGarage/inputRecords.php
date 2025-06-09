@@ -14,7 +14,7 @@
         </label>
         <label class="radio">
           <input type="radio" name="location" value="garage" checked>
-          Nguyễn Thái Học alskjdfl;kasjdj
+          Nguyễn Thái Học
         </label>
       </div>
     </div>
