@@ -6,7 +6,18 @@
 
 <form action="" style="margin-bottom: 10px;">
   <?php if (session()->get('user_level') != 'super') : ?>
-    <input type="hidden" name="location" value="garage">
+    <div class="field" id="location">
+      <div class="control">
+        <label class="radio">
+          <input type="radio" name="location" value="cong_quynh" checked>
+          Cong Quynh
+        </label>
+        <label class="radio">
+          <input type="radio" name="location" value="garage" checked>
+          Nguyễn Thái Học alskjdfl;kasjdj
+        </label>
+      </div>
+    </div>
   <?php endif; ?>
 
   <?php if (session()->get('user_level') == 'super') : ?>
