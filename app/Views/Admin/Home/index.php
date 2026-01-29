@@ -312,6 +312,23 @@
     </div>
   </div>
 
+  <div class="field is-horizontal">
+    <div class="field-label">
+      <!-- Left empty for spacing -->
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <div class="control">
+          <a href="<?= site_url("Admin/HouseholdItems/selectView") ?>">
+            <button class="button is-success is-large is-fullwidth">
+              Household Items
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
 <?php endif; ?>
 
 <?= $this->endSection() ?>
