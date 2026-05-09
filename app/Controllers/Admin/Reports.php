@@ -146,7 +146,8 @@ class Reports extends \App\Controllers\BaseController
                     echo 'Mailer Error: ' . $mail->ErrorInfo;
                 } else {
 
-                    $path = '{sng103.hawkhost.com:993/ssl}INBOX.Sent';
+                    // $path = '{sng103.hawkhost.com:993/ssl}INBOX.Sent';
+                    $path = '{sng103.arandomserver.com:993/ssl}INBOX.Sent';
                     $imapStream = imap_open($path, 'patrick@saigonbikerentals.com', 'n1FaZ!Sz#)vB');
                     imap_append($imapStream, $path, $mail->getSentMIMEMessage());
                     imap_close($imapStream);
