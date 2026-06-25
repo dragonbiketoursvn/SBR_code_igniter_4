@@ -329,8 +329,6 @@ class Bikes extends \App\Controllers\BaseController
     $mail->Subject = 'Bike Registration';
     $mail->Body = $message;
 
-    return $this->response->setJSON(['harry' => $_ENV['email.SMTPPass']]);
-
     foreach ($paths as $path) {
 
       $filePath = WRITEPATH . 'uploads/registration_cards/' . $path;
