@@ -306,7 +306,6 @@ class Bikes extends \App\Controllers\BaseController
     $message = $post['message'];
     $paths = []; // We'll have between one and two paths so we'll stick them in an array
 
-    return $this->response->setJSON(['cock' => 'balls']);
 
     for ($i = 1; $i < ($length - 1); $i++) {
       $paths[] = $_POST['path' . $i];
@@ -329,6 +328,8 @@ class Bikes extends \App\Controllers\BaseController
     $mail->isHTML(true);
     $mail->Subject = 'Bike Registration';
     $mail->Body = $message;
+
+    return $this->response->setJSON(['harry' => 'ass']);
 
     foreach ($paths as $path) {
 
