@@ -306,6 +306,8 @@ class Bikes extends \App\Controllers\BaseController
     $message = $post['message'];
     $paths = []; // We'll have between one and two paths so we'll stick them in an array
 
+    return $this->response->setJSON(['cock' => 'balls']);
+
     for ($i = 1; $i < ($length - 1); $i++) {
       $paths[] = $_POST['path' . $i];
     }
@@ -319,7 +321,7 @@ class Bikes extends \App\Controllers\BaseController
     $mail->Host = 'mail.saigonbikerentals.com';
     $mail->SMTPAuth = true;
     $mail->Username = 'patrick@saigonbikerentals.com';
-    $mail->Password = 'n1FaZ!Sz#)vB';
+    $mail->Password = $_ENV['email.SMTPPass'];
     $mail->SMTPSecure = 'tls';
     $mail->Port = 26;
     $mail->setFrom('patrick@saigonbikerentals.com');
@@ -370,7 +372,7 @@ class Bikes extends \App\Controllers\BaseController
     $mail->Host = 'mail.saigonbikerentals.com';
     $mail->SMTPAuth = true;
     $mail->Username = 'patrick@saigonbikerentals.com';
-    $mail->Password = 'n1FaZ!Sz#)vB';
+    $mail->Password = $_ENV['email.SMTPPass'];
     $mail->SMTPSecure = 'tls';
     $mail->Port = 26;
     $mail->setFrom('patrick@saigonbikerentals.com');
