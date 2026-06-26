@@ -352,19 +352,19 @@ class Bikes extends \App\Controllers\BaseController
 
   public function mailBikePhotos()
   {
-    $length = count($_POST);
+    // $length = count($_POST);
     $post = $this->request->getPost();
     $address = $post['address'];
     $message = $post['message'];
-    $paths = []; // We'll have between one and five paths so we'll stick them in an array
+    // $paths = []; // We'll have between one and five paths so we'll stick them in an array
 
-    for ($i = 1; $i < ($length - 1); $i++) {
-      $paths[] = $_POST['path' . $i];
-    }
+    // for ($i = 1; $i < ($length - 1); $i++) {
+    //   $paths[] = $_POST['path' . $i];
+    // }
 
-    require ROOTPATH . '/vendor/PHPMailer-master/src/Exception.php';
-    require ROOTPATH . '/vendor/PHPMailer-master/src/PHPMailer.php';
-    require ROOTPATH . '/vendor/PHPMailer-master/src/SMTP.php';
+    // require ROOTPATH . '/vendor/PHPMailer-master/src/Exception.php';
+    // require ROOTPATH . '/vendor/PHPMailer-master/src/PHPMailer.php';
+    // require ROOTPATH . '/vendor/PHPMailer-master/src/SMTP.php';
 
     $mail = new PHPMailer(true);
     $mail->isSMTP();
@@ -380,17 +380,17 @@ class Bikes extends \App\Controllers\BaseController
     $mail->Subject = 'Bike Registration';
     $mail->Body = $message;
 
-    foreach ($paths as $path) {
+    // foreach ($paths as $path) {
 
-      $filePath = WRITEPATH . 'uploads/bike_photos/' . $path;
+    //   $filePath = WRITEPATH . 'uploads/bike_photos/' . $path;
 
-      if (is_file($filePath)) {
+    //   if (is_file($filePath)) {
 
-        $mail->addAttachment($filePath);
-      } else {
-        return $this->response->setJSON('Files not found');
-      }
-    }
+    //     $mail->addAttachment($filePath);
+    //   } else {
+    //     return $this->response->setJSON('Files not found');
+    //   }
+    // }
 
     if (!$mail->send()) {
 
