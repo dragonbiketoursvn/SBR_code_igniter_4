@@ -11,6 +11,23 @@
   <div class="field-body">
     <div class="field">
       <div class="control">
+        <a href="<?= site_url("Admin/PayPal/payment") ?>">
+          <button class="button is-link is-large is-fullwidth">
+            PayPal
+          </button>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="field is-horizontal">
+  <div class="field-label">
+    <!-- Left empty for spacing -->
+  </div>
+  <div class="field-body">
+    <div class="field">
+      <div class="control">
         <a href="<?= site_url("Admin/Appointments/showAll") ?>">
           <button class="button is-success is-large is-fullwidth">
             Xem Lịch Cuộc Hẹn
