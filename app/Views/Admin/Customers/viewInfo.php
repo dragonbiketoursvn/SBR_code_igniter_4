@@ -334,6 +334,66 @@ if ($compensationTicket) {
       </div>
     </div>
 
+    <div class="field is-horizontal" style="bottom: 200px !important;">
+      <div class="field-label is-normal">
+        <label required class="label" for="license_status">Current License Status</label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="control is-expanded">
+          <div class="select">
+            <select name="license_status">
+              <option value="" <?= ($customer->license_status === '') ? 'selected' : '' ?>></option>
+              <option value="A" <?= ($customer->license_status === 'A') ? 'selected' : '' ?>>A</option>
+              <option value="A1" <?= ($customer->license_status === 'A1') ? 'selected' : '' ?>>A1</option>
+              <option value="Valid IDP with A" <?= ($customer->license_status === 'Valid IDP with A') ? 'selected' : '' ?>>Valid IDP with A</option>
+              <option value="Valid IDP with A1" <?= ($customer->license_status === 'Valid IDP with A1') ? 'selected' : '' ?>>Valid IDP with A1</option>
+              <option value="B" <?= ($customer->license_status === 'B') ? 'selected' : '' ?>>B</option>
+              <option value="TRC and valid foreign motorbike license" <?= ($customer->license_status === 'TRC and valid foreign motorbike license') ? 'selected' : '' ?>>TRC and valid foreign motorbike license</option>
+              <option value="TRC and valid foreign car license" <?= ($customer->license_status === 'TRC and valid foreign car license') ? 'selected' : '' ?>>TRC and valid foreign car license</option>
+              <option value="TRC and no foreign license" <?= ($customer->license_status === 'TRC and no foreign license') ? 'selected' : '' ?>>TRC and no foreign license</option>
+              <option value="No TRC or foreign license" <?= ($customer->license_status === 'No TRC or foreign license') ? 'selected' : '' ?>>No TRC or foreign license</option>
+            </select>
+          </div>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="field is-horizontal">
+      <div class="field-label is-normal">
+        <label class="label" for="license_expiration_date">License Expiration Date</label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="control is-expanded">
+            <input required autocomplete="off" class="input is-success" type="date" name="license_expiration_date" id="license_expiration_date" value="<?= $customer->license_expiration_date ?? ''; ?>">
+          </p>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="field is-horizontal" style="bottom: 200px !important;">
+      <div class="field-label is-normal">
+        <label required class="label" for="license_progress">Current License Progress</label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="control is-expanded">
+          <div class="select">
+            <select name="license_progress">
+              <option <?= ($customer->license_progress === '') ? 'selected' : '' ?>></option>
+              <option <?= ($customer->license_progress === 'test booked') ? 'selected' : '' ?>>test booked</option>
+              <option <?= ($customer->license_progress === 'studying for test, not yet booked') ? 'selected' : '' ?>>studying for test, not yet booked</option>
+              <option <?= ($customer->license_progress === 'license translated, conversion appointment booked') ? 'selected' : '' ?>>license translated, conversion appointment booked</option>
+            </select>
+          </div>
+          </p>
+        </div>
+      </div>
+    </div>
+
   <?php endif; ?>
 
   <div class="field is-horizontal" style="bottom: 200px !important;">

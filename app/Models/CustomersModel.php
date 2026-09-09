@@ -63,7 +63,10 @@ class CustomersModel extends \CodeIgniter\Model
     'odometer_finish',
     'start_city',
     'finish_city',
-    'owes_money_on_old_contract'
+    'owes_money_on_old_contract',
+    'license_status',
+    'license_expiration_date',
+    'license_progress'
   ];
 
   protected $returnType = 'App\Entities\Customer';

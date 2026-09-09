@@ -228,7 +228,7 @@
           </div>
         </div>
       </div>
-
+      <!-- 
       <div class="field is-horizontal" style="bottom: 200px !important;">
         <div class="field-label is-normal">
           <label required class="label" for="passport">Passport Photo</label>
@@ -250,6 +250,65 @@
           <div class="field">
             <p class="control is-expanded">
               <input autocomplete="off" type="file" class="input is-success" id="TRC_or_visa" name="TRC_or_visa">
+            </p>
+          </div>
+        </div>
+      </div> -->
+
+      <div class="field is-horizontal" style="bottom: 200px !important;">
+        <div class="field-label is-normal">
+          <label required class="label" for="license_status">Current License Status</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <p class="control is-expanded">
+            <div class="select">
+              <select name="license_status">
+                <option></option>
+                <option>A</option>
+                <option>A1</option>
+                <option>Valid IDP with A</option>
+                <option>Valid IDP with A1</option>
+                <option>B</option>
+                <option>TRC and valid foreign motorbike license</option>
+                <option>TRC and valid foreign car license</option>
+                <option>TRC and no foreign license</option>
+                <option>No TRC or foreign license</option>
+              </select>
+            </div>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label class="label" for="license_expiration_date">License Expiration Date</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <p class="control is-expanded">
+              <input required autocomplete="off" class="input is-success" type="date" name="license_expiration_date" id="license_expiration_date" value="<?= date('Y-m-d') ?>">
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="field is-horizontal" style="bottom: 200px !important;">
+        <div class="field-label is-normal">
+          <label required class="label" for="license_progress">Current License Progress</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <p class="control is-expanded">
+            <div class="select">
+              <select name="license_progress">
+                <option></option>
+                <option>test booked</option>
+                <option>studying for test, not yet booked</option>
+                <option>license translated, conversion appointment booked</option>
+              </select>
+            </div>
             </p>
           </div>
         </div>

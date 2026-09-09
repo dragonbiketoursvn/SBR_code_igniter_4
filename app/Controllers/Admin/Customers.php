@@ -642,7 +642,6 @@ class Customers extends \App\Controllers\BaseController
         'VND_TO_USD' => $VND_TO_USD
       ];
     }
-
     return view('Admin/Customers/viewInfo', $viewSettings);
 
     // return view('Admin/Customers/viewInfo', [
