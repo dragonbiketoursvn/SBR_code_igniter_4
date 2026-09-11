@@ -336,7 +336,7 @@ if ($compensationTicket) {
 
     <div class="field is-horizontal" style="bottom: 200px !important;">
       <div class="field-label is-normal">
-        <label required class="label" for="license_status">Current License Status</label>
+        <label class="label" for="license_status">Current License Status</label>
       </div>
       <div class="field-body">
         <div class="field">
@@ -367,7 +367,7 @@ if ($compensationTicket) {
       <div class="field-body">
         <div class="field">
           <p class="control is-expanded">
-            <input required autocomplete="off" class="input is-success" type="date" name="license_expiration_date" id="license_expiration_date" value="<?= $customer->license_expiration_date ?? ''; ?>">
+            <input autocomplete="off" class="input is-success" type="date" name="license_expiration_date" id="license_expiration_date" value="<?= $customer->license_expiration_date ?? ''; ?>">
           </p>
         </div>
       </div>
@@ -376,7 +376,7 @@ if ($compensationTicket) {
 
     <div class="field is-horizontal" style="bottom: 200px !important;">
       <div class="field-label is-normal">
-        <label required class="label" for="license_progress">Current License Progress</label>
+        <label class="label" for="license_progress">Current License Progress</label>
       </div>
       <div class="field-body">
         <div class="field">
